@@ -1,4 +1,5 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
+import { migrateWordRow } from './word-migration';
 import {
   DEFAULT_SETTINGS,
   type BackupFile,
@@ -19,12 +20,26 @@ let dbPromise: Promise<IDBPDatabase<Schema>> | null = null;
 
 function db() {
   if (!dbPromise) {
-    dbPromise = openDB<Schema>('english-beginner-app', 1, {
-      upgrade(d) {
-        d.createObjectStore('cards', { keyPath: 'wordId' });
-        d.createObjectStore('logs', { keyPath: 'id', autoIncrement: true });
-        d.createObjectStore('stats', { keyPath: 'date' });
-        d.createObjectStore('settings');
+    dbPromise = openDB<Schema>('english-beginner-app', 2, {
+      async upgrade(d, oldVersion, _newVersion, tx) {
+        if (oldVersion === 0) {
+          d.createObjectStore('cards', { keyPath: 'wordId' });
+          d.createObjectStore('logs', { keyPath: 'id', autoIncrement: true });
+          d.createObjectStore('stats', { keyPath: 'date' });
+          d.createObjectStore('settings');
+        } else if (oldVersion === 1) {
+          try {
+            const cards = (await tx.objectStore('cards').getAll()).map(migrateWordRow);
+            const logs = (await tx.objectStore('logs').getAll()).map(migrateWordRow);
+            // 先读取再清空，避免新旧主键交换时相互覆盖；同一事务原子提交。
+            await tx.objectStore('cards').clear();
+            await tx.objectStore('logs').clear();
+            for (const card of cards) await tx.objectStore('cards').put(card);
+            for (const log of logs) await tx.objectStore('logs').put(log);
+          } catch {
+            tx.abort();
+          }
+        }
       },
     });
   }
@@ -79,7 +94,7 @@ export async function exportBackup(): Promise<BackupFile> {
   const d = await db();
   return {
     app: 'english-beginner-app',
-    version: 1,
+    version: 2,
     exportedAt: new Date().toISOString(),
     settings: await loadSettings(),
     cards: await d.getAll('cards'),
@@ -90,9 +105,11 @@ export async function exportBackup(): Promise<BackupFile> {
 
 /** 导入备份:会用备份内容替换当前全部进度 */
 export async function importBackup(file: BackupFile): Promise<void> {
-  if (file.app !== 'english-beginner-app' || file.version !== 1) {
+  if (file.app !== 'english-beginner-app' || ![1, 2].includes(file.version)) {
     throw new Error('这不是本 App 的备份文件');
   }
+  const cards = file.version === 1 ? file.cards.map(migrateWordRow) : file.cards;
+  const logs = file.version === 1 ? file.logs.map(migrateWordRow) : file.logs;
   const d = await db();
   const tx = d.transaction(['cards', 'logs', 'stats', 'settings'], 'readwrite');
   await Promise.all([
@@ -100,8 +117,8 @@ export async function importBackup(file: BackupFile): Promise<void> {
     tx.objectStore('logs').clear(),
     tx.objectStore('stats').clear(),
   ]);
-  for (const c of file.cards) await tx.objectStore('cards').put(c);
-  for (const l of file.logs) await tx.objectStore('logs').put(l);
+  for (const c of cards) await tx.objectStore('cards').put(c);
+  for (const l of logs) await tx.objectStore('logs').put(l);
   for (const s of file.stats) await tx.objectStore('stats').put(s);
   await tx.objectStore('settings').put({ ...DEFAULT_SETTINGS, ...file.settings }, 'main');
   await tx.done;

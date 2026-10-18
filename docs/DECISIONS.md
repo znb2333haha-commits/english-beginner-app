@@ -15,6 +15,11 @@
 | 2026-10-18 | 音标以美式英语为准,用 CMUdict(美式,许可允许任何用途,请求注明 Carnegie Mellon University 出处)转成 IPA | 使用者的要求;ECDICT 的音标英美混杂 |
 | 2026-10-18 | 例句由 Claude 直接写,Codex 做校验脚本和界面,不接大模型 API | 使用者让 Claude 安排;省去密钥和费用 |
 
+## T1 实现与许可核对
+- T1 技术实现：仅重排原第一级 500 词，其余级别和词库成员保持不变；规则常量在 `scripts/build_words.py`，不手编教学单词表。ECDICT 的 j 为形容词、r 为副词、a 为限定词，助动词按语法类别排后。
+- T1 数据来源核对：CMUdict 来自 Carnegie Mellon University，固定提交 `74790861f652b15e4ac49015a90074ad62a27690`，实际许可为 BSD-2-Clause，并非只署名即可；保留全文于 `public/CMUdict-LICENSE.txt`，构建时随应用分发。来源：https://github.com/cmusphinx/cmudict 。未引入新的运行时依赖。
+- T1 数据兼容：单词重新编号会影响原有 wordId，故 IndexedDB 和备份升至 v2；保留旧 ID→单词映射，原子迁移卡片与日志，兼容导入 v1 备份。
+
 ## 待定
 - 发音用哪个 TTS:Codex 先生成各候选的试听样本,使用者选定后再批量生成(见 T2)
 - 是否需要云同步
