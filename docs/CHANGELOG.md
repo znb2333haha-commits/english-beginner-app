@@ -8,3 +8,5 @@
 - 测试:13 个单元测试通过;用 Playwright 在手机尺寸下走通完整流程(学一组、刷新后进度保留、导出、清空、导入恢复),页面无报错
 - 已知问题:第一级开头是 the、be、and 这类虚词,不适合当第一批要背的卡;发音目前只有系统语音兜底,内置音频还没有;还没有安卓壳,也没有例句
 - 下一步:调整第一级学习顺序;批量生成例句和内置音频;加音标入门单元;接 Capacitor 出安卓 APK
+- 交接准备:新增 AGENTS.md(给 Codex 的工作说明)、docs/TASKS.md(T1 到 T6 任务与验收标准)、docs/REVIEW_CHECKLIST.md(验收清单)、CLAUDE.md、CI 工作流
+- 新增单文件试用版构建 `npm run build:single`
