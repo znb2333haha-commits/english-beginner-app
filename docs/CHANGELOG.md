@@ -16,3 +16,4 @@
 - 交接准备:新增 AGENTS.md(给 Codex 的工作说明)、docs/TASKS.md(T1 到 T6 任务与验收标准)、docs/REVIEW_CHECKLIST.md(验收清单)、CLAUDE.md、CI 工作流
 - 新增单文件试用版构建 `npm run build:single`
 - 任务单更新:音标统一为美式(T1 加入 CMUdict 转换);T2 改为先生成多个 TTS 候选的试听样本,等使用者选;T3 例句改由 Claude 写,Codex 做校验与界面
+- 2026-10-18: T5 由 Claude 完成(Codex 额度不足):Capacitor 安卓壳、android.yml、Release 自动发布 APK;data/examples.json 写入第 1 级 500 条例句,待 T3 校验与界面。
