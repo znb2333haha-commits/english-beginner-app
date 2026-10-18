@@ -52,7 +52,7 @@ export interface ReviewLogRow {
 
 export interface BackupFile {
   app: 'english-beginner-app';
-  version: 1 | 2;
+  version: 1 | 2 | 3;
   exportedAt: string;
   settings: Settings;
   cards: StoredCard[];

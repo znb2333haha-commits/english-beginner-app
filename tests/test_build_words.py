@@ -15,6 +15,36 @@ spec.loader.exec_module(build)
 
 
 class BuildWordsTests(unittest.TestCase):
+    def test_theme_matching_uses_whole_primary_glosses(self):
+        def row(pos, meaning):
+            return dict(word='fixture', pos=pos, meaning=meaning, freq_rank=100, oxford=True, collins=3)
+        for pos, meaning, theme in [('n', 'n. 苹果, 家伙', '食物饮品'),
+                                    ('n', 'n. 猫, 恶妇', '动物'),
+                                    ('j', 'a. 红的, 红色的', '颜色'),
+                                    ('m', 'num. 三', '数字')]:
+            self.assertIn(theme, build.themes_for(row(pos, meaning)))
+        for pos, meaning in [('n', 'n. 政策, 方针'), ('n', 'n. 世界, 地球'),
+                             ('n', 'n. 时间, 时期, 钟'), ('v', 'v. 看, 观察\nn. 眼睛')]:
+            self.assertEqual(build.themes_for(row(pos, meaning)), [])
+
+    def test_oxford_and_collins_weight(self):
+        base = dict(word='fixture', pos='n', meaning='n. 食物', freq_rank=100, oxford=False, collins=0)
+        self.assertLess(build.theme_key({**base, 'oxford': True}), build.theme_key(base))
+        self.assertLess(build.theme_key({**base, 'collins': 4}), build.theme_key(base))
+
+    def test_actual_theme_quotas_and_stable_rebuild(self):
+        root = SCRIPT.parents[1]
+        words = json.loads((root / 'data/words.json').read_text(encoding='utf8'))
+        concrete = [w for w in words[:500] if build.is_concrete(w)]
+        first100 = [w for w in words[:100] if set(build.themes_for(w)) - {'日常动作'}]
+        self.assertGreaterEqual(len(concrete), 200)
+        self.assertGreaterEqual(len(first100), 50)
+        # 与输入排列无关；重建不能反复把已提升词再顺延。
+        self.assertEqual([w['word'] for w in build.beginner_order(list(reversed(words)))], [w['word'] for w in words])
+        legacy = json.loads((root / 'data/legacy-word-order.json').read_text(encoding='utf8'))
+        remaining = set(w['word'] for w in words[500:])
+        self.assertEqual([w['word'] for w in words[500:]], [word for word in legacy if word in remaining])
+
     def test_american_conversion(self):
         for phones, expected in [
             ('W AO1 T ER0', 'ˈwɔtɚ'), ('AH0 B AW1 T', 'əˈbaʊt'),
