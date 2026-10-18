@@ -1,4 +1,4 @@
-# 英语小白
+# 拾语
 
 给零基础成年人的"每天 15 分钟"英语学习 App:网页应用,手机和电脑浏览器都能用,之后用 Capacitor 打成安卓 APK。
 产品说明见 `docs/PRODUCT.md`,已定取舍见 `docs/DECISIONS.md`,更新记录见 `docs/CHANGELOG.md`。
