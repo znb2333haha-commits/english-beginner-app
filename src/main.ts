@@ -1,8 +1,9 @@
 import './style.css';
 import wordsData from '../data/words.json';
+import examplesData from '../data/examples.json';
 import { State } from 'ts-fsrs';
 import type { Grade } from 'ts-fsrs';
-import { playWord } from './audio';
+import { playSentence, playWord } from './audio';
 import {
   buildSession,
   dueCards,
@@ -30,6 +31,7 @@ import type { BackupFile, DayStats, Settings, StoredCard, Word } from './types';
 import { DEFAULT_SETTINGS } from './types';
 
 const words = wordsData as unknown as Word[];
+const examples = examplesData as unknown as Record<string, { en: string; zh: string }[]>;
 const byId = new Map(words.map((w) => [w.id, w]));
 const app = document.getElementById('app') as HTMLElement;
 
@@ -176,6 +178,16 @@ function renderHome(): string {
     </section>`;
 }
 
+function renderExample(w: Word): string {
+  const ex = examples[w.word]?.[0];
+  if (!ex) return '';
+  return `<div class="example">
+      <div class="example-en">${esc(ex.en)}</div>
+      <div class="example-zh">${esc(ex.zh)}</div>
+      <button class="link" data-action="speak-example">朗读例句</button>
+    </div>`;
+}
+
 function renderStudy(): string {
   const s = session;
   const w = currentWord();
@@ -194,7 +206,7 @@ function renderStudy(): string {
         <div class="word">${esc(w.word)}</div>
         <div class="phonetic">/${esc(w.phonetic)}/</div>
         <button class="secondary" data-action="speak">播放发音</button>
-        ${s.revealed ? `<div class="meaning">${meaning}</div>` : ''}
+        ${s.revealed ? `<div class="meaning">${meaning}</div>${renderExample(w)}` : ''}
       </div>
       ${
         s.revealed
@@ -308,6 +320,12 @@ app.addEventListener('click', (ev) => {
     case 'speak':
       playCurrent();
       break;
+    case 'speak-example': {
+      const w = currentWord();
+      const ex = w && examples[w.word]?.[0];
+      if (ex) playSentence(ex.en);
+      break;
+    }
     case 'grade':
       void answer(Number(el.dataset.grade) as Grade);
       break;

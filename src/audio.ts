@@ -21,3 +21,8 @@ export function playWord(word: string): void {
   a.addEventListener('error', () => speakFallback(word), { once: true });
   a.play().catch(() => speakFallback(word));
 }
+
+/** 例句暂时没有内置音频,用系统语音朗读(没有系统语音时无声,不影响学习) */
+export function playSentence(text: string): void {
+  speakFallback(text);
+}

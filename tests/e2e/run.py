@@ -50,6 +50,8 @@ with sync_playwright() as p:
     page.click("button:has-text('显示答案')")
     page.wait_for_selector(".grades")
     page.screenshot(path=f"{OUT}/3_back.png")
+    check(page.query_selector(".example .example-en") is not None and page.inner_text(".example .example-zh").strip() != "", "卡片背面显示例句(英文和中文)")
+    check(page.evaluate("document.documentElement.scrollWidth <= window.innerWidth"), "背面没有横向溢出")
     labels = page.inner_text(".grades").replace("\n", " ")
     check("不认识" in labels and "太简单" in labels, f"四个评分按钮都在 ({labels[:60]})")
 
