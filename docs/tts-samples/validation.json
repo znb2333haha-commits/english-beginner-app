@@ -1,0 +1,82 @@
+[
+  {
+    "candidate": "kokoro-af_heart",
+    "validated_samples": 12,
+    "total_sample_bytes": 587534,
+    "clipped_samples": 0,
+    "compilation": {
+      "file": "all.wav",
+      "bytes": 932650,
+      "duration_seconds": 19.429,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.455963,
+      "clipped_samples": 0,
+      "sha256": "afc36c3cb18c1736ca58d9b1d46343b2c05eeef76d16f8ab23f689b47458e64d"
+    }
+  },
+  {
+    "candidate": "kokoro-am_adam",
+    "validated_samples": 12,
+    "total_sample_bytes": 492880,
+    "clipped_samples": 0,
+    "compilation": {
+      "file": "all.wav",
+      "bytes": 837996,
+      "duration_seconds": 17.457,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.968719,
+      "clipped_samples": 0,
+      "sha256": "65bd091bd3ec1fca5ff11651cba1eaf8039b24cdb80b52b76e5eb7e5c35b3b85"
+    }
+  },
+  {
+    "candidate": "edge-en-US-JennyNeural",
+    "validated_samples": 12,
+    "total_sample_bytes": 124272,
+    "clipped_samples": 0,
+    "compilation": {
+      "file": "all.wav",
+      "bytes": 1339820,
+      "duration_seconds": 27.912,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.726318,
+      "clipped_samples": 0,
+      "sha256": "f77e8cbc89162af3bb6f67109e030de694819ac199380e3476d83593cba51e75"
+    }
+  },
+  {
+    "candidate": "edge-en-US-GuyNeural",
+    "validated_samples": 12,
+    "total_sample_bytes": 131472,
+    "clipped_samples": 0,
+    "compilation": {
+      "file": "all.wav",
+      "bytes": 1397420,
+      "duration_seconds": 29.112,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.710571,
+      "clipped_samples": 0,
+      "sha256": "35b898581678f575601dc4e2faa63397dc46236290ca1e6d5af79ba4e32ee0bd"
+    }
+  },
+  {
+    "candidate": "piper-en_US-ljspeech-medium",
+    "validated_samples": 12,
+    "total_sample_bytes": 542592,
+    "clipped_samples": 12,
+    "compilation": {
+      "file": "all.wav",
+      "bytes": 859628,
+      "duration_seconds": 19.492,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999969,
+      "clipped_samples": 12,
+      "sha256": "d999530292e839123646a5888930dd8030d5c06ead7fc6aaa282f22c2847d4d0"
+    }
+  }
+]

@@ -1,0 +1,146 @@
+{
+  "engine": "piper",
+  "voice": "en_US-ljspeech-medium",
+  "language": "en-US",
+  "speed": "default",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "model_load_seconds": 0.0,
+  "samples": [
+    {
+      "text": "apple",
+      "file": "apple.wav",
+      "bytes": 30880,
+      "duration_seconds": 0.699,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999969,
+      "clipped_samples": 1,
+      "sha256": "3269b85f406950332fc5a109b61697d9585ae2228df285358ad61fca5613db73"
+    },
+    {
+      "text": "water",
+      "file": "water.wav",
+      "bytes": 31392,
+      "duration_seconds": 0.711,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999969,
+      "clipped_samples": 1,
+      "sha256": "1eff478f783421bbead8d7fc585fa5d8b119083e6639a7f3efc90caf5eca413e"
+    },
+    {
+      "text": "go",
+      "file": "go.wav",
+      "bytes": 31392,
+      "duration_seconds": 0.711,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999969,
+      "clipped_samples": 1,
+      "sha256": "3f66976ab38dd5cbc7d2c4e6cc9c26deb9aac1d735cf2f0d004d518a8f4c2129"
+    },
+    {
+      "text": "think",
+      "file": "think.wav",
+      "bytes": 24224,
+      "duration_seconds": 0.548,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999969,
+      "clipped_samples": 1,
+      "sha256": "a72f5b3ed091dadf689369299825b8c931d4cab64a319c1bf8fe40c4a7d3ed63"
+    },
+    {
+      "text": "three",
+      "file": "three.wav",
+      "bytes": 32928,
+      "duration_seconds": 0.746,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999969,
+      "clipped_samples": 1,
+      "sha256": "43eb81717d00212e3e43f871cb2198c2020b35623f9861e7cdb1e462085d442a"
+    },
+    {
+      "text": "ship",
+      "file": "ship.wav",
+      "bytes": 28320,
+      "duration_seconds": 0.641,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999939,
+      "clipped_samples": 1,
+      "sha256": "a9ccda2c6a2e60e9b61de638f526156cffa651406548d811af724dd8a2adff79"
+    },
+    {
+      "text": "sheep",
+      "file": "sheep.wav",
+      "bytes": 32928,
+      "duration_seconds": 0.746,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999969,
+      "clipped_samples": 1,
+      "sha256": "14d32f10ba468440375b0a3073205e821d0a7d38264c6de236b9c2179583d711"
+    },
+    {
+      "text": "about",
+      "file": "about.wav",
+      "bytes": 35488,
+      "duration_seconds": 0.804,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999939,
+      "clipped_samples": 1,
+      "sha256": "a0770d0584f7ec6dbb42d34bfe1e9e6adf911d885efc30c4ddb8272b3fe4c133"
+    },
+    {
+      "text": "teacher",
+      "file": "teacher.wav",
+      "bytes": 34976,
+      "duration_seconds": 0.792,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999969,
+      "clipped_samples": 1,
+      "sha256": "9f5a327fa07040ebd758f81ea79beadaa186c575142090cdf13a1feb0fca12b0"
+    },
+    {
+      "text": "beautiful",
+      "file": "beautiful.wav",
+      "bytes": 38048,
+      "duration_seconds": 0.862,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999969,
+      "clipped_samples": 1,
+      "sha256": "abaf1799923eb17cc409074575c731713f0788920427ae38dd117eb8dbbb440c"
+    },
+    {
+      "text": "I eat an apple and drink water.",
+      "file": "sentence-1.wav",
+      "bytes": 111776,
+      "duration_seconds": 2.534,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999969,
+      "clipped_samples": 1,
+      "sha256": "7ff162cb65b28a0883231537e414607668a3bdce8018fc5e77652bd1b8f74eb8"
+    },
+    {
+      "text": "The teacher sees three sheep near the ship.",
+      "file": "sentence-2.wav",
+      "bytes": 110240,
+      "duration_seconds": 2.499,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.999939,
+      "clipped_samples": 1,
+      "sha256": "74071b00879d335ec6d4663be95f597f58dc489c6a9c5721901c6e99761a3b34"
+    }
+  ],
+  "status": "complete",
+  "runtime_version": "rhasspy/piper 2023.11.14-2 (MIT legacy)",
+  "generation_seconds": 1.58
+}
