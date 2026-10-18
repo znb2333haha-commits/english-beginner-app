@@ -1,6 +1,6 @@
 {
   "appId": "app.englishbeginner",
-  "appName": "英语小白",
+  "appName": "拾语",
   "webDir": "dist",
   "android": { "allowMixedContent": false }
 }

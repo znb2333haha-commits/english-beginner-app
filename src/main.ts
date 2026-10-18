@@ -201,7 +201,8 @@ function renderHome(): string {
   const canStudy = due > 0 || newAllowed() > 0;
   return `
     <section class="home">
-      <h1>英语小白</h1>
+      <h1>拾语</h1>
+      <p class="tagline">一点一点,拾起英语</p>
       <p class="streak">连续学习 <b>${streak}</b> 天</p>
       <div class="stats">
         <div><b>${todayStats.newCount}/${settings.newPerDay}</b><span>今日新词</span></div>
