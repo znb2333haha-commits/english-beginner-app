@@ -1,6 +1,7 @@
 import './style.css';
 import wordsData from '../data/words.json';
 import examplesData from '../data/examples.json';
+import phonemesData from '../data/phonetics.json';
 import { State } from 'ts-fsrs';
 import type { Grade } from 'ts-fsrs';
 import { playSentence, playWord } from './audio';
@@ -21,21 +22,26 @@ import {
   getStats,
   importBackup,
   loadCards,
+  loadPhonemeProgress,
   loadSettings,
+  savePhonemeProgress,
   localDate,
   saveCard,
   saveSettings,
 } from './store';
 import { calcStreak } from './streak';
-import type { BackupFile, DayStats, Settings, StoredCard, Word } from './types';
+import { levelProgress, shortMeaning } from './format';
+import type { BackupFile, DayStats, Phoneme, PhonemeProgress, Settings, StoredCard, Word } from './types';
 import { DEFAULT_SETTINGS } from './types';
 
 const words = wordsData as unknown as Word[];
 const examples = examplesData as unknown as Record<string, { en: string; zh: string }[]>;
 const byId = new Map(words.map((w) => [w.id, w]));
+const phonemes = phonemesData as unknown as Phoneme[];
+const wordByText = new Map(words.map((w) => [w.word, w]));
 const app = document.getElementById('app') as HTMLElement;
 
-type View = 'home' | 'study' | 'done' | 'settings';
+type View = 'home' | 'study' | 'done' | 'settings' | 'phonetics' | 'phoneme';
 
 interface Session {
   queue: number[];
@@ -46,6 +52,7 @@ interface Session {
   revealed: boolean;
   shownAt: number;
   bonus: boolean;
+  showFull: boolean;
 }
 
 let view: View = 'home';
@@ -56,6 +63,18 @@ let todayStats: DayStats = { date: today, newCount: 0, reviewCount: 0 };
 let streak = 0;
 let session: Session | null = null;
 let notice = '';
+let phonemeProgress = new Map<string, PhonemeProgress>();
+
+interface Quiz {
+  symbol: string;
+  questions: { word: string; options: string[] }[];
+  idx: number;
+  correct: number;
+  picked: string | null;
+  finished: boolean;
+}
+let currentPhoneme: Phoneme | null = null;
+let quiz: Quiz | null = null;
 
 const esc = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -102,6 +121,7 @@ function startSession(bonus: boolean): void {
     revealed: false,
     shownAt: Date.now(),
     bonus,
+    showFull: false,
   };
   view = 'study';
   render();
@@ -140,6 +160,7 @@ async function answer(grade: Grade): Promise<void> {
     session.requeued += 1;
   }
   session.revealed = false;
+  session.showFull = false;
   session.shownAt = Date.now();
   if (session.queue.length === 0) {
     await refreshStats();
@@ -149,6 +170,15 @@ async function answer(grade: Grade): Promise<void> {
     render();
     playCurrent();
   }
+}
+
+function renderProgress(): string {
+  const p = levelProgress(cards.keys());
+  const pct = Math.round((p.learned / p.size) * 100);
+  return `<div class="progress">
+      <div class="progress-label">第一级 ${p.learned}/${p.size}${p.done ? ' · 学完啦,太棒了!' : ''}</div>
+      <div class="progress-bar"><div style="width:${pct}%"></div></div>
+    </div>`;
 }
 
 function renderHome(): string {
@@ -171,8 +201,10 @@ function renderHome(): string {
           : `<p class="notice">今天的任务完成了,明天再来。</p>
              <button class="secondary big" data-action="bonus">再多学一组</button>`
       }
+      ${renderProgress()}
       <footer>
         <span>已学 ${cards.size} 词 / 词库 ${words.length} 词</span>
+        <button class="link" data-action="phonetics">音标入门 ${doneCount()}/${phonemes.length}</button>
         <button class="link" data-action="settings">设置与备份</button>
       </footer>
     </section>`;
@@ -195,7 +227,8 @@ function renderStudy(): string {
   const now = new Date();
   const card = cards.get(w.id) ?? newStoredCard(w.id, now);
   const labels = s.revealed ? previewLabels(card, now) : {};
-  const meaning = esc(w.meaning).replace(/\n/g, '<br>');
+  const short = shortMeaning(w.meaning);
+  const meaning = esc(s.showFull ? w.meaning : short.text).replace(/\n/g, '<br>');
   return `
     <section class="study">
       <header>
@@ -205,8 +238,17 @@ function renderStudy(): string {
       <div class="card">
         <div class="word">${esc(w.word)}</div>
         <div class="phonetic">/${esc(w.phonetic)}/</div>
-        <button class="secondary" data-action="speak">播放发音</button>
-        ${s.revealed ? `<div class="meaning">${meaning}</div>${renderExample(w)}` : ''}
+        <div class="speak-row">
+          <button class="secondary" data-action="speak">播放发音</button>
+          <button class="secondary" data-action="speak-slow">慢速</button>
+        </div>
+        ${
+          s.revealed
+            ? `<div class="meaning">${meaning}</div>${
+                short.truncated ? `<button class="link" data-action="toggle-full">${s.showFull ? '收起释义' : '显示全部释义'}</button>` : ''
+              }${renderExample(w)}`
+            : ''
+        }
       </div>
       ${
         s.revealed
@@ -219,6 +261,129 @@ function renderStudy(): string {
           : `<button class="primary big" data-action="reveal">显示答案</button>`
       }
     </section>`;
+}
+
+function doneCount(): number {
+  return [...phonemeProgress.values()].filter((p) => p.done).length;
+}
+
+function renderPhonetics(): string {
+  const group = (type: Phoneme['type'], title: string) => `
+    <h2>${title}</h2>
+    <div class="phoneme-grid">${phonemes
+      .filter((p) => p.type === type)
+      .map((p) => {
+        const st = phonemeProgress.get(p.symbol);
+        return `<button class="phoneme ${st?.done ? 'done' : ''}" data-action="phoneme" data-symbol="${esc(p.symbol)}">${esc(p.symbol)}</button>`;
+      })
+      .join('')}</div>`;
+  return `
+    <section class="settings">
+      <header><button class="link" data-action="home">返回</button><span>音标入门 ${doneCount()}/${phonemes.length}</span></header>
+      <p class="hint">音标是单词的"读音说明书"。点一个音标,先听例词、看发音提示,再做听音选词。答对 2 题以上就算学会,变成绿色。</p>
+      ${group('vowel', '元音(嘴巴张开发的音)')}
+      ${group('consonant', '辅音(靠嘴唇、舌头挡一下发的音)')}
+    </section>`;
+}
+
+function renderPhoneme(): string {
+  const p = currentPhoneme;
+  if (!p) return '';
+  if (quiz && !quiz.finished) {
+    const q = quiz.questions[quiz.idx];
+    const answered = quiz.picked !== null;
+    return `
+      <section class="settings">
+        <header><button class="link" data-action="phoneme-back">返回</button><span>听音选词 ${quiz.idx + 1}/${quiz.questions.length}</span></header>
+        <p class="hint">听发音,选出读音里有 <b>${esc(p.symbol)}</b> 的那个词。</p>
+        <button class="secondary" data-action="quiz-play">再听一遍</button>
+        <div class="quiz-options">${q.options
+          .map((o) => {
+            const w = wordByText.get(o);
+            const cls = answered ? (o === q.word ? 'right' : o === quiz!.picked ? 'wrong' : '') : '';
+            return `<button class="option ${cls}" data-action="quiz-pick" data-word="${esc(o)}" ${answered ? 'disabled' : ''}>
+              ${esc(o)}${answered && w ? `<small>/${esc(w.phonetic)}/</small>` : ''}</button>`;
+          })
+          .join('')}</div>
+        ${answered ? `<button class="primary big" data-action="quiz-next">${quiz.idx + 1 === quiz.questions.length ? '看结果' : '下一题'}</button>` : ''}
+      </section>`;
+  }
+  if (quiz && quiz.finished) {
+    const ok = quiz.correct >= 2;
+    return `
+      <section class="home">
+        <h1>${ok ? '学会了!' : '再听听看'}</h1>
+        <p class="streak">答对 <b>${quiz.correct}</b> / ${quiz.questions.length} 题</p>
+        <p class="hint">${ok ? '这个音标变成绿色了。' : '多听几遍例词,再做一次。'}</p>
+        <button class="primary big" data-action="phoneme-back">回到音标列表</button>
+        <button class="secondary big" data-action="quiz-start">再做一次</button>
+      </section>`;
+  }
+  const exs = p.examples
+    .map((e) => {
+      const w = wordByText.get(e);
+      return `<button class="example-word" data-action="play-example-word" data-word="${esc(e)}">
+        <b>${esc(e)}</b><span>/${esc(w?.phonetic ?? '')}/</span><i>播放</i></button>`;
+    })
+    .join('');
+  return `
+    <section class="settings">
+      <header><button class="link" data-action="phoneme-back">返回</button><span>音标</span></header>
+      <div class="card"><div class="word">/${esc(p.symbol)}/</div>
+        <div class="meaning">${esc(p.hint)}</div></div>
+      <h2>例词(点一下听发音)</h2>
+      <div class="example-words">${exs}</div>
+      <button class="primary big" data-action="quiz-start">听音选词</button>
+    </section>`;
+}
+
+function shuffle<T>(a: T[]): T[] {
+  const r = [...a];
+  for (let i = r.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [r[i], r[j]] = [r[j], r[i]];
+  }
+  return r;
+}
+
+function startQuiz(p: Phoneme): void {
+  const pool = shuffle(p.examples);
+  const questions = [0, 1, 2].map((i) => {
+    const word = pool[i % pool.length];
+    return { word, options: shuffle([word, p.contrast]) };
+  });
+  quiz = { symbol: p.symbol, questions, idx: 0, correct: 0, picked: null, finished: false };
+  render();
+  playWord(questions[0].word);
+}
+
+async function pickQuiz(word: string): Promise<void> {
+  if (!quiz || quiz.picked !== null) return;
+  quiz.picked = word;
+  if (word === quiz.questions[quiz.idx].word) quiz.correct += 1;
+  render();
+}
+
+async function nextQuiz(): Promise<void> {
+  if (!quiz) return;
+  if (quiz.idx + 1 < quiz.questions.length) {
+    quiz.idx += 1;
+    quiz.picked = null;
+    render();
+    playWord(quiz.questions[quiz.idx].word);
+    return;
+  }
+  quiz.finished = true;
+  const old = phonemeProgress.get(quiz.symbol);
+  const p: PhonemeProgress = {
+    symbol: quiz.symbol,
+    done: (old?.done ?? false) || quiz.correct >= 2,
+    best: Math.max(old?.best ?? 0, quiz.correct),
+    ts: new Date().toISOString(),
+  };
+  phonemeProgress.set(p.symbol, p);
+  await savePhonemeProgress(p);
+  render();
 }
 
 function renderDone(): string {
@@ -262,7 +427,11 @@ function render(): void {
         ? renderStudy()
         : view === 'done'
           ? renderDone()
-          : renderSettings();
+          : view === 'phonetics'
+            ? renderPhonetics()
+            : view === 'phoneme'
+              ? renderPhoneme()
+              : renderSettings();
 }
 
 async function goHome(): Promise<void> {
@@ -290,6 +459,7 @@ async function restoreBackup(file: File): Promise<void> {
     await importBackup(data);
     settings = await loadSettings();
     cards = await loadCards();
+    phonemeProgress = await loadPhonemeProgress();
     await refreshStats();
     notice = `导入完成:${cards.size} 张卡片。`;
   } catch (e) {
@@ -320,6 +490,17 @@ app.addEventListener('click', (ev) => {
     case 'speak':
       playCurrent();
       break;
+    case 'speak-slow': {
+      const w = currentWord();
+      if (w) playWord(w.word, true);
+      break;
+    }
+    case 'toggle-full':
+      if (session) {
+        session.showFull = !session.showFull;
+        render();
+      }
+      break;
     case 'speak-example': {
       const w = currentWord();
       const ex = w && examples[w.word]?.[0];
@@ -336,6 +517,36 @@ app.addEventListener('click', (ev) => {
       notice = '';
       view = 'settings';
       render();
+      break;
+    case 'phonetics':
+      view = 'phonetics';
+      render();
+      break;
+    case 'phoneme':
+      currentPhoneme = phonemes.find((p) => p.symbol === el.dataset.symbol) ?? null;
+      quiz = null;
+      view = 'phoneme';
+      render();
+      break;
+    case 'phoneme-back':
+      quiz = null;
+      view = 'phonetics';
+      render();
+      break;
+    case 'play-example-word':
+      if (el.dataset.word) playWord(el.dataset.word);
+      break;
+    case 'quiz-start':
+      if (currentPhoneme) startQuiz(currentPhoneme);
+      break;
+    case 'quiz-play':
+      if (quiz) playWord(quiz.questions[quiz.idx].word);
+      break;
+    case 'quiz-pick':
+      if (el.dataset.word) void pickQuiz(el.dataset.word);
+      break;
+    case 'quiz-next':
+      void nextQuiz();
       break;
     case 'export':
       void downloadBackup();
@@ -374,8 +585,13 @@ document.addEventListener('keydown', (ev) => {
 async function init(): Promise<void> {
   settings = await loadSettings();
   cards = await loadCards();
+  phonemeProgress = await loadPhonemeProgress();
   await refreshStats();
   render();
+}
+
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
 void init();

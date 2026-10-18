@@ -4,6 +4,7 @@ import {
   DEFAULT_SETTINGS,
   type BackupFile,
   type DayStats,
+  type PhonemeProgress,
   type ReviewLogRow,
   type Settings,
   type StoredCard,
@@ -14,14 +15,17 @@ interface Schema extends DBSchema {
   logs: { key: number; value: ReviewLogRow };
   stats: { key: string; value: DayStats };
   settings: { key: string; value: Settings };
+  phonetics: { key: string; value: PhonemeProgress };
 }
 
 let dbPromise: Promise<IDBPDatabase<Schema>> | null = null;
 
 function db() {
   if (!dbPromise) {
-    dbPromise = openDB<Schema>('english-beginner-app', 3, {
+    dbPromise = openDB<Schema>('english-beginner-app', 4, {
       async upgrade(d, oldVersion, _newVersion, tx) {
+        // v4 新增音标进度表;先建表,再做可能需要等待的旧数据迁移
+        d.createObjectStore('phonetics', { keyPath: 'symbol' });
         if (oldVersion === 0) {
           d.createObjectStore('cards', { keyPath: 'wordId' });
           d.createObjectStore('logs', { keyPath: 'id', autoIncrement: true });
@@ -94,33 +98,45 @@ export async function exportBackup(): Promise<BackupFile> {
   const d = await db();
   return {
     app: 'english-beginner-app',
-    version: 3,
+    version: 4,
     exportedAt: new Date().toISOString(),
     settings: await loadSettings(),
     cards: await d.getAll('cards'),
     stats: await d.getAll('stats'),
     logs: await d.getAll('logs'),
+    phonetics: await d.getAll('phonetics'),
   };
 }
 
 /** 导入备份:会用备份内容替换当前全部进度 */
 export async function importBackup(file: BackupFile): Promise<void> {
-  if (file.app !== 'english-beginner-app' || ![1, 2, 3].includes(file.version)) {
+  if (file.app !== 'english-beginner-app' || ![1, 2, 3, 4].includes(file.version)) {
     throw new Error('这不是本 App 的备份文件');
   }
   const version = file.version;
-  const cards = version !== 3 ? file.cards.map(row => migrateWordRow(row, version)) : file.cards;
-  const logs = version !== 3 ? file.logs.map(row => migrateWordRow(row, version)) : file.logs;
+  const cards = version < 3 ? file.cards.map((row) => migrateWordRow(row, version as 1 | 2)) : file.cards;
+  const logs = version < 3 ? file.logs.map((row) => migrateWordRow(row, version as 1 | 2)) : file.logs;
   const d = await db();
-  const tx = d.transaction(['cards', 'logs', 'stats', 'settings'], 'readwrite');
+  const tx = d.transaction(['cards', 'logs', 'stats', 'settings', 'phonetics'], 'readwrite');
   await Promise.all([
     tx.objectStore('cards').clear(),
     tx.objectStore('logs').clear(),
     tx.objectStore('stats').clear(),
+    tx.objectStore('phonetics').clear(),
   ]);
   for (const c of cards) await tx.objectStore('cards').put(c);
   for (const l of logs) await tx.objectStore('logs').put(l);
   for (const s of file.stats) await tx.objectStore('stats').put(s);
+  for (const p of file.phonetics ?? []) await tx.objectStore('phonetics').put(p);
   await tx.objectStore('settings').put({ ...DEFAULT_SETTINGS, ...file.settings }, 'main');
   await tx.done;
+}
+
+export async function loadPhonemeProgress(): Promise<Map<string, PhonemeProgress>> {
+  const all = await (await db()).getAll('phonetics');
+  return new Map(all.map((p) => [p.symbol, p]));
+}
+
+export async function savePhonemeProgress(p: PhonemeProgress): Promise<void> {
+  await (await db()).put('phonetics', p);
 }
