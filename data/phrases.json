@@ -45,6 +45,32 @@
      "en": "Thank you very much.",
      "zh": "非常感谢。"
     }
+   ],
+   "dialog": [
+    {
+     "id": "help-d1",
+     "who": "A",
+     "en": "Sorry, I do not understand.",
+     "zh": "对不起,我听不懂。"
+    },
+    {
+     "id": "help-d2",
+     "who": "B",
+     "en": "No problem. I will speak slowly.",
+     "zh": "没关系,我说慢一点。"
+    },
+    {
+     "id": "help-d3",
+     "who": "A",
+     "en": "Thank you. Can you say it again?",
+     "zh": "谢谢。你能再说一遍吗?"
+    },
+    {
+     "id": "help-d4",
+     "who": "B",
+     "en": "Sure. Where is the station?",
+     "zh": "当然。车站在哪里?"
+    }
    ]
   },
   {
@@ -91,6 +117,32 @@
      "id": "greet-8",
      "en": "Long time no see.",
      "zh": "好久不见。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "greet-d1",
+     "who": "A",
+     "en": "Hello! How are you?",
+     "zh": "你好!你好吗?"
+    },
+    {
+     "id": "greet-d2",
+     "who": "B",
+     "en": "I am fine, thank you. And you?",
+     "zh": "我很好,谢谢。你呢?"
+    },
+    {
+     "id": "greet-d3",
+     "who": "A",
+     "en": "Good, thanks. Nice to meet you.",
+     "zh": "很好,谢谢。很高兴认识你。"
+    },
+    {
+     "id": "greet-d4",
+     "who": "B",
+     "en": "Nice to meet you too. See you tomorrow.",
+     "zh": "我也很高兴认识你。明天见。"
     }
    ]
   },
@@ -139,6 +191,32 @@
      "en": "What is your name?",
      "zh": "你叫什么名字?"
     }
+   ],
+   "dialog": [
+    {
+     "id": "intro-d1",
+     "who": "A",
+     "en": "What is your name?",
+     "zh": "你叫什么名字?"
+    },
+    {
+     "id": "intro-d2",
+     "who": "B",
+     "en": "My name is Li. I am from China.",
+     "zh": "我叫小李。我来自中国。"
+    },
+    {
+     "id": "intro-d3",
+     "who": "A",
+     "en": "Do you live in Shanghai?",
+     "zh": "你住在上海吗?"
+    },
+    {
+     "id": "intro-d4",
+     "who": "B",
+     "en": "Yes, I live in Shanghai. I work in an office.",
+     "zh": "是的,我住在上海。我在办公室工作。"
+    }
    ]
   },
   {
@@ -185,6 +263,38 @@
      "id": "food-8",
      "en": "It is for here.",
      "zh": "在这里吃。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "food-d1",
+     "who": "A",
+     "en": "Can I see the menu?",
+     "zh": "我能看看菜单吗?"
+    },
+    {
+     "id": "food-d2",
+     "who": "B",
+     "en": "Here you are. What would you like?",
+     "zh": "给您。您想吃点什么?"
+    },
+    {
+     "id": "food-d3",
+     "who": "A",
+     "en": "I want a cup of coffee, please.",
+     "zh": "请给我一杯咖啡。"
+    },
+    {
+     "id": "food-d4",
+     "who": "B",
+     "en": "Sure. Anything else?",
+     "zh": "好的。还要别的吗?"
+    },
+    {
+     "id": "food-d5",
+     "who": "A",
+     "en": "No, thank you. Can I have the bill, please?",
+     "zh": "不用了,谢谢。请给我账单好吗?"
     }
    ]
   },
@@ -233,6 +343,38 @@
      "en": "Can I have a bag, please?",
      "zh": "能给我一个袋子吗?"
     }
+   ],
+   "dialog": [
+    {
+     "id": "shop-d1",
+     "who": "A",
+     "en": "How much is this?",
+     "zh": "这个多少钱?"
+    },
+    {
+     "id": "shop-d2",
+     "who": "B",
+     "en": "It is fifty yuan.",
+     "zh": "五十元。"
+    },
+    {
+     "id": "shop-d3",
+     "who": "A",
+     "en": "It is too expensive. Do you have a bigger one?",
+     "zh": "太贵了。有大一点的吗?"
+    },
+    {
+     "id": "shop-d4",
+     "who": "B",
+     "en": "Yes. Can you try it on?",
+     "zh": "有的。您要试穿吗?"
+    },
+    {
+     "id": "shop-d5",
+     "who": "A",
+     "en": "OK. I will take this one.",
+     "zh": "好的。我要这个。"
+    }
    ]
   },
   {
@@ -279,6 +421,32 @@
      "id": "way-8",
      "en": "I am lost.",
      "zh": "我迷路了。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "way-d1",
+     "who": "A",
+     "en": "Excuse me, where is the station?",
+     "zh": "请问,车站在哪里?"
+    },
+    {
+     "id": "way-d2",
+     "who": "B",
+     "en": "Go straight and turn right.",
+     "zh": "直走然后右转。"
+    },
+    {
+     "id": "way-d3",
+     "who": "A",
+     "en": "Is it far from here?",
+     "zh": "离这里远吗?"
+    },
+    {
+     "id": "way-d4",
+     "who": "B",
+     "en": "No. It is next to the hotel.",
+     "zh": "不远。它在酒店旁边。"
     }
    ]
   },
@@ -327,6 +495,32 @@
      "en": "When does the store open?",
      "zh": "商店什么时候开门?"
     }
+   ],
+   "dialog": [
+    {
+     "id": "time-d1",
+     "who": "A",
+     "en": "What time is it?",
+     "zh": "现在几点了?"
+    },
+    {
+     "id": "time-d2",
+     "who": "B",
+     "en": "It is five o'clock.",
+     "zh": "现在五点了。"
+    },
+    {
+     "id": "time-d3",
+     "who": "A",
+     "en": "Are you free tomorrow?",
+     "zh": "你明天有空吗?"
+    },
+    {
+     "id": "time-d4",
+     "who": "B",
+     "en": "Yes. Let's meet at seven.",
+     "zh": "有空。我们七点见面吧。"
+    }
    ]
   },
   {
@@ -373,6 +567,32 @@
      "id": "weather-8",
      "en": "It is windy outside.",
      "zh": "外面风很大。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "weather-d1",
+     "who": "A",
+     "en": "It is a nice day today.",
+     "zh": "今天天气真好。"
+    },
+    {
+     "id": "weather-d2",
+     "who": "B",
+     "en": "Yes, but it is very hot.",
+     "zh": "是啊,但是很热。"
+    },
+    {
+     "id": "weather-d3",
+     "who": "A",
+     "en": "Do you have an umbrella?",
+     "zh": "你有伞吗?"
+    },
+    {
+     "id": "weather-d4",
+     "who": "B",
+     "en": "No. It is going to rain.",
+     "zh": "没有。要下雨了。"
     }
    ]
   },
@@ -421,6 +641,32 @@
      "en": "My family is very kind.",
      "zh": "我的家人都很和蔼。"
     }
+   ],
+   "dialog": [
+    {
+     "id": "family-d1",
+     "who": "A",
+     "en": "Do you have children?",
+     "zh": "你有孩子吗?"
+    },
+    {
+     "id": "family-d2",
+     "who": "B",
+     "en": "Yes. My son is five years old.",
+     "zh": "有。我儿子五岁。"
+    },
+    {
+     "id": "family-d3",
+     "who": "A",
+     "en": "Who is this?",
+     "zh": "这是谁?"
+    },
+    {
+     "id": "family-d4",
+     "who": "B",
+     "en": "This is my mother. She is very kind.",
+     "zh": "这是我妈妈。她人很好。"
+    }
    ]
   },
   {
@@ -467,6 +713,32 @@
      "id": "health-8",
      "en": "Please call the police.",
      "zh": "请报警。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "health-d1",
+     "who": "A",
+     "en": "Where does it hurt?",
+     "zh": "哪里疼?"
+    },
+    {
+     "id": "health-d2",
+     "who": "B",
+     "en": "My head hurts. I do not feel well.",
+     "zh": "我头疼。我觉得不舒服。"
+    },
+    {
+     "id": "health-d3",
+     "who": "A",
+     "en": "I think you have a cold.",
+     "zh": "我想你感冒了。"
+    },
+    {
+     "id": "health-d4",
+     "who": "B",
+     "en": "Do I need a doctor?",
+     "zh": "我需要看医生吗?"
     }
    ]
   },
@@ -515,6 +787,32 @@
      "en": "Wait, I will check my phone.",
      "zh": "等一下,我看看手机。"
     }
+   ],
+   "dialog": [
+    {
+     "id": "phone-d1",
+     "who": "A",
+     "en": "Hello, this is Li.",
+     "zh": "你好,我是小李。"
+    },
+    {
+     "id": "phone-d2",
+     "who": "B",
+     "en": "Hello. Can I speak to Mr. Wang?",
+     "zh": "你好。我能和王先生说话吗?"
+    },
+    {
+     "id": "phone-d3",
+     "who": "A",
+     "en": "Wait a minute, please.",
+     "zh": "请稍等一下。"
+    },
+    {
+     "id": "phone-d4",
+     "who": "B",
+     "en": "Thank you. I will call you back.",
+     "zh": "谢谢。我会给你回电话。"
+    }
    ]
   },
   {
@@ -562,6 +860,32 @@
      "en": "Can you call me a taxi?",
      "zh": "你能帮我叫辆出租车吗?"
     }
+   ],
+   "dialog": [
+    {
+     "id": "hotel-d1",
+     "who": "A",
+     "en": "I have a room for two nights.",
+     "zh": "我订了两晚的房间。"
+    },
+    {
+     "id": "hotel-d2",
+     "who": "B",
+     "en": "Here is your key.",
+     "zh": "这是您的钥匙。"
+    },
+    {
+     "id": "hotel-d3",
+     "who": "A",
+     "en": "What time is breakfast?",
+     "zh": "早餐几点开始?"
+    },
+    {
+     "id": "hotel-d4",
+     "who": "B",
+     "en": "It is at seven.",
+     "zh": "七点开始。"
+    }
    ]
   },
   {
@@ -608,6 +932,1273 @@
      "id": "travel-8",
      "en": "Where can I get a taxi?",
      "zh": "我在哪里能打到出租车?"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "travel-d1",
+     "who": "A",
+     "en": "One ticket to the city, please.",
+     "zh": "请给我一张去市区的票。"
+    },
+    {
+     "id": "travel-d2",
+     "who": "B",
+     "en": "Here you are.",
+     "zh": "给您。"
+    },
+    {
+     "id": "travel-d3",
+     "who": "A",
+     "en": "Which bus goes to the airport?",
+     "zh": "哪路公交车去机场?"
+    },
+    {
+     "id": "travel-d4",
+     "who": "B",
+     "en": "Take the number five.",
+     "zh": "坐五路。"
+    }
+   ]
+  },
+  {
+   "id": "sorry",
+   "title": "道歉与感谢",
+   "intro": "做错事、收到帮助时说。",
+   "phrases": [
+    {
+     "id": "sorry-1",
+     "en": "I am sorry.",
+     "zh": "对不起。"
+    },
+    {
+     "id": "sorry-2",
+     "en": "Sorry to bother you.",
+     "zh": "抱歉打扰你了。"
+    },
+    {
+     "id": "sorry-3",
+     "en": "It is my fault.",
+     "zh": "这是我的错。"
+    },
+    {
+     "id": "sorry-4",
+     "en": "That is OK.",
+     "zh": "没关系。"
+    },
+    {
+     "id": "sorry-5",
+     "en": "Thank you for your help.",
+     "zh": "谢谢你的帮助。"
+    },
+    {
+     "id": "sorry-6",
+     "en": "You are very kind.",
+     "zh": "你人真好。"
+    },
+    {
+     "id": "sorry-7",
+     "en": "You are welcome.",
+     "zh": "不客气。"
+    },
+    {
+     "id": "sorry-8",
+     "en": "Thanks for everything.",
+     "zh": "谢谢你所做的一切。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "sorry-d1",
+     "who": "A",
+     "en": "I am sorry. I am late.",
+     "zh": "对不起,我迟到了。"
+    },
+    {
+     "id": "sorry-d2",
+     "who": "B",
+     "en": "That is OK. Please sit down.",
+     "zh": "没关系。请坐。"
+    },
+    {
+     "id": "sorry-d3",
+     "who": "A",
+     "en": "Thank you for waiting.",
+     "zh": "谢谢你等我。"
+    },
+    {
+     "id": "sorry-d4",
+     "who": "B",
+     "en": "You are welcome.",
+     "zh": "不客气。"
+    }
+   ]
+  },
+  {
+   "id": "invite",
+   "title": "邀请与拒绝",
+   "intro": "约朋友、礼貌地说不。",
+   "phrases": [
+    {
+     "id": "invite-1",
+     "en": "Do you want to come with me?",
+     "zh": "你想和我一起去吗?"
+    },
+    {
+     "id": "invite-2",
+     "en": "Are you free on Saturday?",
+     "zh": "你周六有空吗?"
+    },
+    {
+     "id": "invite-3",
+     "en": "Let's have dinner together.",
+     "zh": "我们一起吃晚饭吧。"
+    },
+    {
+     "id": "invite-4",
+     "en": "I would love to.",
+     "zh": "我很乐意。"
+    },
+    {
+     "id": "invite-5",
+     "en": "Sorry, I cannot come.",
+     "zh": "抱歉,我去不了。"
+    },
+    {
+     "id": "invite-6",
+     "en": "Maybe next time.",
+     "zh": "也许下次吧。"
+    },
+    {
+     "id": "invite-7",
+     "en": "I have to work tomorrow.",
+     "zh": "我明天得工作。"
+    },
+    {
+     "id": "invite-8",
+     "en": "That sounds great.",
+     "zh": "听起来很棒。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "invite-d1",
+     "who": "A",
+     "en": "Are you free on Saturday?",
+     "zh": "你周六有空吗?"
+    },
+    {
+     "id": "invite-d2",
+     "who": "B",
+     "en": "Yes. What is the plan?",
+     "zh": "有空。有什么计划?"
+    },
+    {
+     "id": "invite-d3",
+     "who": "A",
+     "en": "Let's have dinner together.",
+     "zh": "我们一起吃晚饭吧。"
+    },
+    {
+     "id": "invite-d4",
+     "who": "B",
+     "en": "That sounds great. I would love to.",
+     "zh": "听起来很棒。我很乐意。"
+    }
+   ]
+  },
+  {
+   "id": "work",
+   "title": "工作与同事",
+   "intro": "办公室里的日常。",
+   "phrases": [
+    {
+     "id": "work-1",
+     "en": "I work from nine to five.",
+     "zh": "我从九点工作到五点。"
+    },
+    {
+     "id": "work-2",
+     "en": "This is my team.",
+     "zh": "这是我的团队。"
+    },
+    {
+     "id": "work-3",
+     "en": "I have a meeting at ten.",
+     "zh": "我十点有个会。"
+    },
+    {
+     "id": "work-4",
+     "en": "Can you send me the report?",
+     "zh": "你能把报告发给我吗?"
+    },
+    {
+     "id": "work-5",
+     "en": "I will finish it today.",
+     "zh": "我今天会做完。"
+    },
+    {
+     "id": "work-6",
+     "en": "Let me check.",
+     "zh": "让我查一下。"
+    },
+    {
+     "id": "work-7",
+     "en": "Do you need any help?",
+     "zh": "你需要帮忙吗?"
+    },
+    {
+     "id": "work-8",
+     "en": "I am on my way.",
+     "zh": "我在路上了。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "work-d1",
+     "who": "A",
+     "en": "Do you have a meeting today?",
+     "zh": "你今天有会吗?"
+    },
+    {
+     "id": "work-d2",
+     "who": "B",
+     "en": "Yes, at ten. Can you send me the report?",
+     "zh": "有,十点。你能把报告发给我吗?"
+    },
+    {
+     "id": "work-d3",
+     "who": "A",
+     "en": "I will finish it today.",
+     "zh": "我今天会做完。"
+    },
+    {
+     "id": "work-d4",
+     "who": "B",
+     "en": "Thank you. Let me know if you need help.",
+     "zh": "谢谢。需要帮忙就告诉我。"
+    }
+   ]
+  },
+  {
+   "id": "hobby",
+   "title": "兴趣爱好",
+   "intro": "聊聊你喜欢做什么。",
+   "phrases": [
+    {
+     "id": "hobby-1",
+     "en": "What do you like to do?",
+     "zh": "你喜欢做什么?"
+    },
+    {
+     "id": "hobby-2",
+     "en": "I like music and movies.",
+     "zh": "我喜欢音乐和电影。"
+    },
+    {
+     "id": "hobby-3",
+     "en": "I play the piano.",
+     "zh": "我弹钢琴。"
+    },
+    {
+     "id": "hobby-4",
+     "en": "I often go for a walk.",
+     "zh": "我常常去散步。"
+    },
+    {
+     "id": "hobby-5",
+     "en": "Do you like football?",
+     "zh": "你喜欢足球吗?"
+    },
+    {
+     "id": "hobby-6",
+     "en": "I read a book every week.",
+     "zh": "我每周读一本书。"
+    },
+    {
+     "id": "hobby-7",
+     "en": "I like to cook at home.",
+     "zh": "我喜欢在家做饭。"
+    },
+    {
+     "id": "hobby-8",
+     "en": "It is a lot of fun.",
+     "zh": "这很有趣。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "hobby-d1",
+     "who": "A",
+     "en": "What do you like to do?",
+     "zh": "你喜欢做什么?"
+    },
+    {
+     "id": "hobby-d2",
+     "who": "B",
+     "en": "I like music. I play the piano.",
+     "zh": "我喜欢音乐。我弹钢琴。"
+    },
+    {
+     "id": "hobby-d3",
+     "who": "A",
+     "en": "That sounds great.",
+     "zh": "听起来很棒。"
+    },
+    {
+     "id": "hobby-d4",
+     "who": "B",
+     "en": "Do you like music too?",
+     "zh": "你也喜欢音乐吗?"
+    }
+   ]
+  },
+  {
+   "id": "taxi",
+   "title": "打车",
+   "intro": "坐出租车、网约车。",
+   "phrases": [
+    {
+     "id": "taxi-1",
+     "en": "Can you take me to this address?",
+     "zh": "你能送我去这个地址吗?"
+    },
+    {
+     "id": "taxi-2",
+     "en": "To the airport, please.",
+     "zh": "请去机场。"
+    },
+    {
+     "id": "taxi-3",
+     "en": "How much is it?",
+     "zh": "多少钱?"
+    },
+    {
+     "id": "taxi-4",
+     "en": "Please stop here.",
+     "zh": "请在这里停车。"
+    },
+    {
+     "id": "taxi-5",
+     "en": "Can you turn on the air conditioner?",
+     "zh": "能开一下空调吗?"
+    },
+    {
+     "id": "taxi-6",
+     "en": "I am in a hurry.",
+     "zh": "我赶时间。"
+    },
+    {
+     "id": "taxi-7",
+     "en": "Keep the change.",
+     "zh": "不用找了。"
+    },
+    {
+     "id": "taxi-8",
+     "en": "Please wait for me here.",
+     "zh": "请在这里等我。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "taxi-d1",
+     "who": "A",
+     "en": "To the airport, please.",
+     "zh": "请去机场。"
+    },
+    {
+     "id": "taxi-d2",
+     "who": "B",
+     "en": "OK. Do you have a bag?",
+     "zh": "好的。您有行李吗?"
+    },
+    {
+     "id": "taxi-d3",
+     "who": "A",
+     "en": "Yes, one bag. I am in a hurry.",
+     "zh": "有,一个包。我赶时间。"
+    },
+    {
+     "id": "taxi-d4",
+     "who": "B",
+     "en": "No problem. It will take thirty minutes.",
+     "zh": "没问题。要三十分钟。"
+    }
+   ]
+  },
+  {
+   "id": "market",
+   "title": "超市买菜",
+   "intro": "买水果、蔬菜、日用品。",
+   "phrases": [
+    {
+     "id": "market-1",
+     "en": "Where can I find the milk?",
+     "zh": "牛奶在哪里?"
+    },
+    {
+     "id": "market-2",
+     "en": "I need some eggs and bread.",
+     "zh": "我需要一些鸡蛋和面包。"
+    },
+    {
+     "id": "market-3",
+     "en": "How much is a kilo of apples?",
+     "zh": "苹果一公斤多少钱?"
+    },
+    {
+     "id": "market-4",
+     "en": "Is this fresh?",
+     "zh": "这个新鲜吗?"
+    },
+    {
+     "id": "market-5",
+     "en": "Can I have two bags of rice?",
+     "zh": "我要两袋米。"
+    },
+    {
+     "id": "market-6",
+     "en": "Do you have a basket?",
+     "zh": "有篮子吗?"
+    },
+    {
+     "id": "market-7",
+     "en": "I will pay in cash.",
+     "zh": "我付现金。"
+    },
+    {
+     "id": "market-8",
+     "en": "That is all, thank you.",
+     "zh": "就这些,谢谢。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "market-d1",
+     "who": "A",
+     "en": "Where can I find the milk?",
+     "zh": "牛奶在哪里?"
+    },
+    {
+     "id": "market-d2",
+     "who": "B",
+     "en": "It is next to the cheese.",
+     "zh": "在奶酪旁边。"
+    },
+    {
+     "id": "market-d3",
+     "who": "A",
+     "en": "Is this fresh?",
+     "zh": "这个新鲜吗?"
+    },
+    {
+     "id": "market-d4",
+     "who": "B",
+     "en": "Yes, it came this morning.",
+     "zh": "是的,今天早上刚到的。"
+    }
+   ]
+  },
+  {
+   "id": "bank",
+   "title": "银行与付款",
+   "intro": "取钱、转账、付款。",
+   "phrases": [
+    {
+     "id": "bank-1",
+     "en": "I want to open an account.",
+     "zh": "我想开个账户。"
+    },
+    {
+     "id": "bank-2",
+     "en": "I need to take some money out.",
+     "zh": "我需要取些钱。"
+    },
+    {
+     "id": "bank-3",
+     "en": "Can I pay by card?",
+     "zh": "我能刷卡吗?"
+    },
+    {
+     "id": "bank-4",
+     "en": "Can I scan the code?",
+     "zh": "我能扫码吗?"
+    },
+    {
+     "id": "bank-5",
+     "en": "Here is my card.",
+     "zh": "这是我的卡。"
+    },
+    {
+     "id": "bank-6",
+     "en": "Please enter your number.",
+     "zh": "请输入您的密码。"
+    },
+    {
+     "id": "bank-7",
+     "en": "Can I have a receipt?",
+     "zh": "能给我小票吗?"
+    },
+    {
+     "id": "bank-8",
+     "en": "Is there a bank near here?",
+     "zh": "这附近有银行吗?"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "bank-d1",
+     "who": "A",
+     "en": "Can I pay by card?",
+     "zh": "我能刷卡吗?"
+    },
+    {
+     "id": "bank-d2",
+     "who": "B",
+     "en": "Yes. Please enter your number.",
+     "zh": "可以。请输入您的密码。"
+    },
+    {
+     "id": "bank-d3",
+     "who": "A",
+     "en": "OK. Can I have a receipt?",
+     "zh": "好的。能给我小票吗?"
+    },
+    {
+     "id": "bank-d4",
+     "who": "B",
+     "en": "Here you are.",
+     "zh": "给您。"
+    }
+   ]
+  },
+  {
+   "id": "post",
+   "title": "寄快递",
+   "intro": "寄东西、取包裹。",
+   "phrases": [
+    {
+     "id": "post-1",
+     "en": "I want to send this box.",
+     "zh": "我想寄这个箱子。"
+    },
+    {
+     "id": "post-2",
+     "en": "Where is the post office?",
+     "zh": "邮局在哪里?"
+    },
+    {
+     "id": "post-3",
+     "en": "How long does it take?",
+     "zh": "要多长时间?"
+    },
+    {
+     "id": "post-4",
+     "en": "It will take three days.",
+     "zh": "要三天。"
+    },
+    {
+     "id": "post-5",
+     "en": "How much is the delivery?",
+     "zh": "运费多少?"
+    },
+    {
+     "id": "post-6",
+     "en": "I am waiting for a package.",
+     "zh": "我在等一个包裹。"
+    },
+    {
+     "id": "post-7",
+     "en": "Can you write the address here?",
+     "zh": "你能在这里写下地址吗?"
+    },
+    {
+     "id": "post-8",
+     "en": "Please call me when it arrives.",
+     "zh": "到了请给我打电话。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "post-d1",
+     "who": "A",
+     "en": "I want to send this box to Beijing.",
+     "zh": "我想把这个箱子寄到北京。"
+    },
+    {
+     "id": "post-d2",
+     "who": "B",
+     "en": "OK. Please write the address here.",
+     "zh": "好的。请在这里写下地址。"
+    },
+    {
+     "id": "post-d3",
+     "who": "A",
+     "en": "How long does it take?",
+     "zh": "要多长时间?"
+    },
+    {
+     "id": "post-d4",
+     "who": "B",
+     "en": "It will take three days.",
+     "zh": "要三天。"
+    }
+   ]
+  },
+  {
+   "id": "school",
+   "title": "学校与学习",
+   "intro": "上课、考试、问老师。",
+   "phrases": [
+    {
+     "id": "school-1",
+     "en": "I am a student.",
+     "zh": "我是学生。"
+    },
+    {
+     "id": "school-2",
+     "en": "What time does class start?",
+     "zh": "几点上课?"
+    },
+    {
+     "id": "school-3",
+     "en": "I have a test tomorrow.",
+     "zh": "我明天有考试。"
+    },
+    {
+     "id": "school-4",
+     "en": "Can I ask a question?",
+     "zh": "我能问个问题吗?"
+    },
+    {
+     "id": "school-5",
+     "en": "I do my homework every night.",
+     "zh": "我每天晚上做作业。"
+    },
+    {
+     "id": "school-6",
+     "en": "My teacher is very kind.",
+     "zh": "我的老师很和蔼。"
+    },
+    {
+     "id": "school-7",
+     "en": "I study English every day.",
+     "zh": "我每天学英语。"
+    },
+    {
+     "id": "school-8",
+     "en": "Let's study together.",
+     "zh": "我们一起学习吧。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "school-d1",
+     "who": "A",
+     "en": "What time does class start?",
+     "zh": "几点上课?"
+    },
+    {
+     "id": "school-d2",
+     "who": "B",
+     "en": "At eight. Do you have your book?",
+     "zh": "八点。你带书了吗?"
+    },
+    {
+     "id": "school-d3",
+     "who": "A",
+     "en": "Yes. I have a test tomorrow.",
+     "zh": "带了。我明天有考试。"
+    },
+    {
+     "id": "school-d4",
+     "who": "B",
+     "en": "Good luck!",
+     "zh": "祝你好运!"
+    }
+   ]
+  },
+  {
+   "id": "homelife",
+   "title": "在家",
+   "intro": "家里的日常。",
+   "phrases": [
+    {
+     "id": "homelife-1",
+     "en": "I am at home.",
+     "zh": "我在家。"
+    },
+    {
+     "id": "homelife-2",
+     "en": "Dinner is ready.",
+     "zh": "晚饭好了。"
+    },
+    {
+     "id": "homelife-3",
+     "en": "Please turn off the light.",
+     "zh": "请把灯关掉。"
+    },
+    {
+     "id": "homelife-4",
+     "en": "Can you open the window?",
+     "zh": "你能开一下窗吗?"
+    },
+    {
+     "id": "homelife-5",
+     "en": "I will wash the dishes.",
+     "zh": "我来洗碗。"
+    },
+    {
+     "id": "homelife-6",
+     "en": "The baby is sleeping.",
+     "zh": "宝宝在睡觉。"
+    },
+    {
+     "id": "homelife-7",
+     "en": "I am going to bed.",
+     "zh": "我要睡觉了。"
+    },
+    {
+     "id": "homelife-8",
+     "en": "Wake me up at seven.",
+     "zh": "七点叫醒我。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "homelife-d1",
+     "who": "A",
+     "en": "Dinner is ready.",
+     "zh": "晚饭好了。"
+    },
+    {
+     "id": "homelife-d2",
+     "who": "B",
+     "en": "I will wash my hands.",
+     "zh": "我去洗手。"
+    },
+    {
+     "id": "homelife-d3",
+     "who": "A",
+     "en": "Please turn off the TV.",
+     "zh": "请把电视关掉。"
+    },
+    {
+     "id": "homelife-d4",
+     "who": "B",
+     "en": "OK. The baby is sleeping.",
+     "zh": "好的。宝宝在睡觉。"
+    }
+   ]
+  },
+  {
+   "id": "feeling",
+   "title": "心情与感受",
+   "intro": "说说你现在怎么样。",
+   "phrases": [
+    {
+     "id": "feeling-1",
+     "en": "I am happy today.",
+     "zh": "我今天很开心。"
+    },
+    {
+     "id": "feeling-2",
+     "en": "I am tired.",
+     "zh": "我累了。"
+    },
+    {
+     "id": "feeling-3",
+     "en": "I am hungry.",
+     "zh": "我饿了。"
+    },
+    {
+     "id": "feeling-4",
+     "en": "I am a little afraid.",
+     "zh": "我有点害怕。"
+    },
+    {
+     "id": "feeling-5",
+     "en": "Are you OK?",
+     "zh": "你还好吗?"
+    },
+    {
+     "id": "feeling-6",
+     "en": "I feel much better.",
+     "zh": "我感觉好多了。"
+    },
+    {
+     "id": "feeling-7",
+     "en": "Do not worry.",
+     "zh": "别担心。"
+    },
+    {
+     "id": "feeling-8",
+     "en": "I miss my family.",
+     "zh": "我想念我的家人。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "feeling-d1",
+     "who": "A",
+     "en": "Are you OK?",
+     "zh": "你还好吗?"
+    },
+    {
+     "id": "feeling-d2",
+     "who": "B",
+     "en": "I am tired. I am also hungry.",
+     "zh": "我累了。我也饿了。"
+    },
+    {
+     "id": "feeling-d3",
+     "who": "A",
+     "en": "Do not worry. Let's eat.",
+     "zh": "别担心。我们去吃饭吧。"
+    },
+    {
+     "id": "feeling-d4",
+     "who": "B",
+     "en": "Thank you. I feel better.",
+     "zh": "谢谢。我感觉好多了。"
+    }
+   ]
+  },
+  {
+   "id": "plan",
+   "title": "周末计划",
+   "intro": "聊聊接下来做什么。",
+   "phrases": [
+    {
+     "id": "plan-1",
+     "en": "What are you going to do this weekend?",
+     "zh": "这个周末你打算做什么?"
+    },
+    {
+     "id": "plan-2",
+     "en": "I am going to visit my friend.",
+     "zh": "我打算去看朋友。"
+    },
+    {
+     "id": "plan-3",
+     "en": "We are going to the beach.",
+     "zh": "我们要去海边。"
+    },
+    {
+     "id": "plan-4",
+     "en": "Do you have any plans?",
+     "zh": "你有什么计划吗?"
+    },
+    {
+     "id": "plan-5",
+     "en": "I want to stay at home.",
+     "zh": "我想待在家里。"
+    },
+    {
+     "id": "plan-6",
+     "en": "Let's go to the park.",
+     "zh": "我们去公园吧。"
+    },
+    {
+     "id": "plan-7",
+     "en": "I will call you tomorrow.",
+     "zh": "我明天给你打电话。"
+    },
+    {
+     "id": "plan-8",
+     "en": "See you on Sunday.",
+     "zh": "周日见。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "plan-d1",
+     "who": "A",
+     "en": "What are you going to do this weekend?",
+     "zh": "这个周末你打算做什么?"
+    },
+    {
+     "id": "plan-d2",
+     "who": "B",
+     "en": "I am going to the beach. Come with me?",
+     "zh": "我要去海边。一起来吗?"
+    },
+    {
+     "id": "plan-d3",
+     "who": "A",
+     "en": "I would love to.",
+     "zh": "我很乐意。"
+    },
+    {
+     "id": "plan-d4",
+     "who": "B",
+     "en": "Great. See you on Saturday.",
+     "zh": "太好了。周六见。"
+    }
+   ]
+  },
+  {
+   "id": "clothes",
+   "title": "穿着打扮",
+   "intro": "买衣服、聊穿搭。",
+   "phrases": [
+    {
+     "id": "clothes-1",
+     "en": "I like your shirt.",
+     "zh": "我喜欢你的衬衫。"
+    },
+    {
+     "id": "clothes-2",
+     "en": "Where did you buy it?",
+     "zh": "你在哪里买的?"
+    },
+    {
+     "id": "clothes-3",
+     "en": "It looks good on you.",
+     "zh": "你穿很好看。"
+    },
+    {
+     "id": "clothes-4",
+     "en": "I need a warm coat.",
+     "zh": "我需要一件暖和的外套。"
+    },
+    {
+     "id": "clothes-5",
+     "en": "Do you have a smaller size?",
+     "zh": "有小一点的吗?"
+    },
+    {
+     "id": "clothes-6",
+     "en": "These shoes are too big.",
+     "zh": "这双鞋太大了。"
+    },
+    {
+     "id": "clothes-7",
+     "en": "What color do you like?",
+     "zh": "你喜欢什么颜色?"
+    },
+    {
+     "id": "clothes-8",
+     "en": "I will wear a hat.",
+     "zh": "我要戴一顶帽子。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "clothes-d1",
+     "who": "A",
+     "en": "I like your coat. Where did you buy it?",
+     "zh": "我喜欢你的外套。你在哪里买的?"
+    },
+    {
+     "id": "clothes-d2",
+     "who": "B",
+     "en": "I bought it online.",
+     "zh": "我在网上买的。"
+    },
+    {
+     "id": "clothes-d3",
+     "who": "A",
+     "en": "It looks good on you.",
+     "zh": "你穿很好看。"
+    },
+    {
+     "id": "clothes-d4",
+     "who": "B",
+     "en": "Thank you.",
+     "zh": "谢谢。"
+    }
+   ]
+  },
+  {
+   "id": "tech",
+   "title": "电脑与网络",
+   "intro": "手机、网络、电脑。",
+   "phrases": [
+    {
+     "id": "tech-1",
+     "en": "Is there Wi-Fi here?",
+     "zh": "这里有无线网吗?"
+    },
+    {
+     "id": "tech-2",
+     "en": "What is the password?",
+     "zh": "密码是什么?"
+    },
+    {
+     "id": "tech-3",
+     "en": "My phone does not work.",
+     "zh": "我的手机坏了。"
+    },
+    {
+     "id": "tech-4",
+     "en": "Can I use your computer?",
+     "zh": "我能用你的电脑吗?"
+    },
+    {
+     "id": "tech-5",
+     "en": "The Internet is very slow.",
+     "zh": "网络很慢。"
+    },
+    {
+     "id": "tech-6",
+     "en": "I need to charge my phone.",
+     "zh": "我需要给手机充电。"
+    },
+    {
+     "id": "tech-7",
+     "en": "Please send me a message.",
+     "zh": "请给我发条信息。"
+    },
+    {
+     "id": "tech-8",
+     "en": "Can you take a photo of us?",
+     "zh": "你能给我们拍张照吗?"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "tech-d1",
+     "who": "A",
+     "en": "Is there Wi-Fi here?",
+     "zh": "这里有无线网吗?"
+    },
+    {
+     "id": "tech-d2",
+     "who": "B",
+     "en": "Yes. The password is on the wall.",
+     "zh": "有。密码在墙上。"
+    },
+    {
+     "id": "tech-d3",
+     "who": "A",
+     "en": "Thank you. Can I charge my phone?",
+     "zh": "谢谢。我能给手机充电吗?"
+    },
+    {
+     "id": "tech-d4",
+     "who": "B",
+     "en": "Sure. Use this.",
+     "zh": "当然。用这个。"
+    }
+   ]
+  },
+  {
+   "id": "opinion",
+   "title": "表达想法",
+   "intro": "说同意、不同意、想法。",
+   "phrases": [
+    {
+     "id": "opinion-1",
+     "en": "I think so.",
+     "zh": "我也这么想。"
+    },
+    {
+     "id": "opinion-2",
+     "en": "I do not think so.",
+     "zh": "我不这么认为。"
+    },
+    {
+     "id": "opinion-3",
+     "en": "That is a good idea.",
+     "zh": "这是个好主意。"
+    },
+    {
+     "id": "opinion-4",
+     "en": "I agree with you.",
+     "zh": "我同意你。"
+    },
+    {
+     "id": "opinion-5",
+     "en": "What do you think?",
+     "zh": "你觉得呢?"
+    },
+    {
+     "id": "opinion-6",
+     "en": "I am not sure.",
+     "zh": "我不确定。"
+    },
+    {
+     "id": "opinion-7",
+     "en": "Maybe you are right.",
+     "zh": "也许你是对的。"
+    },
+    {
+     "id": "opinion-8",
+     "en": "It is up to you.",
+     "zh": "由你决定。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "opinion-d1",
+     "who": "A",
+     "en": "What do you think?",
+     "zh": "你觉得呢?"
+    },
+    {
+     "id": "opinion-d2",
+     "who": "B",
+     "en": "I think it is a good idea.",
+     "zh": "我觉得是个好主意。"
+    },
+    {
+     "id": "opinion-d3",
+     "who": "A",
+     "en": "Really? I am not sure.",
+     "zh": "真的吗?我不确定。"
+    },
+    {
+     "id": "opinion-d4",
+     "who": "B",
+     "en": "It is up to you.",
+     "zh": "由你决定。"
+    }
+   ]
+  },
+  {
+   "id": "repair",
+   "title": "抱怨与投诉",
+   "intro": "东西坏了、服务不好时。",
+   "phrases": [
+    {
+     "id": "repair-1",
+     "en": "This does not work.",
+     "zh": "这个坏了。"
+    },
+    {
+     "id": "repair-2",
+     "en": "There is a problem with my room.",
+     "zh": "我的房间有问题。"
+    },
+    {
+     "id": "repair-3",
+     "en": "It is too noisy.",
+     "zh": "太吵了。"
+    },
+    {
+     "id": "repair-4",
+     "en": "Can you fix it?",
+     "zh": "你能修好吗?"
+    },
+    {
+     "id": "repair-5",
+     "en": "I want to change it.",
+     "zh": "我想换一个。"
+    },
+    {
+     "id": "repair-6",
+     "en": "Can I get my money back?",
+     "zh": "我能退款吗?"
+    },
+    {
+     "id": "repair-7",
+     "en": "Please call the manager.",
+     "zh": "请叫经理来。"
+    },
+    {
+     "id": "repair-8",
+     "en": "I am not happy about this.",
+     "zh": "我对这件事不满意。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "repair-d1",
+     "who": "A",
+     "en": "This does not work. Can you fix it?",
+     "zh": "这个坏了。你能修好吗?"
+    },
+    {
+     "id": "repair-d2",
+     "who": "B",
+     "en": "I am sorry. I will check.",
+     "zh": "对不起。我去看看。"
+    },
+    {
+     "id": "repair-d3",
+     "who": "A",
+     "en": "Can I change it?",
+     "zh": "我能换一个吗?"
+    },
+    {
+     "id": "repair-d4",
+     "who": "B",
+     "en": "Yes. Please wait a minute.",
+     "zh": "可以。请稍等一下。"
+    }
+   ]
+  },
+  {
+   "id": "cook",
+   "title": "做饭",
+   "intro": "厨房里的话。",
+   "phrases": [
+    {
+     "id": "cook-1",
+     "en": "I am making dinner.",
+     "zh": "我在做晚饭。"
+    },
+    {
+     "id": "cook-2",
+     "en": "Can you pass me the salt?",
+     "zh": "你能把盐递给我吗?"
+    },
+    {
+     "id": "cook-3",
+     "en": "Cut the onion, please.",
+     "zh": "请切洋葱。"
+    },
+    {
+     "id": "cook-4",
+     "en": "Put some oil in the pot.",
+     "zh": "在锅里放点油。"
+    },
+    {
+     "id": "cook-5",
+     "en": "It needs more sugar.",
+     "zh": "还需要多放点糖。"
+    },
+    {
+     "id": "cook-6",
+     "en": "Is it ready?",
+     "zh": "好了吗?"
+    },
+    {
+     "id": "cook-7",
+     "en": "The soup is hot.",
+     "zh": "汤很烫。"
+    },
+    {
+     "id": "cook-8",
+     "en": "It tastes great.",
+     "zh": "味道好极了。"
+    }
+   ],
+   "dialog": [
+    {
+     "id": "cook-d1",
+     "who": "A",
+     "en": "I am making dinner. Can you help me?",
+     "zh": "我在做晚饭。你能帮我吗?"
+    },
+    {
+     "id": "cook-d2",
+     "who": "B",
+     "en": "Sure. What should I do?",
+     "zh": "当然。我该做什么?"
+    },
+    {
+     "id": "cook-d3",
+     "who": "A",
+     "en": "Cut the onion, please.",
+     "zh": "请切洋葱。"
+    },
+    {
+     "id": "cook-d4",
+     "who": "B",
+     "en": "OK. It smells great.",
+     "zh": "好的。闻起来真香。"
     }
    ]
   }

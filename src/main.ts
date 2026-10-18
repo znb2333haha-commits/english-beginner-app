@@ -3,9 +3,12 @@ import wordsData from '../data/words.json';
 import examplesData from '../data/examples.json';
 import phonemesData from '../data/phonetics.json';
 import phrasesData from '../data/phrases.json';
+import kidsData from '../data/kids.json';
 import { State } from 'ts-fsrs';
 import type { Grade } from 'ts-fsrs';
-import { playPhrase, playSentence, playWord } from './audio';
+import { playKid, playPhrase, playSentence, playSequence, playWord, stopSequence } from './audio';
+import { buildFormIndex, buildPhraseIndex } from './lookup';
+import { duePhrases, learnPhrase, ratePhrase } from './phrase-cards';
 import {
   buildSession,
   dueCards,
@@ -23,7 +26,10 @@ import {
   getStats,
   importBackup,
   loadCards,
+  deletePhraseCard,
   deletePhraseProgress,
+  loadPhraseCards,
+  savePhraseCard,
   loadPhonemeProgress,
   loadPhraseProgress,
   savePhraseProgress,
@@ -35,7 +41,7 @@ import {
 } from './store';
 import { calcStreak } from './streak';
 import { levelProgress, shortMeaning } from './format';
-import type { BackupFile, DayStats, Phoneme, PhonemeProgress, PhraseProgress, Scene, Settings, StoredCard, Word } from './types';
+import type { BackupFile, DayStats, Phoneme, PhonemeProgress, PhraseCard, PhraseProgress, Scene, Settings, StoredCard, Word } from './types';
 import { DEFAULT_SETTINGS } from './types';
 
 const words = wordsData as unknown as Word[];
@@ -44,9 +50,25 @@ const byId = new Map(words.map((w) => [w.id, w]));
 const phonemes = phonemesData as unknown as Phoneme[];
 const scenes = (phrasesData as unknown as { scenes: Scene[] }).scenes;
 const wordByText = new Map(words.map((w) => [w.word, w]));
+const formIndex = buildFormIndex(words);
+const allLines = scenes.flatMap((sc) => [...sc.phrases, ...(sc.dialog ?? [])]);
+const phraseIndex = buildPhraseIndex(allLines, formIndex);
+const lineById = new Map(allLines.map((l) => [l.id, l]));
+
+/** 句子里能在词库查到的词变成可点的小标签 */
+function tokHtml(text: string): string {
+  return text
+    .split(/([A-Za-z]+(?:'[A-Za-z]+)?)/)
+    .map((part, i) => {
+      if (i % 2 === 0) return esc(part);
+      const w = formIndex.get(part.toLowerCase());
+      return w ? `<span class="tok" data-lookup="${w.id}">${esc(part)}</span>` : esc(part);
+    })
+    .join('');
+}
 const app = document.getElementById('app') as HTMLElement;
 
-type View = 'home' | 'study' | 'done' | 'settings' | 'phonetics' | 'phoneme' | 'scenes' | 'scene';
+type View = 'home' | 'study' | 'done' | 'settings' | 'phonetics' | 'phoneme' | 'scenes' | 'scene' | 'preview' | 'kids' | 'kidgroup';
 
 interface Session {
   queue: number[];
@@ -71,6 +93,24 @@ let notice = '';
 let phonemeProgress = new Map<string, PhonemeProgress>();
 let phraseProgress = new Map<string, PhraseProgress>();
 let currentScene: Scene | null = null;
+let phraseCards = new Map<string, PhraseCard>();
+let lookupWord: Word | null = null;
+let playingLine = -1;
+interface PReview {
+  queue: string[];
+  revealed: boolean;
+  done: number;
+  finished: boolean;
+}
+let preview: PReview | null = null;
+
+interface KidItem { word: string; emoji: string; zh: string; file: string }
+interface KidGroup { id: string; title: string; items: KidItem[] }
+const kidGroups = (kidsData as unknown as { groups: KidGroup[] }).groups;
+interface KidQuiz { questions: { item: KidItem; options: KidItem[] }[]; idx: number; correct: number; picked: string | null; finished: boolean }
+let kidGroup: KidGroup | null = null;
+let kidQuiz: KidQuiz | null = null;
+let kidShown: KidItem | null = null;
 interface PhraseQuiz {
   questions: { id: string; en: string; options: string[]; answer: string }[];
   idx: number;
@@ -210,6 +250,7 @@ function renderHome(): string {
         <div><b>${due}</b><span>待复习</span></div>
       </div>
       ${notice ? `<p class="notice">${esc(notice)}</p>` : ''}
+      ${dueCount() > 0 ? `<button class="secondary" data-action="scenes">有 ${dueCount()} 句会话该复习了</button>` : ''}
       ${
         canStudy
           ? `<button class="primary big" data-action="start">来一组</button>
@@ -220,11 +261,22 @@ function renderHome(): string {
       ${renderProgress()}
       <footer>
         <span>已学 ${cards.size} 词 / 词库 ${words.length} 词</span>
+        <button class="link" data-action="kids">儿童乐园 ⭐${kidStars()}</button>
         <button class="link" data-action="scenes">日常会话 ${scenesDone()}/${scenes.length}</button>
         <button class="link" data-action="phonetics">音标入门 ${doneCount()}/${phonemes.length}</button>
         <button class="link" data-action="settings">设置与备份</button>
       </footer>
     </section>`;
+}
+
+function renderRelated(w: Word): string {
+  const lines = (phraseIndex.get(w.id) ?? []).slice(0, 2);
+  if (lines.length === 0) return '';
+  return `<div class="related"><div class="related-title">会话里怎么说</div>${lines
+    .map(
+      (l) => `<div class="related-line" data-action="phrase-play" data-id="${esc(l.id)}"><b>${esc(l.en)}</b><span>${esc(l.zh)}</span></div>`,
+    )
+    .join('')}</div>`;
 }
 
 function renderExample(w: Word): string {
@@ -263,7 +315,7 @@ function renderStudy(): string {
           s.revealed
             ? `<div class="meaning">${meaning}</div>${
                 short.truncated ? `<button class="link" data-action="toggle-full">${s.showFull ? '收起释义' : '显示全部释义'}</button>` : ''
-              }${renderExample(w)}`
+              }${renderExample(w)}${renderRelated(w)}`
             : ''
         }
       </div>
@@ -292,11 +344,46 @@ function scenesDone(): number {
   return scenes.filter(sceneDone).length;
 }
 
+function dueCount(): number {
+  return duePhrases(phraseCards, new Date()).length;
+}
+
+function renderReviewEntry(): string {
+  const n = dueCount();
+  return n > 0
+    ? `<button class="primary big" data-action="preview-start">复习句子(${n} 句到期)</button>`
+    : `<p class="hint">已记住 ${phraseCards.size} 句,暂时没有到期要复习的。</p>`;
+}
+
+function renderLookup(): string {
+  const w = lookupWord;
+  if (!w) return '';
+  const sm = shortMeaning(w.meaning, 2, 4);
+  return `<div class="lookup">
+      <div><b>${esc(w.word)}</b> <span>/${esc(w.phonetic)}/</span></div>
+      <div class="lookup-meaning">${esc(sm.text).replace(/\n/g, '<br>')}</div>
+      <div><button class="secondary" data-action="lookup-play">播放</button> <button class="link" data-action="lookup-close">关闭</button></div>
+    </div>`;
+}
+
+function renderDialog(sc: Scene): string {
+  if (!sc.dialog?.length) return '';
+  return `<h2>小对话</h2>
+    <div class="dialog">${sc.dialog
+      .map(
+        (l, i) => `<div class="bubble ${l.who === 'A' ? 'a' : 'b'} ${playingLine === i ? 'playing' : ''}" data-action="phrase-play" data-id="${esc(l.id)}">
+          <b>${tokHtml(l.en)}</b><span>${esc(l.zh)}</span></div>`,
+      )
+      .join('')}</div>
+    <button class="secondary big" data-action="dialog-play">整段播放</button>`;
+}
+
 function renderScenes(): string {
   return `
     <section class="settings">
       <header><button class="link" data-action="home">返回</button><span>日常会话 ${scenesDone()}/${scenes.length}</span></header>
-      <p class="hint">每个场景 8 句最常用的话。先听、跟着读,会了就点"我会了",最后做听句选意思。</p>
+      <p class="hint">每个场景 8 句最常用的话和一段小对话。先听、跟着读,会了就点"我会了",最后做听句选意思。点句子里的单词能查意思。</p>
+      ${renderReviewEntry()}
       <div class="scene-list">${scenes
         .map(
           (sc) => `<button class="scene ${sceneDone(sc) ? 'done' : ''}" data-action="scene" data-id="${esc(sc.id)}">
@@ -346,14 +433,16 @@ function renderScene(): string {
         .map((p) => {
           const learned = phraseProgress.get(p.id)?.learned;
           return `<div class="phrase ${learned ? 'learned' : ''}">
-            <button class="phrase-text" data-action="phrase-play" data-id="${esc(p.id)}"><b>${esc(p.en)}</b><span>${esc(p.zh)}</span></button>
+            <div class="phrase-text" data-action="phrase-play" data-id="${esc(p.id)}"><b>${tokHtml(p.en)}</b><span>${esc(p.zh)}</span></div>
             <div class="phrase-btns">
               <button class="link" data-action="phrase-slow" data-id="${esc(p.id)}">慢速</button>
               <button class="link" data-action="phrase-learn" data-id="${esc(p.id)}">${learned ? '✓ 会了' : '我会了'}</button>
             </div></div>`;
         })
         .join('')}</div>
+      ${renderDialog(sc)}
       <button class="primary big" data-action="pquiz-start">听句选意思</button>
+      ${renderLookup()}
     </section>`;
 }
 
@@ -390,10 +479,16 @@ async function togglePhrase(id: string): Promise<void> {
   if (cur?.learned) {
     phraseProgress.delete(id);
     await deletePhraseProgress(id);
+    phraseCards.delete(id);
+    await deletePhraseCard(id);
   } else {
-    const rec: PhraseProgress = { id, learned: true, ts: new Date().toISOString() };
+    const now = new Date();
+    const rec: PhraseProgress = { id, learned: true, ts: now.toISOString() };
     phraseProgress.set(id, rec);
     await savePhraseProgress(rec);
+    const card = learnPhrase(id, now);
+    phraseCards.set(id, card);
+    await savePhraseCard(card);
   }
   render();
 }
@@ -521,6 +616,164 @@ async function nextQuiz(): Promise<void> {
   render();
 }
 
+function startPhraseReview(): void {
+  const ids = duePhrases(phraseCards, new Date())
+    .slice(0, settings.sessionSize)
+    .map((c) => c.pid);
+  if (ids.length === 0) return;
+  preview = { queue: ids, revealed: false, done: 0, finished: false };
+  view = 'preview';
+  render();
+}
+
+function renderPreview(): string {
+  const pv = preview;
+  if (!pv) return '';
+  if (pv.finished) {
+    return `
+      <section class="home">
+        <h1>句子复习完成</h1>
+        <p class="streak">这次复习了 <b>${pv.done}</b> 次</p>
+        <button class="primary big" data-action="scenes">回到日常会话</button>
+      </section>`;
+  }
+  const line = lineById.get(pv.queue[0]);
+  const card = phraseCards.get(pv.queue[0]);
+  if (!line || !card) return '';
+  const now = new Date();
+  const labels = pv.revealed ? previewLabels(card, now) : {};
+  return `
+    <section class="study">
+      <header><button class="link" data-action="scenes">退出</button><span>还剩 ${pv.queue.length} 句</span></header>
+      <div class="card">
+        <p class="hint">这句话用英语怎么说?</p>
+        <div class="meaning">${esc(line.zh)}</div>
+        ${
+          pv.revealed
+            ? `<div class="example"><div class="example-en">${tokHtml(line.en)}</div>
+                 <div class="speak-row"><button class="secondary" data-action="preview-play">播放</button><button class="secondary" data-action="preview-slow">慢速</button></div></div>`
+            : ''
+        }
+      </div>
+      ${
+        pv.revealed
+          ? `<div class="grades">${GRADES.map(
+              (g, i) =>
+                `<button class="grade g${g.grade}" data-action="preview-grade" data-grade="${g.grade}">
+                   ${g.label}<small>${labels[g.grade] ?? ''}</small><i>${i + 1}</i></button>`,
+            ).join('')}</div>`
+          : `<button class="primary big" data-action="preview-reveal">显示英文</button>`
+      }
+      ${renderLookup()}
+    </section>`;
+}
+
+async function gradePreview(grade: Grade): Promise<void> {
+  const pv = preview;
+  if (!pv || pv.finished) return;
+  const pid = pv.queue[0];
+  const card = phraseCards.get(pid);
+  if (!card) return;
+  const now = new Date();
+  const after = ratePhrase(card, grade, now);
+  phraseCards.set(pid, after);
+  await savePhraseCard(after);
+  pv.done += 1;
+  pv.queue.shift();
+  if (shouldRequeue(after, now)) pv.queue.push(pid);
+  pv.revealed = false;
+  if (pv.queue.length === 0) pv.finished = true;
+  render();
+}
+
+// ---------- 儿童乐园:图片(表情符号)+ 发音,不依赖中文阅读 ----------
+function kidStars(): number {
+  return kidGroups.filter((g) => phraseProgress.get(`kid:${g.id}`)?.learned).length;
+}
+
+function renderKids(): string {
+  return `
+    <section class="settings kids">
+      <header><button class="link" data-action="home">返回</button><span>儿童乐园 ⭐ ${kidStars()}/${kidGroups.length}</span></header>
+      <div class="kid-groups">${kidGroups
+        .map((g) => {
+          const star = phraseProgress.get(`kid:${g.id}`)?.learned ? '⭐' : '';
+          return `<button class="kid-group" data-action="kidgroup" data-id="${esc(g.id)}">
+            <span class="kid-emoji">${g.items[0].emoji}</span><b>${esc(g.title)}</b><i>${star}</i></button>`;
+        })
+        .join('')}</div>
+    </section>`;
+}
+
+function renderKidGroup(): string {
+  const g = kidGroup;
+  if (!g) return '';
+  if (kidQuiz && !kidQuiz.finished) {
+    const q = kidQuiz.questions[kidQuiz.idx];
+    const answered = kidQuiz.picked !== null;
+    return `
+      <section class="settings kids">
+        <header><button class="link" data-action="kid-back">返回</button><span>🔊 ${kidQuiz.idx + 1}/${kidQuiz.questions.length}</span></header>
+        <button class="kid-replay" data-action="kidquiz-play">🔊</button>
+        <div class="kid-options">${q.options
+          .map((o) => {
+            const cls = answered ? (o.word === q.item.word ? 'right' : o.word === kidQuiz!.picked ? 'wrong' : '') : '';
+            return `<button class="kid-option ${cls}" data-action="kidquiz-pick" data-word="${esc(o.word)}" ${answered ? 'disabled' : ''}>${o.emoji}</button>`;
+          })
+          .join('')}</div>
+        ${answered ? `<p class="kid-word">${esc(q.item.word)}</p><button class="primary big" data-action="kidquiz-next">▶</button>` : ''}
+      </section>`;
+  }
+  if (kidQuiz && kidQuiz.finished) {
+    const ok = kidQuiz.correct >= 4;
+    return `
+      <section class="home kids">
+        <h1>${ok ? '⭐⭐⭐' : '👍'}</h1>
+        <p class="streak">${kidQuiz.correct} / ${kidQuiz.questions.length}</p>
+        <button class="primary big" data-action="kid-back">▶</button>
+        <button class="secondary big" data-action="kidquiz-start">🔁</button>
+      </section>`;
+  }
+  return `
+    <section class="settings kids">
+      <header><button class="link" data-action="kids">返回</button><span>${esc(g.title)}</span></header>
+      <div class="kid-grid">${g.items
+        .map(
+          (it) => `<button class="kid-card ${kidShown?.word === it.word && kidShown?.file === it.file ? 'shown' : ''}" data-action="kid-play" data-file="${esc(it.file)}" data-word="${esc(it.word)}">
+            <span class="kid-emoji">${it.emoji}</span><b>${esc(it.word === 'orange' && it.emoji === '🟧' ? 'orange' : it.word)}</b><small>${esc(it.zh)}</small></button>`,
+        )
+        .join('')}</div>
+      <button class="primary big" data-action="kidquiz-start">🔊 找一找</button>
+    </section>`;
+}
+
+function startKidQuiz(g: KidGroup): void {
+  const picks = shuffle(g.items).slice(0, 5);
+  kidQuiz = {
+    questions: picks.map((item) => ({
+      item,
+      options: shuffle([item, ...shuffle(g.items.filter((x) => x.emoji !== item.emoji)).slice(0, 2)]),
+    })),
+    idx: 0,
+    correct: 0,
+    picked: null,
+    finished: false,
+  };
+  render();
+  playKid(picks[0].file, picks[0].word);
+}
+
+async function finishKidQuiz(g: KidGroup): Promise<void> {
+  if (!kidQuiz) return;
+  kidQuiz.finished = true;
+  if (kidQuiz.correct >= 4) {
+    const rec: PhraseProgress = { id: `kid:${g.id}`, learned: true, ts: new Date().toISOString() };
+    phraseProgress.set(rec.id, rec);
+    await savePhraseProgress(rec);
+  }
+  render();
+}
+
 function renderDone(): string {
   const s = session;
   return `
@@ -570,7 +823,13 @@ function render(): void {
                 ? renderScenes()
                 : view === 'scene'
                   ? renderScene()
-                  : renderSettings();
+                  : view === 'preview'
+                    ? renderPreview()
+                    : view === 'kids'
+                      ? renderKids()
+                      : view === 'kidgroup'
+                        ? renderKidGroup()
+                        : renderSettings();
 }
 
 async function goHome(): Promise<void> {
@@ -600,6 +859,7 @@ async function restoreBackup(file: File): Promise<void> {
     cards = await loadCards();
     phonemeProgress = await loadPhonemeProgress();
     phraseProgress = await loadPhraseProgress();
+    phraseCards = await loadPhraseCards();
     await refreshStats();
     notice = `导入完成:${cards.size} 张卡片。`;
   } catch (e) {
@@ -609,9 +869,109 @@ async function restoreBackup(file: File): Promise<void> {
 }
 
 app.addEventListener('click', (ev) => {
+  const tok = (ev.target as HTMLElement).closest<HTMLElement>('[data-lookup]');
+  if (tok) {
+    lookupWord = byId.get(Number(tok.dataset.lookup)) ?? null;
+    render();
+    if (lookupWord) playWord(lookupWord.word);
+    return;
+  }
   const el = (ev.target as HTMLElement).closest<HTMLElement>('[data-action]');
   if (!el) return;
+  if (playingLine !== -1 && el.dataset.action !== 'dialog-play') {
+    stopSequence();
+    playingLine = -1;
+  }
   switch (el.dataset.action) {
+    case 'lookup-close':
+      lookupWord = null;
+      render();
+      break;
+    case 'lookup-play':
+      if (lookupWord) playWord(lookupWord.word);
+      break;
+    case 'dialog-play':
+      if (currentScene) {
+        void playSequence(currentScene.dialog, (i) => {
+          playingLine = i;
+          if (view === 'scene') render();
+        });
+      }
+      break;
+    case 'preview-start':
+      startPhraseReview();
+      break;
+    case 'preview-reveal':
+      if (preview) {
+        preview.revealed = true;
+        render();
+        const l = lineById.get(preview.queue[0]);
+        if (l) playPhrase(l.id, l.en);
+      }
+      break;
+    case 'preview-grade':
+      void gradePreview(Number(el.dataset.grade) as Grade);
+      break;
+    case 'preview-play':
+    case 'preview-slow': {
+      const l = preview && lineById.get(preview.queue[0]);
+      if (l) playPhrase(l.id, l.en, el.dataset.action === 'preview-slow');
+      break;
+    }
+    case 'kids':
+      kidQuiz = null;
+      view = 'kids';
+      render();
+      break;
+    case 'kidgroup':
+      kidGroup = kidGroups.find((g) => g.id === el.dataset.id) ?? null;
+      kidQuiz = null;
+      kidShown = null;
+      view = 'kidgroup';
+      render();
+      break;
+    case 'kid-back':
+      kidQuiz = null;
+      view = 'kidgroup';
+      render();
+      break;
+    case 'kid-play': {
+      const it = kidGroup?.items.find((x) => x.file === el.dataset.file && x.word === el.dataset.word);
+      if (it) {
+        kidShown = it;
+        playKid(it.file, it.word);
+        render();
+      }
+      break;
+    }
+    case 'kidquiz-start':
+      if (kidGroup) startKidQuiz(kidGroup);
+      break;
+    case 'kidquiz-play': {
+      const q = kidQuiz?.questions[kidQuiz.idx];
+      if (q) playKid(q.item.file, q.item.word);
+      break;
+    }
+    case 'kidquiz-pick':
+      if (kidQuiz && kidQuiz.picked === null && el.dataset.word) {
+        kidQuiz.picked = el.dataset.word;
+        if (el.dataset.word === kidQuiz.questions[kidQuiz.idx].item.word) kidQuiz.correct += 1;
+        render();
+      }
+      break;
+    case 'kidquiz-next':
+      if (kidQuiz && kidGroup) {
+        if (kidQuiz.idx + 1 < kidQuiz.questions.length) {
+          kidQuiz.idx += 1;
+          kidQuiz.picked = null;
+          render();
+          const q = kidQuiz.questions[kidQuiz.idx];
+          playKid(q.item.file, q.item.word);
+        } else {
+          void finishKidQuiz(kidGroup);
+        }
+      }
+      break;
     case 'start':
       startSession(false);
       break;
@@ -686,7 +1046,7 @@ app.addEventListener('click', (ev) => {
       break;
     case 'phrase-play':
     case 'phrase-slow': {
-      const ph = currentScene?.phrases.find((x) => x.id === el.dataset.id);
+      const ph = el.dataset.id ? lineById.get(el.dataset.id) : undefined;
       if (ph) playPhrase(ph.id, ph.en, el.dataset.action === 'phrase-slow');
       break;
     }
@@ -780,6 +1140,7 @@ async function init(): Promise<void> {
   cards = await loadCards();
   phonemeProgress = await loadPhonemeProgress();
   phraseProgress = await loadPhraseProgress();
+  phraseCards = await loadPhraseCards();
   await refreshStats();
   render();
 }

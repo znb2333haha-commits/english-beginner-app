@@ -5,6 +5,7 @@ import {
   type BackupFile,
   type DayStats,
   type PhonemeProgress,
+  type PhraseCard,
   type PhraseProgress,
   type ReviewLogRow,
   type Settings,
@@ -18,17 +19,19 @@ interface Schema extends DBSchema {
   settings: { key: string; value: Settings };
   phonetics: { key: string; value: PhonemeProgress };
   phrases: { key: string; value: PhraseProgress };
+  phraseCards: { key: string; value: PhraseCard };
 }
 
 let dbPromise: Promise<IDBPDatabase<Schema>> | null = null;
 
 function db() {
   if (!dbPromise) {
-    dbPromise = openDB<Schema>('english-beginner-app', 5, {
+    dbPromise = openDB<Schema>('english-beginner-app', 6, {
       async upgrade(d, oldVersion, _newVersion, tx) {
-        // v4 新增音标进度表、v5 新增日常会话进度表;先建表,再做可能需要等待的旧数据迁移
+        // v4 新增音标进度表、v5 新增日常会话进度表、v6 新增句子复习卡表;先建表,再做可能需要等待的旧数据迁移
         if (oldVersion < 4) d.createObjectStore('phonetics', { keyPath: 'symbol' });
         if (oldVersion < 5) d.createObjectStore('phrases', { keyPath: 'id' });
+        if (oldVersion < 6) d.createObjectStore('phraseCards', { keyPath: 'pid' });
         if (oldVersion === 0) {
           d.createObjectStore('cards', { keyPath: 'wordId' });
           d.createObjectStore('logs', { keyPath: 'id', autoIncrement: true });
@@ -101,7 +104,7 @@ export async function exportBackup(): Promise<BackupFile> {
   const d = await db();
   return {
     app: 'english-beginner-app',
-    version: 5,
+    version: 6,
     exportedAt: new Date().toISOString(),
     settings: await loadSettings(),
     cards: await d.getAll('cards'),
@@ -109,31 +112,34 @@ export async function exportBackup(): Promise<BackupFile> {
     logs: await d.getAll('logs'),
     phonetics: await d.getAll('phonetics'),
     phrases: await d.getAll('phrases'),
+    phraseCards: await d.getAll('phraseCards'),
   };
 }
 
 /** 导入备份:会用备份内容替换当前全部进度 */
 export async function importBackup(file: BackupFile): Promise<void> {
-  if (file.app !== 'english-beginner-app' || ![1, 2, 3, 4, 5].includes(file.version)) {
+  if (file.app !== 'english-beginner-app' || ![1, 2, 3, 4, 5, 6].includes(file.version)) {
     throw new Error('这不是本 App 的备份文件');
   }
   const version = file.version;
   const cards = version < 3 ? file.cards.map((row) => migrateWordRow(row, version as 1 | 2)) : file.cards;
   const logs = version < 3 ? file.logs.map((row) => migrateWordRow(row, version as 1 | 2)) : file.logs;
   const d = await db();
-  const tx = d.transaction(['cards', 'logs', 'stats', 'settings', 'phonetics', 'phrases'], 'readwrite');
+  const tx = d.transaction(['cards', 'logs', 'stats', 'settings', 'phonetics', 'phrases', 'phraseCards'], 'readwrite');
   await Promise.all([
     tx.objectStore('cards').clear(),
     tx.objectStore('logs').clear(),
     tx.objectStore('stats').clear(),
     tx.objectStore('phonetics').clear(),
     tx.objectStore('phrases').clear(),
+    tx.objectStore('phraseCards').clear(),
   ]);
   for (const c of cards) await tx.objectStore('cards').put(c);
   for (const l of logs) await tx.objectStore('logs').put(l);
   for (const s of file.stats) await tx.objectStore('stats').put(s);
   for (const p of file.phonetics ?? []) await tx.objectStore('phonetics').put(p);
   for (const p of file.phrases ?? []) await tx.objectStore('phrases').put(p);
+  for (const p of file.phraseCards ?? []) await tx.objectStore('phraseCards').put(p);
   await tx.objectStore('settings').put({ ...DEFAULT_SETTINGS, ...file.settings }, 'main');
   await tx.done;
 }
@@ -158,4 +164,17 @@ export async function savePhraseProgress(p: PhraseProgress): Promise<void> {
 
 export async function deletePhraseProgress(id: string): Promise<void> {
   await (await db()).delete('phrases', id);
+}
+
+export async function loadPhraseCards(): Promise<Map<string, PhraseCard>> {
+  const all = await (await db()).getAll('phraseCards');
+  return new Map(all.map((c) => [c.pid, c]));
+}
+
+export async function savePhraseCard(c: PhraseCard): Promise<void> {
+  await (await db()).put('phraseCards', c);
+}
+
+export async function deletePhraseCard(pid: string): Promise<void> {
+  await (await db()).delete('phraseCards', pid);
 }
