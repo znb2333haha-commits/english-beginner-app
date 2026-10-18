@@ -93,3 +93,8 @@ npm run build
 - `src/store.ts` IndexedDB 存储与备份导入导出
 - `src/main.ts` 界面
 - `data/words.json` 精简词库(3000 词,6 级)
+
+## 安装到安卓手机
+1. 打开仓库的 **Releases** 页面,下载 `latest-apk` 里的 `english-beginner.apk`(合并到 main 后自动更新);也可以在 **Actions → Android APK** 的某次运行里下载 `english-beginner-debug-apk`(需要登录 GitHub,是压缩包,先解压)。
+2. 传到手机后点击安装;系统提示"未知来源"时,允许这次安装。
+3. 这是调试版,没有上架签名;重装或卸载会清空应用内进度,所以换版本前先在应用里"导出备份"。
