@@ -2,9 +2,10 @@ import './style.css';
 import wordsData from '../data/words.json';
 import examplesData from '../data/examples.json';
 import phonemesData from '../data/phonetics.json';
+import phrasesData from '../data/phrases.json';
 import { State } from 'ts-fsrs';
 import type { Grade } from 'ts-fsrs';
-import { playSentence, playWord } from './audio';
+import { playPhrase, playSentence, playWord } from './audio';
 import {
   buildSession,
   dueCards,
@@ -22,7 +23,10 @@ import {
   getStats,
   importBackup,
   loadCards,
+  deletePhraseProgress,
   loadPhonemeProgress,
+  loadPhraseProgress,
+  savePhraseProgress,
   loadSettings,
   savePhonemeProgress,
   localDate,
@@ -31,17 +35,18 @@ import {
 } from './store';
 import { calcStreak } from './streak';
 import { levelProgress, shortMeaning } from './format';
-import type { BackupFile, DayStats, Phoneme, PhonemeProgress, Settings, StoredCard, Word } from './types';
+import type { BackupFile, DayStats, Phoneme, PhonemeProgress, PhraseProgress, Scene, Settings, StoredCard, Word } from './types';
 import { DEFAULT_SETTINGS } from './types';
 
 const words = wordsData as unknown as Word[];
 const examples = examplesData as unknown as Record<string, { en: string; zh: string }[]>;
 const byId = new Map(words.map((w) => [w.id, w]));
 const phonemes = phonemesData as unknown as Phoneme[];
+const scenes = (phrasesData as unknown as { scenes: Scene[] }).scenes;
 const wordByText = new Map(words.map((w) => [w.word, w]));
 const app = document.getElementById('app') as HTMLElement;
 
-type View = 'home' | 'study' | 'done' | 'settings' | 'phonetics' | 'phoneme';
+type View = 'home' | 'study' | 'done' | 'settings' | 'phonetics' | 'phoneme' | 'scenes' | 'scene';
 
 interface Session {
   queue: number[];
@@ -64,6 +69,16 @@ let streak = 0;
 let session: Session | null = null;
 let notice = '';
 let phonemeProgress = new Map<string, PhonemeProgress>();
+let phraseProgress = new Map<string, PhraseProgress>();
+let currentScene: Scene | null = null;
+interface PhraseQuiz {
+  questions: { id: string; en: string; options: string[]; answer: string }[];
+  idx: number;
+  correct: number;
+  picked: string | null;
+  finished: boolean;
+}
+let phraseQuiz: PhraseQuiz | null = null;
 
 interface Quiz {
   symbol: string;
@@ -204,6 +219,7 @@ function renderHome(): string {
       ${renderProgress()}
       <footer>
         <span>已学 ${cards.size} 词 / 词库 ${words.length} 词</span>
+        <button class="link" data-action="scenes">日常会话 ${scenesDone()}/${scenes.length}</button>
         <button class="link" data-action="phonetics">音标入门 ${doneCount()}/${phonemes.length}</button>
         <button class="link" data-action="settings">设置与备份</button>
       </footer>
@@ -261,6 +277,124 @@ function renderStudy(): string {
           : `<button class="primary big" data-action="reveal">显示答案</button>`
       }
     </section>`;
+}
+
+function sceneLearned(sc: Scene): number {
+  return sc.phrases.filter((p) => phraseProgress.get(p.id)?.learned).length;
+}
+
+function sceneDone(sc: Scene): boolean {
+  return phraseProgress.get(`scene:${sc.id}`)?.learned === true;
+}
+
+function scenesDone(): number {
+  return scenes.filter(sceneDone).length;
+}
+
+function renderScenes(): string {
+  return `
+    <section class="settings">
+      <header><button class="link" data-action="home">返回</button><span>日常会话 ${scenesDone()}/${scenes.length}</span></header>
+      <p class="hint">每个场景 8 句最常用的话。先听、跟着读,会了就点"我会了",最后做听句选意思。</p>
+      <div class="scene-list">${scenes
+        .map(
+          (sc) => `<button class="scene ${sceneDone(sc) ? 'done' : ''}" data-action="scene" data-id="${esc(sc.id)}">
+            <b>${esc(sc.title)}</b><span>${esc(sc.intro)}</span>
+            <i>${sceneLearned(sc)}/${sc.phrases.length}${sceneDone(sc) ? ' · 已通关' : ''}</i></button>`,
+        )
+        .join('')}</div>
+    </section>`;
+}
+
+function renderScene(): string {
+  const sc = currentScene;
+  if (!sc) return '';
+  if (phraseQuiz && !phraseQuiz.finished) {
+    const q = phraseQuiz.questions[phraseQuiz.idx];
+    const answered = phraseQuiz.picked !== null;
+    return `
+      <section class="settings">
+        <header><button class="link" data-action="scene-back">返回</button><span>听句选意思 ${phraseQuiz.idx + 1}/${phraseQuiz.questions.length}</span></header>
+        <p class="hint">听这句话,选出正确的意思。</p>
+        <button class="secondary" data-action="pquiz-play">再听一遍</button>
+        <div class="quiz-options">${q.options
+          .map((o) => {
+            const cls = answered ? (o === q.answer ? 'right' : o === phraseQuiz!.picked ? 'wrong' : '') : '';
+            return `<button class="option ${cls}" data-action="pquiz-pick" data-zh="${esc(o)}" ${answered ? 'disabled' : ''}>${esc(o)}</button>`;
+          })
+          .join('')}</div>
+        ${answered ? `<p class="hint"><b>${esc(q.en)}</b></p><button class="primary big" data-action="pquiz-next">${phraseQuiz.idx + 1 === phraseQuiz.questions.length ? '看结果' : '下一题'}</button>` : ''}
+      </section>`;
+  }
+  if (phraseQuiz && phraseQuiz.finished) {
+    const ok = phraseQuiz.correct >= Math.ceil(phraseQuiz.questions.length * 0.75);
+    return `
+      <section class="home">
+        <h1>${ok ? '这个场景通关了!' : '再听听看'}</h1>
+        <p class="streak">答对 <b>${phraseQuiz.correct}</b> / ${phraseQuiz.questions.length} 题</p>
+        <p class="hint">${ok ? '这些话已经能用上了。' : '多听几遍句子,再做一次。'}</p>
+        <button class="primary big" data-action="scene-back">回到场景</button>
+        <button class="secondary big" data-action="pquiz-start">再做一次</button>
+      </section>`;
+  }
+  return `
+    <section class="settings">
+      <header><button class="link" data-action="scenes">返回</button><span>${esc(sc.title)} ${sceneLearned(sc)}/${sc.phrases.length}</span></header>
+      <p class="hint">${esc(sc.intro)} 点句子听发音,跟着读几遍。</p>
+      <div class="phrase-list">${sc.phrases
+        .map((p) => {
+          const learned = phraseProgress.get(p.id)?.learned;
+          return `<div class="phrase ${learned ? 'learned' : ''}">
+            <button class="phrase-text" data-action="phrase-play" data-id="${esc(p.id)}"><b>${esc(p.en)}</b><span>${esc(p.zh)}</span></button>
+            <div class="phrase-btns">
+              <button class="link" data-action="phrase-slow" data-id="${esc(p.id)}">慢速</button>
+              <button class="link" data-action="phrase-learn" data-id="${esc(p.id)}">${learned ? '✓ 会了' : '我会了'}</button>
+            </div></div>`;
+        })
+        .join('')}</div>
+      <button class="primary big" data-action="pquiz-start">听句选意思</button>
+    </section>`;
+}
+
+function startPhraseQuiz(sc: Scene): void {
+  const pool = scenes.flatMap((x) => x.phrases);
+  const picks = shuffle(sc.phrases).slice(0, 4);
+  phraseQuiz = {
+    questions: picks.map((p) => {
+      const wrong = shuffle(pool.filter((x) => x.id !== p.id && x.zh !== p.zh)).slice(0, 2).map((x) => x.zh);
+      return { id: p.id, en: p.en, answer: p.zh, options: shuffle([p.zh, ...wrong]) };
+    }),
+    idx: 0,
+    correct: 0,
+    picked: null,
+    finished: false,
+  };
+  render();
+  playPhrase(picks[0].id, picks[0].en);
+}
+
+async function finishPhraseQuiz(sc: Scene): Promise<void> {
+  if (!phraseQuiz) return;
+  phraseQuiz.finished = true;
+  if (phraseQuiz.correct >= Math.ceil(phraseQuiz.questions.length * 0.75)) {
+    const rec: PhraseProgress = { id: `scene:${sc.id}`, learned: true, ts: new Date().toISOString() };
+    phraseProgress.set(rec.id, rec);
+    await savePhraseProgress(rec);
+  }
+  render();
+}
+
+async function togglePhrase(id: string): Promise<void> {
+  const cur = phraseProgress.get(id);
+  if (cur?.learned) {
+    phraseProgress.delete(id);
+    await deletePhraseProgress(id);
+  } else {
+    const rec: PhraseProgress = { id, learned: true, ts: new Date().toISOString() };
+    phraseProgress.set(id, rec);
+    await savePhraseProgress(rec);
+  }
+  render();
 }
 
 function doneCount(): number {
@@ -431,7 +565,11 @@ function render(): void {
             ? renderPhonetics()
             : view === 'phoneme'
               ? renderPhoneme()
-              : renderSettings();
+              : view === 'scenes'
+                ? renderScenes()
+                : view === 'scene'
+                  ? renderScene()
+                  : renderSettings();
 }
 
 async function goHome(): Promise<void> {
@@ -460,6 +598,7 @@ async function restoreBackup(file: File): Promise<void> {
     settings = await loadSettings();
     cards = await loadCards();
     phonemeProgress = await loadPhonemeProgress();
+    phraseProgress = await loadPhraseProgress();
     await refreshStats();
     notice = `导入完成:${cards.size} 张卡片。`;
   } catch (e) {
@@ -528,6 +667,59 @@ app.addEventListener('click', (ev) => {
       view = 'phoneme';
       render();
       break;
+    case 'scenes':
+      phraseQuiz = null;
+      view = 'scenes';
+      render();
+      break;
+    case 'scene':
+      currentScene = scenes.find((x) => x.id === el.dataset.id) ?? null;
+      phraseQuiz = null;
+      view = 'scene';
+      render();
+      break;
+    case 'scene-back':
+      phraseQuiz = null;
+      view = 'scene';
+      render();
+      break;
+    case 'phrase-play':
+    case 'phrase-slow': {
+      const ph = currentScene?.phrases.find((x) => x.id === el.dataset.id);
+      if (ph) playPhrase(ph.id, ph.en, el.dataset.action === 'phrase-slow');
+      break;
+    }
+    case 'phrase-learn':
+      if (el.dataset.id) void togglePhrase(el.dataset.id);
+      break;
+    case 'pquiz-start':
+      if (currentScene) startPhraseQuiz(currentScene);
+      break;
+    case 'pquiz-play': {
+      const q = phraseQuiz?.questions[phraseQuiz.idx];
+      if (q) playPhrase(q.id, q.en);
+      break;
+    }
+    case 'pquiz-pick':
+      if (phraseQuiz && phraseQuiz.picked === null && el.dataset.zh) {
+        phraseQuiz.picked = el.dataset.zh;
+        if (el.dataset.zh === phraseQuiz.questions[phraseQuiz.idx].answer) phraseQuiz.correct += 1;
+        render();
+      }
+      break;
+    case 'pquiz-next':
+      if (phraseQuiz && currentScene) {
+        if (phraseQuiz.idx + 1 < phraseQuiz.questions.length) {
+          phraseQuiz.idx += 1;
+          phraseQuiz.picked = null;
+          render();
+          const q = phraseQuiz.questions[phraseQuiz.idx];
+          playPhrase(q.id, q.en);
+        } else {
+          void finishPhraseQuiz(currentScene);
+        }
+      }
+      break;
     case 'phoneme-back':
       quiz = null;
       view = 'phonetics';
@@ -586,6 +778,7 @@ async function init(): Promise<void> {
   settings = await loadSettings();
   cards = await loadCards();
   phonemeProgress = await loadPhonemeProgress();
+  phraseProgress = await loadPhraseProgress();
   await refreshStats();
   render();
 }

@@ -1,0 +1,615 @@
+{
+ "scenes": [
+  {
+   "id": "help",
+   "title": "救命短句",
+   "intro": "听不懂、不会说的时候,先用这几句。",
+   "phrases": [
+    {
+     "id": "help-1",
+     "en": "Sorry, I do not understand.",
+     "zh": "对不起,我听不懂。"
+    },
+    {
+     "id": "help-2",
+     "en": "Can you say it again?",
+     "zh": "你能再说一遍吗?"
+    },
+    {
+     "id": "help-3",
+     "en": "Please speak slowly.",
+     "zh": "请说慢一点。"
+    },
+    {
+     "id": "help-4",
+     "en": "How do you say this in English?",
+     "zh": "这个用英语怎么说?"
+    },
+    {
+     "id": "help-5",
+     "en": "What does this word mean?",
+     "zh": "这个词是什么意思?"
+    },
+    {
+     "id": "help-6",
+     "en": "Can you help me?",
+     "zh": "你能帮我吗?"
+    },
+    {
+     "id": "help-7",
+     "en": "I do not speak much English.",
+     "zh": "我英语说得不多。"
+    },
+    {
+     "id": "help-8",
+     "en": "Thank you very much.",
+     "zh": "非常感谢。"
+    }
+   ]
+  },
+  {
+   "id": "greet",
+   "title": "打招呼",
+   "intro": "见面、告别时最常用的话。",
+   "phrases": [
+    {
+     "id": "greet-1",
+     "en": "Hello! How are you?",
+     "zh": "你好!你好吗?"
+    },
+    {
+     "id": "greet-2",
+     "en": "I am fine, thank you. And you?",
+     "zh": "我很好,谢谢。你呢?"
+    },
+    {
+     "id": "greet-3",
+     "en": "Good morning.",
+     "zh": "早上好。"
+    },
+    {
+     "id": "greet-4",
+     "en": "Good night.",
+     "zh": "晚安。"
+    },
+    {
+     "id": "greet-5",
+     "en": "Nice to meet you.",
+     "zh": "很高兴认识你。"
+    },
+    {
+     "id": "greet-6",
+     "en": "See you tomorrow.",
+     "zh": "明天见。"
+    },
+    {
+     "id": "greet-7",
+     "en": "Have a good day.",
+     "zh": "祝你今天愉快。"
+    },
+    {
+     "id": "greet-8",
+     "en": "Long time no see.",
+     "zh": "好久不见。"
+    }
+   ]
+  },
+  {
+   "id": "intro",
+   "title": "自我介绍",
+   "intro": "告诉别人你是谁。",
+   "phrases": [
+    {
+     "id": "intro-1",
+     "en": "My name is Li.",
+     "zh": "我叫小李。"
+    },
+    {
+     "id": "intro-2",
+     "en": "I am from China.",
+     "zh": "我来自中国。"
+    },
+    {
+     "id": "intro-3",
+     "en": "I live in Shanghai.",
+     "zh": "我住在上海。"
+    },
+    {
+     "id": "intro-4",
+     "en": "I am thirty years old.",
+     "zh": "我三十岁。"
+    },
+    {
+     "id": "intro-5",
+     "en": "I work in an office.",
+     "zh": "我在办公室工作。"
+    },
+    {
+     "id": "intro-6",
+     "en": "I like music and food.",
+     "zh": "我喜欢音乐和美食。"
+    },
+    {
+     "id": "intro-7",
+     "en": "This is my friend.",
+     "zh": "这是我的朋友。"
+    },
+    {
+     "id": "intro-8",
+     "en": "What is your name?",
+     "zh": "你叫什么名字?"
+    }
+   ]
+  },
+  {
+   "id": "food",
+   "title": "点餐",
+   "intro": "在餐厅、咖啡店。",
+   "phrases": [
+    {
+     "id": "food-1",
+     "en": "I would like some water, please.",
+     "zh": "请给我一些水。"
+    },
+    {
+     "id": "food-2",
+     "en": "Can I see the menu?",
+     "zh": "我能看看菜单吗?"
+    },
+    {
+     "id": "food-3",
+     "en": "I want a cup of coffee.",
+     "zh": "我想要一杯咖啡。"
+    },
+    {
+     "id": "food-4",
+     "en": "Do you have tea?",
+     "zh": "你们有茶吗?"
+    },
+    {
+     "id": "food-5",
+     "en": "This is very good.",
+     "zh": "这个很好吃。"
+    },
+    {
+     "id": "food-6",
+     "en": "No sugar, please.",
+     "zh": "请不要放糖。"
+    },
+    {
+     "id": "food-7",
+     "en": "Can I have the bill, please?",
+     "zh": "请给我账单好吗?"
+    },
+    {
+     "id": "food-8",
+     "en": "It is for here.",
+     "zh": "在这里吃。"
+    }
+   ]
+  },
+  {
+   "id": "shop",
+   "title": "购物",
+   "intro": "买东西、问价钱。",
+   "phrases": [
+    {
+     "id": "shop-1",
+     "en": "How much is this?",
+     "zh": "这个多少钱?"
+    },
+    {
+     "id": "shop-2",
+     "en": "It is too expensive.",
+     "zh": "太贵了。"
+    },
+    {
+     "id": "shop-3",
+     "en": "Do you have a bigger one?",
+     "zh": "有大一点的吗?"
+    },
+    {
+     "id": "shop-4",
+     "en": "Can I try it on?",
+     "zh": "我能试穿吗?"
+    },
+    {
+     "id": "shop-5",
+     "en": "I will take this one.",
+     "zh": "我要这个。"
+    },
+    {
+     "id": "shop-6",
+     "en": "Can I pay by phone?",
+     "zh": "我能用手机付款吗?"
+    },
+    {
+     "id": "shop-7",
+     "en": "Do you have this in blue?",
+     "zh": "这个有蓝色的吗?"
+    },
+    {
+     "id": "shop-8",
+     "en": "Can I have a bag, please?",
+     "zh": "能给我一个袋子吗?"
+    }
+   ]
+  },
+  {
+   "id": "way",
+   "title": "问路",
+   "intro": "找不到路的时候。",
+   "phrases": [
+    {
+     "id": "way-1",
+     "en": "Excuse me, where is the station?",
+     "zh": "请问,车站在哪里?"
+    },
+    {
+     "id": "way-2",
+     "en": "Is it far from here?",
+     "zh": "离这里远吗?"
+    },
+    {
+     "id": "way-3",
+     "en": "Turn left at the bank.",
+     "zh": "在银行那里向左转。"
+    },
+    {
+     "id": "way-4",
+     "en": "Go straight and turn right.",
+     "zh": "直走然后右转。"
+    },
+    {
+     "id": "way-5",
+     "en": "It is next to the hotel.",
+     "zh": "它在酒店旁边。"
+    },
+    {
+     "id": "way-6",
+     "en": "How long does it take?",
+     "zh": "要花多长时间?"
+    },
+    {
+     "id": "way-7",
+     "en": "Where is the bathroom?",
+     "zh": "洗手间在哪里?"
+    },
+    {
+     "id": "way-8",
+     "en": "I am lost.",
+     "zh": "我迷路了。"
+    }
+   ]
+  },
+  {
+   "id": "time",
+   "title": "时间和日期",
+   "intro": "问时间、约时间。",
+   "phrases": [
+    {
+     "id": "time-1",
+     "en": "What time is it?",
+     "zh": "现在几点了?"
+    },
+    {
+     "id": "time-2",
+     "en": "It is five o'clock.",
+     "zh": "现在五点了。"
+    },
+    {
+     "id": "time-3",
+     "en": "What day is today?",
+     "zh": "今天星期几?"
+    },
+    {
+     "id": "time-4",
+     "en": "I am free tomorrow.",
+     "zh": "我明天有空。"
+    },
+    {
+     "id": "time-5",
+     "en": "Let's meet at seven.",
+     "zh": "我们七点见面吧。"
+    },
+    {
+     "id": "time-6",
+     "en": "I am sorry, I am late.",
+     "zh": "对不起,我迟到了。"
+    },
+    {
+     "id": "time-7",
+     "en": "Wait a minute, please.",
+     "zh": "请稍等一下。"
+    },
+    {
+     "id": "time-8",
+     "en": "When does the store open?",
+     "zh": "商店什么时候开门?"
+    }
+   ]
+  },
+  {
+   "id": "weather",
+   "title": "天气",
+   "intro": "最安全的聊天话题。",
+   "phrases": [
+    {
+     "id": "weather-1",
+     "en": "It is a nice day today.",
+     "zh": "今天天气真好。"
+    },
+    {
+     "id": "weather-2",
+     "en": "It is very hot.",
+     "zh": "天气很热。"
+    },
+    {
+     "id": "weather-3",
+     "en": "It is cold today.",
+     "zh": "今天很冷。"
+    },
+    {
+     "id": "weather-4",
+     "en": "It is going to rain.",
+     "zh": "要下雨了。"
+    },
+    {
+     "id": "weather-5",
+     "en": "Do you have an umbrella?",
+     "zh": "你有伞吗?"
+    },
+    {
+     "id": "weather-6",
+     "en": "The weather is good here.",
+     "zh": "这里的天气很好。"
+    },
+    {
+     "id": "weather-7",
+     "en": "I like the snow.",
+     "zh": "我喜欢雪。"
+    },
+    {
+     "id": "weather-8",
+     "en": "It is windy outside.",
+     "zh": "外面风很大。"
+    }
+   ]
+  },
+  {
+   "id": "family",
+   "title": "家人和朋友",
+   "intro": "聊聊身边的人。",
+   "phrases": [
+    {
+     "id": "family-1",
+     "en": "This is my mother.",
+     "zh": "这是我妈妈。"
+    },
+    {
+     "id": "family-2",
+     "en": "I have two brothers.",
+     "zh": "我有两个兄弟。"
+    },
+    {
+     "id": "family-3",
+     "en": "Do you have children?",
+     "zh": "你有孩子吗?"
+    },
+    {
+     "id": "family-4",
+     "en": "My son is five years old.",
+     "zh": "我儿子五岁。"
+    },
+    {
+     "id": "family-5",
+     "en": "She is my best friend.",
+     "zh": "她是我最好的朋友。"
+    },
+    {
+     "id": "family-6",
+     "en": "He works in a hospital.",
+     "zh": "他在医院工作。"
+    },
+    {
+     "id": "family-7",
+     "en": "We live together.",
+     "zh": "我们住在一起。"
+    },
+    {
+     "id": "family-8",
+     "en": "My family is very kind.",
+     "zh": "我的家人都很和蔼。"
+    }
+   ]
+  },
+  {
+   "id": "health",
+   "title": "看病和不舒服",
+   "intro": "身体不舒服时说。",
+   "phrases": [
+    {
+     "id": "health-1",
+     "en": "I do not feel well.",
+     "zh": "我觉得不舒服。"
+    },
+    {
+     "id": "health-2",
+     "en": "My head hurts.",
+     "zh": "我头疼。"
+    },
+    {
+     "id": "health-3",
+     "en": "I need a doctor.",
+     "zh": "我需要看医生。"
+    },
+    {
+     "id": "health-4",
+     "en": "I have a cold.",
+     "zh": "我感冒了。"
+    },
+    {
+     "id": "health-5",
+     "en": "Where does it hurt?",
+     "zh": "哪里疼?"
+    },
+    {
+     "id": "health-6",
+     "en": "I cannot sleep at night.",
+     "zh": "我晚上睡不着。"
+    },
+    {
+     "id": "health-7",
+     "en": "Take this medicine twice a day.",
+     "zh": "这药一天吃两次。"
+    },
+    {
+     "id": "health-8",
+     "en": "Please call the police.",
+     "zh": "请报警。"
+    }
+   ]
+  },
+  {
+   "id": "phone",
+   "title": "电话和手机",
+   "intro": "打电话、发消息。",
+   "phrases": [
+    {
+     "id": "phone-1",
+     "en": "Hello, this is Li.",
+     "zh": "你好,我是小李。"
+    },
+    {
+     "id": "phone-2",
+     "en": "Can I speak to Mr. Wang?",
+     "zh": "我能和王先生说话吗?"
+    },
+    {
+     "id": "phone-3",
+     "en": "I will call you back.",
+     "zh": "我会给你回电话。"
+    },
+    {
+     "id": "phone-4",
+     "en": "What is your phone number?",
+     "zh": "你的电话号码是多少?"
+    },
+    {
+     "id": "phone-5",
+     "en": "My phone battery is low.",
+     "zh": "我的手机电量低了。"
+    },
+    {
+     "id": "phone-6",
+     "en": "Can you send me a message?",
+     "zh": "你能给我发条信息吗?"
+    },
+    {
+     "id": "phone-7",
+     "en": "I cannot hear you.",
+     "zh": "我听不清你说话。"
+    },
+    {
+     "id": "phone-8",
+     "en": "Wait, I will check my phone.",
+     "zh": "等一下,我看看手机。"
+    }
+   ]
+  },
+  {
+   "id": "hotel",
+   "title": "酒店和住宿",
+   "intro": "订房、入住。",
+   "phrases": [
+    {
+     "id": "hotel-1",
+     "en": "I have a room for two nights.",
+     "zh": "我订了两晚的房间。"
+    },
+    {
+     "id": "hotel-2",
+     "en": "Can I have a room with a window?",
+     "zh": "能给我一间有窗户的房间吗?"
+    },
+    {
+     "id": "hotel-3",
+     "en": "What time is breakfast?",
+     "zh": "早餐几点开始?"
+    },
+    {
+     "id": "hotel-4",
+     "en": "The air conditioner does not work.",
+     "zh": "空调坏了。"
+    },
+    {
+     "id": "hotel-5",
+     "en": "Can I have some more water?",
+     "zh": "能再给我一些水吗?"
+    },
+    {
+     "id": "hotel-6",
+     "en": "Where is the elevator?",
+     "zh": "电梯在哪里?"
+    },
+    {
+     "id": "hotel-7",
+     "en": "I would like to check out.",
+     "zh": "我想退房。"
+    },
+    {
+     "id": "hotel-8",
+     "en": "Can you call me a taxi?",
+     "zh": "你能帮我叫辆出租车吗?"
+    }
+   ]
+  },
+  {
+   "id": "travel",
+   "title": "出行和交通",
+   "intro": "坐车、坐飞机。",
+   "phrases": [
+    {
+     "id": "travel-1",
+     "en": "One ticket to the city, please.",
+     "zh": "请给我一张去市区的票。"
+    },
+    {
+     "id": "travel-2",
+     "en": "Which bus goes to the airport?",
+     "zh": "哪路公交车去机场?"
+    },
+    {
+     "id": "travel-3",
+     "en": "Does this train go to Beijing?",
+     "zh": "这趟火车去北京吗?"
+    },
+    {
+     "id": "travel-4",
+     "en": "What time does the plane leave?",
+     "zh": "飞机几点起飞?"
+    },
+    {
+     "id": "travel-5",
+     "en": "Here is my passport.",
+     "zh": "这是我的护照。"
+    },
+    {
+     "id": "travel-6",
+     "en": "I am here for a holiday.",
+     "zh": "我来这里度假。"
+    },
+    {
+     "id": "travel-7",
+     "en": "I will stay for one week.",
+     "zh": "我会待一个星期。"
+    },
+    {
+     "id": "travel-8",
+     "en": "Where can I get a taxi?",
+     "zh": "我在哪里能打到出租车?"
+    }
+   ]
+  }
+ ]
+}
