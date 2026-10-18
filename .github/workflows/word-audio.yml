@@ -1,0 +1,35 @@
+name: Word audio
+
+# 手动运行:为指定级别的单词生成美式女声音频(第 1 级已有)。会推一个分支,再由人开 PR。
+on:
+  workflow_dispatch:
+    inputs:
+      level_start:
+        description: 起始级别 (2-6)
+        default: '2'
+      level_end:
+        description: 结束级别 (2-6)
+        default: '2'
+
+permissions:
+  contents: write
+
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install edge-tts==7.3.1 soundfile==0.14.0 numpy
+      - run: python3 scripts/build_audio.py --level-start ${{ inputs.level_start }} --level-end ${{ inputs.level_end }}
+      - name: Push branch with new audio
+        run: |
+          if [ -z "$(git status --porcelain public/audio data/audio-manifest.json)" ]; then echo "没有新音频"; exit 0; fi
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git checkout -b audio/words-${{ github.run_id }}
+          git add public/audio data/audio-manifest.json
+          git commit -m "Add word audio for levels ${{ inputs.level_start }}-${{ inputs.level_end }}"
+          git push origin HEAD

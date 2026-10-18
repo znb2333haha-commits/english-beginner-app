@@ -2998,5 +2998,3005 @@
    "en": "This is an economic problem.",
    "zh": "这是个经济问题。"
   }
+ ],
+ "effort": [
+  {
+   "en": "I put a lot of effort into my work.",
+   "zh": "我在工作上花了很多精力。"
+  }
+ ],
+ "decide": [
+  {
+   "en": "I cannot decide what to eat.",
+   "zh": "我决定不了吃什么。"
+  }
+ ],
+ "rate": [
+  {
+   "en": "The hotel rate is fifty dollars.",
+   "zh": "酒店的价格是五十美元。"
+  }
+ ],
+ "strong": [
+  {
+   "en": "He is strong and healthy.",
+   "zh": "他强壮又健康。"
+  }
+ ],
+ "possible": [
+  {
+   "en": "Is it possible to change the room?",
+   "zh": "可以换房间吗?"
+  }
+ ],
+ "drug": [
+  {
+   "en": "This drug is for a cold.",
+   "zh": "这种药是治感冒的。"
+  }
+ ],
+ "leader": [
+  {
+   "en": "She is the leader of our team.",
+   "zh": "她是我们团队的负责人。"
+  }
+ ],
+ "light": [
+  {
+   "en": "Please turn on the light.",
+   "zh": "请把灯打开。"
+  }
+ ],
+ "voice": [
+  {
+   "en": "She has a sweet voice.",
+   "zh": "她的声音很甜。"
+  }
+ ],
+ "whole": [
+  {
+   "en": "I ate the whole cake.",
+   "zh": "我把整个蛋糕都吃了。"
+  }
+ ],
+ "mind": [
+  {
+   "en": "Do you mind if I sit here?",
+   "zh": "我坐这里你介意吗?"
+  }
+ ],
+ "pull": [
+  {
+   "en": "Pull the door, do not push.",
+   "zh": "拉门,别推。"
+  }
+ ],
+ "return": [
+  {
+   "en": "I will return in an hour.",
+   "zh": "我一小时后回来。"
+  }
+ ],
+ "free": [
+  {
+   "en": "I am free on Sunday.",
+   "zh": "我周日有空。"
+  }
+ ],
+ "military": [
+  {
+   "en": "His father is in the military.",
+   "zh": "他爸爸在军队里。"
+  }
+ ],
+ "price": [
+  {
+   "en": "What is the price of this bag?",
+   "zh": "这个包多少钱?"
+  }
+ ],
+ "decision": [
+  {
+   "en": "It is a hard decision.",
+   "zh": "这是个艰难的决定。"
+  }
+ ],
+ "explain": [
+  {
+   "en": "Can you explain it to me?",
+   "zh": "你能给我解释一下吗?"
+  }
+ ],
+ "hope": [
+  {
+   "en": "I hope you feel better.",
+   "zh": "我希望你好点。"
+  }
+ ],
+ "develop": [
+  {
+   "en": "They develop new phones.",
+   "zh": "他们研发新手机。"
+  }
+ ],
+ "view": [
+  {
+   "en": "The view from my room is great.",
+   "zh": "我房间的景色很棒。"
+  }
+ ],
+ "relationship": [
+  {
+   "en": "We have a good relationship.",
+   "zh": "我们关系很好。"
+  }
+ ],
+ "carry": [
+  {
+   "en": "Can you carry this bag?",
+   "zh": "你能拿这个包吗?"
+  }
+ ],
+ "town": [
+  {
+   "en": "I live in a small town.",
+   "zh": "我住在一个小镇。"
+  }
+ ],
+ "road": [
+  {
+   "en": "The road is very long.",
+   "zh": "这条路很长。"
+  }
+ ],
+ "drive": [
+  {
+   "en": "I drive to work.",
+   "zh": "我开车上班。"
+  }
+ ],
+ "true": [
+  {
+   "en": "Is that true?",
+   "zh": "那是真的吗?"
+  }
+ ],
+ "federal": [
+  {
+   "en": "He works for the federal government.",
+   "zh": "他在联邦政府工作。"
+  }
+ ],
+ "break": [
+  {
+   "en": "Let's take a break.",
+   "zh": "我们休息一下吧。"
+  }
+ ],
+ "difference": [
+  {
+   "en": "What is the difference?",
+   "zh": "有什么区别?"
+  }
+ ],
+ "receive": [
+  {
+   "en": "I received a letter today.",
+   "zh": "我今天收到一封信。"
+  }
+ ],
+ "thank": [
+  {
+   "en": "I want to thank you.",
+   "zh": "我想谢谢你。"
+  }
+ ],
+ "value": [
+  {
+   "en": "Health has great value.",
+   "zh": "健康很有价值。"
+  }
+ ],
+ "international": [
+  {
+   "en": "This is an international school.",
+   "zh": "这是一所国际学校。"
+  }
+ ],
+ "action": [
+  {
+   "en": "We need to take action.",
+   "zh": "我们需要采取行动。"
+  }
+ ],
+ "full": [
+  {
+   "en": "The bus is full.",
+   "zh": "公交车满了。"
+  }
+ ],
+ "model": [
+  {
+   "en": "She is a fashion model.",
+   "zh": "她是时装模特。"
+  }
+ ],
+ "join": [
+  {
+   "en": "Please join us for dinner.",
+   "zh": "请和我们一起吃晚饭。"
+  }
+ ],
+ "season": [
+  {
+   "en": "Summer is my favorite season.",
+   "zh": "夏天是我最喜欢的季节。"
+  }
+ ],
+ "society": [
+  {
+   "en": "Society is changing fast.",
+   "zh": "社会变化很快。"
+  }
+ ],
+ "tax": [
+  {
+   "en": "We pay tax every year.",
+   "zh": "我们每年交税。"
+  }
+ ],
+ "director": [
+  {
+   "en": "He is the director of the school.",
+   "zh": "他是学校的校长。"
+  }
+ ],
+ "position": [
+  {
+   "en": "What is your position at work?",
+   "zh": "你在公司是什么职位?"
+  }
+ ],
+ "player": [
+  {
+   "en": "He is a good football player.",
+   "zh": "他是个好足球运动员。"
+  }
+ ],
+ "agree": [
+  {
+   "en": "I agree with you.",
+   "zh": "我同意你。"
+  }
+ ],
+ "record": [
+  {
+   "en": "I record my voice on my phone.",
+   "zh": "我用手机录自己的声音。"
+  }
+ ],
+ "pick": [
+  {
+   "en": "Pick a card.",
+   "zh": "选一张牌。"
+  }
+ ],
+ "wear": [
+  {
+   "en": "I wear glasses.",
+   "zh": "我戴眼镜。"
+  }
+ ],
+ "special": [
+  {
+   "en": "Today is a special day.",
+   "zh": "今天是个特别的日子。"
+  }
+ ],
+ "space": [
+  {
+   "en": "There is no space in the car.",
+   "zh": "车里没有空间了。"
+  }
+ ],
+ "form": [
+  {
+   "en": "Please fill out this form.",
+   "zh": "请填写这张表。"
+  }
+ ],
+ "support": [
+  {
+   "en": "My family supports me.",
+   "zh": "我的家人支持我。"
+  }
+ ],
+ "event": [
+  {
+   "en": "The event starts at six.",
+   "zh": "活动六点开始。"
+  }
+ ],
+ "official": [
+  {
+   "en": "He is a government official.",
+   "zh": "他是政府官员。"
+  }
+ ],
+ "matter": [
+  {
+   "en": "It does not matter.",
+   "zh": "没关系。"
+  }
+ ],
+ "center": [
+  {
+   "en": "The center of the city is busy.",
+   "zh": "市中心很热闹。"
+  }
+ ],
+ "site": [
+  {
+   "en": "This is a good site for a house.",
+   "zh": "这是盖房子的好地方。"
+  }
+ ],
+ "project": [
+  {
+   "en": "We have a new project.",
+   "zh": "我们有个新项目。"
+  }
+ ],
+ "hit": [
+  {
+   "en": "The ball hit the window.",
+   "zh": "球打到了窗户。"
+  }
+ ],
+ "base": [
+  {
+   "en": "The base of the tree is wide.",
+   "zh": "这棵树的底部很宽。"
+  }
+ ],
+ "activity": [
+  {
+   "en": "Swimming is a fun activity.",
+   "zh": "游泳是个有趣的活动。"
+  }
+ ],
+ "court": [
+  {
+   "en": "They play tennis on the court.",
+   "zh": "他们在球场上打网球。"
+  }
+ ],
+ "produce": [
+  {
+   "en": "This farm produces rice.",
+   "zh": "这个农场出产大米。"
+  }
+ ],
+ "teach": [
+  {
+   "en": "I teach English at school.",
+   "zh": "我在学校教英语。"
+  }
+ ],
+ "oil": [
+  {
+   "en": "Put some oil in the pot.",
+   "zh": "在锅里放点油。"
+  }
+ ],
+ "situation": [
+  {
+   "en": "The situation is not good.",
+   "zh": "情况不太好。"
+  }
+ ],
+ "easy": [
+  {
+   "en": "This test is easy.",
+   "zh": "这次考试很容易。"
+  }
+ ],
+ "cost": [
+  {
+   "en": "How much does it cost?",
+   "zh": "这要多少钱?"
+  }
+ ],
+ "not": [
+  {
+   "en": "I do not like fish.",
+   "zh": "我不喜欢鱼。"
+  }
+ ],
+ "up": [
+  {
+   "en": "Get up. It is seven.",
+   "zh": "起床了,七点了。"
+  }
+ ],
+ "so": [
+  {
+   "en": "I was tired, so I went to bed.",
+   "zh": "我累了,所以去睡觉了。"
+  }
+ ],
+ "out": [
+  {
+   "en": "Let's go out for lunch.",
+   "zh": "我们出去吃午饭吧。"
+  }
+ ],
+ "just": [
+  {
+   "en": "I just got home.",
+   "zh": "我刚到家。"
+  }
+ ],
+ "now": [
+  {
+   "en": "I am busy now.",
+   "zh": "我现在很忙。"
+  }
+ ],
+ "how": [
+  {
+   "en": "How are you today?",
+   "zh": "你今天怎么样?"
+  }
+ ],
+ "then": [
+  {
+   "en": "Wash your hands, then eat.",
+   "zh": "先洗手,再吃饭。"
+  }
+ ],
+ "more": [
+  {
+   "en": "I want more water.",
+   "zh": "我想要更多水。"
+  }
+ ],
+ "also": [
+  {
+   "en": "I also like tea.",
+   "zh": "我也喜欢茶。"
+  }
+ ],
+ "here": [
+  {
+   "en": "Please sit here.",
+   "zh": "请坐在这里。"
+  }
+ ],
+ "well": [
+  {
+   "en": "She speaks English well.",
+   "zh": "她英语说得很好。"
+  }
+ ],
+ "only": [
+  {
+   "en": "I have only one bag.",
+   "zh": "我只有一个包。"
+  }
+ ],
+ "very": [
+  {
+   "en": "This soup is very hot.",
+   "zh": "这汤很烫。"
+  }
+ ],
+ "even": [
+  {
+   "en": "Even a child can do it.",
+   "zh": "连小孩都会做。"
+  }
+ ],
+ "back": [
+  {
+   "en": "I will be back soon.",
+   "zh": "我很快回来。"
+  }
+ ],
+ "down": [
+  {
+   "en": "Please sit down.",
+   "zh": "请坐下。"
+  }
+ ],
+ "still": [
+  {
+   "en": "It is still raining.",
+   "zh": "雨还在下。"
+  }
+ ],
+ "too": [
+  {
+   "en": "The coffee is too hot.",
+   "zh": "咖啡太烫了。"
+  }
+ ],
+ "never": [
+  {
+   "en": "I never drink coffee at night.",
+   "zh": "我晚上从不喝咖啡。"
+  }
+ ],
+ "really": [
+  {
+   "en": "I really like this song.",
+   "zh": "我真的很喜欢这首歌。"
+  }
+ ],
+ "most": [
+  {
+   "en": "Most people like music.",
+   "zh": "大多数人喜欢音乐。"
+  }
+ ],
+ "why": [
+  {
+   "en": "Why are you late?",
+   "zh": "你为什么迟到?"
+  }
+ ],
+ "again": [
+  {
+   "en": "Please say it again.",
+   "zh": "请再说一遍。"
+  }
+ ],
+ "right": [
+  {
+   "en": "Turn right at the bank.",
+   "zh": "在银行那儿向右转。"
+  }
+ ],
+ "off": [
+  {
+   "en": "Please turn off the light.",
+   "zh": "请把灯关掉。"
+  }
+ ],
+ "always": [
+  {
+   "en": "I always get up at six.",
+   "zh": "我总是六点起床。"
+  }
+ ],
+ "today": [
+  {
+   "en": "Today is Monday.",
+   "zh": "今天是星期一。"
+  }
+ ],
+ "far": [
+  {
+   "en": "Is it far from here?",
+   "zh": "离这里远吗?"
+  }
+ ],
+ "away": [
+  {
+   "en": "Please put it away.",
+   "zh": "请把它收起来。"
+  }
+ ],
+ "often": [
+  {
+   "en": "I often walk to work.",
+   "zh": "我常常走路上班。"
+  }
+ ],
+ "yet": [
+  {
+   "en": "I have not eaten yet.",
+   "zh": "我还没吃饭。"
+  }
+ ],
+ "ever": [
+  {
+   "en": "Have you ever been to Beijing?",
+   "zh": "你去过北京吗?"
+  }
+ ],
+ "however": [
+  {
+   "en": "I like tea. However, I do not like coffee.",
+   "zh": "我喜欢茶,但是不喜欢咖啡。"
+  }
+ ],
+ "almost": [
+  {
+   "en": "It is almost ten.",
+   "zh": "差不多十点了。"
+  }
+ ],
+ "later": [
+  {
+   "en": "See you later.",
+   "zh": "回头见。"
+  }
+ ],
+ "once": [
+  {
+   "en": "I go to the park once a week.",
+   "zh": "我每周去一次公园。"
+  }
+ ],
+ "least": [
+  {
+   "en": "I need at least one hour.",
+   "zh": "我至少需要一小时。"
+  }
+ ],
+ "ago": [
+  {
+   "en": "I came here two years ago.",
+   "zh": "我两年前来到这里。"
+  }
+ ],
+ "together": [
+  {
+   "en": "Let's go together.",
+   "zh": "我们一起去吧。"
+  }
+ ],
+ "already": [
+  {
+   "en": "I have already eaten.",
+   "zh": "我已经吃过了。"
+  }
+ ],
+ "enough": [
+  {
+   "en": "I have enough money.",
+   "zh": "我钱够了。"
+  }
+ ],
+ "maybe": [
+  {
+   "en": "Maybe it will rain.",
+   "zh": "也许会下雨。"
+  }
+ ],
+ "actually": [
+  {
+   "en": "Actually, I like cold water.",
+   "zh": "其实我喜欢冰水。"
+  }
+ ],
+ "probably": [
+  {
+   "en": "It will probably rain tonight.",
+   "zh": "今晚很可能会下雨。"
+  }
+ ],
+ "course": [
+  {
+   "en": "Of course I can help you.",
+   "zh": "当然,我可以帮你。"
+  }
+ ],
+ "perhaps": [
+  {
+   "en": "Perhaps he is at home.",
+   "zh": "也许他在家。"
+  }
+ ],
+ "else": [
+  {
+   "en": "Do you need anything else?",
+   "zh": "你还需要别的吗?"
+  }
+ ],
+ "sometimes": [
+  {
+   "en": "Sometimes I cook at home.",
+   "zh": "我有时在家做饭。"
+  }
+ ],
+ "finally": [
+  {
+   "en": "We finally arrived.",
+   "zh": "我们终于到了。"
+  }
+ ],
+ "less": [
+  {
+   "en": "I want less sugar.",
+   "zh": "我想少放点糖。"
+  }
+ ],
+ "especially": [
+  {
+   "en": "I like fruit, especially apples.",
+   "zh": "我喜欢水果,特别是苹果。"
+  }
+ ],
+ "of": [
+  {
+   "en": "This is a cup of tea.",
+   "zh": "这是一杯茶。"
+  }
+ ],
+ "in": [
+  {
+   "en": "The book is in my bag.",
+   "zh": "书在我的包里。"
+  }
+ ],
+ "it": [
+  {
+   "en": "It is a nice day.",
+   "zh": "今天天气真好。"
+  }
+ ],
+ "for": [
+  {
+   "en": "This gift is for you.",
+   "zh": "这个礼物是给你的。"
+  }
+ ],
+ "you": [
+  {
+   "en": "I love you.",
+   "zh": "我爱你。"
+  }
+ ],
+ "he": [
+  {
+   "en": "He is my brother.",
+   "zh": "他是我哥哥。"
+  }
+ ],
+ "with": [
+  {
+   "en": "I live with my parents.",
+   "zh": "我和父母住在一起。"
+  }
+ ],
+ "on": [
+  {
+   "en": "The cup is on the table.",
+   "zh": "杯子在桌子上。"
+  }
+ ],
+ "they": [
+  {
+   "en": "They are my friends.",
+   "zh": "他们是我的朋友。"
+  }
+ ],
+ "at": [
+  {
+   "en": "I am at home.",
+   "zh": "我在家。"
+  }
+ ],
+ "we": [
+  {
+   "en": "We are in the park.",
+   "zh": "我们在公园里。"
+  }
+ ],
+ "from": [
+  {
+   "en": "I am from China.",
+   "zh": "我来自中国。"
+  }
+ ],
+ "by": [
+  {
+   "en": "I go to work by bus.",
+   "zh": "我坐公交车上班。"
+  }
+ ],
+ "she": [
+  {
+   "en": "She is my sister.",
+   "zh": "她是我姐姐。"
+  }
+ ],
+ "who": [
+  {
+   "en": "Who is that man?",
+   "zh": "那个人是谁?"
+  }
+ ],
+ "about": [
+  {
+   "en": "Tell me about your family.",
+   "zh": "给我讲讲你的家人。"
+  }
+ ],
+ "there": [
+  {
+   "en": "There is a cat on the bed.",
+   "zh": "床上有只猫。"
+  }
+ ],
+ "them": [
+  {
+   "en": "I like them very much.",
+   "zh": "我很喜欢他们。"
+  }
+ ],
+ "me": [
+  {
+   "en": "Please help me.",
+   "zh": "请帮我。"
+  }
+ ],
+ "into": [
+  {
+   "en": "He walks into the room.",
+   "zh": "他走进房间。"
+  }
+ ],
+ "him": [
+  {
+   "en": "I know him well.",
+   "zh": "我很了解他。"
+  }
+ ],
+ "like": [
+  {
+   "en": "I like apples.",
+   "zh": "我喜欢苹果。"
+  }
+ ],
+ "first": [
+  {
+   "en": "This is my first day.",
+   "zh": "这是我的第一天。"
+  }
+ ],
+ "through": [
+  {
+   "en": "We walk through the park.",
+   "zh": "我们穿过公园。"
+  }
+ ],
+ "us": [
+  {
+   "en": "Come with us.",
+   "zh": "跟我们一起来。"
+  }
+ ],
+ "after": [
+  {
+   "en": "Call me after dinner.",
+   "zh": "晚饭后给我打电话。"
+  }
+ ],
+ "over": [
+  {
+   "en": "The bird flies over the house.",
+   "zh": "鸟从房子上方飞过。"
+  }
+ ],
+ "last": [
+  {
+   "en": "I went there last week.",
+   "zh": "我上周去过那里。"
+  }
+ ],
+ "between": [
+  {
+   "en": "The bank is between the shop and the hotel.",
+   "zh": "银行在商店和酒店之间。"
+  }
+ ],
+ "something": [
+  {
+   "en": "I want something to drink.",
+   "zh": "我想喝点什么。"
+  }
+ ],
+ "against": [
+  {
+   "en": "The bike is against the wall.",
+   "zh": "自行车靠着墙。"
+  }
+ ],
+ "during": [
+  {
+   "en": "I sleep during the day.",
+   "zh": "我白天睡觉。"
+  }
+ ],
+ "next": [
+  {
+   "en": "See you next week.",
+   "zh": "下周见。"
+  }
+ ],
+ "without": [
+  {
+   "en": "I drink tea without sugar.",
+   "zh": "我喝茶不加糖。"
+  }
+ ],
+ "before": [
+  {
+   "en": "Wash your hands before dinner.",
+   "zh": "饭前要洗手。"
+  }
+ ],
+ "under": [
+  {
+   "en": "The cat is under the table.",
+   "zh": "猫在桌子下面。"
+  }
+ ],
+ "yes": [
+  {
+   "en": "Yes, I can.",
+   "zh": "是的,我可以。"
+  }
+ ],
+ "around": [
+  {
+   "en": "We walk around the lake.",
+   "zh": "我们绕着湖走。"
+  }
+ ],
+ "among": [
+  {
+   "en": "He is among my friends.",
+   "zh": "他是我朋友中的一个。"
+  }
+ ],
+ "nothing": [
+  {
+   "en": "There is nothing in the box.",
+   "zh": "盒子里什么都没有。"
+  }
+ ],
+ "centre": [
+  {
+   "en": "The shop is in the city centre.",
+   "zh": "这家店在市中心。"
+  }
+ ],
+ "anything": [
+  {
+   "en": "Do you need anything?",
+   "zh": "你需要什么吗?"
+  }
+ ],
+ "within": [
+  {
+   "en": "I will be back within an hour.",
+   "zh": "我一小时内回来。"
+  }
+ ],
+ "programme": [
+  {
+   "en": "I like this TV programme.",
+   "zh": "我喜欢这个电视节目。"
+  }
+ ],
+ "himself": [
+  {
+   "en": "He cooks for himself.",
+   "zh": "他自己做饭。"
+  }
+ ],
+ "across": [
+  {
+   "en": "The bank is across the street.",
+   "zh": "银行在街对面。"
+  }
+ ],
+ "second": [
+  {
+   "en": "This is my second cup of tea.",
+   "zh": "这是我的第二杯茶。"
+  }
+ ],
+ "toward": [
+  {
+   "en": "He walks toward the door.",
+   "zh": "他朝门走去。"
+  }
+ ],
+ "everything": [
+  {
+   "en": "Everything is ready.",
+   "zh": "一切都准备好了。"
+  }
+ ],
+ "oh": [
+  {
+   "en": "Oh, I see.",
+   "zh": "哦,我明白了。"
+  }
+ ],
+ "someone": [
+  {
+   "en": "Someone is at the door.",
+   "zh": "有人在门口。"
+  }
+ ],
+ "behind": [
+  {
+   "en": "The garden is behind the house.",
+   "zh": "花园在房子后面。"
+  }
+ ],
+ "yeah": [
+  {
+   "en": "Yeah, I know.",
+   "zh": "嗯,我知道。"
+  }
+ ],
+ "along": [
+  {
+   "en": "We walk along the river.",
+   "zh": "我们沿着河走。"
+  }
+ ],
+ "themselves": [
+  {
+   "en": "They made dinner themselves.",
+   "zh": "他们自己做了晚饭。"
+  }
+ ],
+ "according": [
+  {
+   "en": "According to the map, it is near.",
+   "zh": "根据地图,它很近。"
+  }
+ ],
+ "everyone": [
+  {
+   "en": "Everyone is here.",
+   "zh": "大家都到了。"
+  }
+ ],
+ "the": [
+  {
+   "en": "The sky is blue.",
+   "zh": "天空是蓝色的。"
+  }
+ ],
+ "be": [
+  {
+   "en": "I want to be a doctor.",
+   "zh": "我想当医生。"
+  }
+ ],
+ "and": [
+  {
+   "en": "I like tea and coffee.",
+   "zh": "我喜欢茶和咖啡。"
+  }
+ ],
+ "to": [
+  {
+   "en": "I want to go home.",
+   "zh": "我想回家。"
+  }
+ ],
+ "have": [
+  {
+   "en": "I have a new phone.",
+   "zh": "我有一部新手机。"
+  }
+ ],
+ "that": [
+  {
+   "en": "I like that bag.",
+   "zh": "我喜欢那个包。"
+  }
+ ],
+ "do": [
+  {
+   "en": "I do my homework at night.",
+   "zh": "我晚上做作业。"
+  }
+ ],
+ "this": [
+  {
+   "en": "This is my bag.",
+   "zh": "这是我的包。"
+  }
+ ],
+ "but": [
+  {
+   "en": "I am tired, but happy.",
+   "zh": "我很累,但很开心。"
+  }
+ ],
+ "his": [
+  {
+   "en": "His name is Li.",
+   "zh": "他的名字叫小李。"
+  }
+ ],
+ "or": [
+  {
+   "en": "Do you want tea or coffee?",
+   "zh": "你要茶还是咖啡?"
+  }
+ ],
+ "as": [
+  {
+   "en": "She is as tall as me.",
+   "zh": "她和我一样高。"
+  }
+ ],
+ "what": [
+  {
+   "en": "What is your name?",
+   "zh": "你叫什么名字?"
+  }
+ ],
+ "their": [
+  {
+   "en": "Their house is big.",
+   "zh": "他们的房子很大。"
+  }
+ ],
+ "can": [
+  {
+   "en": "I can swim.",
+   "zh": "我会游泳。"
+  }
+ ],
+ "if": [
+  {
+   "en": "If it rains, I will stay home.",
+   "zh": "如果下雨,我就待在家里。"
+  }
+ ],
+ "would": [
+  {
+   "en": "I would like some tea.",
+   "zh": "我想要点茶。"
+  }
+ ],
+ "her": [
+  {
+   "en": "I know her name.",
+   "zh": "我知道她的名字。"
+  }
+ ],
+ "all": [
+  {
+   "en": "All the students are here.",
+   "zh": "所有学生都在这里。"
+  }
+ ],
+ "my": [
+  {
+   "en": "This is my book.",
+   "zh": "这是我的书。"
+  }
+ ],
+ "will": [
+  {
+   "en": "I will call you tomorrow.",
+   "zh": "我明天给你打电话。"
+  }
+ ],
+ "when": [
+  {
+   "en": "When do you get up?",
+   "zh": "你什么时候起床?"
+  }
+ ],
+ "which": [
+  {
+   "en": "Which bag is yours?",
+   "zh": "哪个包是你的?"
+  }
+ ],
+ "some": [
+  {
+   "en": "I want some water.",
+   "zh": "我想要些水。"
+  }
+ ],
+ "your": [
+  {
+   "en": "What is your name?",
+   "zh": "你叫什么名字?"
+  }
+ ],
+ "could": [
+  {
+   "en": "Could you help me?",
+   "zh": "你能帮我吗?"
+  }
+ ],
+ "than": [
+  {
+   "en": "He is taller than me.",
+   "zh": "他比我高。"
+  }
+ ],
+ "its": [
+  {
+   "en": "The dog wags its tail.",
+   "zh": "狗摇着它的尾巴。"
+  }
+ ],
+ "our": [
+  {
+   "en": "Our school is big.",
+   "zh": "我们的学校很大。"
+  }
+ ],
+ "these": [
+  {
+   "en": "These apples are fresh.",
+   "zh": "这些苹果很新鲜。"
+  }
+ ],
+ "because": [
+  {
+   "en": "I am late because of the rain.",
+   "zh": "因为下雨,我迟到了。"
+  }
+ ],
+ "no": [
+  {
+   "en": "No, thank you.",
+   "zh": "不,谢谢。"
+  }
+ ],
+ "many": [
+  {
+   "en": "I have many friends.",
+   "zh": "我有很多朋友。"
+  }
+ ],
+ "those": [
+  {
+   "en": "Those shoes are nice.",
+   "zh": "那些鞋很好看。"
+  }
+ ],
+ "any": [
+  {
+   "en": "Do you have any water?",
+   "zh": "你有水吗?"
+  }
+ ],
+ "may": [
+  {
+   "en": "May I come in?",
+   "zh": "我可以进来吗?"
+  }
+ ],
+ "should": [
+  {
+   "en": "You should sleep early.",
+   "zh": "你应该早点睡。"
+  }
+ ],
+ "another": [
+  {
+   "en": "Can I have another cup?",
+   "zh": "我能再来一杯吗?"
+  }
+ ],
+ "much": [
+  {
+   "en": "How much is this?",
+   "zh": "这个多少钱?"
+  }
+ ],
+ "own": [
+  {
+   "en": "I have my own room.",
+   "zh": "我有自己的房间。"
+  }
+ ],
+ "while": [
+  {
+   "en": "I listen to music while I cook.",
+   "zh": "我边做饭边听音乐。"
+  }
+ ],
+ "same": [
+  {
+   "en": "We are the same age.",
+   "zh": "我们同岁。"
+  }
+ ],
+ "where": [
+  {
+   "en": "Where do you live?",
+   "zh": "你住在哪里?"
+  }
+ ],
+ "every": [
+  {
+   "en": "I walk every day.",
+   "zh": "我每天散步。"
+  }
+ ],
+ "might": [
+  {
+   "en": "It might rain tonight.",
+   "zh": "今晚可能会下雨。"
+  }
+ ],
+ "such": [
+  {
+   "en": "It is such a nice day.",
+   "zh": "今天天气真好。"
+  }
+ ],
+ "few": [
+  {
+   "en": "I have a few friends.",
+   "zh": "我有几个朋友。"
+  }
+ ],
+ "each": [
+  {
+   "en": "Each student has a book.",
+   "zh": "每个学生都有一本书。"
+  }
+ ],
+ "must": [
+  {
+   "en": "You must wash your hands.",
+   "zh": "你必须洗手。"
+  }
+ ],
+ "though": [
+  {
+   "en": "It is cold though the sun is out.",
+   "zh": "虽然出太阳了,但还是很冷。"
+  }
+ ],
+ "both": [
+  {
+   "en": "Both of them are my friends.",
+   "zh": "他们两个都是我的朋友。"
+  }
+ ],
+ "since": [
+  {
+   "en": "I have lived here since 2020.",
+   "zh": "我从 2020 年起住在这里。"
+  }
+ ],
+ "until": [
+  {
+   "en": "Wait here until I come back.",
+   "zh": "在这里等我回来。"
+  }
+ ],
+ "several": [
+  {
+   "en": "I have several friends here.",
+   "zh": "我在这里有几个朋友。"
+  }
+ ],
+ "whether": [
+  {
+   "en": "I do not know whether he is home.",
+   "zh": "我不知道他在不在家。"
+  }
+ ],
+ "although": [
+  {
+   "en": "Although it is late, I am not tired.",
+   "zh": "虽然很晚了,但我不累。"
+  }
+ ],
+ "former": [
+  {
+   "en": "He is my former teacher.",
+   "zh": "他是我以前的老师。"
+  }
+ ],
+ "whose": [
+  {
+   "en": "Whose bag is this?",
+   "zh": "这是谁的包?"
+  }
+ ],
+ "half": [
+  {
+   "en": "I ate half of the cake.",
+   "zh": "我吃了半块蛋糕。"
+  }
+ ],
+ "industry": [
+  {
+   "en": "The city has a big car industry.",
+   "zh": "这座城市有很大的汽车工业。"
+  }
+ ],
+ "figure": [
+  {
+   "en": "I cannot see the figure on the screen.",
+   "zh": "我看不清屏幕上的数字。"
+  }
+ ],
+ "image": [
+  {
+   "en": "The image is very clear.",
+   "zh": "这张图像很清楚。"
+  }
+ ],
+ "itself": [
+  {
+   "en": "The cat washes itself.",
+   "zh": "猫在给自己洗澡。"
+  }
+ ],
+ "either": [
+  {
+   "en": "You can have either tea or coffee.",
+   "zh": "你可以喝茶或者咖啡。"
+  }
+ ],
+ "data": [
+  {
+   "en": "I save the data on my phone.",
+   "zh": "我把数据存在手机上。"
+  }
+ ],
+ "cover": [
+  {
+   "en": "Please cover the pot.",
+   "zh": "请盖上锅。"
+  }
+ ],
+ "quite": [
+  {
+   "en": "It is quite cold today.",
+   "zh": "今天相当冷。"
+  }
+ ],
+ "clear": [
+  {
+   "en": "The water is very clear.",
+   "zh": "水很清。"
+  }
+ ],
+ "practice": [
+  {
+   "en": "I practice English every day.",
+   "zh": "我每天练习英语。"
+  }
+ ],
+ "piece": [
+  {
+   "en": "I want a piece of cake.",
+   "zh": "我想要一块蛋糕。"
+  }
+ ],
+ "recent": [
+  {
+   "en": "I read the recent news.",
+   "zh": "我看了最近的新闻。"
+  }
+ ],
+ "describe": [
+  {
+   "en": "Can you describe the man?",
+   "zh": "你能描述一下那个男人吗?"
+  }
+ ],
+ "product": [
+  {
+   "en": "This product is very good.",
+   "zh": "这个产品很好。"
+  }
+ ],
+ "patient": [
+  {
+   "en": "The doctor is with a patient.",
+   "zh": "医生正在看一位病人。"
+  }
+ ],
+ "news": [
+  {
+   "en": "I read the news every morning.",
+   "zh": "我每天早上看新闻。"
+  }
+ ],
+ "test": [
+  {
+   "en": "I have a test tomorrow.",
+   "zh": "我明天有考试。"
+  }
+ ],
+ "movie": [
+  {
+   "en": "Let's watch a movie tonight.",
+   "zh": "我们今晚看电影吧。"
+  }
+ ],
+ "certain": [
+  {
+   "en": "I am certain about it.",
+   "zh": "我对此很确定。"
+  }
+ ],
+ "personal": [
+  {
+   "en": "This is a personal question.",
+   "zh": "这是个私人问题。"
+  }
+ ],
+ "simply": [
+  {
+   "en": "Simply add water.",
+   "zh": "只要加水就行。"
+  }
+ ],
+ "third": [
+  {
+   "en": "This is my third cup of tea.",
+   "zh": "这是我的第三杯茶。"
+  }
+ ],
+ "technology": [
+  {
+   "en": "Technology changes our lives.",
+   "zh": "科技改变我们的生活。"
+  }
+ ],
+ "catch": [
+  {
+   "en": "Can you catch the ball?",
+   "zh": "你能接住球吗?"
+  }
+ ],
+ "step": [
+  {
+   "en": "Take one step at a time.",
+   "zh": "一次走一步。"
+  }
+ ],
+ "type": [
+  {
+   "en": "What type of music do you like?",
+   "zh": "你喜欢什么类型的音乐?"
+  }
+ ],
+ "attention": [
+  {
+   "en": "Please pay attention.",
+   "zh": "请注意听。"
+  }
+ ],
+ "draw": [
+  {
+   "en": "I like to draw pictures.",
+   "zh": "我喜欢画画。"
+  }
+ ],
+ "film": [
+  {
+   "en": "This film is very long.",
+   "zh": "这部电影很长。"
+  }
+ ],
+ "republican": [
+  {
+   "en": "He is a Republican in America.",
+   "zh": "他是美国的共和党人。"
+  }
+ ],
+ "organization": [
+  {
+   "en": "She works for a big organization.",
+   "zh": "她在一个大机构工作。"
+  }
+ ],
+ "source": [
+  {
+   "en": "The river is the source of water.",
+   "zh": "这条河是水的来源。"
+  }
+ ],
+ "nearly": [
+  {
+   "en": "It is nearly ten o'clock.",
+   "zh": "快十点了。"
+  }
+ ],
+ "choose": [
+  {
+   "en": "Please choose one.",
+   "zh": "请选一个。"
+  }
+ ],
+ "cause": [
+  {
+   "en": "What was the cause?",
+   "zh": "原因是什么?"
+  }
+ ],
+ "century": [
+  {
+   "en": "This house is a century old.",
+   "zh": "这栋房子有一百年了。"
+  }
+ ],
+ "evidence": [
+  {
+   "en": "There is no evidence.",
+   "zh": "没有证据。"
+  }
+ ],
+ "difficult": [
+  {
+   "en": "English is not difficult.",
+   "zh": "英语不难。"
+  }
+ ],
+ "listen": [
+  {
+   "en": "Please listen to me.",
+   "zh": "请听我说。"
+  }
+ ],
+ "soon": [
+  {
+   "en": "I will be home soon.",
+   "zh": "我很快就到家。"
+  }
+ ],
+ "culture": [
+  {
+   "en": "I like Chinese culture.",
+   "zh": "我喜欢中国文化。"
+  }
+ ],
+ "billion": [
+  {
+   "en": "The country has a billion people.",
+   "zh": "这个国家有十亿人。"
+  }
+ ],
+ "chance": [
+  {
+   "en": "This is your last chance.",
+   "zh": "这是你最后的机会。"
+  }
+ ],
+ "energy": [
+  {
+   "en": "I have a lot of energy today.",
+   "zh": "我今天精力充沛。"
+  }
+ ],
+ "realize": [
+  {
+   "en": "I realize I am wrong.",
+   "zh": "我意识到我错了。"
+  }
+ ],
+ "period": [
+  {
+   "en": "The class is one period.",
+   "zh": "这节课是一个课时。"
+  }
+ ],
+ "summer": [
+  {
+   "en": "It is hot in summer.",
+   "zh": "夏天很热。"
+  }
+ ],
+ "available": [
+  {
+   "en": "Is this room available?",
+   "zh": "这个房间有空吗?"
+  }
+ ],
+ "likely": [
+  {
+   "en": "It is likely to rain.",
+   "zh": "很可能会下雨。"
+  }
+ ],
+ "opportunity": [
+  {
+   "en": "This is a great opportunity.",
+   "zh": "这是个好机会。"
+  }
+ ],
+ "term": [
+  {
+   "en": "This term I study English.",
+   "zh": "这学期我学英语。"
+  }
+ ],
+ "short": [
+  {
+   "en": "Her hair is short.",
+   "zh": "她的头发很短。"
+  }
+ ],
+ "letter": [
+  {
+   "en": "I write a letter to my mother.",
+   "zh": "我给妈妈写信。"
+  }
+ ],
+ "condition": [
+  {
+   "en": "The car is in good condition.",
+   "zh": "这辆车状况很好。"
+  }
+ ],
+ "choice": [
+  {
+   "en": "It is your choice.",
+   "zh": "这是你的选择。"
+  }
+ ],
+ "single": [
+  {
+   "en": "He is single.",
+   "zh": "他是单身。"
+  }
+ ],
+ "rule": [
+  {
+   "en": "Please follow the rules.",
+   "zh": "请遵守规则。"
+  }
+ ],
+ "administration": [
+  {
+   "en": "She works in the school administration.",
+   "zh": "她在学校行政部门工作。"
+  }
+ ],
+ "south": [
+  {
+   "en": "The sun is in the south.",
+   "zh": "太阳在南边。"
+  }
+ ],
+ "congress": [
+  {
+   "en": "Congress is in Washington.",
+   "zh": "国会在华盛顿。"
+  }
+ ],
+ "campaign": [
+  {
+   "en": "They start a new campaign.",
+   "zh": "他们开始了一项新活动。"
+  }
+ ],
+ "material": [
+  {
+   "en": "This material is soft.",
+   "zh": "这种材料很软。"
+  }
+ ],
+ "colour": [
+  {
+   "en": "What colour is your bag?",
+   "zh": "你的包是什么颜色的?"
+  }
+ ],
+ "population": [
+  {
+   "en": "The city has a large population.",
+   "zh": "这座城市人口很多。"
+  }
+ ],
+ "economy": [
+  {
+   "en": "The economy is growing.",
+   "zh": "经济在增长。"
+  }
+ ],
+ "medical": [
+  {
+   "en": "He studies medical science.",
+   "zh": "他学医学。"
+  }
+ ],
+ "church": [
+  {
+   "en": "There is a church near my house.",
+   "zh": "我家附近有一座教堂。"
+  }
+ ],
+ "close": [
+  {
+   "en": "Please close the door.",
+   "zh": "请关门。"
+  }
+ ],
+ "risk": [
+  {
+   "en": "There is a risk of rain.",
+   "zh": "有下雨的可能。"
+  }
+ ],
+ "current": [
+  {
+   "en": "What is the current time?",
+   "zh": "现在几点?"
+  }
+ ],
+ "future": [
+  {
+   "en": "I think about my future.",
+   "zh": "我思考我的未来。"
+  }
+ ],
+ "wrong": [
+  {
+   "en": "You are not wrong.",
+   "zh": "你没错。"
+  }
+ ],
+ "involve": [
+  {
+   "en": "The job involves a lot of walking.",
+   "zh": "这份工作要走很多路。"
+  }
+ ],
+ "defense": [
+  {
+   "en": "They play good defense.",
+   "zh": "他们防守很好。"
+  }
+ ],
+ "behavior": [
+  {
+   "en": "His behavior is very kind.",
+   "zh": "他的行为很友善。"
+  }
+ ],
+ "anyone": [
+  {
+   "en": "Is anyone home?",
+   "zh": "有人在家吗?"
+  }
+ ],
+ "increase": [
+  {
+   "en": "The price will increase.",
+   "zh": "价格会上涨。"
+  }
+ ],
+ "security": [
+  {
+   "en": "I show my card at the security check.",
+   "zh": "我在安检处出示证件。"
+  }
+ ],
+ "myself": [
+  {
+   "en": "I made dinner myself.",
+   "zh": "我自己做的晚饭。"
+  }
+ ],
+ "certainly": [
+  {
+   "en": "Certainly, I can help.",
+   "zh": "当然,我可以帮忙。"
+  }
+ ],
+ "west": [
+  {
+   "en": "The sun goes down in the west.",
+   "zh": "太阳在西边落下。"
+  }
+ ],
+ "sport": [
+  {
+   "en": "Football is my favorite sport.",
+   "zh": "足球是我最喜欢的运动。"
+  }
+ ],
+ "board": [
+  {
+   "en": "Write your name on the board.",
+   "zh": "把你的名字写在黑板上。"
+  }
+ ],
+ "seek": [
+  {
+   "en": "They seek help from the police.",
+   "zh": "他们向警方求助。"
+  }
+ ],
+ "per": [
+  {
+   "en": "It costs ten yuan per hour.",
+   "zh": "每小时十元。"
+  }
+ ],
+ "subject": [
+  {
+   "en": "English is my favorite subject.",
+   "zh": "英语是我最喜欢的科目。"
+  }
+ ],
+ "officer": [
+  {
+   "en": "The officer is very kind.",
+   "zh": "这位官员很和蔼。"
+  }
+ ],
+ "private": [
+  {
+   "en": "This is a private room.",
+   "zh": "这是个私人房间。"
+  }
+ ],
+ "rest": [
+  {
+   "en": "I need to rest.",
+   "zh": "我需要休息。"
+  }
+ ],
+ "deal": [
+  {
+   "en": "It is a good deal.",
+   "zh": "这是笔好买卖。"
+  }
+ ],
+ "performance": [
+  {
+   "en": "The performance starts at eight.",
+   "zh": "演出八点开始。"
+  }
+ ],
+ "fight": [
+  {
+   "en": "Do not fight with your brother.",
+   "zh": "不要和你哥哥打架。"
+  }
+ ],
+ "throw": [
+  {
+   "en": "Throw the ball to me.",
+   "zh": "把球扔给我。"
+  }
+ ],
+ "top": [
+  {
+   "en": "The book is on the top shelf.",
+   "zh": "书在最上面的架子上。"
+  }
+ ],
+ "quickly": [
+  {
+   "en": "Please come quickly.",
+   "zh": "请快点来。"
+  }
+ ],
+ "past": [
+  {
+   "en": "He walks past the bank.",
+   "zh": "他走过银行。"
+  }
+ ],
+ "goal": [
+  {
+   "en": "My goal is to learn English.",
+   "zh": "我的目标是学英语。"
+  }
+ ],
+ "order": [
+  {
+   "en": "I would like to order food.",
+   "zh": "我想点餐。"
+  }
+ ],
+ "author": [
+  {
+   "en": "Who is the author of this book?",
+   "zh": "这本书的作者是谁?"
+  }
+ ],
+ "fill": [
+  {
+   "en": "Please fill the cup with water.",
+   "zh": "请把杯子装满水。"
+  }
+ ],
+ "represent": [
+  {
+   "en": "The flag represents our country.",
+   "zh": "这面旗代表我们的国家。"
+  }
+ ],
+ "focus": [
+  {
+   "en": "Please focus on your work.",
+   "zh": "请专注于工作。"
+  }
+ ],
+ "foreign": [
+  {
+   "en": "I want to learn a foreign language.",
+   "zh": "我想学一门外语。"
+  }
+ ],
+ "drop": [
+  {
+   "en": "Do not drop your phone.",
+   "zh": "别把手机掉了。"
+  }
+ ],
+ "upon": [
+  {
+   "en": "Once upon a time, there was a king.",
+   "zh": "从前有一位国王。"
+  }
+ ],
+ "agency": [
+  {
+   "en": "He works at a travel agency.",
+   "zh": "他在一家旅行社工作。"
+  }
+ ],
+ "push": [
+  {
+   "en": "Please push the door.",
+   "zh": "请推门。"
+  }
+ ],
+ "nature": [
+  {
+   "en": "I love nature.",
+   "zh": "我热爱大自然。"
+  }
+ ],
+ "recently": [
+  {
+   "en": "I recently moved to Shanghai.",
+   "zh": "我最近搬到了上海。"
+  }
+ ],
+ "reduce": [
+  {
+   "en": "Please reduce the noise.",
+   "zh": "请降低噪音。"
+  }
+ ],
+ "sound": [
+  {
+   "en": "I hear a strange sound.",
+   "zh": "我听到一个奇怪的声音。"
+  }
+ ],
+ "note": [
+  {
+   "en": "Please take a note.",
+   "zh": "请记个笔记。"
+  }
+ ],
+ "fine": [
+  {
+   "en": "I am fine, thank you.",
+   "zh": "我很好,谢谢。"
+  }
+ ],
+ "near": [
+  {
+   "en": "My house is near the station.",
+   "zh": "我家离车站很近。"
+  }
+ ],
+ "movement": [
+  {
+   "en": "I see a movement in the tree.",
+   "zh": "我看到树上有动静。"
+  }
+ ],
+ "page": [
+  {
+   "en": "Open your book to page ten.",
+   "zh": "把书翻到第十页。"
+  }
+ ],
+ "enter": [
+  {
+   "en": "Please enter the room.",
+   "zh": "请进房间。"
+  }
+ ],
+ "common": [
+  {
+   "en": "This is a common name.",
+   "zh": "这是个常见的名字。"
+  }
+ ],
+ "share": [
+  {
+   "en": "Let's share the cake.",
+   "zh": "我们分着吃蛋糕吧。"
+  }
+ ],
+ "poor": [
+  {
+   "en": "The village is very poor.",
+   "zh": "这个村子很穷。"
+  }
+ ],
+ "natural": [
+  {
+   "en": "This is a natural lake.",
+   "zh": "这是个天然湖泊。"
+  }
+ ],
+ "race": [
+  {
+   "en": "They run in a race.",
+   "zh": "他们参加跑步比赛。"
+  }
+ ],
+ "concern": [
+  {
+   "en": "I am concerned about my mother.",
+   "zh": "我很担心我妈妈。"
+  }
+ ],
+ "series": [
+  {
+   "en": "I watch a TV series.",
+   "zh": "我看一部电视剧。"
+  }
+ ],
+ "significant": [
+  {
+   "en": "This is a significant day.",
+   "zh": "这是个重要的日子。"
+  }
+ ],
+ "similar": [
+  {
+   "en": "These two bags are similar.",
+   "zh": "这两个包很相似。"
+  }
+ ],
+ "hot": [
+  {
+   "en": "The soup is hot.",
+   "zh": "汤很烫。"
+  }
+ ],
+ "language": [
+  {
+   "en": "English is a useful language.",
+   "zh": "英语是一门有用的语言。"
+  }
+ ],
+ "usually": [
+  {
+   "en": "I usually get up at seven.",
+   "zh": "我通常七点起床。"
+  }
+ ],
+ "response": [
+  {
+   "en": "I am waiting for a response.",
+   "zh": "我在等回复。"
+  }
+ ],
+ "dead": [
+  {
+   "en": "The phone is dead.",
+   "zh": "手机没电了。"
+  }
+ ],
+ "rise": [
+  {
+   "en": "The sun rises in the east.",
+   "zh": "太阳从东方升起。"
+  }
+ ],
+ "factor": [
+  {
+   "en": "Price is an important factor.",
+   "zh": "价格是个重要因素。"
+  }
+ ],
+ "article": [
+  {
+   "en": "I read an article about food.",
+   "zh": "我读了一篇关于食物的文章。"
+  }
+ ],
+ "shoot": [
+  {
+   "en": "He likes to shoot photos.",
+   "zh": "他喜欢拍照。"
+  }
+ ],
+ "east": [
+  {
+   "en": "The sun rises in the east.",
+   "zh": "太阳从东方升起。"
+  }
+ ],
+ "save": [
+  {
+   "en": "I save some money every month.",
+   "zh": "我每个月存点钱。"
+  }
+ ],
+ "artist": [
+  {
+   "en": "She is a famous artist.",
+   "zh": "她是一位著名的艺术家。"
+  }
+ ],
+ "scene": [
+  {
+   "en": "This is my favorite scene.",
+   "zh": "这是我最喜欢的一幕。"
+  }
+ ],
+ "stock": [
+  {
+   "en": "The shop has no stock.",
+   "zh": "这家店没货了。"
+  }
+ ],
+ "career": [
+  {
+   "en": "She has a good career.",
+   "zh": "她事业很好。"
+  }
+ ],
+ "despite": [
+  {
+   "en": "Despite the rain, we went out.",
+   "zh": "尽管下雨,我们还是出去了。"
+  }
+ ],
+ "central": [
+  {
+   "en": "The hotel is in a central place.",
+   "zh": "酒店在市中心位置。"
+  }
+ ],
+ "thus": [
+  {
+   "en": "He was late, thus he missed the bus.",
+   "zh": "他迟到了,因此错过了公交车。"
+  }
+ ],
+ "treatment": [
+  {
+   "en": "The doctor gives me treatment.",
+   "zh": "医生给我治疗。"
+  }
+ ],
+ "beyond": [
+  {
+   "en": "The shop is beyond the bridge.",
+   "zh": "商店在桥的那边。"
+  }
+ ],
+ "happy": [
+  {
+   "en": "I am very happy.",
+   "zh": "我很开心。"
+  }
+ ],
+ "exactly": [
+  {
+   "en": "That is exactly right.",
+   "zh": "完全正确。"
+  }
+ ],
+ "protect": [
+  {
+   "en": "Please protect your eyes.",
+   "zh": "请保护你的眼睛。"
+  }
+ ],
+ "approach": [
+  {
+   "en": "The bus is approaching.",
+   "zh": "公交车快到了。"
+  }
+ ],
+ "lie": [
+  {
+   "en": "Do not lie to me.",
+   "zh": "别对我撒谎。"
+  }
+ ],
+ "size": [
+  {
+   "en": "What size is this shirt?",
+   "zh": "这件衬衫是什么尺码?"
+  }
+ ],
+ "fund": [
+  {
+   "en": "They raise a fund for the school.",
+   "zh": "他们为学校筹集基金。"
+  }
+ ],
+ "serious": [
+  {
+   "en": "He is a serious student.",
+   "zh": "他是个认真的学生。"
+  }
+ ],
+ "occur": [
+  {
+   "en": "Accidents occur on the road.",
+   "zh": "路上会发生事故。"
+  }
+ ],
+ "media": [
+  {
+   "en": "I read the news on social media.",
+   "zh": "我在社交媒体上看新闻。"
+  }
+ ],
+ "ready": [
+  {
+   "en": "Dinner is ready.",
+   "zh": "晚饭好了。"
+  }
+ ],
+ "sign": [
+  {
+   "en": "Please sign your name here.",
+   "zh": "请在这里签名。"
+  }
+ ],
+ "thought": [
+  {
+   "en": "I had a good thought.",
+   "zh": "我有个好想法。"
+  }
+ ],
+ "list": [
+  {
+   "en": "I make a shopping list.",
+   "zh": "我列一张购物清单。"
+  }
+ ],
+ "individual": [
+  {
+   "en": "Each individual has a book.",
+   "zh": "每个人都有一本书。"
+  }
+ ],
+ "simple": [
+  {
+   "en": "The rule is simple.",
+   "zh": "规则很简单。"
+  }
+ ],
+ "quality": [
+  {
+   "en": "This shirt is good quality.",
+   "zh": "这件衬衫质量很好。"
+  }
+ ],
+ "pressure": [
+  {
+   "en": "I have a lot of pressure at work.",
+   "zh": "我工作压力很大。"
+  }
+ ],
+ "accept": [
+  {
+   "en": "Please accept my thanks.",
+   "zh": "请接受我的感谢。"
+  }
+ ],
+ "answer": [
+  {
+   "en": "I know the answer.",
+   "zh": "我知道答案。"
+  }
+ ],
+ "resource": [
+  {
+   "en": "Water is a natural resource.",
+   "zh": "水是一种自然资源。"
+  }
+ ],
+ "identify": [
+  {
+   "en": "Can you identify this bird?",
+   "zh": "你能认出这只鸟吗?"
+  }
+ ],
+ "left": [
+  {
+   "en": "Turn left at the bank.",
+   "zh": "在银行那儿向左转。"
+  }
+ ],
+ "meeting": [
+  {
+   "en": "I have a meeting at ten.",
+   "zh": "我十点有个会。"
+  }
+ ],
+ "mile": [
+  {
+   "en": "The park is one mile from here.",
+   "zh": "公园离这里一英里。"
+  }
+ ],
+ "determine": [
+  {
+   "en": "I cannot determine the answer.",
+   "zh": "我确定不了答案。"
+  }
+ ],
+ "prepare": [
+  {
+   "en": "I prepare dinner at six.",
+   "zh": "我六点准备晚饭。"
+  }
+ ],
+ "disease": [
+  {
+   "en": "This disease is not serious.",
+   "zh": "这种病不严重。"
+  }
+ ],
+ "whatever": [
+  {
+   "en": "Whatever you choose is fine.",
+   "zh": "你选什么都行。"
+  }
+ ],
+ "success": [
+  {
+   "en": "I wish you success.",
+   "zh": "祝你成功。"
+  }
+ ],
+ "argue": [
+  {
+   "en": "Do not argue with me.",
+   "zh": "别和我争吵。"
+  }
+ ],
+ "recognize": [
+  {
+   "en": "I recognize your voice.",
+   "zh": "我认得你的声音。"
+  }
+ ],
+ "particularly": [
+  {
+   "en": "I like fruit, particularly apples.",
+   "zh": "我喜欢水果,尤其是苹果。"
+  }
+ ],
+ "amount": [
+  {
+   "en": "The amount is fifty yuan.",
+   "zh": "金额是五十元。"
+  }
+ ],
+ "ability": [
+  {
+   "en": "She has the ability to sing.",
+   "zh": "她有唱歌的才能。"
+  }
+ ],
+ "staff": [
+  {
+   "en": "The hotel staff are very kind.",
+   "zh": "酒店的工作人员很和蔼。"
+  }
+ ],
+ "indicate": [
+  {
+   "en": "The sign indicates the way.",
+   "zh": "标志指示了方向。"
+  }
+ ],
+ "character": [
+  {
+   "en": "He is my favorite character.",
+   "zh": "他是我最喜欢的角色。"
+  }
+ ],
+ "growth": [
+  {
+   "en": "I see growth in my English.",
+   "zh": "我看到我英语的进步。"
+  }
+ ],
+ "loss": [
+  {
+   "en": "I feel the loss of my friend.",
+   "zh": "我对失去朋友感到难过。"
+  }
+ ],
+ "degree": [
+  {
+   "en": "The water is ten degrees.",
+   "zh": "水温十度。"
+  }
+ ],
+ "wonder": [
+  {
+   "en": "I wonder where he is.",
+   "zh": "我想知道他在哪里。"
+  }
+ ],
+ "attack": [
+  {
+   "en": "The dog may attack you.",
+   "zh": "狗可能会攻击你。"
+  }
+ ],
+ "herself": [
+  {
+   "en": "She cooks for herself.",
+   "zh": "她自己做饭。"
+  }
+ ],
+ "region": [
+  {
+   "en": "This region is very hot.",
+   "zh": "这个地区很热。"
+  }
+ ],
+ "training": [
+  {
+   "en": "I have training at six.",
+   "zh": "我六点有训练。"
+  }
+ ],
+ "pretty": [
+  {
+   "en": "She is a pretty girl.",
+   "zh": "她是个漂亮的女孩。"
+  }
+ ],
+ "everybody": [
+  {
+   "en": "Everybody is here.",
+   "zh": "大家都到了。"
+  }
+ ],
+ "trade": [
+  {
+   "en": "They trade with many countries.",
+   "zh": "他们和很多国家做贸易。"
+  }
+ ],
+ "election": [
+  {
+   "en": "The election is next week.",
+   "zh": "选举在下周。"
+  }
+ ],
+ "physical": [
+  {
+   "en": "I have a physical test.",
+   "zh": "我有体检。"
+  }
+ ],
+ "lay": [
+  {
+   "en": "Lay the book on the table.",
+   "zh": "把书放在桌子上。"
+  }
+ ],
+ "general": [
+  {
+   "en": "The general rule is simple.",
+   "zh": "一般规则很简单。"
+  }
+ ],
+ "feeling": [
+  {
+   "en": "I have a good feeling.",
+   "zh": "我有个好预感。"
+  }
+ ],
+ "standard": [
+  {
+   "en": "This is the standard size.",
+   "zh": "这是标准尺寸。"
+  }
+ ],
+ "message": [
+  {
+   "en": "I got your message.",
+   "zh": "我收到了你的信息。"
+  }
+ ],
+ "fail": [
+  {
+   "en": "I do not want to fail the test.",
+   "zh": "我不想考试不及格。"
+  }
+ ],
+ "outside": [
+  {
+   "en": "It is cold outside.",
+   "zh": "外面很冷。"
+  }
+ ],
+ "arrive": [
+  {
+   "en": "The train will arrive at six.",
+   "zh": "火车六点到。"
+  }
+ ],
+ "analysis": [
+  {
+   "en": "The analysis is very clear.",
+   "zh": "分析很清楚。"
+  }
+ ],
+ "benefit": [
+  {
+   "en": "Exercise has many benefits.",
+   "zh": "运动有很多好处。"
+  }
+ ],
+ "sex": [
+  {
+   "en": "The form asks for your sex.",
+   "zh": "表格要求填写你的性别。"
+  }
+ ],
+ "forward": [
+  {
+   "en": "I look forward to seeing you.",
+   "zh": "我期待见到你。"
+  }
+ ],
+ "lawyer": [
+  {
+   "en": "My uncle is a lawyer.",
+   "zh": "我叔叔是律师。"
+  }
+ ],
+ "present": [
+  {
+   "en": "This is a present for you.",
+   "zh": "这是送你的礼物。"
+  }
+ ],
+ "section": [
+  {
+   "en": "Read the first section.",
+   "zh": "读第一部分。"
+  }
+ ],
+ "environmental": [
+  {
+   "en": "We care about environmental problems.",
+   "zh": "我们关心环境问题。"
+  }
+ ],
+ "glass": [
+  {
+   "en": "I want a glass of water.",
+   "zh": "我想要一杯水。"
+  }
+ ],
+ "skill": [
+  {
+   "en": "Cooking is a useful skill.",
+   "zh": "做饭是一项有用的技能。"
+  }
+ ],
+ "professor": [
+  {
+   "en": "My professor is very kind.",
+   "zh": "我的教授很和蔼。"
+  }
+ ],
+ "operation": [
+  {
+   "en": "He had an operation last year.",
+   "zh": "他去年做了手术。"
+  }
+ ],
+ "financial": [
+  {
+   "en": "He has financial problems.",
+   "zh": "他有经济问题。"
+  }
+ ],
+ "crime": [
+  {
+   "en": "There is little crime here.",
+   "zh": "这里犯罪很少。"
+  }
+ ],
+ "stage": [
+  {
+   "en": "The singer is on the stage.",
+   "zh": "歌手在舞台上。"
+  }
+ ],
+ "compare": [
+  {
+   "en": "Compare these two bags.",
+   "zh": "比较一下这两个包。"
+  }
+ ],
+ "authority": [
+  {
+   "en": "He has the authority to decide.",
+   "zh": "他有权决定。"
+  }
+ ],
+ "miss": [
+  {
+   "en": "I miss my family.",
+   "zh": "我想念我的家人。"
+  }
+ ],
+ "design": [
+  {
+   "en": "I like the design of this phone.",
+   "zh": "我喜欢这部手机的设计。"
+  }
+ ],
+ "sort": [
+  {
+   "en": "What sort of music do you like?",
+   "zh": "你喜欢什么种类的音乐?"
+  }
+ ],
+ "act": [
+  {
+   "en": "Please act quickly.",
+   "zh": "请快点行动。"
+  }
+ ],
+ "knowledge": [
+  {
+   "en": "Knowledge is power.",
+   "zh": "知识就是力量。"
+  }
+ ],
+ "gun": [
+  {
+   "en": "Do not touch the gun.",
+   "zh": "别碰枪。"
+  }
+ ],
+ "strategy": [
+  {
+   "en": "We need a new strategy.",
+   "zh": "我们需要新策略。"
+  }
+ ],
+ "clearly": [
+  {
+   "en": "Please speak clearly.",
+   "zh": "请说清楚。"
+  }
+ ],
+ "discuss": [
+  {
+   "en": "Let's discuss the plan.",
+   "zh": "我们讨论一下计划。"
+  }
+ ],
+ "indeed": [
+  {
+   "en": "Indeed, it is very good.",
+   "zh": "确实非常好。"
+  }
+ ],
+ "truth": [
+  {
+   "en": "Tell me the truth.",
+   "zh": "告诉我真相。"
+  }
+ ],
+ "song": [
+  {
+   "en": "I like this song.",
+   "zh": "我喜欢这首歌。"
+  }
+ ],
+ "example": [
+  {
+   "en": "Can you give me an example?",
+   "zh": "你能给我举个例子吗?"
+  }
+ ],
+ "democratic": [
+  {
+   "en": "It is a democratic country.",
+   "zh": "这是个民主国家。"
+  }
+ ],
+ "check": [
+  {
+   "en": "Please check your bag.",
+   "zh": "请检查你的包。"
+  }
+ ],
+ "environment": [
+  {
+   "en": "We must protect the environment.",
+   "zh": "我们必须保护环境。"
+  }
+ ],
+ "dark": [
+  {
+   "en": "It is dark outside.",
+   "zh": "外面很黑。"
+  }
+ ],
+ "various": [
+  {
+   "en": "The shop sells various fruits.",
+   "zh": "这家店卖各种水果。"
+  }
+ ],
+ "rather": [
+  {
+   "en": "I would rather stay at home.",
+   "zh": "我宁愿待在家里。"
+  }
+ ],
+ "laugh": [
+  {
+   "en": "Her jokes make me laugh.",
+   "zh": "她的笑话让我发笑。"
+  }
+ ],
+ "guess": [
+  {
+   "en": "Guess what I have.",
+   "zh": "猜猜我有什么。"
+  }
+ ],
+ "executive": [
+  {
+   "en": "She is an executive at a company.",
+   "zh": "她是公司的高管。"
+  }
+ ],
+ "prove": [
+  {
+   "en": "I can prove it.",
+   "zh": "我能证明。"
+  }
+ ],
+ "hang": [
+  {
+   "en": "Hang your coat on the door.",
+   "zh": "把你的外套挂在门上。"
+  }
+ ],
+ "entire": [
+  {
+   "en": "I read the entire book.",
+   "zh": "我读完了整本书。"
+  }
+ ],
+ "forget": [
+  {
+   "en": "Do not forget your keys.",
+   "zh": "别忘了你的钥匙。"
+  }
+ ],
+ "claim": [
+  {
+   "en": "He claims he is tired.",
+   "zh": "他声称自己累了。"
+  }
+ ],
+ "remove": [
+  {
+   "en": "Please remove your shoes.",
+   "zh": "请脱掉鞋。"
+  }
+ ],
+ "manager": [
+  {
+   "en": "The manager is very kind.",
+   "zh": "经理很和蔼。"
+  }
+ ],
+ "enjoy": [
+  {
+   "en": "I enjoy music.",
+   "zh": "我喜欢音乐。"
+  }
+ ],
+ "network": [
+  {
+   "en": "The network is slow.",
+   "zh": "网络很慢。"
+  }
+ ],
+ "legal": [
+  {
+   "en": "It is not legal here.",
+   "zh": "这里不合法。"
+  }
+ ],
+ "religious": [
+  {
+   "en": "He is a religious man.",
+   "zh": "他是个有宗教信仰的人。"
+  }
+ ],
+ "cold": [
+  {
+   "en": "It is very cold today.",
+   "zh": "今天很冷。"
+  }
+ ],
+ "final": [
+  {
+   "en": "This is the final test.",
+   "zh": "这是最后一次考试。"
+  }
+ ],
+ "main": [
+  {
+   "en": "This is the main road.",
+   "zh": "这是主路。"
+  }
+ ],
+ "science": [
+  {
+   "en": "I like science.",
+   "zh": "我喜欢科学。"
+  }
+ ],
+ "memory": [
+  {
+   "en": "I have a good memory.",
+   "zh": "我记性很好。"
+  }
+ ],
+ "card": [
+  {
+   "en": "Here is my card.",
+   "zh": "这是我的名片。"
+  }
+ ],
+ "above": [
+  {
+   "en": "The picture is above the bed.",
+   "zh": "画在床上方。"
+  }
+ ],
+ "seat": [
+  {
+   "en": "Please take a seat.",
+   "zh": "请坐。"
+  }
+ ],
+ "cell": [
+  {
+   "en": "I use my cell phone.",
+   "zh": "我用手机。"
+  }
  ]
 }

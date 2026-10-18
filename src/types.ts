@@ -66,6 +66,15 @@ export interface PhraseProgress {
   ts: string;
 }
 
+/** 会话句子的复习卡:字段同单词卡,wordId 固定为 0,用 pid 区分 */
+export interface PhraseCard extends StoredCard {
+  pid: string;
+}
+
+export interface DialogLine extends Phrase {
+  who: 'A' | 'B';
+}
+
 export interface Phrase {
   id: string;
   en: string;
@@ -77,6 +86,7 @@ export interface Scene {
   title: string;
   intro: string;
   phrases: Phrase[];
+  dialog: DialogLine[];
 }
 
 export interface Phoneme {
@@ -89,7 +99,7 @@ export interface Phoneme {
 
 export interface BackupFile {
   app: 'english-beginner-app';
-  version: 1 | 2 | 3 | 4 | 5;
+  version: 1 | 2 | 3 | 4 | 5 | 6;
   exportedAt: string;
   settings: Settings;
   cards: StoredCard[];
@@ -99,6 +109,8 @@ export interface BackupFile {
   phonetics?: PhonemeProgress[];
   /** 日常会话进度,v5 起才有 */
   phrases?: PhraseProgress[];
+  /** 会话句子的复习卡,v6 起才有 */
+  phraseCards?: PhraseCard[];
 }
 
 export const DEFAULT_SETTINGS: Settings = {

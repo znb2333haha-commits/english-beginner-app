@@ -2,7 +2,7 @@
 """检查 data/examples.json 的例句。
 
 用法:python3 -I scripts/check_examples.py [words.json] [examples.json]
-错误(退出码 1):缺少或格式不对、超过 10 个词、没用到目标词(或词形)、中文为空、每词条数不是 1 到 2。
+错误(退出码 1):第 1、2 级的词缺少例句、格式不对、超过 10 个词、没用到目标词(或词形)、中文为空、每词条数不是 1 到 2。
 提醒(不影响退出码):句子里出现了词库前 1500 词以外的词,方便人工看是否太难。
 """
 import json
@@ -33,14 +33,17 @@ def word_forms(entry):
     return forms
 
 
-def check(words, examples, only_level_one=False):
+REQUIRED_LEVELS = (1, 2)
+
+
+def check(words, examples, required_levels=REQUIRED_LEVELS):
     errors, warnings = [], []
     by_word = {w["word"]: w for w in words}
     known = {w["word"].lower() for w in words if w["id"] <= VOCAB_LIMIT}
     for w in words:
         if w["id"] <= VOCAB_LIMIT:
             known |= word_forms(w)
-    targets = [w for w in words if w["level"] == 1] if only_level_one else []
+    targets = [w for w in words if w["level"] in required_levels]
     for w in targets:
         if w["word"] not in examples:
             errors.append(f"{w['word']}: 缺少例句")
@@ -78,7 +81,7 @@ def main(argv):
     ex_path = Path(argv[2]) if len(argv) > 2 else ROOT / "data/examples.json"
     words = json.loads(words_path.read_text(encoding="utf-8"))
     examples = json.loads(ex_path.read_text(encoding="utf-8"))
-    errors, warnings = check(words, examples, only_level_one=True)
+    errors, warnings = check(words, examples)
     print(f"例句 {len(examples)} 个词;错误 {len(errors)},提醒 {len(warnings)}")
     for line in errors:
         print("错误:", line)

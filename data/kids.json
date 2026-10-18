@@ -1,0 +1,484 @@
+{
+ "groups": [
+  {
+   "id": "animals",
+   "title": "动物",
+   "items": [
+    {
+     "word": "dog",
+     "emoji": "🐶",
+     "zh": "狗",
+     "file": "dog"
+    },
+    {
+     "word": "cat",
+     "emoji": "🐱",
+     "zh": "猫",
+     "file": "cat"
+    },
+    {
+     "word": "bird",
+     "emoji": "🐦",
+     "zh": "鸟",
+     "file": "bird"
+    },
+    {
+     "word": "fish",
+     "emoji": "🐟",
+     "zh": "鱼",
+     "file": "fish"
+    },
+    {
+     "word": "horse",
+     "emoji": "🐴",
+     "zh": "马",
+     "file": "horse"
+    },
+    {
+     "word": "cow",
+     "emoji": "🐮",
+     "zh": "牛",
+     "file": "cow"
+    },
+    {
+     "word": "pig",
+     "emoji": "🐷",
+     "zh": "猪",
+     "file": "pig"
+    },
+    {
+     "word": "duck",
+     "emoji": "🦆",
+     "zh": "鸭子",
+     "file": "duck"
+    },
+    {
+     "word": "rabbit",
+     "emoji": "🐰",
+     "zh": "兔子",
+     "file": "rabbit"
+    },
+    {
+     "word": "monkey",
+     "emoji": "🐵",
+     "zh": "猴子",
+     "file": "monkey"
+    },
+    {
+     "word": "elephant",
+     "emoji": "🐘",
+     "zh": "大象",
+     "file": "elephant"
+    },
+    {
+     "word": "bear",
+     "emoji": "🐻",
+     "zh": "熊",
+     "file": "bear"
+    }
+   ]
+  },
+  {
+   "id": "fruits",
+   "title": "水果和食物",
+   "items": [
+    {
+     "word": "apple",
+     "emoji": "🍎",
+     "zh": "苹果",
+     "file": "apple"
+    },
+    {
+     "word": "banana",
+     "emoji": "🍌",
+     "zh": "香蕉",
+     "file": "banana"
+    },
+    {
+     "word": "orange",
+     "emoji": "🍊",
+     "zh": "橙子",
+     "file": "orange"
+    },
+    {
+     "word": "grape",
+     "emoji": "🍇",
+     "zh": "葡萄",
+     "file": "grape"
+    },
+    {
+     "word": "egg",
+     "emoji": "🥚",
+     "zh": "鸡蛋",
+     "file": "egg"
+    },
+    {
+     "word": "milk",
+     "emoji": "🥛",
+     "zh": "牛奶",
+     "file": "milk"
+    },
+    {
+     "word": "bread",
+     "emoji": "🍞",
+     "zh": "面包",
+     "file": "bread"
+    },
+    {
+     "word": "cake",
+     "emoji": "🎂",
+     "zh": "蛋糕",
+     "file": "cake"
+    },
+    {
+     "word": "rice",
+     "emoji": "🍚",
+     "zh": "米饭",
+     "file": "rice"
+    },
+    {
+     "word": "water",
+     "emoji": "💧",
+     "zh": "水",
+     "file": "water"
+    },
+    {
+     "word": "ice cream",
+     "emoji": "🍦",
+     "zh": "冰淇淋",
+     "file": "ice_cream"
+    },
+    {
+     "word": "pizza",
+     "emoji": "🍕",
+     "zh": "披萨",
+     "file": "pizza"
+    }
+   ]
+  },
+  {
+   "id": "colors",
+   "title": "颜色",
+   "items": [
+    {
+     "word": "red",
+     "emoji": "🟥",
+     "zh": "红色",
+     "file": "red"
+    },
+    {
+     "word": "blue",
+     "emoji": "🟦",
+     "zh": "蓝色",
+     "file": "blue"
+    },
+    {
+     "word": "green",
+     "emoji": "🟩",
+     "zh": "绿色",
+     "file": "green"
+    },
+    {
+     "word": "yellow",
+     "emoji": "🟨",
+     "zh": "黄色",
+     "file": "yellow"
+    },
+    {
+     "word": "orange",
+     "emoji": "🟧",
+     "zh": "橙色",
+     "file": "orange"
+    },
+    {
+     "word": "purple",
+     "emoji": "🟪",
+     "zh": "紫色",
+     "file": "purple"
+    },
+    {
+     "word": "black",
+     "emoji": "⬛",
+     "zh": "黑色",
+     "file": "black"
+    },
+    {
+     "word": "white",
+     "emoji": "⬜",
+     "zh": "白色",
+     "file": "white"
+    },
+    {
+     "word": "brown",
+     "emoji": "🟫",
+     "zh": "棕色",
+     "file": "brown"
+    }
+   ]
+  },
+  {
+   "id": "numbers",
+   "title": "数字",
+   "items": [
+    {
+     "word": "one",
+     "emoji": "1️⃣",
+     "zh": "一",
+     "file": "one"
+    },
+    {
+     "word": "two",
+     "emoji": "2️⃣",
+     "zh": "二",
+     "file": "two"
+    },
+    {
+     "word": "three",
+     "emoji": "3️⃣",
+     "zh": "三",
+     "file": "three"
+    },
+    {
+     "word": "four",
+     "emoji": "4️⃣",
+     "zh": "四",
+     "file": "four"
+    },
+    {
+     "word": "five",
+     "emoji": "5️⃣",
+     "zh": "五",
+     "file": "five"
+    },
+    {
+     "word": "six",
+     "emoji": "6️⃣",
+     "zh": "六",
+     "file": "six"
+    },
+    {
+     "word": "seven",
+     "emoji": "7️⃣",
+     "zh": "七",
+     "file": "seven"
+    },
+    {
+     "word": "eight",
+     "emoji": "8️⃣",
+     "zh": "八",
+     "file": "eight"
+    },
+    {
+     "word": "nine",
+     "emoji": "9️⃣",
+     "zh": "九",
+     "file": "nine"
+    },
+    {
+     "word": "ten",
+     "emoji": "🔟",
+     "zh": "十",
+     "file": "ten"
+    }
+   ]
+  },
+  {
+   "id": "body",
+   "title": "身体",
+   "items": [
+    {
+     "word": "eye",
+     "emoji": "👁️",
+     "zh": "眼睛",
+     "file": "eye"
+    },
+    {
+     "word": "ear",
+     "emoji": "👂",
+     "zh": "耳朵",
+     "file": "ear"
+    },
+    {
+     "word": "nose",
+     "emoji": "👃",
+     "zh": "鼻子",
+     "file": "nose"
+    },
+    {
+     "word": "mouth",
+     "emoji": "👄",
+     "zh": "嘴巴",
+     "file": "mouth"
+    },
+    {
+     "word": "hand",
+     "emoji": "✋",
+     "zh": "手",
+     "file": "hand"
+    },
+    {
+     "word": "foot",
+     "emoji": "🦶",
+     "zh": "脚",
+     "file": "foot"
+    },
+    {
+     "word": "hair",
+     "emoji": "💇",
+     "zh": "头发",
+     "file": "hair"
+    },
+    {
+     "word": "tooth",
+     "emoji": "🦷",
+     "zh": "牙齿",
+     "file": "tooth"
+    }
+   ]
+  },
+  {
+   "id": "family",
+   "title": "家人",
+   "items": [
+    {
+     "word": "mom",
+     "emoji": "👩",
+     "zh": "妈妈",
+     "file": "mom"
+    },
+    {
+     "word": "dad",
+     "emoji": "👨",
+     "zh": "爸爸",
+     "file": "dad"
+    },
+    {
+     "word": "baby",
+     "emoji": "👶",
+     "zh": "宝宝",
+     "file": "baby"
+    },
+    {
+     "word": "boy",
+     "emoji": "👦",
+     "zh": "男孩",
+     "file": "boy"
+    },
+    {
+     "word": "girl",
+     "emoji": "👧",
+     "zh": "女孩",
+     "file": "girl"
+    },
+    {
+     "word": "grandma",
+     "emoji": "👵",
+     "zh": "奶奶",
+     "file": "grandma"
+    },
+    {
+     "word": "grandpa",
+     "emoji": "👴",
+     "zh": "爷爷",
+     "file": "grandpa"
+    }
+   ]
+  },
+  {
+   "id": "things",
+   "title": "日常物品",
+   "items": [
+    {
+     "word": "car",
+     "emoji": "🚗",
+     "zh": "汽车",
+     "file": "car"
+    },
+    {
+     "word": "bus",
+     "emoji": "🚌",
+     "zh": "公交车",
+     "file": "bus"
+    },
+    {
+     "word": "bike",
+     "emoji": "🚲",
+     "zh": "自行车",
+     "file": "bike"
+    },
+    {
+     "word": "house",
+     "emoji": "🏠",
+     "zh": "房子",
+     "file": "house"
+    },
+    {
+     "word": "book",
+     "emoji": "📖",
+     "zh": "书",
+     "file": "book"
+    },
+    {
+     "word": "ball",
+     "emoji": "⚽",
+     "zh": "球",
+     "file": "ball"
+    },
+    {
+     "word": "phone",
+     "emoji": "📱",
+     "zh": "手机",
+     "file": "phone"
+    },
+    {
+     "word": "shoe",
+     "emoji": "👟",
+     "zh": "鞋",
+     "file": "shoe"
+    },
+    {
+     "word": "hat",
+     "emoji": "🎩",
+     "zh": "帽子",
+     "file": "hat"
+    },
+    {
+     "word": "umbrella",
+     "emoji": "☂️",
+     "zh": "伞",
+     "file": "umbrella"
+    },
+    {
+     "word": "sun",
+     "emoji": "☀️",
+     "zh": "太阳",
+     "file": "sun"
+    },
+    {
+     "word": "moon",
+     "emoji": "🌙",
+     "zh": "月亮",
+     "file": "moon"
+    },
+    {
+     "word": "star",
+     "emoji": "⭐",
+     "zh": "星星",
+     "file": "star"
+    },
+    {
+     "word": "tree",
+     "emoji": "🌳",
+     "zh": "树",
+     "file": "tree"
+    },
+    {
+     "word": "flower",
+     "emoji": "🌸",
+     "zh": "花",
+     "file": "flower"
+    }
+   ]
+  }
+ ]
+}

@@ -17,7 +17,7 @@ WORDS = [
 
 class CheckExamplesTests(unittest.TestCase):
     def run_check(self, examples):
-        return mod.check(WORDS, examples, only_level_one=True)
+        return mod.check(WORDS, examples, required_levels=(1,))
 
     def test_good_data_passes(self):
         errors, _ = self.run_check({
@@ -45,7 +45,7 @@ class CheckExamplesTests(unittest.TestCase):
     def test_real_data_has_no_errors(self):
         words = json.loads((ROOT / "data/words.json").read_text(encoding="utf-8"))
         examples = json.loads((ROOT / "data/examples.json").read_text(encoding="utf-8"))
-        errors, _ = mod.check(words, examples, only_level_one=True)
+        errors, _ = mod.check(words, examples)
         self.assertEqual(errors, [])
 
 

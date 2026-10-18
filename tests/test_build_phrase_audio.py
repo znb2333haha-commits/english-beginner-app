@@ -12,7 +12,16 @@ spec.loader.exec_module(bpa)
 class PhraseAudioTests(unittest.TestCase):
     def test_load_real_phrases(self):
         items = bpa.load_phrases()
-        self.assertGreaterEqual(len(items), 96)
+        self.assertGreaterEqual(len(items), 240)
+
+    def test_dialog_lines_included(self):
+        ids = {p['id'] for p in bpa.load_phrases()}
+        self.assertIn('greet-d1', ids)
+
+    def test_kids_items_unique_and_safe(self):
+        items = bpa.load_kids()
+        self.assertGreaterEqual(len(items), 60)
+        self.assertEqual(len({i['id'] for i in items}), len(items))
 
     def test_missing_skips_existing(self):
         items = bpa.load_phrases()[:3]

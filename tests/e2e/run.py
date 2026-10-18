@@ -2,7 +2,7 @@ import json, os, sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
-URL = "http://localhost:4173/"
+URL = os.environ.get("E2E_URL", "http://localhost:4173/")
 OUT = sys.argv[1] if len(sys.argv) > 1 else "/tmp"
 Path(OUT).mkdir(parents=True, exist_ok=True)
 ROOT = Path(__file__).resolve().parents[2]
@@ -51,6 +51,7 @@ with sync_playwright() as p:
     page.wait_for_selector(".grades")
     page.screenshot(path=f"{OUT}/3_back.png")
     check(page.query_selector("button:has-text('慢速')") is not None, "卡片上有慢速播放按钮")
+    check(page.query_selector(".related .related-line") is not None, "卡片背面显示\"会话里怎么说\"")
     check(page.query_selector(".example .example-en") is not None and page.inner_text(".example .example-zh").strip() != "", "卡片背面显示例句(英文和中文)")
     check(page.evaluate("document.documentElement.scrollWidth <= window.innerWidth"), "背面没有横向溢出")
     labels = page.inner_text(".grades").replace("\n", " ")
@@ -126,10 +127,15 @@ with sync_playwright() as p:
     page.on('request', lambda r: requested.append(r.url.split('/phrases/')[1][:-4]) if '/audio/phrases/' in r.url else None)
     page.click("button:has-text('日常会话')")
     page.wait_for_selector(".scene")
-    check(len(page.query_selector_all(".scene")) >= 12, "日常会话至少有 12 个场景")
+    check(len(page.query_selector_all(".scene")) >= 30, "日常会话至少有 30 个场景")
     page.click(".scene >> nth=0")
     page.wait_for_selector(".phrase")
     check(len(page.query_selector_all(".phrase")) == 8, "场景里有 8 句")
+    check(len(page.query_selector_all(".bubble")) >= 4, "场景里有小对话")
+    page.click(".phrase >> nth=0 >> .tok >> nth=0")
+    page.wait_for_selector(".lookup")
+    check("/" in page.inner_text(".lookup"), "点句子里的单词能查到音标和意思")
+    page.click(".lookup >> button:has-text('关闭')")
     page.click(".phrase >> nth=0 >> button:has-text('我会了')")
     page.wait_for_selector(".phrase.learned")
     check("1/8" in page.inner_text("header span"), "标记我会了后进度 1/8")
@@ -153,6 +159,65 @@ with sync_playwright() as p:
     page.reload(); page.wait_for_selector(".stats")
     check("日常会话 1/" in page.inner_text("footer"), "刷新后日常会话进度还在")
 
+    # 句子复习:把刚建的句子卡改成已到期,刷新后应出现复习入口
+    page.evaluate("""() => new Promise((resolve, reject) => {
+      const open = indexedDB.open('english-beginner-app');
+      open.onsuccess = () => {
+        const db = open.result;
+        const tx = db.transaction('phraseCards', 'readwrite');
+        const st = tx.objectStore('phraseCards');
+        const all = st.getAll();
+        all.onsuccess = () => { all.result.forEach((c) => { c.due = '2020-01-01T00:00:00.000Z'; st.put(c); }); };
+        tx.oncomplete = () => { db.close(); resolve(true); };
+        tx.onerror = () => reject(tx.error);
+      };
+      open.onerror = () => reject(open.error);
+    })""")
+    page.reload(); page.wait_for_selector(".stats")
+    check("句会话该复习了" in page.inner_text("body"), "首页提示有句子该复习")
+    page.click("button:has-text('句会话该复习了')")
+    page.click("button:has-text('复习句子')")
+    for _ in range(6):
+        page.wait_for_function("document.body.innerText.includes('句子复习完成') || document.body.innerText.includes('显示英文')")
+        if page.query_selector("text=句子复习完成"):
+            break
+        page.click("button:has-text('显示英文')")
+        page.wait_for_selector(".grades")
+        page.click("button.g3")
+    page.wait_for_selector("text=句子复习完成")
+    check(True, "句子复习能走完")
+    page.click("button:has-text('回到日常会话')")
+    page.click("button:has-text('返回')")
+    page.wait_for_selector(".stats")
+
+    # 儿童乐园:听音找图,靠音频请求里的文件名找答案
+    KIDS = {it['file']: it['emoji'] for g in json.loads((ROOT / 'data/kids.json').read_text(encoding='utf-8'))['groups'] for it in g['items'] if g['id'] == 'animals'}
+    kid_req = []
+    page.on('request', lambda r: kid_req.append(r.url.split('/kids/')[1][:-4]) if '/audio/kids/' in r.url else None)
+    page.click("button:has-text('儿童乐园')")
+    page.wait_for_selector(".kid-group")
+    page.click(".kid-group >> nth=0")
+    page.wait_for_selector(".kid-card")
+    check(len(page.query_selector_all(".kid-card")) == 12, "儿童乐园动物组有 12 张图卡")
+    kid_req.clear()
+    page.click("button:has-text('找一找')")
+    for n in range(5):
+        page.wait_for_selector(".kid-option")
+        for _ in range(50):
+            if len(kid_req) > n:
+                break
+            page.wait_for_timeout(100)
+        page.click(f".kid-option:text-is('{KIDS[kid_req[n]]}')")
+        page.click("button.primary")
+    page.wait_for_selector("text=5 / 5")
+    check(True, "听音找图全对")
+    page.click("button.primary")
+    page.click("button:has-text('返回')")
+    page.wait_for_selector(".kid-group")
+    check("⭐ 1/" in page.inner_text("header"), "通关后得到星星")
+    page.click("button:has-text('返回')")
+    page.wait_for_selector(".stats")
+
     # 备份导出 -> 清空 -> 导入
     page.click("text=设置与备份")
     with page.expect_download() as dl:
@@ -160,8 +225,9 @@ with sync_playwright() as p:
     path = f"{OUT}/backup.json"
     dl.value.save_as(path)
     data = json.load(open(path, encoding="utf-8"))
-    check(data['version'] == 5, '新备份使用版本 5')
-    check(len(data.get('phrases', [])) == 2, '备份里有日常会话进度')
+    check(data['version'] == 6, '新备份使用版本 6')
+    check(len(data.get('phraseCards', [])) == 1, '备份里有句子复习卡')
+    check(len(data.get('phrases', [])) == 3, '备份里有日常会话进度(1 句 + 1 个场景 + 1 个儿童星星)')
     check(len(data.get('phonetics', [])) == 1 and data['phonetics'][0]['done'], '备份里有音标进度')
     check(len(data["cards"]) == 5 and len(data["logs"]) >= 5, f"备份里有 5 张卡、{len(data['logs'])} 条记录")
     page.screenshot(path=f"{OUT}/5_settings.png")
