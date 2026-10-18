@@ -1,8 +1,13 @@
-import json, sys, time
+import json, os, sys
+from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 URL = "http://localhost:4173/"
 OUT = sys.argv[1] if len(sys.argv) > 1 else "/tmp"
+Path(OUT).mkdir(parents=True, exist_ok=True)
+ROOT = Path(__file__).resolve().parents[2]
+WORDS = json.loads((ROOT / 'data/words.json').read_text(encoding='utf-8'))
+LEGACY = json.loads((ROOT / 'data/legacy-word-order.json').read_text(encoding='utf-8'))
 
 def check(cond, msg):
     print(("PASS " if cond else "FAIL ") + msg)
@@ -11,8 +16,10 @@ def check(cond, msg):
 check.failed = False
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = p.chromium.launch(channel=os.environ.get('PLAYWRIGHT_CHANNEL') or None)
     ctx = b.new_context(viewport={"width": 393, "height": 852}, device_scale_factor=2, accept_downloads=True)
+    # 仓库没有 favicon；不把浏览器隐式请求当成应用报错。
+    ctx.route('**/favicon.ico', lambda route: route.fulfill(status=204))
     page = ctx.new_page()
     errors = []
     page.on("pageerror", lambda e: errors.append(str(e)))
@@ -26,7 +33,7 @@ with sync_playwright() as p:
     page.click("button:has-text('来一组')")
     page.wait_for_selector(".word")
     first = page.inner_text(".word")
-    check(first == "the", f"第一张卡是词频最高的词 (实际: {first})")
+    check(first == WORDS[0]['word'] and first != 'the', f"第一张卡按新学习顺序 (实际: {first})")
     page.screenshot(path=f"{OUT}/2_front.png")
     page.click("button:has-text('显示答案')")
     page.wait_for_selector(".grades")
@@ -36,6 +43,7 @@ with sync_playwright() as p:
 
     # 第一张答"不认识",验证同组会再出现;其余用键盘评"认识"/"太简单"
     page.click("button.g1")
+    page.wait_for_selector('.grades', state='detached')
     page.wait_for_selector(".word")
     n_left = page.inner_text(".study header span")
     check("还剩 5 张" in n_left, f"答错的卡放回队尾,剩余仍为 5 张 ({n_left})")
@@ -48,9 +56,10 @@ with sync_playwright() as p:
         seen.append(w)
         page.keyboard.press(" ")
         page.wait_for_selector(".grades")
-        page.keyboard.press("4" if w != "the" else "3")
-        time.sleep(0.15)
+        page.keyboard.press("4" if w != first else "3")
+        page.wait_for_selector('.grades', state='detached')
     check(page.query_selector("text=这一组完成了") is not None, f"这一组能走完 (看过 {len(seen)} 张: {seen})")
+    check(first in seen, '答错的第一张卡确实再次出现')
     page.screenshot(path=f"{OUT}/4_done.png")
 
     page.click("button:has-text('回首页')")
@@ -70,6 +79,7 @@ with sync_playwright() as p:
     path = f"{OUT}/backup.json"
     dl.value.save_as(path)
     data = json.load(open(path, encoding="utf-8"))
+    check(data['version'] == 2, '新备份使用版本 2')
     check(len(data["cards"]) == 5 and len(data["logs"]) >= 5, f"备份里有 5 张卡、{len(data['logs'])} 条记录")
     page.screenshot(path=f"{OUT}/5_settings.png")
 
@@ -87,8 +97,59 @@ with sync_playwright() as p:
     # 今日新词额度没用完时再来一组只补 5 个新词
     page.click("button:has-text('来一组')")
     page.wait_for_selector(".word")
-    check(page.inner_text(".word") not in seen[:5] or True, "第二组开始")
+    check(page.inner_text(".word") not in seen, "第二组从未学的新词开始")
     check(not errors, f"页面没有报错 ({errors[:3]})")
+
+    # 真实 v1 IndexedDB + v1 备份：用刚学完的卡构造旧 ID，检查原词、日志、统计均保留。
+    old = json.loads(json.dumps(data))
+    old['version'] = 1
+    for row in old['cards'] + old['logs']:
+        row['wordId'] = LEGACY.index(WORDS[row['wordId'] - 1]['word']) + 1
+    legacy_path = f'{OUT}/backup-v1.json'
+    Path(legacy_path).write_text(json.dumps(old), encoding='utf-8')
+    migration_ctx = b.new_context(viewport={"width": 393, "height": 852}, accept_downloads=True)
+    migration_ctx.route('**/favicon.ico', lambda route: route.fulfill(status=204))
+    mp = migration_ctx.new_page()
+    mp.on('pageerror', lambda e: errors.append(str(e)))
+    # 同源空页面避免应用先打开数据库。
+    mp.route('**/migration-seed', lambda route: route.fulfill(body='<html></html>', content_type='text/html'))
+    mp.goto(URL + 'migration-seed')
+    mp.evaluate('''backup => new Promise((resolve, reject) => {
+      const request = indexedDB.open('english-beginner-app', 1);
+      request.onupgradeneeded = () => {
+        const db = request.result;
+        db.createObjectStore('cards', {keyPath: 'wordId'});
+        db.createObjectStore('logs', {keyPath: 'id', autoIncrement: true});
+        db.createObjectStore('stats', {keyPath: 'date'});
+        db.createObjectStore('settings');
+      };
+      request.onerror = () => reject(request.error);
+      request.onsuccess = () => {
+        const db = request.result;
+        const tx = db.transaction(['cards','logs','stats','settings'], 'readwrite');
+        for (const name of ['cards','logs','stats']) for (const row of backup[name]) tx.objectStore(name).put(row);
+        tx.objectStore('settings').put(backup.settings, 'main');
+        tx.oncomplete = () => { db.close(); resolve(true); };
+        tx.onerror = () => reject(tx.error);
+      };
+    })''', old)
+    mp.goto(URL)
+    mp.wait_for_selector('.stats')
+    check('5/10' in mp.inner_text('.stats'), '数据库升级保留统计')
+    mp.click('text=设置与备份')
+    for label in ['数据库 v1 升级', '旧备份导入']:
+        if label == '旧备份导入':
+            mp.set_input_files('#import-file', legacy_path)
+            mp.wait_for_selector('text=导入完成')
+        with mp.expect_download() as migrated_dl:
+            mp.click("button:has-text('导出备份')")
+        migrated_path = f'{OUT}/migrated.json'
+        migrated_dl.value.save_as(migrated_path)
+        migrated = json.loads(Path(migrated_path).read_text(encoding='utf-8'))
+        check(migrated['cards'] == data['cards'], label + '保留原单词及全部卡片数据')
+        check(migrated['logs'] == data['logs'], label + '保留原日志及单词对应')
+        check(migrated['stats'] == data['stats'] and migrated['settings'] == data['settings'], label + '保留统计和设置')
+    check(not errors, f'迁移流程没有报错 ({errors[:3]})')
     b.close()
 
 sys.exit(1 if check.failed else 0)

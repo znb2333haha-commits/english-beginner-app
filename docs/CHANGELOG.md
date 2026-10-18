@@ -1,6 +1,7 @@
 # 更新记录
 
 ## 2026-10-18
+- T1 待检查：第一级改为实词优先，3000 词统一 CMUdict 美式 IPA（回退 0 词），补齐 Carnegie Mellon University 来源及完整 BSD-2-Clause 许可。增加旧 ID 映射、IndexedDB v2 迁移及 v1 备份兼容，保护既有进度。16 个 Vitest 测试、4 个 Python 流水线测试、生产构建与 23 项 Playwright 检查通过；30 词抽检见 T1-PHONETIC-AUDIT.md。多读音按词义选择的问题已在 T1 下列为待确认，未进入 T2。
 - 建立仓库,写入产品说明、已定取舍和更新记录
 - M1 词库流水线完成:`scripts/build_words.py` 从 ECDICT 筛出按词频排序的前 3000 个常用词,每 500 词一级,共 6 级,输出 `data/words.json`(约 750KB)
 - 已知问题:词表按词频排序,前几十个是 the、be、and 这类虚词,第一级的学习顺序还需调整;释义和音标直接来自 ECDICT,尚未人工抽检;例句和音频还没有
