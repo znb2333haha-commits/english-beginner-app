@@ -1,0 +1,32 @@
+name: Phrase audio
+
+# 手动运行:为日常会话句子生成缺少的美式女声音频,并开一个 PR(合并后会自动重新打包 APK)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install edge-tts==7.3.1
+      - run: python3 scripts/build_phrase_audio.py
+      - name: Open PR with new audio
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain public/audio/phrases)" ]; then echo "没有新音频"; exit 0; fi
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git checkout -b audio/phrases-${{ github.run_id }}
+          git add public/audio/phrases
+          git commit -m "Add phrase audio (Jenny)"
+          git push origin HEAD
+          gh pr create --base main --title "日常会话句子音频" --body "由 workflow 自动生成(en-US-JennyNeural,个人使用)。"

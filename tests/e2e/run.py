@@ -120,6 +120,39 @@ with sync_playwright() as p:
     check("音标入门 1/41" in page.inner_text("footer"), "刷新后音标进度还在")
     check(page.evaluate("document.documentElement.scrollWidth <= window.innerWidth"), "首页底部没有横向溢出")
 
+    # 日常会话:进入第一个场景,标记"我会了",做听句选意思(靠音频请求里的句子 id 找答案),进度保留
+    PHRASES = {p['id']: p for sc in json.loads((ROOT / 'data/phrases.json').read_text(encoding='utf-8'))['scenes'] for p in sc['phrases']}
+    requested = []
+    page.on('request', lambda r: requested.append(r.url.split('/phrases/')[1][:-4]) if '/audio/phrases/' in r.url else None)
+    page.click("button:has-text('日常会话')")
+    page.wait_for_selector(".scene")
+    check(len(page.query_selector_all(".scene")) >= 12, "日常会话至少有 12 个场景")
+    page.click(".scene >> nth=0")
+    page.wait_for_selector(".phrase")
+    check(len(page.query_selector_all(".phrase")) == 8, "场景里有 8 句")
+    page.click(".phrase >> nth=0 >> button:has-text('我会了')")
+    page.wait_for_selector(".phrase.learned")
+    check("1/8" in page.inner_text("header span"), "标记我会了后进度 1/8")
+    requested.clear()
+    page.click("button:has-text('听句选意思')")
+    for n in range(4):
+        page.wait_for_selector(".option")
+        page.wait_for_function("true")
+        for _ in range(50):
+            if len(requested) > n:
+                break
+            page.wait_for_timeout(100)
+        pid = requested[n]
+        page.click(f".option:text-is('{PHRASES[pid]['zh']}')")
+        page.click("button.primary")
+    page.wait_for_selector("text=通关了")
+    check(page.query_selector("text=答对 4 / 4 题") is not None, "听句选意思全对,场景通关")
+    page.click("button:has-text('回到场景')")
+    page.click("button:has-text('返回')")
+    page.wait_for_selector(".scene.done")
+    page.reload(); page.wait_for_selector(".stats")
+    check("日常会话 1/" in page.inner_text("footer"), "刷新后日常会话进度还在")
+
     # 备份导出 -> 清空 -> 导入
     page.click("text=设置与备份")
     with page.expect_download() as dl:
@@ -127,7 +160,8 @@ with sync_playwright() as p:
     path = f"{OUT}/backup.json"
     dl.value.save_as(path)
     data = json.load(open(path, encoding="utf-8"))
-    check(data['version'] == 4, '新备份使用版本 4')
+    check(data['version'] == 5, '新备份使用版本 5')
+    check(len(data.get('phrases', [])) == 2, '备份里有日常会话进度')
     check(len(data.get('phonetics', [])) == 1 and data['phonetics'][0]['done'], '备份里有音标进度')
     check(len(data["cards"]) == 5 and len(data["logs"]) >= 5, f"备份里有 5 张卡、{len(data['logs'])} 条记录")
     page.screenshot(path=f"{OUT}/5_settings.png")
@@ -143,6 +177,7 @@ with sync_playwright() as p:
     page.wait_for_selector(".stats")
     check("5/10" in page.inner_text(".stats"), "导入后进度恢复")
     check("音标入门 1/41" in page.inner_text("footer"), "导入后音标进度恢复")
+    check("日常会话 1/" in page.inner_text("footer"), "导入后日常会话进度恢复")
 
     # 今日新词额度没用完时再来一组只补 5 个新词
     page.click("button:has-text('来一组')")

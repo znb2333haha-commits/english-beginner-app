@@ -59,6 +59,26 @@ export interface PhonemeProgress {
   ts: string;
 }
 
+/** 日常会话:每句一条,点了"我会了"才有记录;scene 通关记录用 id = scene:<场景id> */
+export interface PhraseProgress {
+  id: string;
+  learned: boolean;
+  ts: string;
+}
+
+export interface Phrase {
+  id: string;
+  en: string;
+  zh: string;
+}
+
+export interface Scene {
+  id: string;
+  title: string;
+  intro: string;
+  phrases: Phrase[];
+}
+
 export interface Phoneme {
   symbol: string;
   type: 'vowel' | 'consonant';
@@ -69,7 +89,7 @@ export interface Phoneme {
 
 export interface BackupFile {
   app: 'english-beginner-app';
-  version: 1 | 2 | 3 | 4;
+  version: 1 | 2 | 3 | 4 | 5;
   exportedAt: string;
   settings: Settings;
   cards: StoredCard[];
@@ -77,6 +97,8 @@ export interface BackupFile {
   logs: ReviewLogRow[];
   /** 音标入门进度,v4 起才有 */
   phonetics?: PhonemeProgress[];
+  /** 日常会话进度,v5 起才有 */
+  phrases?: PhraseProgress[];
 }
 
 export const DEFAULT_SETTINGS: Settings = {
