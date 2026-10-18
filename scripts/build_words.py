@@ -26,6 +26,76 @@ EARLY_POS = frozenset({'n', 'v', 'j', 'adj'})
 AUXILIARIES = frozenset({'be', 'have', 'do', 'can', 'could', 'may', 'might',
                          'must', 'shall', 'should', 'will', 'would', 'ought'})
 FUNCTION_POS = frozenset({'a', 'c', 'd', 't'})
+# 入门主题从中文主释义识别，不维护英文单词白名单。完整释义项匹配，
+# 且只看相应词性的前两个义项，避免把“事业/政策”中的字或罕见比喻义误算成实物。
+THEME_RULES = {
+    '食物饮品': r'(?:水果|苹果|柠檬|橙|葡萄|桃|梨|坚果|蔬菜|土豆|马铃薯|番茄|洋葱|大蒜|豆|米|面粉|谷物|谷粒|谷类|面包|饼干|蛋糕|馅饼|三明治|糖果|蜂蜜|黄油|奶酪|乳酪|牛奶|奶油|食物|食品|肉|鱼肉|鸡蛋|蛋|汤|盐|糖|茶|咖啡|果汁|饮料|水|酒|早餐|午餐|晚餐|餐饭)',
+    '动物': r'(?:小|大|母|公|野|家)?(?:动物|宠物|猫|狗|犬|牛|羊|马|猪|兔|鼠|鹿|熊|鸟|鸡|鸭|鹅|鱼|昆虫|虫|蜂|蝴蝶)',
+    '家人与人物': r'(?:家人|家庭|父母亲?|母亲|父亲|爸爸|妈妈|祖父|祖母|外祖父|外祖母|兄弟|姐妹|姐姐|妹妹|儿子|女儿|丈夫|妻子|夫妇|叔父|伯父|姑母|姨母|堂兄弟|表兄弟|婴儿|婴孩|孩子|小孩|男孩|女孩|男人|女人|妇女|朋友|邻居|学生|教师|老师|医生|护士|工人|厨师|司机|农民|警察)',
+    '身体': r'(?:身体|人体|头|头部|头发|脑袋|脸|面孔|面容|眼|眼睛|耳|耳朵|鼻|鼻子|口|嘴|牙|牙齿|舌|脖子|颈|肩|肩膀|手|手臂|手掌|手指|拇指|指甲|胸|胸部|背|背部|腰|腹|腹部|胃|心脏|肺|肺脏|腿|膝|膝盖|脚|足|脚趾|足趾|脚后跟|皮肤|骨|骨头|血|血液)',
+    '衣物日用品': r'(?:衣服|衣物|外衣|外套|衬衫|夹克|毛衣|裙|裙子|裤|裤子|帽|帽子|鞋|靴|袜|手套|围巾|制服|毛毯|毯子|被子|枕头|毛巾|肥皂|刷子|梳子|牙刷|眼镜|手表|钱包|背包|提包|书包|袋|袋子|篮|篮子|箱|箱子|盒|盒子|瓶|瓶子|杯|杯子|碗|盘|盘子|碟|勺|刀|叉|锅|壶|桶|盆|罐|容器|钥匙|镜子|伞|玩具|球|绳|绳子|针|线|电池|灯|蜡烛|纸|书|书籍|笔|铅笔|报纸|照片|图画|地图|电话|电脑|电子计算机|电视|收音机|相机|照相机|钢琴|吉他)',
+    '住所与出行': r'(?:房子|住宅|房间|卧室|浴室|厨房|客厅|办公室|建筑物|地板|楼梯|屋顶|天花板|墙|墙壁|窗户|窗子|门|门廊|走廊|院子|花园|床|桌子|餐桌|椅子|沙发|橱柜|柜子|架子|搁板|烤箱|冰箱|炉子|汽车|客车|货车|公共汽车|自行车|火车|飞机|船|小船|轮船|车库|车站|机场|学校|医院|商店|市场|超市|饭店|旅馆|餐馆|银行|公园|街道|马路|公路|桥|桥梁|隧道)',
+    '自然': r'(?:树|树木|树枝|树叶|叶|叶片|花|草|草地|草坪|植物|种子|根|茎|森林|树林|山|山脉|小山|河|河流|湖|海|海洋|海岸|海滩|岛|岛屿|石|石头|岩石|沙|沙子|土|泥土|土地|地面|天空|太阳|月亮|星|恒星|云|雨|雨水|雪|风|冰|火|火焰|空气)',
+    '颜色': r'(?:颜色|[红橙黄绿青蓝紫黑白灰棕褐粉银金]色(?:的)?|[红黄绿蓝紫黑白灰]的)',
+    '数字': r'[一二三四五六七八九十百千万零两]+(?:的)?',
+    '日常动作': r'(?:吃|喝|饮|吃饭|饮食|走|步行|跑|跑步|睡|睡觉|洗|洗涤|穿|穿衣|买|购买|卖|出售|煮|烹调|烹饪)',
+}
+CONCRETE_THEMES = frozenset(THEME_RULES) - {'颜色', '数字', '日常动作'}
+THEME_SLOTS = 300  # 每 5 词 3 个主题词，保持生活主题与高频实词混合。
+MIN_CONCRETE = 200  # 第一级至少 40% 是主词性为名词的具体名词。
+OXFORD_WEIGHT = 2
+COLLINS_WEIGHT = 0.5
+
+
+def themes_for(row):
+    pos = row['pos']
+    # 仅使用主词性的释义，颜色可用形容词义；不因副义改变实际词性。
+    prefix = {'n': r'n\.', 'v': r'v[ti]?\.', 'j': r'a(?:dj)?\.',
+              'adj': r'a(?:dj)?\.', 'm': r'(?:num|a)\.'}.get(pos)
+    if prefix is None or learning_key(row)[0] == 3:
+        return []
+    glosses = []
+    for line in row['meaning'].splitlines():
+        match = re.match(prefix + r'\s*(.*)', line)
+        if match:
+            glosses.extend(re.split(r'[,，;；、]', match[1])[:2])
+    return [theme for theme, pattern in THEME_RULES.items()
+            if (theme not in CONCRETE_THEMES or pos == 'n')
+            and (theme != '日常动作' or pos == 'v')
+            and any(re.fullmatch(pattern, gloss.strip()) for gloss in glosses)]
+
+
+def is_concrete(row):
+    return row['pos'] == 'n' and bool(set(themes_for(row)) & CONCRETE_THEMES)
+
+
+def theme_key(row):
+    # 同一主题池内用牛津核心标记与 Collins 星级降低词频分数；无需逐词调权。
+    weight = 1 + OXFORD_WEIGHT * bool(row['oxford']) + COLLINS_WEIGHT * row['collins']
+    return row['freq_rank'] / weight, row['freq_rank'], row['word']
+
+
+def beginner_order(candidates):
+    # 重现 T1 顺序，再把生活主题词从后续级别提升，挤出的词保持原顺序顺延。
+    baseline = sorted(candidates, key=lambda r: (r['freq_rank'], r['word']))
+    baseline[:LEVEL_SIZE] = sorted(baseline[:LEVEL_SIZE], key=learning_key)
+    theme_pool = sorted((r for r in baseline if themes_for(r)), key=theme_key)
+    concrete = [r for r in theme_pool if is_concrete(r)]
+    if len(baseline) >= LEVEL_SIZE and len(concrete) < MIN_CONCRETE:
+        raise ValueError(f'具体名词仅 {len(concrete)} 个，不满足 {MIN_CONCRETE} 个；请检查主题规则和数据')
+    selected = {r['word'] for r in concrete[:MIN_CONCRETE]}
+    for row in theme_pool:
+        if len(selected) >= THEME_SLOTS:
+            break
+        selected.add(row['word'])
+    thematic = [r for r in theme_pool if r['word'] in selected]
+    ordinary = [r for r in baseline if r['word'] not in selected]
+    first = []
+    while len(first) < min(LEVEL_SIZE, len(baseline)):
+        for pool, count in ((thematic, 3), (ordinary, 2)):
+            for _ in range(min(count, len(pool), LEVEL_SIZE - len(first))):
+                first.append(pool.pop(0))
+    return first + thematic + ordinary
 # 常见合法复辅音声母；用于把重音放在整个声母前，而非元音前。
 ONSETS = {tuple(s.split()) for s in (
     'P R', 'P L', 'B R', 'B L', 'T R', 'D R', 'K R', 'K L', 'G R', 'G L',
@@ -87,9 +157,9 @@ def learning_key(row):
 
 
 def finalize(candidates, cmu, limit):
-    # 保持原来的 3000 词和每级成员，只调整第一级顺序，避免任意换词。
+    # 保持原来的 3000 词；主题词可跨级提升，被挤出的词顺延。
     out = sorted(candidates, key=lambda r: (r['freq_rank'], r['word']))[:limit]
-    out[:LEVEL_SIZE] = sorted(out[:LEVEL_SIZE], key=learning_key)
+    out = beginner_order(out)
     fallback = []
     for i, row in enumerate(out):
         if row['word'] in cmu:

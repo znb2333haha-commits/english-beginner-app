@@ -20,17 +20,17 @@ let dbPromise: Promise<IDBPDatabase<Schema>> | null = null;
 
 function db() {
   if (!dbPromise) {
-    dbPromise = openDB<Schema>('english-beginner-app', 2, {
+    dbPromise = openDB<Schema>('english-beginner-app', 3, {
       async upgrade(d, oldVersion, _newVersion, tx) {
         if (oldVersion === 0) {
           d.createObjectStore('cards', { keyPath: 'wordId' });
           d.createObjectStore('logs', { keyPath: 'id', autoIncrement: true });
           d.createObjectStore('stats', { keyPath: 'date' });
           d.createObjectStore('settings');
-        } else if (oldVersion === 1) {
+        } else if (oldVersion === 1 || oldVersion === 2) {
           try {
-            const cards = (await tx.objectStore('cards').getAll()).map(migrateWordRow);
-            const logs = (await tx.objectStore('logs').getAll()).map(migrateWordRow);
+            const cards = (await tx.objectStore('cards').getAll()).map(row => migrateWordRow(row, oldVersion));
+            const logs = (await tx.objectStore('logs').getAll()).map(row => migrateWordRow(row, oldVersion));
             // 先读取再清空，避免新旧主键交换时相互覆盖；同一事务原子提交。
             await tx.objectStore('cards').clear();
             await tx.objectStore('logs').clear();
@@ -94,7 +94,7 @@ export async function exportBackup(): Promise<BackupFile> {
   const d = await db();
   return {
     app: 'english-beginner-app',
-    version: 2,
+    version: 3,
     exportedAt: new Date().toISOString(),
     settings: await loadSettings(),
     cards: await d.getAll('cards'),
@@ -105,11 +105,12 @@ export async function exportBackup(): Promise<BackupFile> {
 
 /** 导入备份:会用备份内容替换当前全部进度 */
 export async function importBackup(file: BackupFile): Promise<void> {
-  if (file.app !== 'english-beginner-app' || ![1, 2].includes(file.version)) {
+  if (file.app !== 'english-beginner-app' || ![1, 2, 3].includes(file.version)) {
     throw new Error('这不是本 App 的备份文件');
   }
-  const cards = file.version === 1 ? file.cards.map(migrateWordRow) : file.cards;
-  const logs = file.version === 1 ? file.logs.map(migrateWordRow) : file.logs;
+  const version = file.version;
+  const cards = version !== 3 ? file.cards.map(row => migrateWordRow(row, version)) : file.cards;
+  const logs = version !== 3 ? file.logs.map(row => migrateWordRow(row, version)) : file.logs;
   const d = await db();
   const tx = d.transaction(['cards', 'logs', 'stats', 'settings'], 'readwrite');
   await Promise.all([

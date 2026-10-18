@@ -7,7 +7,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else "/tmp"
 Path(OUT).mkdir(parents=True, exist_ok=True)
 ROOT = Path(__file__).resolve().parents[2]
 WORDS = json.loads((ROOT / 'data/words.json').read_text(encoding='utf-8'))
-LEGACY = json.loads((ROOT / 'data/legacy-word-order.json').read_text(encoding='utf-8'))
+LEGACY = {version: json.loads((ROOT / ('data/legacy-word-order-v1.json' if version == 1 else 'data/legacy-word-order.json')).read_text(encoding='utf-8')) for version in (1, 2)}
 
 def check(cond, msg):
     print(("PASS " if cond else "FAIL ") + msg)
@@ -79,7 +79,7 @@ with sync_playwright() as p:
     path = f"{OUT}/backup.json"
     dl.value.save_as(path)
     data = json.load(open(path, encoding="utf-8"))
-    check(data['version'] == 2, '新备份使用版本 2')
+    check(data['version'] == 3, '新备份使用版本 3')
     check(len(data["cards"]) == 5 and len(data["logs"]) >= 5, f"备份里有 5 张卡、{len(data['logs'])} 条记录")
     page.screenshot(path=f"{OUT}/5_settings.png")
 
@@ -100,55 +100,60 @@ with sync_playwright() as p:
     check(page.inner_text(".word") not in seen, "第二组从未学的新词开始")
     check(not errors, f"页面没有报错 ({errors[:3]})")
 
-    # 真实 v1 IndexedDB + v1 备份：用刚学完的卡构造旧 ID，检查原词、日志、统计均保留。
-    old = json.loads(json.dumps(data))
-    old['version'] = 1
-    for row in old['cards'] + old['logs']:
-        row['wordId'] = LEGACY.index(WORDS[row['wordId'] - 1]['word']) + 1
-    legacy_path = f'{OUT}/backup-v1.json'
-    Path(legacy_path).write_text(json.dumps(old), encoding='utf-8')
-    migration_ctx = b.new_context(viewport={"width": 393, "height": 852}, accept_downloads=True)
-    migration_ctx.route('**/favicon.ico', lambda route: route.fulfill(status=204))
-    mp = migration_ctx.new_page()
-    mp.on('pageerror', lambda e: errors.append(str(e)))
-    # 同源空页面避免应用先打开数据库。
-    mp.route('**/migration-seed', lambda route: route.fulfill(body='<html></html>', content_type='text/html'))
-    mp.goto(URL + 'migration-seed')
-    mp.evaluate('''backup => new Promise((resolve, reject) => {
-      const request = indexedDB.open('english-beginner-app', 1);
-      request.onupgradeneeded = () => {
-        const db = request.result;
-        db.createObjectStore('cards', {keyPath: 'wordId'});
-        db.createObjectStore('logs', {keyPath: 'id', autoIncrement: true});
-        db.createObjectStore('stats', {keyPath: 'date'});
-        db.createObjectStore('settings');
-      };
-      request.onerror = () => reject(request.error);
-      request.onsuccess = () => {
-        const db = request.result;
-        const tx = db.transaction(['cards','logs','stats','settings'], 'readwrite');
-        for (const name of ['cards','logs','stats']) for (const row of backup[name]) tx.objectStore(name).put(row);
-        tx.objectStore('settings').put(backup.settings, 'main');
-        tx.oncomplete = () => { db.close(); resolve(true); };
-        tx.onerror = () => reject(tx.error);
-      };
-    })''', old)
-    mp.goto(URL)
-    mp.wait_for_selector('.stats')
-    check('5/10' in mp.inner_text('.stats'), '数据库升级保留统计')
-    mp.click('text=设置与备份')
-    for label in ['数据库 v1 升级', '旧备份导入']:
-        if label == '旧备份导入':
-            mp.set_input_files('#import-file', legacy_path)
-            mp.wait_for_selector('text=导入完成')
-        with mp.expect_download() as migrated_dl:
-            mp.click("button:has-text('导出备份')")
-        migrated_path = f'{OUT}/migrated.json'
-        migrated_dl.value.save_as(migrated_path)
-        migrated = json.loads(Path(migrated_path).read_text(encoding='utf-8'))
-        check(migrated['cards'] == data['cards'], label + '保留原单词及全部卡片数据')
-        check(migrated['logs'] == data['logs'], label + '保留原日志及单词对应')
-        check(migrated['stats'] == data['stats'] and migrated['settings'] == data['settings'], label + '保留统计和设置')
+    for version in (1, 2):
+        # 真实 v1/v2 IndexedDB + 对应版本备份：用刚学完的卡构造旧 ID，检查原词、日志、统计均保留。
+        old = json.loads(json.dumps(data))
+        old['version'] = version
+        for row in old['cards'] + old['logs']:
+            row['wordId'] = LEGACY[version].index(WORDS[row['wordId'] - 1]['word']) + 1
+        legacy_path = f'{OUT}/backup-v{version}.json'
+        Path(legacy_path).write_text(json.dumps(old), encoding='utf-8')
+        migration_ctx = b.new_context(viewport={"width": 393, "height": 852}, accept_downloads=True)
+        migration_ctx.route('**/favicon.ico', lambda route: route.fulfill(status=204))
+        mp = migration_ctx.new_page()
+        mp.on('pageerror', lambda e: errors.append(str(e)))
+        # 同源空页面避免应用先打开数据库。
+        mp.route('**/migration-seed', lambda route: route.fulfill(body='<html></html>', content_type='text/html'))
+        mp.goto(URL + 'migration-seed')
+        mp.evaluate('''backup => new Promise((resolve, reject) => {
+          const request = indexedDB.open('english-beginner-app', backup.version);
+          request.onupgradeneeded = () => {
+            const db = request.result;
+            db.createObjectStore('cards', {keyPath: 'wordId'});
+            db.createObjectStore('logs', {keyPath: 'id', autoIncrement: true});
+            db.createObjectStore('stats', {keyPath: 'date'});
+            db.createObjectStore('settings');
+          };
+          request.onerror = () => reject(request.error);
+          request.onsuccess = () => {
+            const db = request.result;
+            const tx = db.transaction(['cards','logs','stats','settings'], 'readwrite');
+            for (const name of ['cards','logs','stats']) for (const row of backup[name]) tx.objectStore(name).put(row);
+            tx.objectStore('settings').put(backup.settings, 'main');
+            tx.oncomplete = () => { db.close(); resolve(true); };
+            tx.onerror = () => reject(tx.error);
+          };
+        })''', old)
+        mp.goto(URL)
+        mp.wait_for_selector('.stats')
+        check('5/10' in mp.inner_text('.stats'), '数据库升级保留统计')
+        mp.click('text=设置与备份')
+        for label in [f'数据库 v{version} 升级', f'v{version} 旧备份导入']:
+            if label == f'v{version} 旧备份导入':
+                mp.set_input_files('#import-file', legacy_path)
+                mp.wait_for_selector('text=导入完成')
+            with mp.expect_download() as migrated_dl:
+                mp.click("button:has-text('导出备份')")
+            migrated_path = f'{OUT}/migrated.json'
+            migrated_dl.value.save_as(migrated_path)
+            migrated = json.loads(Path(migrated_path).read_text(encoding='utf-8'))
+            check(migrated['cards'] == data['cards'], label + '保留原单词及全部卡片数据')
+            check(migrated['logs'] == data['logs'], label + '保留原日志及单词对应')
+            check(migrated['stats'] == data['stats'] and migrated['settings'] == data['settings'], label + '保留统计和设置')
+        mp.reload()
+        mp.wait_for_selector('.stats')
+        check('5/10' in mp.inner_text('.stats'), f'v{version} 迁移后刷新保留进度')
+        migration_ctx.close()
     check(not errors, f'迁移流程没有报错 ({errors[:3]})')
     b.close()
 

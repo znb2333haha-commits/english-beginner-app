@@ -48,15 +48,17 @@ python -c "import subprocess,pathlib; pathlib.Path('../words-m2.json').write_byt
 python -I scripts/build_words.py ../words-m2.json data/words.json --cmudict ../cmudict/cmudict.dict
 ```
 
-仅重排第一级，保持原 3000 词及各级成员。优先名词、动词、形容词，再副词，
-然后代词、介词等，冠词、限定词、连词、助动词放后；每组内按原词频。
+T1b 保持原 3000 词，通过中文主释义的完整词项规则识别入门主题，结合 Oxford 标记和
+Collins 星级加权；第一级按 3 个主题词、2 个原高频词交织。主题池预留至少 200 个
+具体名词，跨级提升生活词，被挤出的词按 T1 相对顺序顺延。规则与权重见脚本常量，
+无英文教学词白名单。前 100 词与具体名词清单见 `docs/T1b-THEME-AUDIT.md`。
 多读音暂取 CMUdict 第一条；单音节省略重音，非重读 AH/ER 用 ə/ɚ。
 本次 3000 词全部命中 CMUdict；脚本仍支持并报告 ECDICT 音标回退。
 音标抽检见 `docs/T1-PHONETIC-AUDIT.md`。
 
-T1 重新编号后，IndexedDB 升级至 v2 并按冻结的 `data/legacy-word-order.json`
-迁移旧卡片和日志。备份导出版本也升为 2，仍可导入 v1 备份。
-旧版应用不能导入 v2 备份；迁移不会清空统计、设置或复习参数。
+T1b 重新编号后，IndexedDB 与备份升级至 v3。`data/legacy-word-order.json` 冻结为
+T1/v2 顺序；`data/legacy-word-order-v1.json` 保留 M2/v1 顺序，按来源版本迁移旧卡片和日志。
+仍可导入 v1/v2 备份；旧版应用不能导入 v3 备份。迁移保留统计、设置和复习参数。
 
 ## 目录
 
