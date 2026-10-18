@@ -4,7 +4,7 @@
 python3 scripts/build_phrase_audio.py            # 生成缺少的句子音频
 python3 scripts/build_phrase_audio.py --dry-run  # 只列出要生成的文件
 需要联网和 edge-tts(pip install edge-tts);已存在且非空的文件会跳过。
-输出:public/audio/phrases/<句子 id>.mp3 和 public/audio/kids/<文件名>.mp3。仅供个人使用,服务条款见 DECISIONS.md。
+输出:public/audio/phrases/<句子 id>.mp3 和 public/audio/kids/<文件名>.mp3、public/audio/examples/<单词>.mp3。仅供个人使用,服务条款见 DECISIONS.md。
 """
 import argparse
 import asyncio
@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 VOICE = 'en-US-JennyNeural'
 OUT = ROOT / 'public/audio/phrases'
 KIDS_OUT = ROOT / 'public/audio/kids'
+EX_OUT = ROOT / 'public/audio/examples'
 
 
 def load_phrases(path=None):
@@ -38,6 +39,18 @@ def load_kids(path=None):
                 raise ValueError('儿童词文件名不安全: ' + it['file'])
             seen.add(it['file'])
             items.append({'id': it['file'], 'en': it['word']})
+    return items
+
+
+def load_examples(path=None):
+    """每个单词的第一条例句(界面朗读的就是这一条)→ examples/<单词>.mp3"""
+    data = json.loads((path or ROOT / 'data/examples.json').read_text(encoding='utf-8'))
+    items = []
+    for word, exs in data.items():
+        if not re.fullmatch(r'[a-z]+', word):
+            raise ValueError('例句单词名不安全: ' + word)
+        if exs:
+            items.append({'id': word, 'en': exs[0]['en']})
     return items
 
 
@@ -76,7 +89,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--dry-run', action='store_true')
     args = ap.parse_args()
-    jobs = [('句子', missing(load_phrases()), OUT), ('儿童词', missing(load_kids(), KIDS_OUT), KIDS_OUT)]
+    jobs = [('句子', missing(load_phrases()), OUT), ('儿童词', missing(load_kids(), KIDS_OUT), KIDS_OUT),
+            ('例句', missing(load_examples(), EX_OUT), EX_OUT)]
     total_failed = 0
     for name, todo, out in jobs:
         print(f'需要生成 {len(todo)} 个{name}音频')

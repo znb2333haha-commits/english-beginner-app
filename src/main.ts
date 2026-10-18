@@ -270,7 +270,10 @@ function renderHome(): string {
 }
 
 function renderRelated(w: Word): string {
-  const lines = (phraseIndex.get(w.id) ?? []).slice(0, 2);
+  const seenEn = new Set<string>();
+  const lines = (phraseIndex.get(w.id) ?? [])
+    .filter((l) => (seenEn.has(l.en) ? false : (seenEn.add(l.en), true)))
+    .slice(0, 2);
   if (lines.length === 0) return '';
   return `<div class="related"><div class="related-title">会话里怎么说</div>${lines
     .map(
@@ -1004,7 +1007,7 @@ app.addEventListener('click', (ev) => {
     case 'speak-example': {
       const w = currentWord();
       const ex = w && examples[w.word]?.[0];
-      if (ex) playSentence(ex.en);
+      if (ex && w) playSentence(w.word, ex.en);
       break;
     }
     case 'grade':

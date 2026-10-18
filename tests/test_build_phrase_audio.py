@@ -23,6 +23,11 @@ class PhraseAudioTests(unittest.TestCase):
         self.assertGreaterEqual(len(items), 60)
         self.assertEqual(len({i['id'] for i in items}), len(items))
 
+    def test_examples_one_per_word(self):
+        items = bpa.load_examples()
+        self.assertGreaterEqual(len(items), 500)
+        self.assertEqual(len({i['id'] for i in items}), len(items))
+
     def test_missing_skips_existing(self):
         items = bpa.load_phrases()[:3]
         with tempfile.TemporaryDirectory() as d:

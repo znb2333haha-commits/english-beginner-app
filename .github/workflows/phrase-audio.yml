@@ -22,11 +22,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if [ -z "$(git status --porcelain public/audio/phrases public/audio/kids)" ]; then echo "没有新音频"; exit 0; fi
+          if [ -z "$(git status --porcelain public/audio public/audio/kids)" ]; then echo "没有新音频"; exit 0; fi
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git checkout -b audio/phrases-${{ github.run_id }}
-          git add public/audio/phrases public/audio/kids
+          git add public/audio public/audio/kids
           git commit -m "Add phrase audio (Jenny)"
           git push origin HEAD
           gh pr create --base main --title "日常会话句子音频" --body "由 workflow 自动生成(en-US-JennyNeural,个人使用)。"
