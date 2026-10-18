@@ -1,0 +1,146 @@
+{
+  "engine": "edge",
+  "voice": "en-US-JennyNeural",
+  "language": "en-US",
+  "speed": "default",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "model_load_seconds": 0.0,
+  "samples": [
+    {
+      "text": "apple",
+      "file": "apple.mp3",
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.698635,
+      "clipped_samples": 0,
+      "sha256": "0f92d7bdabe73532705477712ed3a337fd95419cd9034bff9dc641dd04f4a3dd"
+    },
+    {
+      "text": "water",
+      "file": "water.mp3",
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.438359,
+      "clipped_samples": 0,
+      "sha256": "b0a616c39cc734b9badaba32445bd0119f486f767001e2c6a8391348b1fa3479"
+    },
+    {
+      "text": "go",
+      "file": "go.mp3",
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.539758,
+      "clipped_samples": 0,
+      "sha256": "9f3a731ec1e98532ddd2509ceb143e616a2ceee7d60ced13d2138e5b78a888ba"
+    },
+    {
+      "text": "think",
+      "file": "think.mp3",
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.475348,
+      "clipped_samples": 0,
+      "sha256": "c11c835eafa05a9a3ca38345607859c5aab4c32fb9c1b4a220e8f1aea9682561"
+    },
+    {
+      "text": "three",
+      "file": "three.mp3",
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.666395,
+      "clipped_samples": 0,
+      "sha256": "57efde6d66718a9f96079625085f8884c76b7a504f31d30a2d512386da46ad1f"
+    },
+    {
+      "text": "ship",
+      "file": "ship.mp3",
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.486549,
+      "clipped_samples": 0,
+      "sha256": "e01e9f0d790a9c678999eda9d3430589b18e4aec9bc1389ed4857e3710d354f2"
+    },
+    {
+      "text": "sheep",
+      "file": "sheep.mp3",
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.428972,
+      "clipped_samples": 0,
+      "sha256": "cef86c05fcd6d8241016fd3d40dc26796b427f462a6127a0d899da4eb81539fd"
+    },
+    {
+      "text": "about",
+      "file": "about.mp3",
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.542282,
+      "clipped_samples": 0,
+      "sha256": "efb00df3c0bbdcf1c00b3b2a90562b3f896a74cc7b71a8e52fab75415d6a9346"
+    },
+    {
+      "text": "teacher",
+      "file": "teacher.mp3",
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.395022,
+      "clipped_samples": 0,
+      "sha256": "02e5e0888daac1052c98c1fb33a88fd8ed39cd7c9c46f1a5f4e4554e82cdd98d"
+    },
+    {
+      "text": "beautiful",
+      "file": "beautiful.mp3",
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.480998,
+      "clipped_samples": 0,
+      "sha256": "6b6434ba992cb1d781318915f798a36a5c8eb6d087d27cecf7fa731c91b42364"
+    },
+    {
+      "text": "I eat an apple and drink water.",
+      "file": "sentence-1.mp3",
+      "bytes": 16128,
+      "duration_seconds": 2.688,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.712663,
+      "clipped_samples": 0,
+      "sha256": "87cb496aa36e8a5f1d465e80cf443547884ebf3a95352382df9fc72dfa604cb4"
+    },
+    {
+      "text": "The teacher sees three sheep near the ship.",
+      "file": "sentence-2.mp3",
+      "bytes": 18720,
+      "duration_seconds": 3.12,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.726312,
+      "clipped_samples": 0,
+      "sha256": "27fe1de9727ec0e39a7936eed28a9cc1bee27e565c0c8d492f00c036903b8210"
+    }
+  ],
+  "status": "complete",
+  "package_version": "7.3.1",
+  "generation_seconds": 21.114
+}

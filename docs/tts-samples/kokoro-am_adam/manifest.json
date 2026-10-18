@@ -1,0 +1,146 @@
+{
+  "engine": "kokoro",
+  "voice": "am_adam",
+  "language": "en-US",
+  "speed": "default",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "model_load_seconds": 2.24,
+  "samples": [
+    {
+      "text": "apple",
+      "file": "apple.wav",
+      "bytes": 28716,
+      "duration_seconds": 0.597,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.669189,
+      "clipped_samples": 0,
+      "sha256": "9c54232b733991beaa8450e5b89d871ee624558f68dcbbac1537e7205c42c19b"
+    },
+    {
+      "text": "water",
+      "file": "water.wav",
+      "bytes": 28716,
+      "duration_seconds": 0.597,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.800232,
+      "clipped_samples": 0,
+      "sha256": "beffb04925d74d39bafd9d33337bbb3249a05332259911852b60aae00b51f868"
+    },
+    {
+      "text": "go",
+      "file": "go.wav",
+      "bytes": 27692,
+      "duration_seconds": 0.576,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.714233,
+      "clipped_samples": 0,
+      "sha256": "9b1263c4c1b4beb5ed06153e410225efda98b96f80981b3eb52b1c0f816e8620"
+    },
+    {
+      "text": "think",
+      "file": "think.wav",
+      "bytes": 27692,
+      "duration_seconds": 0.576,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.968719,
+      "clipped_samples": 0,
+      "sha256": "fc0ca3bbf73918a7d2045a13dcab41fb5be0a0380dce6ea1625c4cbbd651dc7c"
+    },
+    {
+      "text": "three",
+      "file": "three.wav",
+      "bytes": 29740,
+      "duration_seconds": 0.619,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.766846,
+      "clipped_samples": 0,
+      "sha256": "d33c61824e48d62d7838d5fc6699344c12949d69f0affaf556b5dc9f8cd456ea"
+    },
+    {
+      "text": "ship",
+      "file": "ship.wav",
+      "bytes": 23596,
+      "duration_seconds": 0.491,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.704254,
+      "clipped_samples": 0,
+      "sha256": "77227288f2ea855b15be3d0bc45fdb04c562e350449616ddbec324e5c81b22d0"
+    },
+    {
+      "text": "sheep",
+      "file": "sheep.wav",
+      "bytes": 24620,
+      "duration_seconds": 0.512,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.697357,
+      "clipped_samples": 0,
+      "sha256": "5d38c96a8152dbfdca1237924138c3c8a74ba9631ac336d4ce2622f2b4d849d6"
+    },
+    {
+      "text": "about",
+      "file": "about.wav",
+      "bytes": 28716,
+      "duration_seconds": 0.597,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.802612,
+      "clipped_samples": 0,
+      "sha256": "1f90fa49718e39593f8dc591da3489b398e418e72899297e4213e2086edc8678"
+    },
+    {
+      "text": "teacher",
+      "file": "teacher.wav",
+      "bytes": 33836,
+      "duration_seconds": 0.704,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.696655,
+      "clipped_samples": 0,
+      "sha256": "a6881b5f3477faadb13490379594692dc181f30f4e9ecb74c1cb54079063cb5c"
+    },
+    {
+      "text": "beautiful",
+      "file": "beautiful.wav",
+      "bytes": 34860,
+      "duration_seconds": 0.725,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.726532,
+      "clipped_samples": 0,
+      "sha256": "1ca4ec4f7899e14ad7751fbf4c20431f6bdf3af2109f56a2840af2daa981fa47"
+    },
+    {
+      "text": "I eat an apple and drink water.",
+      "file": "sentence-1.wav",
+      "bytes": 97228,
+      "duration_seconds": 2.025,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.752991,
+      "clipped_samples": 0,
+      "sha256": "bee28c81c05540c021fda3b935b31b61681df46cc1797c6d16868532a43ab8d9"
+    },
+    {
+      "text": "The teacher sees three sheep near the ship.",
+      "file": "sentence-2.wav",
+      "bytes": 107468,
+      "duration_seconds": 2.238,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.761139,
+      "clipped_samples": 0,
+      "sha256": "240c1026decb976f93c57bde724c473d4d9c52565d46795eba2264ad4bb6f074"
+    }
+  ],
+  "status": "complete",
+  "package_version": "0.6.1",
+  "generation_seconds": 4.192
+}

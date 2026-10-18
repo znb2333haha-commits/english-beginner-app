@@ -1,0 +1,146 @@
+{
+  "engine": "edge",
+  "voice": "en-US-GuyNeural",
+  "language": "en-US",
+  "speed": "default",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "model_load_seconds": 0.0,
+  "samples": [
+    {
+      "text": "apple",
+      "file": "apple.mp3",
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.662295,
+      "clipped_samples": 0,
+      "sha256": "7565806ff605c6eb56727e8a352fd32cec60bcbf8f09115fc563e4229401bc2a"
+    },
+    {
+      "text": "water",
+      "file": "water.mp3",
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.697419,
+      "clipped_samples": 0,
+      "sha256": "e32fd9dced48ae029aa43b895e715ed75860eb36a24a70e808afd16896444a2d"
+    },
+    {
+      "text": "go",
+      "file": "go.mp3",
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.675608,
+      "clipped_samples": 0,
+      "sha256": "60f1f34c2757416fe4c1e6371d0cd2ecb5eebb6493b1f1dfbe6b25e47b9baa95"
+    },
+    {
+      "text": "think",
+      "file": "think.mp3",
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.584407,
+      "clipped_samples": 0,
+      "sha256": "9c53003ff5ca866c3041b440c3075da2da94d8b761c1f267080c2d44b0334daf"
+    },
+    {
+      "text": "three",
+      "file": "three.mp3",
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.568563,
+      "clipped_samples": 0,
+      "sha256": "97475e659f98dfda1b25b12ee9dbf00cf0f4013776ece01199ab8f5cfa56042e"
+    },
+    {
+      "text": "ship",
+      "file": "ship.mp3",
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.498335,
+      "clipped_samples": 0,
+      "sha256": "3b2f0c745aefc588efad9acea1adb6332eceb4d80dc638578fddda9e808242d5"
+    },
+    {
+      "text": "sheep",
+      "file": "sheep.mp3",
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.382999,
+      "clipped_samples": 0,
+      "sha256": "7e6f1a2b72c797d1c095bda747d05fd45f61a62cd85eb1790663f51b2c07f212"
+    },
+    {
+      "text": "about",
+      "file": "about.mp3",
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.618381,
+      "clipped_samples": 0,
+      "sha256": "69cddbf69d2a6082eda3b8889e77f3ae92a21c3774d5f150c8dd21efde3f68b7"
+    },
+    {
+      "text": "teacher",
+      "file": "teacher.mp3",
+      "bytes": 10224,
+      "duration_seconds": 1.704,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.613848,
+      "clipped_samples": 0,
+      "sha256": "9a47f0deb3c3f6666e16bae69f56ef70143f587a89bb3221df90e1f42d992a5a"
+    },
+    {
+      "text": "beautiful",
+      "file": "beautiful.mp3",
+      "bytes": 10512,
+      "duration_seconds": 1.752,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.513415,
+      "clipped_samples": 0,
+      "sha256": "3ceb999a3d5a4a6822f42ef55834be8d613552afdcb61f3b49bfc802bd64e8be"
+    },
+    {
+      "text": "I eat an apple and drink water.",
+      "file": "sentence-1.mp3",
+      "bytes": 16416,
+      "duration_seconds": 2.736,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.710592,
+      "clipped_samples": 0,
+      "sha256": "9d2eb2285a906da171083322871e9495a15a1aa4d0112e0441a701554a2b9ffe"
+    },
+    {
+      "text": "The teacher sees three sheep near the ship.",
+      "file": "sentence-2.mp3",
+      "bytes": 18720,
+      "duration_seconds": 3.12,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak": 0.50966,
+      "clipped_samples": 0,
+      "sha256": "c6f9eddb54ae5d51c8f5e36f02f1f973041da6d262afd079434497a0cce4aed8"
+    }
+  ],
+  "status": "complete",
+  "package_version": "7.3.1",
+  "generation_seconds": 16.802
+}
