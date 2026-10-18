@@ -11,10 +11,13 @@
     "build:single": "tsc --noEmit && vite build -c vite.single.config.ts"
   },
   "dependencies": {
+    "@capacitor/core": "^8.5.3",
     "idb": "^8.0.4",
     "ts-fsrs": "^5.4.2"
   },
   "devDependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/cli": "^8.5.3",
     "typescript": "^7.0.2",
     "vite": "^8.3.4",
     "vite-plugin-singlefile": "^2.3.4",

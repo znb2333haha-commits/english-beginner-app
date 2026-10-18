@@ -1,0 +1,6 @@
+{
+  "appId": "app.englishbeginner",
+  "appName": "英语小白",
+  "webDir": "dist",
+  "android": { "allowMixedContent": false }
+}
