@@ -30,10 +30,22 @@ with sync_playwright() as p:
     page.screenshot(path=f"{OUT}/1_home.png")
     check("0/10" in page.inner_text(".stats"), "首页显示今日新词 0/10")
 
-    page.click("button:has-text('来一组')")
+    with page.expect_response(lambda response: '/audio/' in response.url and response.url.endswith('.mp3')) as first_audio:
+        page.click("button:has-text('来一组')")
     page.wait_for_selector(".word")
     first = page.inner_text(".word")
     check(first == WORDS[0]['word'] and first != 'the', f"第一张卡按新学习顺序 (实际: {first})")
+    check(first_audio.value.status in (200, 206), '首卡自动请求内置音频成功（支持浏览器 Range 请求）')
+    audio_response = page.request.get(URL + f'audio/{first}.mp3')
+    check(audio_response.status == 200 and 'audio/' in audio_response.headers.get('content-type', ''), '首卡完整 MP3 请求返回 200 和音频类型')
+    audio_duration = page.evaluate('''async word => {
+        const response = await fetch(`audio/${word}.mp3`);
+        const context = new AudioContext();
+        const buffer = await context.decodeAudioData(await response.arrayBuffer());
+        await context.close();
+        return buffer.duration;
+    }''', first)
+    check(0.15 < audio_duration < 10, '首卡 MP3 在浏览器可解码，无需系统语音')
     page.screenshot(path=f"{OUT}/2_front.png")
     page.click("button:has-text('显示答案')")
     page.wait_for_selector(".grades")

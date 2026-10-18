@@ -4,3 +4,5 @@ dist-single/
 *.db
 *.zip
 __pycache__/
+public/audio/*.part
+data/audio-manifest.tmp

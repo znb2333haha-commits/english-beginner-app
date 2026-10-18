@@ -60,6 +60,33 @@ T1b 重新编号后，IndexedDB 与备份升级至 v3。`data/legacy-word-order.
 T1/v2 顺序；`data/legacy-word-order-v1.json` 保留 M2/v1 顺序，按来源版本迁移旧卡片和日志。
 仍可导入 v1/v2 备份；旧版应用不能导入 v3 备份。迁移保留统计、设置和复习参数。
 
+## 内置发音（T2）
+
+使用者已选 Edge Jenny 美式女声 `en-US-JennyNeural`。第一级音频放在
+`public/audio/<word>.mp3`，Vite 构建会复制到 `dist/audio/`。生成需要联网，
+下载/打包后的音频播放不需要系统英语语音包或谷歌服务。后续级别仍由现有系统语音兜底。
+本项目按个人使用处理；edge-tts 为非官方在线接口，库许可证不等于微软音频再分发授权，
+公开发布前需另行确认服务条款，见 `docs/DECISIONS.md`。
+
+重建第一级（建议复用仓库外的试听虚拟环境，或另建 Python 3.12 环境）：
+
+```powershell
+python -m venv ..\audio-env
+..\audio-env\Scripts\python -m pip install -r scripts/requirements-audio.txt
+..\audio-env\Scripts\python scripts/build_audio.py --level-start 1 --level-end 1
+..\audio-env\Scripts\python scripts/check_audio.py
+npm run build
+```
+
+脚本固定使用 Jenny、默认语速，支持 `--level-start` / `--level-end` 指定 1～6 级的连续范围；
+本次只生成第 1 级。已有文件需通过清单哈希和解码验证才跳过，损坏/不完整文件会重建；
+每词最多尝试 3 次，默认并发 2，失败后可原命令重跑，成功文件无需再请求服务。
+临时文件验证后才替换正式 MP3。清单在 `data/audio-manifest.json`，完整性报告在
+`docs/T2-AUDIO-VALIDATION.json`。脚本不需要付费密钥，不把请求 URL 或服务令牌写入清单。
+
+`npm run build:single` 的音频仍在输出目录的 `audio/` 中；移动试用版时请连同该目录一起复制。
+内置音频不等于网页已实现完整离线缓存，service worker 仍是 T6 的任务。
+
 ## 目录
 
 - `src/scheduler.ts` FSRS 调度与"来一组"队列

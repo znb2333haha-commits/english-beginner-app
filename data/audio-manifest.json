@@ -1,0 +1,3010 @@
+{
+  "version": 1,
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "format": "mp3",
+  "generator": "edge-tts",
+  "generator_version": "7.3.1",
+  "words": {
+    "one": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "955a7d1997efb820c352ce3a05eee970d8b0247552b73be763770b40c32053db"
+    },
+    "go": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "9f3a731ec1e98532ddd2509ceb143e616a2ceee7d60ced13d2138e5b78a888ba"
+    },
+    "say": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "bfd1aad7bb3d8f16832b6fd5f391234faeb7b32f16fa1b16f2e646b7e7e559d4"
+    },
+    "man": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "3c1e353e95ebca12a3daad069e3f7402955e8badd323efb6a23cfb9baf51cd11"
+    },
+    "get": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "651e01aab3eb031da002b98a660c992ffe413899b483a3348f380254b6d0b831"
+    },
+    "woman": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "1b19d187a0146586704b0eac5a09c4916a9e79eb655417708a315617f570437e"
+    },
+    "child": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "8eec8e11ae619630aa2f7c82ebade4cb38295604ccb99263c8d3720b1d8b137d"
+    },
+    "school": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "8fa34a50db8677af49d9797440149af47155a5785cb77fd980c2cd5989969d63"
+    },
+    "make": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "3bff92dc52fdf1c6572388c253e26e27c5667370a43232ed48bb08964be309d1"
+    },
+    "know": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "3cd3e7e6d22e9ba0890389140e80b7516720f30d4953c2c5fbd02e113e8d6d8b"
+    },
+    "two": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "ea1e950a9618ca31b9697a51c798adc0e88baf2f50cf4b286c4df68f518de653"
+    },
+    "family": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "c8821215dc181859d8415bdba34fb1475c2dcd7f6fbfcea723b8e1f342e4a6f3"
+    },
+    "student": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "6647a2309e73d3e36e2de132ea43c3c924e2df8901e1772b04f65090ddad0305"
+    },
+    "time": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "9d16750e3bfb501890a12faa5799d32ff8e8fa1edddfcaac3439ae8002a11499"
+    },
+    "year": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "6b4a266e5882247cec427b21fbb1af89a5741d4f50599ce651175e4eb8c9d0ac"
+    },
+    "run": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "eb7cf08400ea9fcb3ddc2303b0979802af5b37af59c71806eced13eba507456d"
+    },
+    "hand": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "fc7a377ddb525078f58eb9893390315d42561c62a91621581163d5b352f9d167"
+    },
+    "three": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "57efde6d66718a9f96079625085f8884c76b7a504f31d30a2d512386da46ad1f"
+    },
+    "think": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "c11c835eafa05a9a3ca38345607859c5aab4c32fb9c1b4a220e8f1aea9682561"
+    },
+    "people": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "eb351d298ba94c2441e27014224a9347c5bcf1030eb423d65b3e5eee67dfad5a"
+    },
+    "water": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "b0a616c39cc734b9badaba32445bd0119f486f767001e2c6a8391348b1fa3479"
+    },
+    "room": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "cac15bed468a4f50bc69aa4023056a364655731b1c91a795d3d8f56832350174"
+    },
+    "mother": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "8d8c1750d5c7ba7b6e2747f6e461344acdf2e2d7f19dbad597ee20d070bf5f21"
+    },
+    "take": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "19c4b016ef73b0cecc90b59501621417c38c2abd00daaa699a6dd98b77901f2a"
+    },
+    "see": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "2891cb7d53364942ebb8e3265f69e4459b537ee851c371b1c8ba527a252f7816"
+    },
+    "book": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "ded7688c7a67acd8c8f19f9c6d5c2cd6b6d45bffa86e91c0b36877284ee4e323"
+    },
+    "eye": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "98329524757d1862b732e7bb3a8abdf40a359f36b6e0f4cbbb7fb459921d47e2"
+    },
+    "head": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "8441df680bbc258b4bde81b5431b5cd49994367b9c6ee5e49e8ddf008dd2d482"
+    },
+    "come": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "2857d884e0f80f167a82c839cead75e0e41c68caa3d0300c97eef69ca1b88ce0"
+    },
+    "other": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "2583b89c6617e5fc479e675fb2e892c0c7f403c9f7f500dfea638f15d74b360b"
+    },
+    "black": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "b81be7cdcd88f1857553b900e55bf6809ac3779d27a394b751a3187b0d16e1b2"
+    },
+    "house": {
+      "bytes": 8208,
+      "duration_seconds": 1.368,
+      "sample_rate": 24000,
+      "sha256": "e48a37e714e28821281d3fa8130da064a54ef852205e2b1236c5bbf2ff5eabfa"
+    },
+    "friend": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "b8d130da001a3ab9c6a7f4527ee973aded97d5cb1f450c7a2e35f337b3fd1f72"
+    },
+    "want": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "9fd9a5279e94dddf9b4cc0eb9c46df85164dc55012c48c462f6b19137ed4a616"
+    },
+    "way": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "1cdf23d5f0f6de5fd22a9fb35ae9d7534124adba5e85f7a51a84f09bd51b3ecf"
+    },
+    "line": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "d91799b977968e8fe4b1d477436b9bf3d281903e440ad01f68172a8fff18fa11"
+    },
+    "car": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "7a0efe876927c9701dbef2ed47c485b64f8111cd217340b599a423672bd180a4"
+    },
+    "father": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "8f167a8d14e1168280f9e7aed6e8dbc1bc463556dd77b41b7d094d161d753b12"
+    },
+    "look": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "38c5a5630d13891aca0e98693c28a43e7666fcb887df723f467aebe1506b0efd"
+    },
+    "new": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "df9165f28ec70c72ecaf74e6454d39d91a48ba3d32f26a8e0fc97bbd6422b958"
+    },
+    "white": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "439570ea2912c1bc55e44442dce228264a8136a0eca7981bde7aa845270f5673"
+    },
+    "body": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "bc759a3045431c358cc59eeb971b2ef8dcd2ee87b50278e69e17203d7b66e53f"
+    },
+    "parent": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "cf89006f7c7036482a7e7e5941b242cad3ba892e4cc5e168539dee4e41ab7194"
+    },
+    "day": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "7a1bb7c953b94d62050b9563119d8e456d0893154c15a56e91a500fc9f0c95f8"
+    },
+    "face": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "1d96c048f3bf801ace3929815c99adf5e9ae6c21c9bbe931527e1f917dd8f0cf"
+    },
+    "office": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "01765b30c172773a56a5203e00d6efc06d6cc48df8486efe022dd68e9edfe2bb"
+    },
+    "use": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "b91c2b56e5ccb42eb3a15ef0ea50726e2660583d3c5177b1b3f3b328a722c935"
+    },
+    "find": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "a6f81020f56fe80093e5852cb338da71f1985f70e984d4d8062828345f33a78d"
+    },
+    "thing": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "4530a3c019771ee1e4ad62f1bf76075d065a0169659c660cf2e7af3b0d594a8f"
+    },
+    "door": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "1ceee37ea762b49c78e9bcaf337e7fa4de35be726db9362f6b53db9b588caec7"
+    },
+    "million": {
+      "bytes": 9360,
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "sha256": "b3595163057c820009f4728cc2f7691c9d477bb18f012d0864d90581b2da8762"
+    },
+    "walk": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "6ed247efaf6fb035614839acfe9197b78be4bc722526ed123719ca9b5ded8c6b"
+    },
+    "give": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "e0d9b4f77b8a343558edaa91facfca0462088ed25509adc956004532130ce1f8"
+    },
+    "girl": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "7fb69ca5f63fafa055aee56d812776089ddaaebbe9d922cf826c76bb0e9f84d9"
+    },
+    "tell": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "2e84d8af99850903330ba2508bbd1e4791382a3f735f4aef68cb2d2f9c7ee8a5"
+    },
+    "food": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "dab1cfb085528b1ad6fc0af35a3d64a3cbfdec133ff68ece27255278be34f9ba"
+    },
+    "air": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "07f45f4eaab97817ec34fc0cd206675c2ea78e6467dd25c4fcc34633157c3d6b"
+    },
+    "foot": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "04be44385bfc4c5866eab17825fb030be00af032642ec397484085c12f50a3ad"
+    },
+    "good": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "d65c27e7bc2f3ba019ac1f1c5134b41a656c427b3802c51322682c8656b62f33"
+    },
+    "boy": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "0e9101096cef797447eee153fb944520ea035fcd48f1543ace7e3509f4edc47f"
+    },
+    "four": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "9feea4869eb65ea1d883b0f8dfd8b02e0ce5b24f240851f5c89268e7731d7219"
+    },
+    "buy": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "0ce2a6a6f4ab6e4a8fbbacb81f3833097cdf3799f169fc2c45a7e93eb0c666e5"
+    },
+    "work": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "43c57b3b093aa8466b80036cc54bf46f91c79d0dab79776ad9d9f9a4552d6564"
+    },
+    "call": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "f4bc0ab842fe07c3acdb96950db583d3dfc8c089cbdaac743401676710e0b49a"
+    },
+    "market": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "659ea563ed936daa771e58fd64933d3952b3aabede03e3b5544bab56e61cb6cd"
+    },
+    "sell": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "f44860782bd923185e4de32d9e46b6c21261e82b23db395445e4a53a7bb0a22c"
+    },
+    "wife": {
+      "bytes": 9360,
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "sha256": "577a9ca3f6b3b64e085da09205eabb0c776b7c77e36d6a0eb261daf63ec70bfa"
+    },
+    "world": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "f2ab4216259feb31ca9a45da430cf29a036540c777c580021aa22d342ab1bc67"
+    },
+    "try": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "6798ea4d93e3c37979b2c296c469fa34781f7a5fe3ce6813e6b2c332f5aed7a0"
+    },
+    "police": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "3243b9bf3dc23acd8799e0d7e82948861209d553e7e211dbae692b0617b67fa6"
+    },
+    "five": {
+      "bytes": 9360,
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "sha256": "54d5ab7f72091f23240d692f5134430a020e2acf6f84d18e14e8fd5fc6647fde"
+    },
+    "son": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "2ba69ffa3a33052491f325226ab3b0c3da5d221eecf909c59f7013fa1693343a"
+    },
+    "life": {
+      "bytes": 7200,
+      "duration_seconds": 1.2,
+      "sample_rate": 24000,
+      "sha256": "f27f1dc3107fa2bbb06a2ffe9292bc5cdd2821821ba0e32ef8bc802d96b7634e"
+    },
+    "ask": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "0b7b2c6a431fb3b54f885f26834d153ce83b72c79c127a433b75ed1c83d55bbc"
+    },
+    "need": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "bad0fdb2835818210f85ba2de49923e3efaeff1cf1de8a8d2fa111579d4e8bec"
+    },
+    "arm": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "bc92d6886c6f13df615563211a20a21a915541aadc35b2b6646f31322ea46413"
+    },
+    "building": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "5bfbfd1b4e8ade9b79c4dcb3ea8eda7203d61ed7b02c2541d8075b54dc3534a1"
+    },
+    "heart": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "05b90d2e15d4155259d629937b2b15eb930869278c5fe45284ecc17facb7e52c"
+    },
+    "state": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "b9e7fa0bbad9474d7e7ca4504a6703afbb44c9fbbce32712fe5d592382be9be2"
+    },
+    "feel": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "482d084288a1767cad99ea2ed1ddc677fb7b998a00b6e0aef2eddff969cd7715"
+    },
+    "ground": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "cc7baad5692051dfbf2304229879904f18b5e62bc471ea1036fa17897154cf09"
+    },
+    "paper": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "f7be6a4d2f80f5c0705e162cfff11b520a30bb029295684755c28f1c51d8588a"
+    },
+    "star": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "5f589dcdad8bb5891f834c089e277acb113ba43eaf96c65ae719907cb638c1b6"
+    },
+    "become": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "b656dfca8ef5dd2befc18d90869bc5b1e1b401534a734fe97f8972052461e0ef"
+    },
+    "high": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "fc278f6d18cdebe177fcd479d03532db28d3afb66072be8557cba1047ce56d32"
+    },
+    "street": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "94ce505bd199c5881547d22187828abc6c6414482f39ae28a7707dba9d333729"
+    },
+    "land": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "c4aa17b6d638f46ce7a826733eeebf53d2f84a17c886a2304eac4ba1676518d9"
+    },
+    "wall": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "167c1737c7be7d862ca4a731eae34327f43568d1761c7e6993e7704f1a653a38"
+    },
+    "leave": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "5342955cf74d28359cfadac8b1417245a8c0cc63ee0a98c48f99b37bb591b9dc"
+    },
+    "worker": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "613e6a59b70dbd59830816e0eed766601438f7c2ee4a05eb50d0bef93f487079"
+    },
+    "put": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "62e621878b8f124b3a0f4b793bff7b4989c21178802f38c625c49594bf369462"
+    },
+    "couple": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "26219d34a7b35bbdbe510e14ff360bddb4b5ae850c528bc539aead7b2c506fab"
+    },
+    "table": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "baed07f3340d33f450158ad9b4223611267562144b22840bcd77016b68bbd69a"
+    },
+    "old": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "a4253703d76a5791891d23a9b8e0afbc751397d25278906eea131b88834974f2"
+    },
+    "mean": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "285d285e67a4d9d54c24c3e6946f7b8d8f32fef61837d94cc1f842ad5b2a37dc"
+    },
+    "red": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "62509a41c9c97aac42c7a68f5b048c3e3219020cab710255f574447388e820a0"
+    },
+    "eat": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "24a42b0f4d8e8f0a990b924b98765a7454d91a70da30e954377690f41e21266d"
+    },
+    "phone": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "3ffd8cbaf1c6754e20360f07e73df556d3806e3ac5c07842d17edd8044f47dfd"
+    },
+    "keep": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "c9d4497cf03789871f5f79e8a23a13f1c947f7850a16911cde6bfe4326195f27"
+    },
+    "let": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "5a570288d16c85f00c7a40456c096630b7c6b02302ce5a09e7e85538468940d4"
+    },
+    "picture": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "a20571e3db231e06d501c5a97a121e46000a73e40625f92236bc3302a045ccb6"
+    },
+    "brother": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "4d3a38db54063052faa591a57f01e0a80ab9e5f3470d069fd07c57c7e7bb26dd"
+    },
+    "great": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "7a15ab9f71be52a6edaa988bd3a5df5b472ebc6dca1fa1d9653b1fcd352fb4ad"
+    },
+    "plant": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "2b80d2cebf2663137c8332b1a0ece44c8d5702a0d1bbdaaac5ae6834a13f8da6"
+    },
+    "big": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "50ca8ed17d292d3ef9fd1416fae90dd875b6709268a9bae863b0e46a80093474"
+    },
+    "doctor": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "6262fcff7af2d9e3d0a65d3e2aeba1db976a4e89120847508a2918544bfc3720"
+    },
+    "daughter": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "1569ecc7b6d7dd4dd696ec96744aa1ca5a981370d87bd4ace522288207253e09"
+    },
+    "baby": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "0d10ebfabc448ac23cade2ee33eccbaf43fa7bfcfc5720d7be80a7324ab4ecdb"
+    },
+    "group": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "d43e864a7453b877db6991c7db413fe9a02529a3a8500596f9340524156b320b"
+    },
+    "begin": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "d73f7fb76af73a4afcde8a3f35115cc3116c8fcd5c9f0929419d90a7ba58e023"
+    },
+    "hospital": {
+      "bytes": 10224,
+      "duration_seconds": 1.704,
+      "sample_rate": 24000,
+      "sha256": "829177fedba21f92ef524fcc80631053af2fcf93600536e731e119adfd6d1bfd"
+    },
+    "computer": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "8b3083ed0287c2a70858a5e482d5ab7879e80b155b766e55298e85102b7e3d65"
+    },
+    "tree": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "b0def813e73233228beb7b1baa7f2c65c910bd75fc99ac893653ce8e84c92421"
+    },
+    "seem": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "09721c014fe5f6049594cb9fb83642f596ed8ae460520991f0741da94a823094"
+    },
+    "country": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "321c67bf995263e6da6cfb3601c497d3502b18d7c988feaacd4810e643ebfc70"
+    },
+    "hair": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "cc9df23154c8834be3ad08477249bf549f171cbac0df548ac86e2d61f76a47f1"
+    },
+    "six": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "a3a7e55fc70f96683ce9b0bfd32383a80207878ccec2cc8ceec9bf5e596cc56c"
+    },
+    "window": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "ef1ec7ae5444e831f05b7e121b5860fcbcbec1f2532e54f496af38360d1c5226"
+    },
+    "help": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "7966fdcc0a3791fedf618353bb72dbfa1f683b16fbfdfdf047e749ca96bafecb"
+    },
+    "talk": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "b7f61fd1db66c274a9c9be04b3b27cb535df6de060e0e38fb74b54f4fb939a28"
+    },
+    "teacher": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "02e5e0888daac1052c98c1fb33a88fd8ed39cd7c9c46f1a5f4e4554e82cdd98d"
+    },
+    "floor": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "ed4dd70d1e65450f89daf2d0517d58c7af286b0fa5252db10d5fb4627b2030fb"
+    },
+    "turn": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "8600197fb65d8d52fb055e1c624e9abac90f619854fba52440b6ba8866c5307e"
+    },
+    "problem": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "42f0a1415329ef02edc7f9cac7884433e025de89c3e27fcf78fac153e1c38806"
+    },
+    "bed": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "d3f2680f8746ab91ccfd294395345141ec83d1dc96f9fb74f596254a532e6e5c"
+    },
+    "husband": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "324151d013e7da8136b62e5f37476a6f080acac26f831964be03e808d2366e1a"
+    },
+    "blood": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "023148f7e1cffbb5ad1e3284c388e631915a24677eeead23f6d028f2a4b7a4bf"
+    },
+    "store": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "d63c0548719457af59f0584d9af0f6934e4694b565080dc21cf6bdf1abb3f335"
+    },
+    "start": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "59b3fd2f0dba51d19e5d9737ca1942b0d1f698bbd276f1cf0a0ea05f25d6e2ab"
+    },
+    "show": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "3ea68a64384025a8e1eaa0832e94c351c176e7315742ff740fb1c227f0d96395"
+    },
+    "cup": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "9c3dc407e2c3324f6514b6d91a3d95df786e343131e324f39c8d7d611577f162"
+    },
+    "animal": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "12626f5e2f8e7d2eaac2a26bdeebfba35bdd33f4875bf1eb29a85a20a48fd100"
+    },
+    "decade": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "2cb59d957d1af3a06df60ae603d257bd896ca7da791e3724baddec3f62dfc6c4"
+    },
+    "part": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "158a07d65b942988c6e04cca6ec2c23f599617103d4f4e01023b2e7b70f602b2"
+    },
+    "sister": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "253fbf5cd895d95581fc70032b0e358f19983279c107e368c8cea89727aa6ad0"
+    },
+    "place": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "28f88e09be047dbd97c2c20fec90811209a993a61eb97d6a4eafcc69583ff2b8"
+    },
+    "dog": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "d17eb2746d02b7766346f019f51e5c41df59e03e1237aa0fad8352cd2ff78069"
+    },
+    "blue": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "4f3ff5f153261f9241f546f3bd879a3ec765183881a21560d4c300686f114c17"
+    },
+    "case": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "e51b00c1b652831c44a0f301a506473ffac993b387f1c3596fc43fa9d156d179"
+    },
+    "week": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "496c6d3765ead775e845208fb0d398c6e4404c6a23eac673c2543fd953a7f1c0"
+    },
+    "box": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "0e7c9b888073a976072111b9b7f1877db35c95c74c06be8ed121503f044d96b8"
+    },
+    "television": {
+      "bytes": 10512,
+      "duration_seconds": 1.752,
+      "sample_rate": 24000,
+      "sha256": "94ea7fb36c303a13466ec8c9c68e5f7f0d9ba2f8406067cbd590852cd1771750"
+    },
+    "company": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "2be44973dbe385e486f8039f986033bf3002e13fed1954a5edca540a45336a11"
+    },
+    "green": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "078a6707decba029076c399690440e56aee9c280d9073d940040d6959e780eed"
+    },
+    "system": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "4c2bdc9abc03c0d4fc5e742e6169bda15e106dacbcae3b15d6cc7f4c0d131e63"
+    },
+    "radio": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "2c127f0d0f5c2dceffd1ed83815cec48c3780ca7d8dde5fd422fc341c2b01762"
+    },
+    "fire": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "8f75a8f839259212a25795b00d757fade25dec7e8af72db5abdc5023ebf98d76"
+    },
+    "program": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "2d9b8288fa619d9361435051a9b7148ccc0abe1a6a36baf188dbd6e21c069ff5"
+    },
+    "station": {
+      "bytes": 10224,
+      "duration_seconds": 1.704,
+      "sample_rate": 24000,
+      "sha256": "53a5da2c61cffd1dab204f731fc9110997fdee9eeaacfe5745784905dfbfee96"
+    },
+    "hear": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "4277451223a40252a4781c788a2accd9d894408abd1cf808f8bde83104e7e169"
+    },
+    "rock": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "c9c5a78e625181d205bb4709eb0a637fb18b7f9e6df2f38b893b652c43bc02f0"
+    },
+    "leg": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "7d23812fd49db67f4ab15da4a7147d23be9e766a7cac7f9cccdf1d85132b1747"
+    },
+    "hundred": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "00d990884e3ed85521e6076a1b00c149db4ad9f0f079f007af8507d1f944e0e8"
+    },
+    "question": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "e44901d39fcea672b8641e27c6afb1d0aa980331972f35541fe3ebad3e8fbc3c"
+    },
+    "play": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "b076e4b62fe79d9abf67130595357ed4ffbb63e93dab12c6aafa64a6aad3ca81"
+    },
+    "ball": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "9425f34d785711aaba6d971adca834094ae6637f281df3f7fcd273dee59524d8"
+    },
+    "thousand": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "1fc7a65ba2634f8939a71d819ff278d48a44cf2b7200043ee2c4d16a9afc6d03"
+    },
+    "government": {
+      "bytes": 10224,
+      "duration_seconds": 1.704,
+      "sample_rate": 24000,
+      "sha256": "24e5f1bb22916c77d5a817de05b8009cbdce5150c41706f3fcec8c1983858bda"
+    },
+    "small": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "3713eb50bbe8d335890f00c8df278ffd77d3b55033b5a1bf2b4e9c9a1bd750f8"
+    },
+    "fish": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "9ab17b3bd93af86f8268cc84df3b9f39a14148a0dfadf64da9be2875d83303f4"
+    },
+    "chair": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "3b7f983ac5f1355151d4727e193db4b3a7ef7931c4e0bbc7a0c6b5a3a6a6e957"
+    },
+    "camera": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "9b0c2dcdc3f6c2d8a1e50ab8da1902e4e94e2ca755b40326557c5f2ca7e563fb"
+    },
+    "number": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "82a934b5abccf67f5a982bf63a7926317500676c7c39ed4779f579e36912bc46"
+    },
+    "bank": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "9b08aae85185f7737903fd5b1d199890d6f45fbd048772923d9a671acef66354"
+    },
+    "shoulder": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "869eaa2ed6125c3a4c6a4dfab3846eb5e37dfd791fdb32715af3b091784b33ce"
+    },
+    "sea": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "2891cb7d53364942ebb8e3265f69e4459b537ee851c371b1c8ba527a252f7816"
+    },
+    "hotel": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "7c5ded5f8a56fd9ffee55e59b012a738c7ec6de8e3c9ad8a053b27646241175b"
+    },
+    "move": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "128831ffa0db20063ebdd651070f4efdd408866caff3a7ad1a73fa5da8451a2c"
+    },
+    "night": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "853e624eb74014e3cb7191f8a7a118ff1523eaa109d0193eac978301607a7b1f"
+    },
+    "live": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "1a7106853842098e2b70ce85dd8d5e6661811754ecd03c13095447c8777eed75"
+    },
+    "bag": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "3888d400862fd2ce15927ce4139424555630178accdabd3a4c392206c545cb5d"
+    },
+    "skin": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "98991a20c75651093467f3026c2fa3398881e13e8f5350276703a78be3f7935e"
+    },
+    "finger": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "785a7bd62c2eb3e4eaff248959fcc53881befc7263a93eea2a186e60c0e7a368"
+    },
+    "point": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "a675cc44971bf93527c7ed0972bd8cfbefec2aadfec91dbe8df87ca7202d5829"
+    },
+    "garden": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "10dd2f99df4aadf3025cc1aeb3f12d40623f70630cc379cbe4c85a6232949271"
+    },
+    "believe": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "662a876bf1d74cf4d4024926529d02ce2859668b8286af64463984fc69dc758f"
+    },
+    "kitchen": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "0db8734c6b31bf4eadd6eef2350080de092c8b3291093d36f40cebb2f3037319"
+    },
+    "hold": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "ac1f88a1538f7a2911e40d4bb291966f374612b3035b7a621c9be116659547a5"
+    },
+    "bring": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "844c659b775ce2599574f14d05c23cfa0c50d2a88604ac417db350789727786b"
+    },
+    "eight": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "54870d4a24a2561b4af71a1e49e10aba81cde40407d901f2ac86eeeb4fe0ea5b"
+    },
+    "mouth": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "63c8347edc6b06fe07d8998eac064385a07205c6230de3e756762cc34b99d6f7"
+    },
+    "newspaper": {
+      "bytes": 10512,
+      "duration_seconds": 1.752,
+      "sample_rate": 24000,
+      "sha256": "8220ea5a783e058ddc6dba4a4cea8c516850dd4a62d0a29d8d4248db67ff26c4"
+    },
+    "happen": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "367bbbc6defef3eefdd633ba1f060fe2de4063ac98ce94f279d22cfb1f63e663"
+    },
+    "seven": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "927d8ec319ad6bc366cc98c782ca19e844b410c5b727b86935394f34e0fbefce"
+    },
+    "dinner": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "632132bdfea8fbb681761f31e9a43412a23abf15243cf5677e38c34917f2dfb9"
+    },
+    "large": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "acc788d9eede8930dcd55acec8211954b4c3afa58866acfd207e8f7c60ab60fc"
+    },
+    "wind": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "7d12fb337f0b01e5a8481dcee6d216d256c1a1315a51f42540f13461a84d6f72"
+    },
+    "video": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "ab9b924bea4c00212b155253d5685f08bef7713e8eaa1cd2e8ed4e2a00c1c4d5"
+    },
+    "home": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "69d2308c3760fc130f4616e521a3d638534bcb1acf452d360a5fa044b8726802"
+    },
+    "write": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "109f7cfbd94351d87f3ac5d3f48a52080413d1d187764db13bb38f40cf772d36"
+    },
+    "bird": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "f43651d995495e428464b0dc0ed7c7ec44778770783cb5dace1a02d29daa1452"
+    },
+    "sleep": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "3eede2e28f0268ce952d5bbb5ad1721ceefbd3b2a90a047743c1a44606d67a58"
+    },
+    "restaurant": {
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "sha256": "70649b53e60d2791bac90e4b7af5a4152c3800b7c125134d6864557eb60b8da5"
+    },
+    "national": {
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "sha256": "664112c3ad997ad75c95d798148486bb3594f5d2d7e1c7abd1d92c9124bad0ec"
+    },
+    "ten": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "250af3e5f860cc1ffb523eaad855550870f9ec779091ee7cc90cbada0c27e4a7"
+    },
+    "area": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "d582c7ac0b112e50ed4294183ceddc7f936bef640949d7af53288ced6d3b2390"
+    },
+    "ship": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "e01e9f0d790a9c678999eda9d3430589b18e4aec9bc1389ed4857e3710d354f2"
+    },
+    "money": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "532a8353a734b5b64d3c2b964f56439bf94b2e3a2a7d35b5b5379793b1b483c3"
+    },
+    "stone": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "ab172be983e9d4f794f6b0b7477334af2d5fb7fdad1fd066cab17f327433092a"
+    },
+    "story": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "e9b75adeb9b0ba2b27ab46b51f3a64a7e468070d35f984ec1e2d6ad0fbb70e01"
+    },
+    "forest": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "1bb87a21edd5b6cdd6e58313b4e01ddca963f415dbd526efd941299392e6e957"
+    },
+    "boat": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "5beb3200092a95cae44f4e2e2d8d33f68614f28431caee5bde0ab220b9a11a37"
+    },
+    "ice": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "f32b2442a9f78494f3ab56ab65128b308cefc7e2ee405496e2e525f4cb16584b"
+    },
+    "drink": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "a803007ba993ae3a73825f8cb67f8f7f02900041b210e6a315d710e4e7683f92"
+    },
+    "fact": {
+      "bytes": 9360,
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "sha256": "ed4ddf7ef1367c7f9f8d34d2e0a83b017bde5e7d670b0ad4e57699d8683680c8"
+    },
+    "young": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "1f6a7ec46bb80fb6c8c284458a7543a1927a4fadfcc3982d410e1d54e97af1fb"
+    },
+    "mountain": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "a354e488279810b8fab1c2b1fa20468d97f9b9413dbc79ad98156ccd8b1e9db6"
+    },
+    "sky": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "25359e17b6c35f6e78cc84e46bed5f840c7a64cee1fea82fc8633b4e24f395ca"
+    },
+    "month": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "76b61a8c2ac9dfd21873a5e2409c9e4654cbabd03e975d05629b63339801eac0"
+    },
+    "horse": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "a0520beb0ed95a0d4d8df9a5e6698d9465038fd3811dc7d09b0f5f922130b5e8"
+    },
+    "different": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "4b16edf10f5f5f5eab4fac71968a4af400a6423bf7b6dc340a8e6da2da28869a"
+    },
+    "river": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "96efd6023f6e0d60380b4ff4ba74718238e7e7f4ab0e6775a8e6ed98bbbe39a3"
+    },
+    "shop": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "8fe781d2d40c17c9d846cca9407ef7c7b65a36e7f6ebf97196c72fa9d5eb160e"
+    },
+    "lot": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "047245e02f49ba11736b2510e2a27420bbb8431a409b9fe22a8e21ef98afbf06"
+    },
+    "study": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "67440147f0ad01a9492b8cb8e3cff24824fda968085173be7de67419f17fea88"
+    },
+    "truck": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "a3f6ed3bc194ace84fa5ab47cfaaef3a9c32fcf84d4d334e069e83e634fda8d7"
+    },
+    "apartment": {
+      "bytes": 10368,
+      "duration_seconds": 1.728,
+      "sample_rate": 24000,
+      "sha256": "7df9cb745a04a763c2a75b0ff43c89ca306407c5a2d3fe61b39e059d4c5c2a21"
+    },
+    "egg": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "b7b7e51047fc8a8a4c8ad471988669306118639a61ac12078755bf44ce2d57d3"
+    },
+    "job": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "abfaf34d0ca43aaa838cab05cb897c5d18eb52681e011779192d17b5fe9f1192"
+    },
+    "word": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "82bb2516211c5340381fe7e2f3b4d9c4426021132bd1c8f7ecbc5e0c80f97d0d"
+    },
+    "cook": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "7adb7687d7b5f0268fb417375baffeb3a129dba3a8214fc4b9c0803473f3bc37"
+    },
+    "clothes": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "f307a66d75fe2fd623ecdf308d7df2ffbb318e121522849463909b031cfec582"
+    },
+    "photograph": {
+      "bytes": 10800,
+      "duration_seconds": 1.8,
+      "sample_rate": 24000,
+      "sha256": "3aeb00a99ddf05fad41e293369bc3fa892328f6636594f01b189c4e0c85954f4"
+    },
+    "business": {
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "sha256": "797113d8cdeafe8468c81728b86d1f250ff909d45e602c7c28ccb3e635a3f1eb"
+    },
+    "flower": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "68d2b2981ec010bb6fbca4deaf90fb25ca3ab1a58fe6bee2b84a914213fd2648"
+    },
+    "ear": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "9e92bf9b1cee6d544b0c5946991260091652d45eaf1a266e85314396ae515eb3"
+    },
+    "issue": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "ea1dfaa8969a841f66f28cd7f191f97d6ad8c7e5893ef05e29a3da3f62a78b9b"
+    },
+    "side": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "60223816daa939943b864402690f47051941eb026a80cef8ebafc641c98972b6"
+    },
+    "island": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "b4a48d617f71764073b776682154414de88135622ce4fc439b2501d42c57912b"
+    },
+    "sun": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "c8e9443df30281c57a2178ec2b6508166e8ea9a4c2d8ba251229ba5d499f4474"
+    },
+    "kind": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "b9ea81a0597c832727d364046f6ad018cf4dce8b2d3c3566e72385550cf4617e"
+    },
+    "coffee": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "f1a33131d8283797d8ea992c8d99476e7ee6cf40d0f8ba749f4f0c6cb328cd0b"
+    },
+    "earth": {
+      "bytes": 8064,
+      "duration_seconds": 1.344,
+      "sample_rate": 24000,
+      "sha256": "f527f33816859973aa008dcba2b869a385f761c59c5bf30c50e1b0f5aba694ea"
+    },
+    "long": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "8245da79dbd39e3cffebac85d9a0b2847187c6f4d5d1624a56df946c55a9368a"
+    },
+    "little": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "9c00b345e9fadb86ce50efc2a318e63663041851826ea53233f3448d70604767"
+    },
+    "rain": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "bc8f2e6e39778274c6688e5eca3bea2479e205e9a10d00001e906c2a586fe240"
+    },
+    "shoe": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "9ed96da500e682f80e435340bac88e2b752b48b06bc3df6328bfb8149a818e86"
+    },
+    "lunch": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "048a3f9d0c29e680f7575fa374d91dff5bbd6853f15394f160cdf51ac249ed32"
+    },
+    "service": {
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "sha256": "91428be22be9a71726a5197dd41b92308455f63c9925f14aa6b72cd06d9e89be"
+    },
+    "provide": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "aae8cb9c3a3374006451d121441f9e575069a83cf593e717b693c447e9e0f712"
+    },
+    "bone": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "b7ffee4a20e9303fd35403d70ad55d4c8e921bb2743513d98fb7c8c452560498"
+    },
+    "brown": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "b145929301cc063a47a509cededfad88eb9aab5b409da18a9a2a63b9a8325832"
+    },
+    "bus": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "cf4af6747df4f1dbb11d0491c096a45f17b8e7ed8828a98e78d506c6bacc93e2"
+    },
+    "important": {
+      "bytes": 10224,
+      "duration_seconds": 1.704,
+      "sample_rate": 24000,
+      "sha256": "a3786ebc34b010aceba8c3218404f67188d8a65b0d6c0ff5396350da6fd07ca9"
+    },
+    "sit": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "abaf82a59ba9ba2007c21eb435295ce6097d7750b33d00032fdc52404572763e"
+    },
+    "nine": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "207853e82286509b15b903261346bca951a3dbd595d5d78bb8d6b5e3b56f4c52"
+    },
+    "knee": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "3a0e9d85add3773e0df049a2f7d6a6916d39e59677094d22077e4c3fccde5d78"
+    },
+    "fruit": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "1317b408496bd1ec71841b5d9ba7b5ffd0e70a18ac5de275f0df08763495d524"
+    },
+    "hour": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "5c5e69adaf9d435ea3383593f9e22af482759d78d37f382b98ea32ca4510e46e"
+    },
+    "power": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "9b7d9c5e26d4e8ef0ec496a77a6cad739322bedf01183342b222384cc638dd14"
+    },
+    "bridge": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "7fcd4ce9674c1fbb2bf4206a847c28e14491c7007c2f8a8a0318542b0f7eca69"
+    },
+    "plate": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "9067bd2255a8a2d659b374926d0c72700e7b69d233ee6ae4fa5e2e2e4ffcd6e0"
+    },
+    "game": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "803ec7d4317a2beed25d42a6e5f1efad8052f3e3e68a9a1eeb99cb022e5a51c4"
+    },
+    "political": {
+      "bytes": 10368,
+      "duration_seconds": 1.728,
+      "sample_rate": 24000,
+      "sha256": "5891f81f18992f806a0e08135cfbe68917de5b4474dd744ee459b8da2b23d25e"
+    },
+    "map": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "f15263ce5659c96ddeb3f997a5e7d5c82877e7c8fe2a9253a5466b8349c2719d"
+    },
+    "neck": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "dd280d4e5d12c5bb18679fba3bb0c5fcf6beee7f9943abc8f38965ce4f8c910d"
+    },
+    "end": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "bcd09d97494f8ff438eafcbbcabc0e639632791c94a82ad66621530bfbaaa544"
+    },
+    "chicken": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "9ec210636a1384c3f4826f6171a6898de8b5541a5606dace3f1f0eb80d1ab90b"
+    },
+    "stand": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "ead6e79d98558763d120ed9706d52dcffd3bc35abdf04683ffd108578cfc7aee"
+    },
+    "bottle": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "40e8ef240b177aa116cd46102b5afbf423a9e929c71750777de02a8d173c66cf"
+    },
+    "sugar": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "253668fb7b67841624f1bcfd8546ed21a839e1875aac73d2c4f9e7eb8f03faf3"
+    },
+    "leaf": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "68dcfa277a8960d1a15376b6a57fe8b4af2e9d315d9a8149d957810390bc9272"
+    },
+    "salt": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "716402f98aef038029750db9dcef36b594adf0748fac5a81e564c26d7fa99ae4"
+    },
+    "bad": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "ec9973e4877329515b3485b156ec517562fddbf868061247ea87a3b30ca5f2e1"
+    },
+    "lose": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "443399f875f13fb56603493efd51ed590edbdcd288966e3f0ea0538b7b91ffbe"
+    },
+    "breast": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "c70f110ed9d368ebb1e9b988f83f3c98d49a7cb736c1081141b813fe25ecb46a"
+    },
+    "telephone": {
+      "bytes": 10368,
+      "duration_seconds": 1.728,
+      "sample_rate": 24000,
+      "sha256": "e701a5a14e657c034f6cbf6eac029e5633fc0f2719e53e7c0c77a3e7ea789246"
+    },
+    "yellow": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "e96e85d1d95bdfb6338cd9db8e2ad74f467723a116cf41625078e775bc845cf2"
+    },
+    "member": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "9887bb83e094598e9e4fec5b496e58e2179025ca043e79d21843cc5e8aeefe32"
+    },
+    "photo": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "bc6611063deb52f8f49c7976c0a1a8f0764daf06ee4d6ba6e9801cd2234074bf"
+    },
+    "chest": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "6fb7de0b4e80240f2a099ab7e17386f95a28ab744dd68ed8e61765de1b28973a"
+    },
+    "pay": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "beed36d0d2eaba2d2f652694cf5db83c47063d94bea903f51845a8ee0ab49605"
+    },
+    "law": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "c044a54739fb3ddd5495e115f7137b8ff19a121014913cfb3907c07765e45012"
+    },
+    "seed": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "e972aaecb6cee1580f3ed1a7046ad654a741465b6c87aa7b159ea876c33aea25"
+    },
+    "meet": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "dacd6d5c064545714c1155ef364861dbea07fa6e43ebbbcef217184994574362"
+    },
+    "root": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "95476364b315207e1642b628ee2c09bc9dc97aba3edd2f7163bc435a63e69f4e"
+    },
+    "shirt": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "2f5838a38cf28ed59de83f9244788591898839d83171f7636972f1f63d6f3428"
+    },
+    "nose": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "246c8691920bd19ced17b5f971933e1c0aaffa7f6f816a92edd36b402bbb3455"
+    },
+    "city": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "4fbb6a805054fa2d2c7c6b02904389eb7ac081e8fa93fd2aa6762b2f3c89f3fe"
+    },
+    "include": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "4392263317e9b012c473c3cdcef18dd61cacdc06f8bd12b69a438dc29d022b38"
+    },
+    "cat": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "181cc35f98afacde31f165c2c9ddd9de1075ab23735add011afa84dffd94a8a9"
+    },
+    "meat": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "dacd6d5c064545714c1155ef364861dbea07fa6e43ebbbcef217184994574362"
+    },
+    "continue": {
+      "bytes": 10224,
+      "duration_seconds": 1.704,
+      "sample_rate": 24000,
+      "sha256": "1d9557df1b724bd169a63a46c1c1ddce9c8d9be1bb7589c85f1e5149a1fa6814"
+    },
+    "snow": {
+      "bytes": 9360,
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "sha256": "79f65049386524c601b15d195e5cf56b99f0f3a821b0b8d082d878848ab22694"
+    },
+    "set": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "7602946a3727da3c7ed1218e237b0e83e93c292310a5ea3d1b7271ed31d135df"
+    },
+    "soil": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "585c1b1a6b7ff74130ba6c68aa29937889eaab840e9a91cc8872505d2488b805"
+    },
+    "hill": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "56c8d4ceb8b36d5ade8c045f4a845c80bf107e3834c26ce0eebb36a7cd2a9104"
+    },
+    "branch": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "626737b301625573a77c207bfa550577bd949731dc80999c74ceaf6fe59b813a"
+    },
+    "community": {
+      "bytes": 10368,
+      "duration_seconds": 1.728,
+      "sample_rate": 24000,
+      "sha256": "e5761a4c6098003b0de14721f1233fc956895e897b34fb50ec25e54ef9cd5fff"
+    },
+    "name": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "f77a9dd5427d28f993fd89a9f06cb390b3d00778a07f8b1b4a013807b9c73f45"
+    },
+    "mom": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "f608572fc194c68e8632badef018713e1b57372f23846e14b09f60944e8311e5"
+    },
+    "dad": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "5314cd0049eef81a0c1ad94bf22b2deee72407f0309665db99724b1f65e80bff"
+    },
+    "bowl": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "224d773323168b3fe577d96ec4ecf14e15fce80677751f7772a975155cc34ea0"
+    },
+    "president": {
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "sha256": "379a05f6154477d6b08c39d72a79047626976a764936018db8abc18cf621c98b"
+    },
+    "learn": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "e59f0aac58f03f61f7dd31731d910074ca0aea399e7da53c78ba1f6847fb5a72"
+    },
+    "hall": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "02b08c831fb428fd1520f485ac43a399a802cbf883caf7c9256c3a4b7a271a8b"
+    },
+    "mirror": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "ca607b74b1e46ecd9e94d125253257c7d7ac5b14b42cad63e06cf8b8cae3f9c8"
+    },
+    "change": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "9da9b8334bee07c09a6933089eef14f6104f8387636c1c29594b81dab205ee6b"
+    },
+    "real": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "6318fdbd505fef28f08e1a298c3829ee8960271e09ca23b7f230856ea1c297eb"
+    },
+    "tooth": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "f79b22c98967d16d01ac6630562cd4776ecdc050d3c3fbb50527b274e063d44e"
+    },
+    "bedroom": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "ee19e2c83f0779eb0532910550f74a0433d134f9c174de7fdce77a0a9fade677"
+    },
+    "tank": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "f9307af66bb5f6ba99bf506b1bcef7d0ad298b88fa942afbf2df1f80263dd3cc"
+    },
+    "ocean": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "e3fd411353dfd2dae084e352a6a427b512ae1f218b568ff90273974761b34e1e"
+    },
+    "minute": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "3fc2dba6451bbfa610fbe634f39a08edd3b3a4e4a9b9f10f77f149efca022d50"
+    },
+    "cloud": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "d4a87d12d4348c82046287320ec0c5495523758bcaf3fded89eaab0f716e55eb"
+    },
+    "nurse": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "a6e9dc038f12852942f0d3d05fd78c6d9f8bcfafb0b372a1564c91655def9422"
+    },
+    "best": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "4852c50b5504b4090e462e61cdf33047cc06534a091d7de6625e26be37e2d981"
+    },
+    "vegetable": {
+      "bytes": 10224,
+      "duration_seconds": 1.704,
+      "sample_rate": 24000,
+      "sha256": "9a7e0c7b993846d425b24ce927e503afa82169fe89f9be19909e6583688a16ba"
+    },
+    "purchase": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "238377a6737797462834790726e12e220691e1f3643268f739c8155f017fd800"
+    },
+    "dish": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "f8a1488a7db585e6fae53a8f6ede920176289fbd606514f60674c4a49745e56d"
+    },
+    "team": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "847425d51c28121c49c4b17fa2c7099422b449682e5c85c64cf7157b8ca147c9"
+    },
+    "kid": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "a2cb3ee9f41f2880074d979d0c7e66cfd35363817b65319ba9e7cf6beaf8d3b3"
+    },
+    "beach": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "4b75e851dccd7caa21e41ff04e7ea5468ed68e1faffa4fbd8fb9e1a632f6de3b"
+    },
+    "information": {
+      "bytes": 10944,
+      "duration_seconds": 1.824,
+      "sample_rate": 24000,
+      "sha256": "2f1115546154d2496825562c2436faff65745d3ffc942e4df76352ee9391139a"
+    },
+    "tea": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "4e758534bdc96a5a897ea545afd68cfbefcb4d43907c5aa8922e49d8ac85d4c1"
+    },
+    "lake": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "d2724da4c6910e3f7d08705085d787b2e402b705b5cd3e3b7578920359c9452d"
+    },
+    "household": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "eab110eb0cf9de8324ea328341323dec4ccbf27f9b78931544722e1f94a04919"
+    },
+    "lead": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "95d822ad916187a148e238940e6a36100e10669fe2ba135b6cb07a9539f4adb9"
+    },
+    "idea": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "e88ceba2fcb7ec4815ef6d32a2c8cd5eda5ebd1c61410725135adc9c9ab1362d"
+    },
+    "cream": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "669027f0d8955667f5d2c509847da6f51eb6ae194af9145c92c494dcd3d2a266"
+    },
+    "social": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "eb6e7628235560caba2f59cd9d8ed34c9e91f0a5f7049773eae7b423fafd17e0"
+    },
+    "gate": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "26fe6a8b07199bbe670220036d48cd2938e5e75699aea8eecbe97c8d2fcb20aa"
+    },
+    "grass": {
+      "bytes": 9360,
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "sha256": "05efab06a3fbd26452c22dfa434e2e235413c1a39fe400eadc0bf8e68662fb58"
+    },
+    "understand": {
+      "bytes": 10656,
+      "duration_seconds": 1.776,
+      "sample_rate": 24000,
+      "sha256": "9f1aa30d644a45a0500993a57c7aa78cac1b87a86582c0d5fa3cd458abaf8119"
+    },
+    "hat": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "559b5c951e3371ed4a5eca2a019fa686ab03f62a4093f9e7eafd2b7dd89893f5"
+    },
+    "watch": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "e89cb7a4f549096da8c5d97c6fd9cd57d3393ee57cfbc274f203ca75260452f9"
+    },
+    "bread": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "46c6c786fa00b827fc5062c693f43f57f3a73d99268e55bfb8e4bde11a6d550e"
+    },
+    "follow": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "2ff3165ea5ad33e316be02da257eea5f85f4c0baa4f974588a5e1e03f046880e"
+    },
+    "stop": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "1091163328b8d7b5ff8c4f71c6282486ac5fc94f3f6efe89225fafbe60f38c9a"
+    },
+    "roof": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "750427b8039779d2ab035c768044d093bec89903e52350c6ddaa6a7382c317aa"
+    },
+    "wash": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "3fd2eb5c0fd0dd63e3415ab907411754fe2eaacbf65e248f31e0a5979566be9b"
+    },
+    "alcohol": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "2a5d5f2854cb29096abcb57ce7d80dbfe00e94a0a9c7892e2de1146a4c84af7a"
+    },
+    "create": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "531d3f217ee3274c373692f5e450795f4757335e8afc0d039282a6c8af1de8c4"
+    },
+    "public": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "f8148638c88f55614f5f03c5f7528537e7131fb7829b903206f237d173728c90"
+    },
+    "sand": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "eef7ea1cc5f34d7ffe73f938bdb3b9de0cc004cd80b697d244a1fbdfb7a119cf"
+    },
+    "cheese": {
+      "bytes": 9360,
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "sha256": "91ea7a8b948c58907c901a18ff54be5149c89e24d5965564d5a658a695af8328"
+    },
+    "coast": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "59198819cb454a1ee36c110e3d0cde79980c7e1e7e3b9338051a75b313039675"
+    },
+    "speak": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "2d9a0ed4a65c30fca0c0cc8a8680237758e0317f0bb76e48dc7bd98a4614db99"
+    },
+    "read": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "a64e23a78333721b123c240006764a41e959a7c3073ac62fbdc3b00a81e86e84"
+    },
+    "atmosphere": {
+      "bytes": 10512,
+      "duration_seconds": 1.752,
+      "sample_rate": 24000,
+      "sha256": "d6caa7df3657785954f10205de3809ac98c95c401698e08368ef57a0a4d745ee"
+    },
+    "potato": {
+      "bytes": 10224,
+      "duration_seconds": 1.704,
+      "sample_rate": 24000,
+      "sha256": "d6e259c80bdc4d91e6ed349ee9b50cc60631498f97cc031927397d3a2f60d01c"
+    },
+    "coat": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "7e9f1feed7874724db4ed7bb57715c8ec2d49901f16e76c091de26e98524d730"
+    },
+    "pot": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "67ee2ed71f0c8ce2131122eba217df9546c890a40704d26acc0b3d1528cf1e1c"
+    },
+    "level": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "d2244124f08c7a00ae4009fd16d96b9829b73a8c541def1c63ee08684a61f61d"
+    },
+    "allow": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "16c5fd3083b5b122e2310b2dc2c5510f7fcd65a493ce094ba97483a1bb5152ee"
+    },
+    "jacket": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "563067b2d3b326eb1b8172e265b01de30bbf6ca1500604eb0c94d5f210f2786a"
+    },
+    "cap": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "9966b1ca3c65c8418423850adc439db4837a2dfbcc6374169ab960a7336e3c30"
+    },
+    "breakfast": {
+      "bytes": 10368,
+      "duration_seconds": 1.728,
+      "sample_rate": 24000,
+      "sha256": "ee4156d46d91b2de944ecb04815a847d86c59a176f24b9f9c46ad6b972e31512"
+    },
+    "spend": {
+      "bytes": 9360,
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "sha256": "ffa517f419f3a39bb52b5123bbfc918ba3788f36449b891674eaf0df6818841d"
+    },
+    "butter": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "7ec13119c70c0d5a5da8ec442e8c8531622a96af14bc0baf70b3a8257544d6c1"
+    },
+    "add": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "5629859b92c57230aadac27d8d454d52d1a1296b95e6e3e9157386715f279bb8"
+    },
+    "bathroom": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "ec2ea7e956496c8ebce9763f88b1c56d283694c9930757708051b708e1edd85d"
+    },
+    "person": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "7b772f8483b3778deadca81c087c4e2073cf70cb6f318e3ffa9d5d7ce3e05638"
+    },
+    "health": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "1ed9c7b871ba868c81808599a1b002b375b1b8531fe875780eeae80e428e25da"
+    },
+    "cabinet": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "f326b75248edc80babc984fc1646de95627ebeea0a0136674ae4a3936b8f06d0"
+    },
+    "toy": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "4f7fb1eceb61a4ea64f215e70497af5f023fa4116eb1d8afe31f584a4efff230"
+    },
+    "moon": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "4dbf74e7528c4b7a7ad470a66568ba55a3ce4d7eedcbc9db378eaa2569018018"
+    },
+    "sure": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "5ca6bda68cb8786c8e51c14617878ca1ab7a2c650cb6f218ef93dc024a2bc4fd"
+    },
+    "stomach": {
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "sha256": "6a47c3d50b407953866226bf86f0c96a3a37f7e20dd18e2454754bcaaa4f73a4"
+    },
+    "folk": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "975206de69ee80dd29a11132421e063fd5b996a603af5f4fb86f2dbf029afdf0"
+    },
+    "aircraft": {
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "sha256": "341dc428f16fb4e4978dc079fb17ad69729349ce0aea957d794c8e05d2e5d9a6"
+    },
+    "cake": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "f6d94a2ece7490b227abba81b7df3942e86ea8dd4749ca07e4dbba204a620ec5"
+    },
+    "war": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "05b2416aa79e71240f44c655d950ef47305373b2efc7badb824ae7570606773e"
+    },
+    "history": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "dc5bc9527b52872ea080bdb765e6932995f105a04cddf2f4bd3867277032d281"
+    },
+    "art": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "3348231ad69e032775d7c67a27554770f35b6cf87d0bc2ee43cdace1fc7bf6b5"
+    },
+    "creature": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "3dc160bd052e8fb65443221e7606d9cde9d64c300c55fc3e01383b017e234670"
+    },
+    "clothing": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "cfbd78175f06e401586a9ac751efac1d2179bc341a0bfbd41a8d54be967a9776"
+    },
+    "chamber": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "ab652cab4407b8c53ef97ff77a31e90fc0079c32be2c7805ad41c7ada41494de"
+    },
+    "party": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "965cc2c9b31a0d75ce8827a52657e7e85f4f04143f3459ce39ba43252cac12dc"
+    },
+    "string": {
+      "bytes": 9360,
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "sha256": "226d0303a35c3bcc6c0183209b38eb5627b0b0e05366d55d4d675c1f848c0072"
+    },
+    "grow": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "913d8ab7ba411f98ecfdb04cf794b6bc527f60b1e59fe4b0c8732684cc35f26f"
+    },
+    "apple": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "0f92d7bdabe73532705477712ed3a337fd95419cd9034bff9dc641dd04f4a3dd"
+    },
+    "result": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "d7fdcb8c9f10eba4acda7bee2c31f033f9797cd593667d51cd081795093abff8"
+    },
+    "twenty": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "10f5dfb84268f0d47edc8e0646a98d57ee54a4149cc0ff757493ec857f047628"
+    },
+    "open": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "a516938498d2e0b8dbc846c6d970e505e05c993aac1263e562ce1f65dc79c2b2"
+    },
+    "rice": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "6ef8c8e46f41f2b1707b5790931236fa1d1879fd1c580cd4a6fcee1872e16670"
+    },
+    "tomato": {
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "sha256": "594beea5262f73f9f871459f7814b01fc8b6e75a4f012e453b38d8f8f3ef9a60"
+    },
+    "grandmother": {
+      "bytes": 10224,
+      "duration_seconds": 1.704,
+      "sample_rate": 24000,
+      "sha256": "9c1f79dfa52923a312c890d82211a7f829176cb6a54046d68cc9d1979acb253d"
+    },
+    "reason": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "b66524914a7041a0e3996308b402db9aa881deb37c37aabd4a057bf3a7e56def"
+    },
+    "morning": {
+      "bytes": 9360,
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "sha256": "94da63c09142dfc162b65d2085596a33a5bfc9464fa0a707e4bd277f95782074"
+    },
+    "drawing": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "4b717541fc0397dc8a4d54cd138b1248286d270acdcb9e2ea790bcdb28859c43"
+    },
+    "onion": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "b8599e70cbe77fed4d5286ff57ec2704c486a8bd601b12f432cb7123ac4666be"
+    },
+    "win": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "c9d5800f8be96fff44500b4404cbefb6aa59a49b559603cfe3e6dd8a344ee8a5"
+    },
+    "low": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "212e1b589be41c92e02b8c173387079332364c16b65030745314f04544bfb3ea"
+    },
+    "highway": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "d9072d8c74e9061b85047bd50aaa636cca66a2bd5eedf5f4d7676b1c4d0d8bfa"
+    },
+    "gray": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "97df85b536caa8834f459e52d6e8255809ab70505f8df0f68f5acc9ba31779b2"
+    },
+    "ceiling": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "66f65dbbc5fabc268b44e45fad04a52cf013f6e8a33d2c245689838f6bd3e054"
+    },
+    "uniform": {
+      "bytes": 10512,
+      "duration_seconds": 1.752,
+      "sample_rate": 24000,
+      "sha256": "f3a2a24d78e1f36893d967ed5682741ec5270983c11869c56cbaefb117fcf5de"
+    },
+    "research": {
+      "bytes": 10224,
+      "duration_seconds": 1.704,
+      "sample_rate": 24000,
+      "sha256": "344b17bc7569ee67f320f223b3694ebd291970a1c2c734e118875d5727bc4062"
+    },
+    "cow": {
+      "bytes": 8352,
+      "duration_seconds": 1.392,
+      "sample_rate": 24000,
+      "sha256": "c19687c6eaf5da32cd635c6d5bbed729ce551ad77a03cec8e1c90516d98eaf96"
+    },
+    "guy": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "f78cff8a84a26d8454219b6c202c288209a54c252cafa547a20fe3036bbc4d2f"
+    },
+    "dirt": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "e22f719bd13fdbae7a3c91255c3171cc26606880a348e4689d0b71a9ef21b2a3"
+    },
+    "van": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "fd6a5464546d9a7e08471d8e9858cbc504912fbf2126fe9c14a5822da84ec0af"
+    },
+    "early": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "243f9a12ab8e234237a9c61985a3c1baa5c39e4f32801edffc889a84ebc57c63"
+    },
+    "moment": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "481ee2e1e9badde63579af234ab80e32f707615724aef785a72589703c31a7c4"
+    },
+    "color": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "9718465493ba57880d4edf4433491e116d6d4adcef7816becbedd278c888d762"
+    },
+    "stair": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "1b91b4130514a8b161e4c2f28e05c34f6691310ada37dde283abef35c860de62"
+    },
+    "grain": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "746da1e8471fa7f7da2ffe689630e3a9fef1664289062f144f1aed3626be9e1f"
+    },
+    "force": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "359fb942ca0811f160bcc092d1e8ff5c5bd3a304ded2ba3968389d746f078401"
+    },
+    "offer": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "52650a0131a619abb73e35cbf9c8f271ad5debca14962237ff2c91060178866e"
+    },
+    "tongue": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "4ea7db81bd7ca2172369f3b16323fcd1b3cf65e72285bb7741a425aadd3e0eef"
+    },
+    "pet": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "d9009e046f4fac2a57d28cc08b325ca7886ade67d1f6b427f2a1f01b11315576"
+    },
+    "oven": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "adb77a82c74876d8782b355e3771deb60a0b61c038f8fe08efc587c15616efd3"
+    },
+    "remember": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "fd4464fd7702b73f7c055ee2f48ee398b4179daf2ebee374dec4562c5c9c0e3d"
+    },
+    "education": {
+      "bytes": 10944,
+      "duration_seconds": 1.824,
+      "sample_rate": 24000,
+      "sha256": "9b5313683563986a056af81dab4673ffe39a210c1d837580a85321f03ef598ac"
+    },
+    "shelf": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "6a460fca4f8d452d8f76f53debdda7e398802981192064ff40780dc70b85b73a"
+    },
+    "grandfather": {
+      "bytes": 10512,
+      "duration_seconds": 1.752,
+      "sample_rate": 24000,
+      "sha256": "912e912112922aa66da17498a0309c0c8a8cbe7f00803bb15b399c55087f5a68"
+    },
+    "uncle": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "0067981833b3bc0aff0451ee8f880e5e811cb99b8f5dd076078ea3563703e18b"
+    },
+    "able": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "660d15c06fa29bdb54e13434646e140ff52cbf651b3870e7422099d611dcf9c6"
+    },
+    "tunnel": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "f02226a30ea713b49bc642624ceec2b07bd232e7c922a1261840a6b524fbff97"
+    },
+    "age": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "ce1a299a95643ecca0d91cf6817eafc882e53ed6895a2329a1ade8bda8cc025d"
+    },
+    "policy": {
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "sha256": "45b86b0ffedd184735fd74d4e99176074e35b253fd5d024bdfe91c41f2f84e7a"
+    },
+    "soup": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "131a920f4f87e7bbd3c5e8474a6fe1a795a7885ba2e08ae211a2a1d09f4ab112"
+    },
+    "heel": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "c463f3274cfeafc153592f977275f4bab8a0a268c4663a4cb6f901886b605d83"
+    },
+    "glove": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "a3d0b682cf35d428ce758b1a95f195bc276e3077a16e207291ea2908aecb1e80"
+    },
+    "blade": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "82f0971dcf9db0b3638e6ffeab3e118ddc9080be503b6436e9aad839ac19f3b9"
+    },
+    "love": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "6f66eed87debd0e0ac7fc0337c45809d2fb1e416eafe06182e76387c3a692297"
+    },
+    "music": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "8628b15196c4b0840d72701c4c5ebd7dcae86e146bcf76badb3f1f28bd4abd6e"
+    },
+    "process": {
+      "bytes": 10368,
+      "duration_seconds": 1.728,
+      "sample_rate": 24000,
+      "sha256": "eb2a89e8f3d001e2039b1deed4a05252b0418dea22acfcba7098ce5fa511d6af"
+    },
+    "lemon": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "63c71807666f012382c8f53c7c56cca2440ba8a264639caa8b42cc3e0b7e5d3a"
+    },
+    "nut": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "cbfb4d19cf03d61b86a533b2c0133846ee5a4936ac504bd629afa0aff9c41ef3"
+    },
+    "battery": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "cbf649fa56943b56fb990e700477d15532c51288db12d05b849c4911b107fae5"
+    },
+    "flame": {
+      "bytes": 9360,
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "sha256": "f24e4906d8dfce8d80b08a09de1b5d7b6f67056313f7b37870e4c4fb728e09ba"
+    },
+    "consider": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "54bd0dab506b40bd70e710a4b179ab8da247c7bccd18b350288f782766f0e4fb"
+    },
+    "appear": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "e2ecb7e6eb847732bebfa4314f3f1780d6bd326416b19c24ca5b3a52940f3e44"
+    },
+    "garage": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "d90b01b95a4aafba6bea711d764fbb036b86d879a8d80564d60d050f9c474665"
+    },
+    "flesh": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "3db0f6bb095688fcfd914687ead0117d459f924e0880fb2d3b2256bc100f7bc7"
+    },
+    "thirty": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "24235e05368d1170ad4c9cc37e220b113e1450499fc3f1b8f06de675ba91e369"
+    },
+    "human": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "e181fdeb6367f6f56ea93a58de54fa95c3f5cf0b3ab1ef2a9fe415b28a33a562"
+    },
+    "wait": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "580c16dab0b5a41c893645ca218a1c2382260b1fa0134aebb49e548ed0865a1b"
+    },
+    "lung": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "5d1625992d680e5cb81f5142c4c7772fc306d4a4fbe4c7b2cb435cc3c885dff1"
+    },
+    "piano": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "352208e32e6597c9059fb13efa246980a39c794c9c300958b68dbf0324c42995"
+    },
+    "rope": {
+      "bytes": 8496,
+      "duration_seconds": 1.416,
+      "sample_rate": 24000,
+      "sha256": "016f605f6da9547d8430398bbd1aa2dc73773ab26ad78c579a1593c4d5f4445a"
+    },
+    "serve": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "ae103bdc43814ffa985cb3a335fc0c2de73aa25abc1fdb76fb4df04a078a4114"
+    },
+    "toe": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "e55e0b2a0534032122b7ceb0496e997d33a646782e2f9cbced27cc4571f2a3c6"
+    },
+    "die": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "cbd20eca48e56a926cd95caecfa42f964cc1ecfd91edf957d2f8bec9c6e4de39"
+    },
+    "container": {
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "sha256": "18e8c0fe1d1b165fed3951390f4f61c6973dc67985a318127079701cac7c0c17"
+    },
+    "send": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "75e099550395dc4d0bb970040b14808ec6cb8c91a8fe2e11214ea5b6217422cb"
+    },
+    "expect": {
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "sha256": "e1b463bc6480e9d23d5b79c34927a1722070015bc03c0e8f8e88e7000176a4ff"
+    },
+    "insect": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "3a5042e115f57a8002999c9bdbabc34e28932d89bbc6d452352307fab624edd7"
+    },
+    "fifteen": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "0c0755d5b29fac7835e17a99b550cbbf053d0f99cdb003a6699ab2efbc80f74c"
+    },
+    "bike": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "eeefb36651caa399b5b9a4fec33cd494eedd4848b99234e330c16ad67c6250dc"
+    },
+    "flour": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "36a63277054c1531eac5c7137d06898402188dae80a23053fc317e4b1e9a46b7"
+    },
+    "sense": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "ea5ef362318d66c81f2e6536776fb9987aab58ba350376ac71925c91e9f8b5f4"
+    },
+    "build": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "5f3d80657b8342ebef91062f396755175aac685f7caccfed19eb17e2121b4b73"
+    },
+    "fifty": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "957b0713250c3e31ec79a03023a9b1795986a38175e9d31d0f858078c84dfe41"
+    },
+    "twelve": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "f839763fe81c86ef2d202ea9a2c043eedfdabe3017c3e17f3548c2f41c0bed97"
+    },
+    "cookie": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "e9d64888a9d80b2b474f3d1e9ea039a55382943902364a80988fdc62c387c6e1"
+    },
+    "stay": {
+      "bytes": 9360,
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "sha256": "0c8a42bf4c55bac29443f632ac4f076712586bf926f6720ff151345da982934c"
+    },
+    "candy": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "d4ebcb0b1244bca1df4d345055c165b6816866057e7c8528f7431a87f0aa72c9"
+    },
+    "vessel": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "ec3c4d4f99b552f79b5366eb40622f03d7604e6c41f558b0cf3798e65ebed7a6"
+    },
+    "corn": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "5d5a72bf9d9ad0800b63f47ae5a8d52a34476ac3ade99bcc0a1c662f1200baaa"
+    },
+    "plan": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "b0e53d625430f5762c5b8b6b8879130902ef44468d3a418fa2712dfa18961a87"
+    },
+    "nation": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "710123ef4a5d11a41765981b0b6f3c3fe359d65ee3cd070eb3de036c415a0d6e"
+    },
+    "barrel": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "ce075d83485b3129a4cb9633e8e198da526559242a1ae47fa9c9225a2ebde44e"
+    },
+    "auto": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "90430b2435354133b51a59ef3c72ebad1a26c947306313b05dbfac8ba6d9304a"
+    },
+    "shore": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "4132db2b36cb0b7de54565ff41018620aa53bb9f6cec622ce627f4c6c460f697"
+    },
+    "cut": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "405e6ea1fb579cee73a687626d4cceb71a21d65dc5c103465d712fe41f2d9442"
+    },
+    "fall": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "4d17cc9e40c4187b95c71ffa608d5695dde97bae4ec9c39aab72e31630f36f66"
+    },
+    "gallery": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "e48c194d1d05f2c73f65690d39cced340c5824f6a8f2cc80f258c9f8e9974f90"
+    },
+    "college": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "5b8b1964b0e43ed48ead3a98814b73664379da3f48a5c295ab607dc649641b32"
+    },
+    "lap": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "5a5e835be6dbefac5a0cfe1f6b3c48c2b8726f22950b0ae4955eebe1677bff41"
+    },
+    "interest": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "97323918d1acbe5a1a3fd24f2e8f15f0b52141db0961c791d22128e253675e20"
+    },
+    "stem": {
+      "bytes": 9648,
+      "duration_seconds": 1.608,
+      "sample_rate": 24000,
+      "sha256": "b88f676778ac6fd36bd4773a06ca6abe0a8642ba9df04b14070f7181c074c920"
+    },
+    "death": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "f8b5233a010c588928a2d5bec452b9c76d072da461e60b356b0a979f8ee10cb3"
+    },
+    "deer": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "f1af206f245cd1d4bd8e56343197f558910a1cfbb249dde2694ff9de1ae3613e"
+    },
+    "honey": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "f14195d48cb3963c21eae5232f17278b213c43ca02ec75c0c5498c243e711460"
+    },
+    "neighbor": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "91f5bb6893688d943c827223b74e6e77609d464060c567465b5a035ff45bc504"
+    },
+    "reach": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "08351fd5eac6029c71d40f875c1a9927a6a6c60ca219fcb0e297197a1f67dfd4"
+    },
+    "experience": {
+      "bytes": 11520,
+      "duration_seconds": 1.92,
+      "sample_rate": 24000,
+      "sha256": "f4b0a8149a9564527458f51373c7a07a42ea59d2e58a9e0482d1916585c4fc44"
+    },
+    "lawn": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "27d5301123bc4b8305789257319c1ef1d507d4652f3f2c1f1b2a9e604b27e70c"
+    },
+    "local": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "be63757782bcba029bc1297caa0f90790659e7ca48ff08f8ad17bc9e3d18fecb"
+    },
+    "palm": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "f74587e4e65b6738450a9d0f7e76989b29b6e99994a10f0a7ea00e076d18f009"
+    },
+    "garlic": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "fd806bea3175bccc8258c2f31a709000a63f6f9a28237fbbe6abbbd526c30c9b"
+    },
+    "kill": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "2dc5261a58b6ce90b8807f2f17a731f58ef7a34dc1175825884330f54b09b018"
+    },
+    "meter": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "8fa32a5627fa18067651ea9c96f3631dd56bb0faab8dda8bd0edb9e1003202f1"
+    },
+    "infant": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "22dae60ca3d8aaae6c6f6a642683847bb8009c417888f8df3b9474b240136f46"
+    },
+    "remain": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "88fef41a1a1dad32b47fb8cf0957aa710ee725784f43d1d1c14bf2244b0eb9ce"
+    },
+    "chef": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "24943c6d8ddba9c31a1d2b9a1b1324415d860d281cbc33faffc5f4c5008eac37"
+    },
+    "effect": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "6c44fa5a1fa87d9e0accd84654401241c94c66ddf7b4c4f0102a51d02fd81281"
+    },
+    "basket": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "a6a4bafb3ef63b5d61e747bb25510cdf4446ef413a001333308283a0ab3ded36"
+    },
+    "blanket": {
+      "bytes": 10080,
+      "duration_seconds": 1.68,
+      "sample_rate": 24000,
+      "sha256": "17267aee72e38711c29721720d78c388383013c8e89fd3cc3c1ddfe78a0ee394"
+    },
+    "porch": {
+      "bytes": 9216,
+      "duration_seconds": 1.536,
+      "sample_rate": 24000,
+      "sha256": "88f96fb1540a96067a71ca37fe701e6a941ef8e188ccd2cc84dd4e0b7820a386"
+    },
+    "class": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "cc97f2c4b5df55c3bdae721ef96e4eb1358dce952251552ec49944bf9db38b58"
+    },
+    "suggest": {
+      "bytes": 10656,
+      "duration_seconds": 1.776,
+      "sample_rate": 24000,
+      "sha256": "45494bf467417250bdd940c85f11100cb1ccfca81958f79bb3f520ef1b8032e8"
+    },
+    "pie": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "a059013681878e7ee95eaf94c75c32230ce46c91c021d675a3fa11915bbd5a4a"
+    },
+    "control": {
+      "bytes": 9792,
+      "duration_seconds": 1.632,
+      "sample_rate": 24000,
+      "sha256": "6aa0b844ac84c24e151f5ba84e8ff34da8dc6256e61def345b4c1b3c294d633b"
+    },
+    "raise": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "a7a547179eb6504ecadf4178604af79c6aac4bd9452374e4732e63479c7c9fef"
+    },
+    "hard": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "46ccace632e9a9cb1ae9f066b25005302219ddff0d3be0b9f23761293deefa7e"
+    },
+    "care": {
+      "bytes": 8640,
+      "duration_seconds": 1.44,
+      "sample_rate": 24000,
+      "sha256": "f6c391a5f5f24085741d7ec66f5780559a1f5084bde857f88fe8758e42773cbc"
+    },
+    "field": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "3edaba373de39aaf48b4cd9ab3536f1304d83e3e78197f2f6e3fd4414ac52b90"
+    },
+    "major": {
+      "bytes": 9504,
+      "duration_seconds": 1.584,
+      "sample_rate": 24000,
+      "sha256": "d3b8b81e19a156afd1932d4248db054dfdd836e87e902be1aeda64725513218c"
+    },
+    "pass": {
+      "bytes": 9072,
+      "duration_seconds": 1.512,
+      "sample_rate": 24000,
+      "sha256": "1c32fef304b3448f72c882cb373b785164feb0627ad6d6c1e1c78ba4280ed4a8"
+    },
+    "development": {
+      "bytes": 10800,
+      "duration_seconds": 1.8,
+      "sample_rate": 24000,
+      "sha256": "f24cbbfc336d2d2c48b5ff22d85522206b5569186563fd79cb077b6e8dddfb73"
+    },
+    "require": {
+      "bytes": 10224,
+      "duration_seconds": 1.704,
+      "sample_rate": 24000,
+      "sha256": "125ad8c73365f963ffcd7536d792e73592ecb1a81a23b053e749aba935b198c7"
+    },
+    "role": {
+      "bytes": 8928,
+      "duration_seconds": 1.488,
+      "sample_rate": 24000,
+      "sha256": "636c80098ef2cb4372ea7d02c7416532306608635e6b66dbecc80d94b44ae8e4"
+    },
+    "report": {
+      "bytes": 9936,
+      "duration_seconds": 1.656,
+      "sample_rate": 24000,
+      "sha256": "def111b844a3f61c240e866a3a3dcd48068963403cc554d914b69ce15070122b"
+    },
+    "better": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "f39b6f7be37de2102673fca494934f11447289e9807d4667ca4943296954b2c0"
+    },
+    "economic": {
+      "bytes": 10656,
+      "duration_seconds": 1.776,
+      "sample_rate": 24000,
+      "sha256": "88c8637037e56b06f2c5fd126352cd91d7223bf57ed49ac7bb268efdb24da987"
+    },
+    "late": {
+      "bytes": 8784,
+      "duration_seconds": 1.464,
+      "sample_rate": 24000,
+      "sha256": "526ac608e344efb40458f2b9b41588ea2bc3ad036303fa73726ca5f0aca3d30c"
+    }
+  }
+}
