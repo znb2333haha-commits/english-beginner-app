@@ -1,0 +1,14 @@
+{
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "level": 1,
+  "files": 500,
+  "bytes": 4580352,
+  "max_file_bytes": 11520,
+  "over_20kb": 0,
+  "duration_seconds": 763.392,
+  "sample_rates": [
+    24000
+  ],
+  "decode_and_hash_checks": "passed"
+}

@@ -55,7 +55,7 @@ body{margin:0;background:#f4f6fb;color:#1d2939;font:17px/1.6 system-ui,sans-seri
 h1{font-size:30px}h2{font-size:22px;margin:0}section{background:white;border:1px solid #d9e0ed;border-radius:18px;padding:24px;margin:18px 0}
 audio{width:100%;max-width:650px;margin:8px 0}summary{cursor:pointer;padding:14px 0;color:#2455c2}li{margin:14px 0}li span{display:block}
 a{color:#2455c2}.note{color:#536176}ol{padding-left:25px}
-</style><main><h1>选一个你喜欢的声音</h1><p>先听同样的单词和句子，再告诉我声音名称。现在只提供试听，尚未选定正式发音。</p>
+</style><main><h1>选一个你喜欢的声音</h1><p>已选定 Edge · Jenny 女声。以下保留同样的单词和句子，方便回听比较。</p>
 <p class="note">顺序：apple · water · go · think · three · ship · sheep · about · teacher · beautiful。各声音使用默认语速与原始音量。</p>
 <p>① I eat an apple and drink water.<br>我吃一个苹果，喝一些水。<br>② The teacher sees three sheep near the ship.<br>老师看见船附近有三只羊。</p>
 <p class="note">重点听 ship / sheep 是否容易分清，以及 water、three 和长句是否舒服。可在“逐词对比”中单独播放。</p>
