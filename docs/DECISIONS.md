@@ -48,3 +48,8 @@
 - 句子音频沿用 Edge Jenny,由 GitHub Actions 手动工作流 `phrase-audio.yml` 生成并推到分支,再开 PR(Claude 的环境连不上该语音服务)。声音与单词统一,个人使用,条款边界同单词音频。
 - 因 Codex 额度不足,T3 界面与脚本、T4、T5、T6、T7 由 Claude 完成。
 - App 名称定为"拾语"(拾=一点一点捡起,语=语言,对应碎片化学习);图标为深绿底米色"拾"字加一粒金色小点。
+
+## 固定签名(2026-10-18)
+- 之前每次 CI 打包用临时调试签名,手机无法覆盖安装、只能卸载重装(会丢进度)。
+- 现在密钥放在 GitHub Secrets(SIGNING_KEYSTORE_BASE64、SIGNING_PASSWORD),不进公开仓库;versionCode 用 GITHUB_RUN_NUMBER 递增。
+- 没配 Secrets 时退回临时调试签名并在日志里警告。丢失密钥 = 又要卸载重装一次,请保管好本地备份。

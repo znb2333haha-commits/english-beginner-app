@@ -7,7 +7,8 @@ android {
         applicationId "app.englishbeginner"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        // CI 里用运行序号当版本号,保证每次打包版本递增
+        versionCode (System.getenv("GITHUB_RUN_NUMBER") ? System.getenv("GITHUB_RUN_NUMBER").toInteger() : 1)
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
@@ -16,7 +17,25 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    // 固定签名:密钥保存在 GitHub Secrets 里(不进仓库),每次打包用同一把,手机才能直接覆盖安装。
+    // 没有配置 Secrets 时(例如本地构建)退回默认调试签名。
+    signingConfigs {
+        shiyu {
+            def ks = System.getenv("SIGNING_KEYSTORE_FILE")
+            if (ks) {
+                storeFile file(ks)
+                storePassword System.getenv("SIGNING_PASSWORD")
+                keyAlias 'shiyu'
+                keyPassword System.getenv("SIGNING_PASSWORD")
+            }
+        }
+    }
     buildTypes {
+        debug {
+            if (System.getenv("SIGNING_KEYSTORE_FILE")) {
+                signingConfig signingConfigs.shiyu
+            }
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
