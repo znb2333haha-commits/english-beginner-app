@@ -79,6 +79,8 @@ button.big { display: block; width: 100%; font-size: 20px; padding: 18px; margin
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
   margin-top: 40px;
   color: var(--quiet);
   font-size: 13px;
@@ -142,3 +144,26 @@ button.big { display: block; width: 100%; font-size: 20px; padding: 18px; margin
 .settings select { font: inherit; padding: 6px 8px; border-radius: 8px; }
 .settings h2 { font-size: 16px; margin: 28px 0 4px; }
 .settings .secondary { margin: 8px 8px 0 0; }
+
+.example { margin-top: 14px; padding-top: 12px; border-top: 1px dashed #ccd; text-align: left; }
+.example-en { font-size: 18px; line-height: 1.4; }
+.example-zh { color: #667; font-size: 15px; margin-top: 4px; }
+
+.phoneme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 10px; margin: 8px 0 16px; }
+.phoneme { min-height: 56px; font-size: 22px; border-radius: 14px; border: 1px solid #ccd; background: #fff; }
+.phoneme.done { background: #d9f2e1; border-color: #2fa35f; }
+.example-words { display: grid; gap: 10px; margin-bottom: 16px; }
+.example-word { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 16px; border-radius: 14px; border: 1px solid #ccd; background: #fff; font-size: 18px; text-align: left; }
+.example-word span { color: #667; flex: 1; }
+.example-word i { font-style: normal; color: #2f6fed; font-size: 14px; }
+.quiz-options { display: grid; gap: 12px; margin: 16px 0; }
+.option { min-height: 64px; font-size: 22px; border-radius: 14px; border: 1px solid #ccd; background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.option small { color: #667; font-size: 14px; }
+.option.right { background: #d9f2e1; border-color: #2fa35f; }
+.option.wrong { background: #fde2e2; border-color: #d33; }
+
+.speak-row { display: flex; gap: 10px; justify-content: center; }
+.progress { margin-top: 28px; }
+.progress-label { font-size: 14px; color: var(--quiet); margin-bottom: 6px; }
+.progress-bar { height: 10px; border-radius: 6px; background: #e3e6f0; overflow: hidden; }
+.progress-bar div { height: 100%; background: #2fa35f; }

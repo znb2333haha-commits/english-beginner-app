@@ -50,6 +50,9 @@ with sync_playwright() as p:
     page.click("button:has-text('显示答案')")
     page.wait_for_selector(".grades")
     page.screenshot(path=f"{OUT}/3_back.png")
+    check(page.query_selector("button:has-text('慢速')") is not None, "卡片上有慢速播放按钮")
+    check(page.query_selector(".example .example-en") is not None and page.inner_text(".example .example-zh").strip() != "", "卡片背面显示例句(英文和中文)")
+    check(page.evaluate("document.documentElement.scrollWidth <= window.innerWidth"), "背面没有横向溢出")
     labels = page.inner_text(".grades").replace("\n", " ")
     check("不认识" in labels and "太简单" in labels, f"四个评分按钮都在 ({labels[:60]})")
 
@@ -84,6 +87,39 @@ with sync_playwright() as p:
     page.wait_for_selector(".stats")
     check("5/10" in page.inner_text(".stats"), "刷新页面后进度还在")
 
+    check("第一级 5/500" in page.inner_text(".progress"), "首页显示第一级已学 5/500")
+
+    # 离线:首次联网加载后,断网刷新仍能打开(service worker 缓存)
+    page.wait_for_function("navigator.serviceWorker.controller !== null || navigator.serviceWorker.ready.then(() => true)")
+    page.evaluate("navigator.serviceWorker.ready")
+    page.reload(); page.wait_for_selector(".stats")
+    ctx.set_offline(True)
+    page.reload(); page.wait_for_selector(".stats", timeout=8000)
+    check("音标入门" in page.inner_text("footer"), "断网刷新后首页仍可打开")
+    ctx.set_offline(False)
+
+    # 音标入门:走一遍第一个音标的听音选词(i 的对比词是 sit),进度刷新后保留
+    page.click("button:has-text('音标入门')")
+    page.wait_for_selector(".phoneme")
+    check(len(page.query_selector_all(".phoneme")) == 41, "音标列表有 41 个音素")
+    page.click(".phoneme >> nth=0")
+    page.wait_for_selector(".example-word")
+    check(len(page.query_selector_all(".example-word")) == 3, "音标详情显示 3 个例词")
+    page.click("button:has-text('听音选词')")
+    for _ in range(3):
+        page.wait_for_selector(".option")
+        page.click(".option:not(:has-text('sit'))")
+        page.click("button.primary")
+    page.wait_for_selector("text=学会了")
+    check(page.query_selector("text=答对 3 / 3 题") is not None, "听音选词答对 3 题")
+    page.click("button:has-text('回到音标列表')")
+    page.wait_for_selector(".phoneme.done")
+    check(len(page.query_selector_all(".phoneme.done")) == 1, "答对后音标变绿")
+    page.reload()
+    page.wait_for_selector(".stats")
+    check("音标入门 1/41" in page.inner_text("footer"), "刷新后音标进度还在")
+    check(page.evaluate("document.documentElement.scrollWidth <= window.innerWidth"), "首页底部没有横向溢出")
+
     # 备份导出 -> 清空 -> 导入
     page.click("text=设置与备份")
     with page.expect_download() as dl:
@@ -91,7 +127,8 @@ with sync_playwright() as p:
     path = f"{OUT}/backup.json"
     dl.value.save_as(path)
     data = json.load(open(path, encoding="utf-8"))
-    check(data['version'] == 3, '新备份使用版本 3')
+    check(data['version'] == 4, '新备份使用版本 4')
+    check(len(data.get('phonetics', [])) == 1 and data['phonetics'][0]['done'], '备份里有音标进度')
     check(len(data["cards"]) == 5 and len(data["logs"]) >= 5, f"备份里有 5 张卡、{len(data['logs'])} 条记录")
     page.screenshot(path=f"{OUT}/5_settings.png")
 
@@ -105,6 +142,7 @@ with sync_playwright() as p:
     page.click("button:has-text('返回')")
     page.wait_for_selector(".stats")
     check("5/10" in page.inner_text(".stats"), "导入后进度恢复")
+    check("音标入门 1/41" in page.inner_text("footer"), "导入后音标进度恢复")
 
     # 今日新词额度没用完时再来一组只补 5 个新词
     page.click("button:has-text('来一组')")

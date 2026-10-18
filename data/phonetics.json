@@ -1,0 +1,451 @@
+[
+ {
+  "symbol": "i",
+  "type": "vowel",
+  "examples": [
+   "three",
+   "see",
+   "need"
+  ],
+  "contrast": "sit",
+  "hint": "嘴角向两边拉开,像微笑着说\"衣\",要比中文的\"衣\"更紧、更长。"
+ },
+ {
+  "symbol": "ɪ",
+  "type": "vowel",
+  "examples": [
+   "big",
+   "give",
+   "ship"
+  ],
+  "contrast": "see",
+  "hint": "像又短又放松的\"衣\",嘴巴不用拉得太开。"
+ },
+ {
+  "symbol": "ɛ",
+  "type": "vowel",
+  "examples": [
+   "get",
+   "head",
+   "tell"
+  ],
+  "contrast": "give",
+  "hint": "嘴巴微张,像短促的\"诶\"。"
+ },
+ {
+  "symbol": "æ",
+  "type": "vowel",
+  "examples": [
+   "man",
+   "hand",
+   "black"
+  ],
+  "contrast": "head",
+  "hint": "嘴巴张大,像\"啊\"里夹着一点\"诶\",比 ɛ 张得更大。"
+ },
+ {
+  "symbol": "ɑ",
+  "type": "vowel",
+  "examples": [
+   "father",
+   "car",
+   "want"
+  ],
+  "contrast": "go",
+  "hint": "嘴巴张大,像医生让你说\"啊\"。"
+ },
+ {
+  "symbol": "ɔ",
+  "type": "vowel",
+  "examples": [
+   "door",
+   "walk",
+   "call"
+  ],
+  "contrast": "car",
+  "hint": "嘴巴圆一点,像\"哦\"和\"啊\"之间的声音。"
+ },
+ {
+  "symbol": "ʊ",
+  "type": "vowel",
+  "examples": [
+   "book",
+   "look",
+   "good"
+  ],
+  "contrast": "two",
+  "hint": "嘴唇微圆,像又短又松的\"乌\"。"
+ },
+ {
+  "symbol": "u",
+  "type": "vowel",
+  "examples": [
+   "two",
+   "room",
+   "food"
+  ],
+  "contrast": "book",
+  "hint": "嘴唇收圆向前,像\"乌\",比 ʊ 更紧、更长。"
+ },
+ {
+  "symbol": "ʌ",
+  "type": "vowel",
+  "examples": [
+   "come",
+   "son",
+   "run"
+  ],
+  "contrast": "man",
+  "hint": "嘴巴半开,像短促的\"啊\",不用力。"
+ },
+ {
+  "symbol": "ə",
+  "type": "vowel",
+  "examples": [
+   "woman",
+   "family",
+   "people"
+  ],
+  "contrast": "big",
+  "hint": "最轻最弱的\"呃\",常出现在不重读的音节里。"
+ },
+ {
+  "symbol": "ɚ",
+  "type": "vowel",
+  "examples": [
+   "water",
+   "mother",
+   "paper"
+  ],
+  "contrast": "car",
+  "hint": "不重读的\"尔\",舌头向后卷。"
+ },
+ {
+  "symbol": "ɝ",
+  "type": "vowel",
+  "examples": [
+   "girl",
+   "work",
+   "bird"
+  ],
+  "contrast": "water",
+  "hint": "重读的\"儿\",舌头向后卷,嘴唇略圆。"
+ },
+ {
+  "symbol": "eɪ",
+  "type": "vowel",
+  "examples": [
+   "say",
+   "make",
+   "day"
+  ],
+  "contrast": "see",
+  "hint": "从\"诶\"滑到\"衣\",是连在一起的一个音。"
+ },
+ {
+  "symbol": "aɪ",
+  "type": "vowel",
+  "examples": [
+   "time",
+   "eye",
+   "life"
+  ],
+  "contrast": "say",
+  "hint": "从\"啊\"滑到\"衣\",听起来像\"爱\"。"
+ },
+ {
+  "symbol": "ɔɪ",
+  "type": "vowel",
+  "examples": [
+   "boy",
+   "toy",
+   "point"
+  ],
+  "contrast": "buy",
+  "hint": "从\"哦\"滑到\"衣\",连在一起读。"
+ },
+ {
+  "symbol": "aʊ",
+  "type": "vowel",
+  "examples": [
+   "house",
+   "mouth",
+   "brown"
+  ],
+  "contrast": "go",
+  "hint": "从\"啊\"滑到\"乌\",听起来像\"嗷\"。"
+ },
+ {
+  "symbol": "oʊ",
+  "type": "vowel",
+  "examples": [
+   "go",
+   "know",
+   "phone"
+  ],
+  "contrast": "house",
+  "hint": "从\"哦\"滑到\"乌\",听起来像\"欧\"。"
+ },
+ {
+  "symbol": "b",
+  "type": "consonant",
+  "examples": [
+   "book",
+   "boy",
+   "buy"
+  ],
+  "contrast": "two",
+  "hint": "双唇闭紧再突然张开,声带要振动,像不送气的\"波\"。"
+ },
+ {
+  "symbol": "d",
+  "type": "consonant",
+  "examples": [
+   "day",
+   "door",
+   "hand"
+  ],
+  "contrast": "say",
+  "hint": "舌尖顶住上牙龈再放开,声带振动,像\"的\"。"
+ },
+ {
+  "symbol": "dʒ",
+  "type": "consonant",
+  "examples": [
+   "job",
+   "age",
+   "large"
+  ],
+  "contrast": "ship",
+  "hint": "像\"鸡\"的声母,但声带要振动。"
+ },
+ {
+  "symbol": "f",
+  "type": "consonant",
+  "examples": [
+   "face",
+   "food",
+   "five"
+  ],
+  "contrast": "see",
+  "hint": "上牙轻咬下唇吹气,像\"夫\"。"
+ },
+ {
+  "symbol": "g",
+  "type": "consonant",
+  "examples": [
+   "go",
+   "girl",
+   "good"
+  ],
+  "contrast": "day",
+  "hint": "舌根顶住上颚再放开,声带振动,像\"哥\"。"
+ },
+ {
+  "symbol": "h",
+  "type": "consonant",
+  "examples": [
+   "house",
+   "hand",
+   "help"
+  ],
+  "contrast": "eye",
+  "hint": "像哈气,嘴巴放松,轻轻吹出一口气。"
+ },
+ {
+  "symbol": "j",
+  "type": "consonant",
+  "examples": [
+   "year",
+   "young",
+   "use"
+  ],
+  "contrast": "run",
+  "hint": "舌头抬高,像中文\"也\"的开头。"
+ },
+ {
+  "symbol": "k",
+  "type": "consonant",
+  "examples": [
+   "book",
+   "come",
+   "black"
+  ],
+  "contrast": "go",
+  "hint": "舌根顶住上颚再放开,吹出一口气,像\"科\"。"
+ },
+ {
+  "symbol": "l",
+  "type": "consonant",
+  "examples": [
+   "look",
+   "line",
+   "school"
+  ],
+  "contrast": "run",
+  "hint": "舌尖顶住上牙后面,声音从舌头两边出来,像\"了\"的开头。"
+ },
+ {
+  "symbol": "m",
+  "type": "consonant",
+  "examples": [
+   "man",
+   "mother",
+   "room"
+  ],
+  "contrast": "one",
+  "hint": "双唇闭上,声音从鼻子出来,像\"摸\"。"
+ },
+ {
+  "symbol": "n",
+  "type": "consonant",
+  "examples": [
+   "one",
+   "man",
+   "run"
+  ],
+  "contrast": "mother",
+  "hint": "舌尖顶住上牙龈,声音从鼻子出来,像\"呢\"。"
+ },
+ {
+  "symbol": "ŋ",
+  "type": "consonant",
+  "examples": [
+   "think",
+   "thing",
+   "bring"
+  ],
+  "contrast": "ten",
+  "hint": "舌根顶住上颚,声音从鼻子出来,常在词尾,像\"嗯\"的鼻音。"
+ },
+ {
+  "symbol": "p",
+  "type": "consonant",
+  "examples": [
+   "people",
+   "put",
+   "paper"
+  ],
+  "contrast": "bird",
+  "hint": "双唇闭紧再张开,吹出一口气,声带不振动,像\"泼\"。"
+ },
+ {
+  "symbol": "r",
+  "type": "consonant",
+  "examples": [
+   "run",
+   "room",
+   "car"
+  ],
+  "contrast": "look",
+  "hint": "舌头卷起但不碰上颚,嘴唇微圆,像更轻的\"日\"。"
+ },
+ {
+  "symbol": "s",
+  "type": "consonant",
+  "examples": [
+   "say",
+   "see",
+   "house"
+  ],
+  "contrast": "show",
+  "hint": "牙齿几乎合上,吹出细细的气,像\"丝\"。"
+ },
+ {
+  "symbol": "ʃ",
+  "type": "consonant",
+  "examples": [
+   "ship",
+   "show",
+   "fish"
+  ],
+  "contrast": "say",
+  "hint": "嘴唇微圆,像让别人安静的\"嘘\"。"
+ },
+ {
+  "symbol": "t",
+  "type": "consonant",
+  "examples": [
+   "time",
+   "take",
+   "two"
+  ],
+  "contrast": "day",
+  "hint": "舌尖顶住上牙龈再放开,吹一口气,像\"特\"。"
+ },
+ {
+  "symbol": "tʃ",
+  "type": "consonant",
+  "examples": [
+   "chair",
+   "lunch",
+   "beach"
+  ],
+  "contrast": "ship",
+  "hint": "像\"吃\"的声母,嘴唇微圆。"
+ },
+ {
+  "symbol": "θ",
+  "type": "consonant",
+  "examples": [
+   "three",
+   "think",
+   "mouth"
+  ],
+  "contrast": "see",
+  "hint": "舌尖轻放在上下牙之间吹气,像咬着舌头说\"丝\"。"
+ },
+ {
+  "symbol": "ð",
+  "type": "consonant",
+  "examples": [
+   "mother",
+   "other",
+   "father"
+  ],
+  "contrast": "three",
+  "hint": "舌尖放在上下牙之间,声带振动,是带声音的 θ。"
+ },
+ {
+  "symbol": "v",
+  "type": "consonant",
+  "examples": [
+   "give",
+   "five",
+   "live"
+  ],
+  "contrast": "face",
+  "hint": "上牙轻咬下唇,声带振动,是带声音的 f。"
+ },
+ {
+  "symbol": "w",
+  "type": "consonant",
+  "examples": [
+   "water",
+   "way",
+   "white"
+  ],
+  "contrast": "year",
+  "hint": "嘴唇收圆再放开,像\"乌\"快速滑到下一个音。"
+ },
+ {
+  "symbol": "z",
+  "type": "consonant",
+  "examples": [
+   "nose",
+   "music",
+   "reason"
+  ],
+  "contrast": "face",
+  "hint": "牙齿几乎合上,声带振动,像蜜蜂\"嗡嗡\",是带声音的 s。"
+ },
+ {
+  "symbol": "ʒ",
+  "type": "consonant",
+  "examples": [
+   "garage"
+  ],
+  "contrast": "ship",
+  "hint": "带声音的 ʃ,嘴唇微圆,声带振动,例如 garage 里的音。"
+ }
+]

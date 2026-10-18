@@ -5,19 +5,25 @@
  */
 let current: HTMLAudioElement | null = null;
 
-function speakFallback(word: string): void {
+function speakFallback(word: string, rate = 0.85): void {
   if (!('speechSynthesis' in window)) return;
   const u = new SpeechSynthesisUtterance(word);
   u.lang = 'en-US';
-  u.rate = 0.85;
+  u.rate = rate;
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(u);
 }
 
-export function playWord(word: string): void {
+export function playWord(word: string, slow = false): void {
   if (current) current.pause();
   const a = new Audio(`audio/${word}.mp3`);
+  a.playbackRate = slow ? 0.6 : 1;
   current = a;
-  a.addEventListener('error', () => speakFallback(word), { once: true });
-  a.play().catch(() => speakFallback(word));
+  a.addEventListener('error', () => speakFallback(word, slow ? 0.5 : 0.85), { once: true });
+  a.play().catch(() => speakFallback(word, slow ? 0.5 : 0.85));
+}
+
+/** 例句暂时没有内置音频,用系统语音朗读(没有系统语音时无声,不影响学习) */
+export function playSentence(text: string): void {
+  speakFallback(text);
 }

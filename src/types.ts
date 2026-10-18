@@ -50,14 +50,33 @@ export interface ReviewLogRow {
   ms: number;
 }
 
+/** 音标入门:每个音素一条,做过一次听音选词就有记录 */
+export interface PhonemeProgress {
+  symbol: string;
+  /** 听音选词答对至少 2 题即为已掌握 */
+  done: boolean;
+  best: number;
+  ts: string;
+}
+
+export interface Phoneme {
+  symbol: string;
+  type: 'vowel' | 'consonant';
+  examples: string[];
+  contrast: string;
+  hint: string;
+}
+
 export interface BackupFile {
   app: 'english-beginner-app';
-  version: 1 | 2 | 3;
+  version: 1 | 2 | 3 | 4;
   exportedAt: string;
   settings: Settings;
   cards: StoredCard[];
   stats: DayStats[];
   logs: ReviewLogRow[];
+  /** 音标入门进度,v4 起才有 */
+  phonetics?: PhonemeProgress[];
 }
 
 export const DEFAULT_SETTINGS: Settings = {
