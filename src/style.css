@@ -329,3 +329,28 @@ button.recording { background: var(--again); color: #fff; border-color: transpar
 .spelling.big { margin: 6px 0 10px; }
 .spell { grid-template-columns: minmax(0, 1fr); }
 .spell input { width: 100%; min-width: 0; }
+
+/* 搜索、今天的 10 分钟、摸底 */
+.searchbox { margin: 12px 0 8px; }
+.searchbox input {
+  width: 100%;
+  font: inherit;
+  font-size: 17px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line2);
+  background: var(--card);
+  color: var(--ink);
+}
+.hit-title { font-size: 14px; color: var(--quiet); margin: 14px 0 6px; text-align: left; }
+.hit { display: flex; align-items: center; gap: 10px; padding: 10px 12px; margin-bottom: 8px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); text-align: left; }
+.hit-text { display: grid; gap: 2px; font-size: 17px; }
+.hit-text small { color: var(--quiet); font-weight: 400; }
+.hit-text > span { color: var(--quiet); font-size: 14px; }
+.path { margin: 8px 0 12px; }
+.path .big { margin-top: 8px; }
+.path-steps { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
+.chip-step { padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line2); font-size: 13px; color: var(--quiet); }
+.chip-step.on { background: var(--ok-bg); border-color: var(--good); color: var(--ink); }
+.path-done { color: var(--good); font-weight: 600; margin: 8px 0; }
+.grades.two { grid-template-columns: repeat(2, 1fr); }
