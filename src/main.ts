@@ -9,6 +9,7 @@ import type { Grade } from 'ts-fsrs';
 import { playKid, playPhrase, playPhraseAsync, playSentence, playSequence, playWord, stopSequence } from './audio';
 import { buildQuiz, makeCloze, pickKind, spellOk } from './practice';
 import type { PracticeKind, PracticeQuiz } from './practice';
+import { chunksHtml, countBeats, hintLevel, skeleton } from './spelling';
 import { canRecord, comparePlay, playMine, resetShadow, shadowError, shadowState, startRecording, stopRecording } from './shadow';
 import { buildFormIndex, buildPhraseIndex } from './lookup';
 import { duePhrases, learnPhrase, ratePhrase } from './phrase-cards';
@@ -88,6 +89,7 @@ interface Session {
   quiz: PracticeQuiz | null;
   result: 'right' | 'wrong' | null;
   typed: string;
+  spellHint: 'copy' | 'first' | 'none';
 }
 
 let view: View = 'home';
@@ -189,6 +191,7 @@ function startSession(bonus: boolean): void {
     quiz: null,
     result: null,
     typed: '',
+    spellHint: 'none',
   };
   prepareCard();
   view = 'study';
@@ -216,8 +219,9 @@ function prepareCard(): void {
   const forced = (window as unknown as { __forceKind?: PracticeKind }).__forceKind;
   const kind =
     forced ??
-    pickKind({ isNew, hasCloze: !!ex && makeCloze(ex.en, w.word) !== null, enabled: settings.practice, rnd: Math.random() });
+    pickKind({ isNew, hasCloze: !!ex && makeCloze(ex.en, w.word) !== null, enabled: settings.practice, spelling: settings.spelling, rnd: Math.random() });
   if (kind === 'card') return;
+  session.spellHint = hintLevel(stored?.reps ?? 0);
   const pool = words.filter((x) => x.level === w.level);
   const quiz = buildQuiz(kind, w, pool, ex);
   if (quiz) {
@@ -378,8 +382,14 @@ function renderQuiz(q: PracticeQuiz): string {
       <div class="cloze">${esc(q.prompt)}</div><div class="example-zh cloze-zh">${esc(q.zh)}</div>
       <div class="quiz-options">${opts}</div>`;
   } else {
+    const hint =
+      s.spellHint === 'copy'
+        ? `<div class="spelling big"><span class="spell-chunks">${chunksHtml(q.answer)}</span><small>照着拼一遍</small></div>`
+        : s.spellHint === 'first'
+          ? `<div class="spelling big"><span class="spell-skel">${esc(skeleton(q.answer))}</span><small>${q.answer.length} 个字母,先给你第一个</small></div>`
+          : '';
     body = `<p class="hint">这个词用英文怎么写?</p>
-      <div class="cloze">${esc(q.zh)}</div>
+      <div class="cloze">${esc(q.zh)}</div>${hint}
       <div class="spell"><input id="spell-input" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="输入英文单词" />
       <button class="primary" data-action="spell-submit">检查</button></div>`;
   }
@@ -421,6 +431,7 @@ function renderStudy(): string {
         ${banner}
         <div class="word">${esc(w.word)}</div>
         <div class="phonetic">/${esc(w.phonetic)}/</div>
+        <div class="spelling" title="拼写样本"><span class="spell-chunks">${chunksHtml(w.word)}</span><small>${w.word.length} 个字母 · ${countBeats(w.phonetic)} 拍</small></div>
         <div class="speak-row">
           <button class="secondary" data-action="speak">播放发音</button>
           <button class="secondary" data-action="speak-slow">慢速</button>
@@ -918,6 +929,12 @@ function renderSettings(): string {
       <label>每组卡片数
         <select data-setting="sessionSize">${opt([5, 10], settings.sessionSize)}</select>
       </label>
+      <label>拼写练习
+        <select data-setting="spelling">
+          <option value="0" ${settings.spelling ? '' : 'selected'}>不考(先学会听和认)</option>
+          <option value="1" ${settings.spelling ? 'selected' : ''}>加入拼写题</option>
+        </select>
+      </label>
       <label>复习方式
         <select data-setting="practice">
           <option value="1" ${settings.practice ? 'selected' : ''}>混合练习(推荐)</option>
@@ -1286,6 +1303,8 @@ app.addEventListener('change', (ev) => {
   if (t instanceof HTMLSelectElement && t.dataset.setting) {
     if (t.dataset.setting === 'practice') {
       settings = { ...settings, practice: t.value === '1' };
+    } else if (t.dataset.setting === 'spelling') {
+      settings = { ...settings, spelling: t.value === '1' };
     } else {
       const key = t.dataset.setting as 'newPerDay' | 'sessionSize';
       settings = { ...settings, [key]: Number(t.value) };

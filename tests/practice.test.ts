@@ -28,11 +28,15 @@ describe('pickKind', () => {
     expect(pickKind({ isNew: true, hasCloze: true, enabled: true, rnd: 0.1 })).toBe('card');
     expect(pickKind({ isNew: false, hasCloze: true, enabled: false, rnd: 0.1 })).toBe('card');
   });
-  it('学过的词按概率分配,没有例句挖空时退回听音', () => {
+  it('默认不出拼写题,以听音和填空为主', () => {
     expect(pickKind({ isNew: false, hasCloze: true, enabled: true, rnd: 0.1 })).toBe('listen');
-    expect(pickKind({ isNew: false, hasCloze: true, enabled: true, rnd: 0.5 })).toBe('spell');
+    expect(pickKind({ isNew: false, hasCloze: true, enabled: true, rnd: 0.5 })).toBe('listen');
     expect(pickKind({ isNew: false, hasCloze: true, enabled: true, rnd: 0.9 })).toBe('cloze');
     expect(pickKind({ isNew: false, hasCloze: false, enabled: true, rnd: 0.9 })).toBe('listen');
+  });
+  it('打开拼写后才会出拼写题', () => {
+    expect(pickKind({ isNew: false, hasCloze: true, enabled: true, spelling: true, rnd: 0.5 })).toBe('spell');
+    expect(pickKind({ isNew: false, hasCloze: true, enabled: true, spelling: false, rnd: 0.5 })).not.toBe('spell');
   });
 });
 

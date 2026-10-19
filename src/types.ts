@@ -36,6 +36,8 @@ export interface Settings {
   reviewLimit: number;
   /** 混合练习:学过的词用听音选义、拼写、完形填空来复习(false 则只看卡片) */
   practice: boolean;
+  /** 混合练习里是否包含拼写题(默认关,先学会听和认) */
+  spelling: boolean;
 }
 
 export interface DayStats {
@@ -120,4 +122,5 @@ export const DEFAULT_SETTINGS: Settings = {
   sessionSize: 5,
   reviewLimit: 100,
   practice: true,
+  spelling: false,
 };
