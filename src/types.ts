@@ -34,6 +34,8 @@ export interface Settings {
   sessionSize: number;
   /** 每天复习上限 */
   reviewLimit: number;
+  /** 混合练习:学过的词用听音选义、拼写、完形填空来复习(false 则只看卡片) */
+  practice: boolean;
 }
 
 export interface DayStats {
@@ -117,4 +119,5 @@ export const DEFAULT_SETTINGS: Settings = {
   newPerDay: 10,
   sessionSize: 5,
   reviewLimit: 100,
+  practice: true,
 };
