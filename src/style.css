@@ -189,8 +189,8 @@ button.big { display: block; width: 100%; font-size: 20px; padding: 18px; margin
 .scene span { color: var(--quiet); font-size: 13px; }
 .scene i { font-style: normal; color: #2f6fed; font-size: 13px; }
 .scene.done { background: var(--ok-bg); border-color: #2fa35f; }
-.phrase { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); }
-.phrase.learned { background: #eaf7ee; border-color: #2fa35f; }
+.phrase { display: grid; gap: 8px; padding: 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); }
+.phrase.learned { background: var(--ok-bg); border-color: #2fa35f; }
 .phrase-text { flex: 1; text-align: left; background: none; border: 0; display: grid; gap: 2px; font-size: 17px; padding: 4px; }
 .phrase-text > span { color: var(--quiet); font-size: 14px; }
 .phrase-btns { display: grid; gap: 2px; }
@@ -210,7 +210,7 @@ button.big { display: block; width: 100%; font-size: 20px; padding: 18px; margin
 .related { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line2); text-align: left; }
 .related-title { color: var(--quiet); font-size: 13px; margin-bottom: 4px; }
 .related-line { display: grid; gap: 1px; padding: 6px 0; }
-.related-line > span { color: var(--quiet); font-size: 14px; }
+.related-line div > span { color: var(--quiet); font-size: 14px; }
 .kid-groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 12px; }
 .kid-group { display: grid; place-items: center; gap: 4px; padding: 18px 8px; border-radius: 20px; border: 2px solid var(--warm-line); background: var(--card)8e6; font-size: 16px; }
 .kid-emoji { font-size: 56px; line-height: 1; }
@@ -253,8 +253,8 @@ button.big { display: block; width: 100%; font-size: 20px; padding: 18px; margin
 .study .related { margin-top: 6px; padding-top: 6px; }
 .study .related-title { font-size: 12px; margin-bottom: 0; }
 .study .related-line { padding: 3px 0; }
-.study .related-line > b { font-size: 16px; }
-.study .related-line > span { font-size: 13px; }
+.study .related-line div > b { font-size: 16px; }
+.study .related-line div > span { font-size: 13px; }
 .study .grades { flex: none; }
 .study .grade { padding: 10px 2px; }
 .study > button.big { flex: none; margin-top: 8px; }
@@ -295,3 +295,23 @@ button.big { display: block; width: 100%; font-size: 20px; padding: 18px; margin
 .shadow-row button { padding: 8px 14px; }
 .shadow .hint { margin: 4px 0 0; text-align: center; }
 button.recording { background: var(--again); color: #fff; border-color: transparent; }
+
+
+/* 句子点读:明确的 ▶ 播放按钮 */
+.howto { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; margin: 0 0 12px; padding: 8px 12px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); color: var(--quiet); font-size: 13px; }
+.howto u { text-decoration-style: dotted; text-decoration-color: var(--brand); }
+.play-btn { flex: none; width: 48px; height: 48px; padding: 0; border-radius: 50%; background: var(--brand); color: #fff; font-size: 18px; line-height: 1; display: inline-grid; place-items: center; }
+.play-btn.sm { width: 38px; height: 38px; font-size: 14px; }
+.play-btn.xs { width: 20px; height: 20px; font-size: 9px; vertical-align: middle; }
+.phrase-main { display: flex; align-items: center; gap: 12px; }
+.phrase-text { flex: 1; text-align: left; display: grid; gap: 2px; font-size: 18px; }
+.phrase-text > span { color: var(--quiet); font-size: 14px; }
+.phrase-actions { display: flex; gap: 8px; padding-left: 60px; }
+.chip { padding: 6px 14px; font-size: 14px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; }
+.chip.on { background: var(--good); border-color: var(--good); color: #fff; }
+.bubble { display: flex; align-items: center; gap: 10px; }
+.bubble-text { display: grid; gap: 2px; text-align: left; }
+.bubble-text > span { color: var(--quiet); font-size: 14px; }
+.rl-play { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--brand); color: #fff; font-size: 9px; font-style: normal; display: grid; place-items: center; }
+.playing-now { outline: 2px solid var(--brand); outline-offset: 1px; }
+.playing-now .play-btn, .playing-now .rl-play { background: var(--good); }

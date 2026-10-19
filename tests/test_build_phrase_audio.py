@@ -28,6 +28,12 @@ class PhraseAudioTests(unittest.TestCase):
         self.assertGreaterEqual(len(items), 500)
         self.assertEqual(len({i['id'] for i in items}), len(items))
 
+    def test_lookup_words_cover_phrase_tokens(self):
+        ids = {i['id'] for i in bpa.load_lookup_words()}
+        self.assertIn('slowly', ids)
+        self.assertIn('go', ids)  # went/going 等词形对应原词
+        self.assertTrue(all(i.isalpha() for i in ids))
+
     def test_missing_skips_existing(self):
         items = bpa.load_phrases()[:3]
         with tempfile.TemporaryDirectory() as d:

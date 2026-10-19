@@ -6,7 +6,7 @@ import phrasesData from '../data/phrases.json';
 import kidsData from '../data/kids.json';
 import { State } from 'ts-fsrs';
 import type { Grade } from 'ts-fsrs';
-import { playKid, playPhrase, playSentence, playSequence, playWord, stopSequence } from './audio';
+import { playKid, playPhrase, playPhraseAsync, playSentence, playSequence, playWord, stopSequence } from './audio';
 import { buildQuiz, makeCloze, pickKind, spellOk } from './practice';
 import type { PracticeKind, PracticeQuiz } from './practice';
 import { canRecord, comparePlay, playMine, resetShadow, shadowError, shadowState, startRecording, stopRecording } from './shadow';
@@ -327,7 +327,7 @@ function renderRelated(w: Word): string {
   if (lines.length === 0) return '';
   return `<div class="related"><div class="related-title">会话里怎么说</div>${lines
     .map(
-      (l) => `<div class="related-line" data-action="phrase-play" data-id="${esc(l.id)}"><b>${esc(l.en)}</b><span>${esc(l.zh)}</span></div>`,
+      (l) => `<div class="related-line" data-action="phrase-play" data-id="${esc(l.id)}"><i class="rl-play">▶</i><div><b>${esc(l.en)}</b><span>${esc(l.zh)}</span></div></div>`,
     )
     .join('')}</div>`;
 }
@@ -476,7 +476,7 @@ function renderLookup(): string {
   return `<div class="lookup">
       <div><b>${esc(w.word)}</b> <span>/${esc(w.phonetic)}/</span></div>
       <div class="lookup-meaning">${esc(sm.text).replace(/\n/g, '<br>')}</div>
-      <div><button class="secondary" data-action="lookup-play">播放</button> <button class="link" data-action="lookup-close">关闭</button></div>
+      <div><button class="secondary" data-action="lookup-play">▶ 播放</button> <button class="link" data-action="lookup-close">关闭</button></div>
     </div>`;
 }
 
@@ -485,8 +485,9 @@ function renderDialog(sc: Scene): string {
   return `<h2>小对话</h2>
     <div class="dialog">${sc.dialog
       .map(
-        (l, i) => `<div class="bubble ${l.who === 'A' ? 'a' : 'b'} ${playingLine === i ? 'playing' : ''}" data-action="phrase-play" data-id="${esc(l.id)}">
-          <b>${tokHtml(l.en)}</b><span>${esc(l.zh)}</span></div>`,
+        (l, i) => `<div class="bubble ${l.who === 'A' ? 'a' : 'b'} ${playingLine === i ? 'playing' : ''}">
+          <button class="play-btn sm" data-action="phrase-play" data-id="${esc(l.id)}" aria-label="播放这句">▶</button>
+          <div class="bubble-text"><b>${tokHtml(l.en)}</b><span>${esc(l.zh)}</span></div></div>`,
       )
       .join('')}</div>
     <button class="secondary big" data-action="dialog-play">整段播放</button>`;
@@ -542,15 +543,19 @@ function renderScene(): string {
   return `
     <section class="settings">
       <header><button class="link" data-action="scenes">返回</button><span>${esc(sc.title)} ${sceneLearned(sc)}/${sc.phrases.length}</span></header>
-      <p class="hint">${esc(sc.intro)} 点句子听发音,跟着读几遍。</p>
+      <p class="hint">${esc(sc.intro)}</p>
+      <div class="howto"><span><b class="play-btn xs">▶</b> 听整句</span><span><u>虚线词</u> 点一下查意思</span><span>听几遍、跟着读,再点"我会了"</span></div>
       <div class="phrase-list">${sc.phrases
         .map((p) => {
           const learned = phraseProgress.get(p.id)?.learned;
           return `<div class="phrase ${learned ? 'learned' : ''}">
-            <div class="phrase-text" data-action="phrase-play" data-id="${esc(p.id)}"><b>${tokHtml(p.en)}</b><span>${esc(p.zh)}</span></div>
-            <div class="phrase-btns">
-              <button class="link" data-action="phrase-slow" data-id="${esc(p.id)}">慢速</button>
-              <button class="link" data-action="phrase-learn" data-id="${esc(p.id)}">${learned ? '✓ 会了' : '我会了'}</button>
+            <div class="phrase-main">
+              <button class="play-btn" data-action="phrase-play" data-id="${esc(p.id)}" aria-label="播放这句">▶</button>
+              <div class="phrase-text"><b>${tokHtml(p.en)}</b><span>${esc(p.zh)}</span></div>
+            </div>
+            <div class="phrase-actions">
+              <button class="chip" data-action="phrase-slow" data-id="${esc(p.id)}">🐢 慢速</button>
+              <button class="chip ${learned ? 'on' : ''}" data-action="phrase-learn" data-id="${esc(p.id)}">${learned ? '✓ 已会' : '○ 我会了'}</button>
             </div></div>`;
         })
         .join('')}</div>
@@ -1203,7 +1208,17 @@ app.addEventListener('click', (ev) => {
     case 'phrase-play':
     case 'phrase-slow': {
       const ph = el.dataset.id ? lineById.get(el.dataset.id) : undefined;
-      if (ph) playPhrase(ph.id, ph.en, el.dataset.action === 'phrase-slow');
+      if (!ph) break;
+      const slow = el.dataset.action === 'phrase-slow';
+      const row = el.closest('.phrase, .bubble, .related-line');
+      document.querySelectorAll('.playing-now').forEach((n) => n.classList.remove('playing-now'));
+      row?.classList.add('playing-now');
+      if (slow) {
+        playPhrase(ph.id, ph.en, true);
+        setTimeout(() => row?.classList.remove('playing-now'), 3500);
+      } else {
+        void playPhraseAsync(ph.id, ph.en).then(() => row?.classList.remove('playing-now'));
+      }
       break;
     }
     case 'phrase-learn':

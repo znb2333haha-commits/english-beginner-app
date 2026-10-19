@@ -17,6 +17,7 @@ VOICE = 'en-US-JennyNeural'
 OUT = ROOT / 'public/audio/phrases'
 KIDS_OUT = ROOT / 'public/audio/kids'
 EX_OUT = ROOT / 'public/audio/examples'
+WORD_OUT = ROOT / 'public/audio'
 
 
 def load_phrases(path=None):
@@ -52,6 +53,36 @@ def load_examples(path=None):
         if exs:
             items.append({'id': word, 'en': exs[0]['en']})
     return items
+
+
+def load_lookup_words(words_path=None, phrases_path=None):
+    """会话句子里能点开查词的词(含过去式、复数等词形对应的原词):它们的单词发音 audio/<词>.mp3 也要有"""
+    words = json.loads((words_path or ROOT / 'data/words.json').read_text(encoding='utf-8'))
+    index = {}
+
+    def put(form, w):
+        k = form.lower()
+        if k not in index or w['id'] < index[k]['id']:
+            index[k] = w
+
+    for w in words:
+        put(w['word'], w)
+        for part in (w.get('forms') or '').split('/'):
+            i = part.find(':')
+            if i > 0:
+                put(part[i + 1:], w)
+    data = json.loads((phrases_path or ROOT / 'data/phrases.json').read_text(encoding='utf-8'))
+    out, seen = [], set()
+    for sc in data['scenes']:
+        for line in sc['phrases'] + sc.get('dialog', []):
+            for t in re.findall(r"[a-z]+(?:'[a-z]+)?", line['en'].lower()):
+                w = index.get(t)
+                if w and w['word'] not in seen:
+                    if not re.fullmatch(r'[a-z]+', w['word']):
+                        continue
+                    seen.add(w['word'])
+                    out.append({'id': w['word'], 'en': w['word']})
+    return out
 
 
 def missing(items, out=OUT):
@@ -90,7 +121,8 @@ def main():
     ap.add_argument('--dry-run', action='store_true')
     args = ap.parse_args()
     jobs = [('句子', missing(load_phrases()), OUT), ('儿童词', missing(load_kids(), KIDS_OUT), KIDS_OUT),
-            ('例句', missing(load_examples(), EX_OUT), EX_OUT)]
+            ('例句', missing(load_examples(), EX_OUT), EX_OUT),
+            ('查词单词', missing(load_lookup_words(), WORD_OUT), WORD_OUT)]
     total_failed = 0
     for name, todo, out in jobs:
         print(f'需要生成 {len(todo)} 个{name}音频')
