@@ -7,6 +7,9 @@ import kidsData from '../data/kids.json';
 import { State } from 'ts-fsrs';
 import type { Grade } from 'ts-fsrs';
 import { playKid, playPhrase, playSentence, playSequence, playWord, stopSequence } from './audio';
+import { buildQuiz, makeCloze, pickKind, spellOk } from './practice';
+import type { PracticeKind, PracticeQuiz } from './practice';
+import { canRecord, comparePlay, playMine, resetShadow, shadowError, shadowState, startRecording, stopRecording } from './shadow';
 import { buildFormIndex, buildPhraseIndex } from './lookup';
 import { duePhrases, learnPhrase, ratePhrase } from './phrase-cards';
 import {
@@ -80,6 +83,11 @@ interface Session {
   shownAt: number;
   bonus: boolean;
   showFull: boolean;
+  /** 当前这张卡的练习方式;card 就是普通卡片 */
+  kind: PracticeKind;
+  quiz: PracticeQuiz | null;
+  result: 'right' | 'wrong' | null;
+  typed: string;
 }
 
 let view: View = 'home';
@@ -177,14 +185,54 @@ function startSession(bonus: boolean): void {
     shownAt: Date.now(),
     bonus,
     showFull: false,
+    kind: 'card',
+    quiz: null,
+    result: null,
+    typed: '',
   };
+  prepareCard();
   view = 'study';
   render();
-  playCurrent();
+  if (session.kind === 'card' || session.kind === 'listen') playCurrent();
 }
 
 function currentWord(): Word | undefined {
   return session ? byId.get(session.queue[0]) : undefined;
+}
+
+/** 给当前这张卡选练习方式:新词用普通卡片,学过的词混合听音、拼写、填空 */
+function prepareCard(): void {
+  if (!session) return;
+  const w = currentWord();
+  session.result = null;
+  session.typed = '';
+  session.quiz = null;
+  session.kind = 'card';
+  resetShadow();
+  if (!w) return;
+  const stored = cards.get(w.id);
+  const isNew = !stored || stored.state === State.New;
+  const ex = examples[w.word]?.[0];
+  const forced = (window as unknown as { __forceKind?: PracticeKind }).__forceKind;
+  const kind =
+    forced ??
+    pickKind({ isNew, hasCloze: !!ex && makeCloze(ex.en, w.word) !== null, enabled: settings.practice, rnd: Math.random() });
+  if (kind === 'card') return;
+  const pool = words.filter((x) => x.level === w.level);
+  const quiz = buildQuiz(kind, w, pool, ex);
+  if (quiz) {
+    session.kind = kind;
+    session.quiz = quiz;
+  }
+}
+
+function resolveQuiz(result: 'right' | 'wrong', typed = ''): void {
+  if (!session) return;
+  session.result = result;
+  session.typed = typed;
+  session.revealed = true;
+  render();
+  playCurrent();
 }
 
 function playCurrent(): void {
@@ -218,12 +266,14 @@ async function answer(grade: Grade): Promise<void> {
   session.showFull = false;
   session.shownAt = Date.now();
   if (session.queue.length === 0) {
+    resetShadow();
     await refreshStats();
     view = 'done';
     render();
   } else {
+    prepareCard();
     render();
-    playCurrent();
+    if (session.kind === 'card' || session.kind === 'listen') playCurrent();
   }
 }
 
@@ -292,6 +342,58 @@ function renderExample(w: Word): string {
     </div>`;
 }
 
+function renderShadow(nativeSrc: string): string {
+  if (!canRecord()) return '';
+  const st = shadowState();
+  const src = esc(nativeSrc);
+  const rec =
+    st === 'rec'
+      ? `<button class="secondary recording" data-action="shadow-stop">⏹ 停止</button>`
+      : `<button class="secondary" data-action="shadow-rec">🎤 ${st === 'ready' ? '重录' : '跟读'}</button>`;
+  const cmp =
+    st === 'ready'
+      ? `<button class="secondary" data-action="shadow-cmp" data-src="${src}">▶ 对比</button><button class="secondary" data-action="shadow-mine">我的</button>`
+      : '';
+  const hint =
+    st === 'error'
+      ? `<p class="hint">${esc(shadowError())}</p>`
+      : st === 'rec'
+        ? `<p class="hint">正在录音,读完点停止</p>`
+        : '';
+  return `<div class="shadow"><div class="shadow-row" data-src="${src}">${rec}${cmp}</div>${hint}</div>`;
+}
+
+function renderQuiz(q: PracticeQuiz): string {
+  const s = session as Session;
+  const opts = q.options
+    .map((o, i) => `<button class="quiz-option" data-action="practice-pick" data-i="${i}"><i>${i + 1}</i>${esc(o.label)}</button>`)
+    .join('');
+  let body = '';
+  if (q.kind === 'listen') {
+    body = `<p class="hint">听一听,这个词是什么意思?</p>
+      <div class="speak-row"><button class="secondary" data-action="speak">🔊 再听一次</button><button class="secondary" data-action="speak-slow">慢速</button></div>
+      <div class="quiz-options">${opts}</div>`;
+  } else if (q.kind === 'cloze') {
+    body = `<p class="hint">选一个词,填进空格</p>
+      <div class="cloze">${esc(q.prompt)}</div><div class="example-zh cloze-zh">${esc(q.zh)}</div>
+      <div class="quiz-options">${opts}</div>`;
+  } else {
+    body = `<p class="hint">这个词用英文怎么写?</p>
+      <div class="cloze">${esc(q.zh)}</div>
+      <div class="spell"><input id="spell-input" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="输入英文单词" />
+      <button class="primary" data-action="spell-submit">检查</button></div>`;
+  }
+  return `
+    <section class="study">
+      <header>
+        <button class="link" data-action="home">退出</button>
+        <span>还剩 ${s.queue.length} 张</span>
+      </header>
+      <div class="card quiz">${body}</div>
+      <button class="link" data-action="practice-skip">不知道,看答案</button>
+    </section>`;
+}
+
 function renderStudy(): string {
   const s = session;
   const w = currentWord();
@@ -301,6 +403,14 @@ function renderStudy(): string {
   const labels = s.revealed ? previewLabels(card, now) : {};
   const short = shortMeaning(w.meaning);
   const meaning = esc(s.showFull ? w.meaning : short.text).replace(/\n/g, '<br>');
+  if (s.quiz && !s.revealed) return renderQuiz(s.quiz);
+  const suggest = s.result === 'right' ? 3 : s.result === 'wrong' ? 1 : 0;
+  const banner =
+    s.result === 'right'
+      ? `<div class="result right">答对了 ✓</div>`
+      : s.result === 'wrong'
+        ? `<div class="result wrong">${s.typed ? `你写的是 ${esc(s.typed)},` : ''}正确答案是 <b>${esc(w.word)}</b></div>`
+        : '';
   return `
     <section class="study">
       <header>
@@ -308,6 +418,7 @@ function renderStudy(): string {
         <span>还剩 ${s.queue.length} 张</span>
       </header>
       <div class="card">
+        ${banner}
         <div class="word">${esc(w.word)}</div>
         <div class="phonetic">/${esc(w.phonetic)}/</div>
         <div class="speak-row">
@@ -318,7 +429,7 @@ function renderStudy(): string {
           s.revealed
             ? `<div class="meaning">${meaning}</div>${
                 short.truncated ? `<button class="link" data-action="toggle-full">${s.showFull ? '收起释义' : '显示全部释义'}</button>` : ''
-              }${renderExample(w)}${renderRelated(w)}`
+              }${renderExample(w)}${renderShadow(examples[w.word]?.[0] ? `audio/examples/${w.word}.mp3` : `audio/${w.word}.mp3`)}${renderRelated(w)}`
             : ''
         }
       </div>
@@ -326,7 +437,7 @@ function renderStudy(): string {
         s.revealed
           ? `<div class="grades">${GRADES.map(
               (g, i) =>
-                `<button class="grade g${g.grade}" data-action="grade" data-grade="${g.grade}">
+                `<button class="grade g${g.grade}${g.grade === suggest ? ' suggest' : ''}" data-action="grade" data-grade="${g.grade}">
                    ${g.label}<small>${labels[g.grade] ?? ''}</small><i>${i + 1}</i>
                  </button>`,
             ).join('')}</div>`
@@ -654,7 +765,7 @@ function renderPreview(): string {
         ${
           pv.revealed
             ? `<div class="example"><div class="example-en">${tokHtml(line.en)}</div>
-                 <div class="speak-row"><button class="secondary" data-action="preview-play">播放</button><button class="secondary" data-action="preview-slow">慢速</button></div></div>`
+                 <div class="speak-row"><button class="secondary" data-action="preview-play">播放</button><button class="secondary" data-action="preview-slow">慢速</button></div>${renderShadow(`audio/phrases/${line.id}.mp3`)}</div>`
             : ''
         }
       </div>
@@ -672,6 +783,7 @@ function renderPreview(): string {
 }
 
 async function gradePreview(grade: Grade): Promise<void> {
+  resetShadow();
   const pv = preview;
   if (!pv || pv.finished) return;
   const pid = pv.queue[0];
@@ -801,6 +913,13 @@ function renderSettings(): string {
       <label>每组卡片数
         <select data-setting="sessionSize">${opt([5, 10], settings.sessionSize)}</select>
       </label>
+      <label>复习方式
+        <select data-setting="practice">
+          <option value="1" ${settings.practice ? 'selected' : ''}>混合练习(推荐)</option>
+          <option value="0" ${settings.practice ? '' : 'selected'}>只看卡片</option>
+        </select>
+      </label>
+      <p class="hint">混合练习:学过的词会用"听音选意思""看中文拼单词""句子填空"来复习,比只看答案记得牢。新词仍用普通卡片。</p>
       <h2>备份</h2>
       <p class="hint">进度只保存在这台设备上。换手机或在电脑上继续学,先导出备份,再到另一边导入。导入会替换那边现有的全部进度。</p>
       <button class="secondary" data-action="export">导出备份</button>
@@ -836,6 +955,7 @@ function render(): void {
 }
 
 async function goHome(): Promise<void> {
+  resetShadow();
   await refreshStats();
   notice = '';
   view = 'home';
@@ -993,6 +1113,39 @@ app.addEventListener('click', (ev) => {
     case 'speak':
       playCurrent();
       break;
+    case 'practice-pick': {
+      const q = session?.quiz;
+      if (!session || !q || session.revealed) break;
+      const o = q.options[Number(el.dataset.i)];
+      if (o) resolveQuiz(o.ok ? 'right' : 'wrong');
+      break;
+    }
+    case 'spell-submit': {
+      const q = session?.quiz;
+      const input = document.getElementById('spell-input') as HTMLInputElement | null;
+      if (!session || !q || session.revealed || !input) break;
+      const typed = input.value.trim();
+      if (typed === '') break;
+      resolveQuiz(spellOk(typed, q.answer) ? 'right' : 'wrong', typed);
+      break;
+    }
+    case 'practice-skip':
+      if (session && session.quiz && !session.revealed) resolveQuiz('wrong');
+      break;
+    case 'shadow-rec':
+      void startRecording().then(() => render());
+      break;
+    case 'shadow-stop':
+      stopRecording();
+      break;
+    case 'shadow-cmp': {
+      const src = el.dataset.src;
+      if (src) void comparePlay(src);
+      break;
+    }
+    case 'shadow-mine':
+      void playMine();
+      break;
     case 'speak-slow': {
       const w = currentWord();
       if (w) playWord(w.word, true);
@@ -1116,8 +1269,12 @@ app.addEventListener('click', (ev) => {
 app.addEventListener('change', (ev) => {
   const t = ev.target as HTMLInputElement | HTMLSelectElement;
   if (t instanceof HTMLSelectElement && t.dataset.setting) {
-    const key = t.dataset.setting as 'newPerDay' | 'sessionSize';
-    settings = { ...settings, [key]: Number(t.value) };
+    if (t.dataset.setting === 'practice') {
+      settings = { ...settings, practice: t.value === '1' };
+    } else {
+      const key = t.dataset.setting as 'newPerDay' | 'sessionSize';
+      settings = { ...settings, [key]: Number(t.value) };
+    }
     void saveSettings(settings);
   } else if (t instanceof HTMLInputElement && t.id === 'import-file' && t.files?.[0]) {
     void restoreBackup(t.files[0]);
@@ -1125,7 +1282,24 @@ app.addEventListener('change', (ev) => {
 });
 
 // 电脑键盘:空格显示答案,1 到 4 评分
+window.addEventListener('shadow-change', () => {
+  if (view === 'study' || view === 'preview') render();
+});
+
 document.addEventListener('keydown', (ev) => {
+  if (view === 'study' && session?.quiz && !session.revealed) {
+    if (ev.target instanceof HTMLInputElement) {
+      if (ev.key === 'Enter') {
+        ev.preventDefault();
+        (document.querySelector('[data-action="spell-submit"]') as HTMLElement | null)?.click();
+      }
+      return;
+    }
+    if (['1', '2', '3', '4'].includes(ev.key)) {
+      (document.querySelector(`[data-action="practice-pick"][data-i="${Number(ev.key) - 1}"]`) as HTMLElement | null)?.click();
+    }
+    return;
+  }
   if (view !== 'study' || !session) return;
   if (ev.key === ' ' && !session.revealed) {
     ev.preventDefault();

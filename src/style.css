@@ -242,3 +242,40 @@ button.big { display: block; width: 100%; font-size: 20px; padding: 18px; margin
 .study .grades { flex: none; }
 .study .grade { padding: 10px 2px; }
 .study > button.big { flex: none; margin-top: 8px; }
+
+/* 主动回忆练习 + 跟读 */
+.study .card.quiz { display: flex; flex-direction: column; justify-content: center; }
+.quiz .hint { margin: 0 0 12px; font-size: 15px; }
+.cloze { font-size: 24px; line-height: 1.4; margin: 8px 0 4px; font-weight: 600; }
+.cloze-zh { margin-bottom: 8px; }
+.quiz-options { display: grid; gap: 10px; margin-top: 16px; }
+.quiz-option {
+  position: relative;
+  min-height: 56px;
+  padding: 10px 14px;
+  font-size: 19px;
+  border-radius: 14px;
+  border: 1px solid var(--line2, #ccd);
+  background: var(--card);
+}
+.quiz-option i { position: absolute; top: 4px; left: 8px; font-size: 10px; font-style: normal; opacity: 0.5; }
+.spell { display: grid; gap: 10px; margin-top: 14px; }
+.spell input {
+  font: inherit;
+  font-size: 22px;
+  text-align: center;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line2, #ccd);
+  background: var(--bg);
+  color: var(--ink);
+}
+.result { font-size: 15px; font-weight: 600; margin-bottom: 6px; padding: 6px 10px; border-radius: 10px; }
+.result.right { background: rgba(47, 158, 99, 0.22); }
+.result.wrong { background: rgba(229, 72, 77, 0.22); }
+.grade.suggest { outline: 3px solid var(--ink); outline-offset: 2px; }
+.shadow { margin-top: 8px; }
+.shadow-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.shadow-row button { padding: 8px 14px; }
+.shadow .hint { margin: 4px 0 0; text-align: center; }
+button.recording { background: var(--again); color: #fff; border-color: transparent; }

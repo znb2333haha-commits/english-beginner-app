@@ -21,6 +21,8 @@ with sync_playwright() as p:
     # 仓库没有 favicon；不把浏览器隐式请求当成应用报错。
     ctx.route('**/favicon.ico', lambda route: route.fulfill(status=204))
     page = ctx.new_page()
+    # 本脚本测的是普通卡片流程;练习题另有 practice.py
+    page.add_init_script("window.__forceKind = 'card'")
     errors = []
     page.on("pageerror", lambda e: errors.append(str(e)))
     page.on("console", lambda m: errors.append(m.text) if m.type == "error" else None)
