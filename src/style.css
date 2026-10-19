@@ -315,3 +315,17 @@ button.recording { background: var(--again); color: #fff; border-color: transpar
 .rl-play { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--brand); color: #fff; font-size: 9px; font-style: normal; display: grid; place-items: center; }
 .playing-now { outline: 2px solid var(--brand); outline-offset: 1px; }
 .playing-now .play-btn, .playing-now .rl-play { background: var(--good); }
+
+
+/* 拼写样本 */
+.spelling { display: flex; flex-direction: column; align-items: center; gap: 2px; margin: 0 0 10px; }
+.spell-chunks, .spell-skel { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 20px; letter-spacing: 2px; }
+.spell-skel { letter-spacing: 4px; font-size: 24px; }
+.spelling small { color: var(--quiet); font-size: 12px; }
+.g { display: inline-block; }
+.g-multi { color: var(--brand); font-weight: 700; margin: 0 2px; padding: 0 3px; border-bottom: 2px solid var(--brand); }
+.g-final-e { opacity: 0.35; }
+.spelling.big .spell-chunks { font-size: 30px; }
+.spelling.big { margin: 6px 0 10px; }
+.spell { grid-template-columns: minmax(0, 1fr); }
+.spell input { width: 100%; min-width: 0; }
