@@ -76,6 +76,10 @@ export async function addLog(row: ReviewLogRow): Promise<void> {
   await (await db()).add('logs', row);
 }
 
+export async function allLogs(): Promise<ReviewLogRow[]> {
+  return (await db()).getAll('logs');
+}
+
 export async function getStats(date: string): Promise<DayStats> {
   return (await (await db()).get('stats', date)) ?? { date, newCount: 0, reviewCount: 0 };
 }

@@ -53,3 +53,13 @@
 - 之前每次 CI 打包用临时调试签名,手机无法覆盖安装、只能卸载重装(会丢进度)。
 - 现在密钥放在 GitHub Secrets(SIGNING_KEYSTORE_BASE64、SIGNING_PASSWORD),不进公开仓库;versionCode 用 GITHUB_RUN_NUMBER 递增。
 - 没配 Secrets 时退回临时调试签名并在日志里警告。丢失密钥 = 又要卸载重装一次,请保管好本地备份。
+
+## 2026-10-20 不做的功能
+- 语音识别打分:手机没有 Google 语音服务,离线打分不可靠;跟读靠"录音+对比"让人自己听差别。
+- 积分/排行榜:这是个人自用工具,避免靠外部奖励驱动。
+- 云同步:先用备份导出/导入,保持离线和隐私。
+## 2026-10-20 技术取舍
+- 覆盖率是 1/词频排名加权的估计值,界面明确标为"粗略估计"。
+- 每日提醒、多声音开关存在 localStorage(shiyu:reminder / shiyu:voices),不进备份文件,避免升级备份格式。
+- 免手操用 Wake Lock 保持亮屏;不支持的设备只是不常亮,功能照常。
+- 新音频目录:frames/、linking/(自然+-slow)、phrases-guy/、phrases-aria/;都由 Phrase audio 工作流生成,缺失时退回 Jenny 再退回系统语音。

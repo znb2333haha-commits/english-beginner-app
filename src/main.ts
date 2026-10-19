@@ -8,7 +8,7 @@ import framesData from '../data/frames.json';
 import linkingData from '../data/linking.json';
 import { State } from 'ts-fsrs';
 import type { Grade } from 'ts-fsrs';
-import { playFile, playFileAsync, playKid, playPhrase, playPhraseAsync, playSentence, playSequence, playWord, stopSequence } from './audio';
+import { playFile, playKid, pickVoice, setMultiVoice, voiceForRole, playPhrase, playPhraseAsync, playSentence, playSequence, playWord, stopSequence } from './audio';
 import { buildQuiz, makeCloze, pickKind, spellOk } from './practice';
 import type { PracticeKind, PracticeQuiz } from './practice';
 import { chunksHtml, countBeats, hintLevel, skeleton } from './spelling';
@@ -17,6 +17,10 @@ import { remaining, planSteps, STEP_LABEL } from './path';
 import type { PathStep } from './path';
 import { decide, pickSample } from './placement';
 import { search } from './search';
+import { coverage, weekSummary } from './stats';
+import type { WeekSummary } from './stats';
+import { disableReminder, enableReminder, reminderSupported } from './reminder';
+import minesData from '../data/mine.json';
 import { frameQuiz, linkQuiz, myLineCount, roleAdvance, roleTurn, startRole } from './drills';
 import type { ChoiceQ, Frame, LinkItem, RoleState } from './drills';
 import { canRecord, comparePlay, playMine, resetShadow, shadowError, shadowState, startRecording, stopRecording } from './shadow';
@@ -33,6 +37,7 @@ import {
 } from './scheduler';
 import {
   addLog,
+  allLogs,
   allStats,
   bumpStats,
   exportBackup,
@@ -61,7 +66,8 @@ const words = wordsData as unknown as Word[];
 const examples = examplesData as unknown as Record<string, { en: string; zh: string }[]>;
 const byId = new Map(words.map((w) => [w.id, w]));
 const phonemes = phonemesData as unknown as Phoneme[];
-const scenes = (phrasesData as unknown as { scenes: Scene[] }).scenes;
+const mineScenes = (minesData as unknown as { scenes: Scene[] }).scenes.filter((x) => x.phrases.length > 0);
+const scenes = [...(phrasesData as unknown as { scenes: Scene[] }).scenes, ...mineScenes];
 const wordByText = new Map(words.map((w) => [w.word, w]));
 const formIndex = buildFormIndex(words);
 const allLines = scenes.flatMap((sc) => [...sc.phrases, ...(sc.dialog ?? [])]);
@@ -81,7 +87,7 @@ function tokHtml(text: string): string {
 }
 const app = document.getElementById('app') as HTMLElement;
 
-type View = 'home' | 'pathdone' | 'placement' | 'placementresult' | 'study' | 'done' | 'settings' | 'phonetics' | 'phoneme' | 'scenes' | 'scene' | 'preview' | 'kids' | 'kidgroup' | 'frames' | 'frame' | 'linking' | 'drillquiz' | 'role';
+type View = 'home' | 'pathdone' | 'placement' | 'placementresult' | 'study' | 'done' | 'settings' | 'phonetics' | 'phoneme' | 'scenes' | 'scene' | 'preview' | 'kids' | 'kidgroup' | 'frames' | 'frame' | 'linking' | 'drillquiz' | 'role' | 'stats' | 'tutor';
 
 interface Session {
   queue: number[];
@@ -124,6 +130,14 @@ interface PReview {
 let preview: PReview | null = null;
 const frames = (framesData as unknown as { frames: Frame[] }).frames;
 const linkItems = (linkingData as unknown as { items: LinkItem[] }).items;
+let statsView: { cov: number; known: number; week: WeekSummary } | null = null;
+interface TutorState { queue: { id: string; en: string; zh: string }[]; idx: number; phase: 'zh' | 'en'; paused: boolean; done: boolean }
+let tutor: TutorState | null = null;
+let tutorToken = 0;
+let wakeLock: { release: () => Promise<void> } | null = null;
+let reminder = loadMeta<{ on: boolean; time: string }>('reminder', { on: false, time: '20:00' });
+let voicesOn = loadMeta<{ multi: boolean }>('voices', { multi: true });
+setMultiVoice(voicesOn.multi);
 let currentFrame: Frame | null = null;
 let drill: { title: string; back: View; qs: ChoiceQ[]; idx: number; picked: string | null; correct: number } | null = null;
 let role: RoleState | null = null;
@@ -460,6 +474,8 @@ function renderHome(): string {
         <span>已学 ${cards.size} 词 / 词库 ${words.length} 词</span>
         <button class="link" data-action="kids">儿童乐园 ⭐${kidStars()}</button>
         <button class="link" data-action="scenes">日常会话 ${scenesDone()}/${scenes.length}</button>
+        <button class="link" data-action="stats">学习概况</button>
+        <button class="link" data-action="tutor-start">免手操</button>
         <button class="link" data-action="frames">句型练习</button>
         <button class="link" data-action="linking">连读弱读</button>
         <button class="link" data-action="phonetics">音标入门 ${doneCount()}/${phonemes.length}</button>
@@ -650,7 +666,8 @@ function renderDialog(sc: Scene): string {
       )
       .join('')}</div>
     <button class="secondary big" data-action="dialog-play">整段播放</button>
-    <button class="primary big" data-action="role-open">角色扮演:我来演一个人</button>`;
+    <button class="primary big" data-action="role-open">角色扮演:我来演一个人</button>
+    <button class="secondary big" data-action="tutor-scene">免手操:整个场景自动播放</button>`;
 }
 
 const frameSrc = (id: string) => `audio/frames/${id}.mp3`;
@@ -774,11 +791,118 @@ async function roleRun(): Promise<void> {
   while (role && my === roleToken && roleTurn(role) === 'other') {
     render();
     const l = role.lines[role.idx];
-    await playFileAsync(`audio/phrases/${l.id}.mp3`, l.en);
+    await playPhraseAsync(l.id, l.en, voiceForRole(l.who));
     if (my !== roleToken || !role) return;
     role = roleAdvance(role);
   }
   if (my === roleToken) render();
+}
+
+function renderStats(): string {
+  const st = statsView;
+  if (!st) return '';
+  const w = st.week;
+  return `<section class="settings">
+    <header><button class="link" data-action="home">返回</button><span>学习概况</span></header>
+    <div class="cov"><b>${st.cov.toFixed(1)}%</b><span>日常英语覆盖率(粗略估计)</span></div>
+    <div class="progress-bar"><div style="width:${Math.min(100, st.cov).toFixed(1)}%"></div></div>
+    <p class="hint">已学 ${st.known} 个词。覆盖率只按常用程度给词加权估算:越常用的词占比越大,是个参考,不是考试成绩。</p>
+    <h2>最近 7 天</h2>
+    <div class="stats">
+      <div><b>${w.days}</b><span>学习天数</span></div>
+      <div><b>${w.newWords}</b><span>新词</span></div>
+      <div><b>${w.reviews}</b><span>做题次数</span></div>
+      <div><b>${w.accuracy === null ? '-' : w.accuracy + '%'}</b><span>答对比例</span></div>
+    </div>
+    <p class="hint">大约学了 ${w.minutes} 分钟。${w.days >= 5 ? '这周很稳,继续!' : w.days >= 1 ? '哪怕每天 10 分钟,比一次学很久有效。' : '这一周还没开始,今天来 10 分钟吧。'}</p>
+  </section>`;
+}
+
+async function openStats(): Promise<void> {
+  const [logs, days] = await Promise.all([allLogs(), allStats()]);
+  const known = [...cards.values()].filter((c) => c.state !== 0);
+  const rank = (id: number) => byId.get(id)?.freq_rank ?? 9999;
+  statsView = {
+    cov: coverage(known.map((c) => rank(c.wordId)), words.map((x) => x.freq_rank)),
+    known: known.length,
+    week: weekSummary(logs, days, new Date(), localDate),
+  };
+  view = 'stats';
+  render();
+}
+
+async function acquireWake(): Promise<void> {
+  try {
+    const nav = navigator as unknown as { wakeLock?: { request: (t: 'screen') => Promise<{ release: () => Promise<void> }> } };
+    wakeLock = (await nav.wakeLock?.request('screen')) ?? null;
+  } catch {
+    wakeLock = null;
+  }
+}
+function releaseWake(): void {
+  void wakeLock?.release().catch(() => undefined);
+  wakeLock = null;
+}
+
+function renderTutor(): string {
+  const t = tutor;
+  if (!t) return '';
+  if (t.done) {
+    return `<section class="settings"><header><button class="link" data-action="tutor-exit">返回</button><span>免手操</span></header>
+      <div class="quiz-result"><h2>这一轮播完了</h2><p class="hint">共 ${t.queue.length} 句。</p></div>
+      <button class="primary big" data-action="tutor-again">再来一轮</button></section>`;
+  }
+  const l = t.queue[t.idx];
+  return `<section class="settings tutor">
+    <header><button class="link" data-action="tutor-exit">退出</button><span>${t.idx + 1}/${t.queue.length}</span></header>
+    <div class="tutor-zh">${esc(l.zh)}</div>
+    <div class="tutor-en">${t.phase === 'en' ? esc(l.en) : '…'}</div>
+    <p class="hint">屏幕会保持常亮。先想想怎么说,再听标准读法,听两遍。</p>
+    <button class="secondary big" data-action="tutor-pause">${t.paused ? '继续' : '暂停'}</button>
+  </section>`;
+}
+
+const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+
+async function tutorRun(): Promise<void> {
+  const my = ++tutorToken;
+  while (tutor && my === tutorToken && !tutor.paused) {
+    const l = tutor.queue[tutor.idx];
+    if (!l) {
+      tutor.done = true;
+      releaseWake();
+      render();
+      return;
+    }
+    tutor.phase = 'zh';
+    render();
+    await sleep(2500);
+    if (my !== tutorToken || !tutor) return;
+    tutor.phase = 'en';
+    render();
+    await playPhraseAsync(l.id, l.en, pickVoice());
+    if (my !== tutorToken || !tutor) return;
+    await sleep(1200);
+    if (my !== tutorToken || !tutor) return;
+    await playPhraseAsync(l.id, l.en, 'jenny');
+    if (my !== tutorToken || !tutor) return;
+    await sleep(1500);
+    if (my !== tutorToken || !tutor) return;
+    tutor.idx++;
+  }
+}
+
+function startTutor(lines: { id: string; en: string; zh: string }[]): void {
+  tutor = { queue: lines, idx: 0, phase: 'zh', paused: false, done: false };
+  view = 'tutor';
+  void acquireWake();
+  void tutorRun();
+}
+
+function learnedQueue(): { id: string; en: string; zh: string }[] {
+  const ids = [...phraseCards.keys()].filter((id) => lineById.has(id));
+  const pool = ids.length >= 3 ? ids.map((id) => lineById.get(id)!) : scenes[0].phrases;
+  return [...pool].sort(() => Math.random() - 0.5).slice(0, 20);
 }
 
 function renderScenes(): string {
@@ -1292,6 +1416,22 @@ function renderSettings(): string {
           <option value="0" ${settings.practice ? '' : 'selected'}>只看卡片</option>
         </select>
       </label>
+      <label>多种声音
+        <select data-setting="voices">
+          <option value="1" ${voicesOn.multi ? 'selected' : ''}>开(女声、男声随机,更像真实环境)</option>
+          <option value="0" ${voicesOn.multi ? '' : 'selected'}>关(只用 Jenny)</option>
+        </select>
+      </label>
+      ${
+        reminderSupported()
+          ? `<label>每日提醒
+        <select data-setting="reminder"><option value="0" ${reminder.on ? '' : 'selected'}>关</option><option value="1" ${reminder.on ? 'selected' : ''}>开</option></select>
+      </label>
+      <label>提醒时间
+        <input type="time" data-setting="reminderTime" value="${esc(reminder.time)}" />
+      </label>`
+          : `<p class="hint">每日提醒只在安装的手机 App 里可用。</p>`
+      }
       <p class="hint">混合练习:学过的词会用"听音选意思""看中文拼单词""句子填空"来复习,比只看答案记得牢。新词仍用普通卡片。</p>
       <h2>备份</h2>
       <p class="hint">进度只保存在这台设备上。换手机或在电脑上继续学,先导出备份,再到另一边导入。导入会替换那边现有的全部进度。</p>
@@ -1323,6 +1463,8 @@ function render(): void {
     linking: renderLinking,
     drillquiz: renderDrillQuiz,
     role: renderRole,
+    stats: renderStats,
+    tutor: renderTutor,
     settings: renderSettings,
   };
   app.innerHTML = views[view]();
@@ -1398,6 +1540,36 @@ app.addEventListener('click', (ev) => {
     playingLine = -1;
   }
   switch (el.dataset.action) {
+    case 'stats':
+      void openStats();
+      break;
+    case 'tutor-start':
+      startTutor(learnedQueue());
+      break;
+    case 'tutor-scene':
+      if (currentScene) startTutor(currentScene.phrases);
+      break;
+    case 'tutor-again':
+      startTutor(learnedQueue());
+      break;
+    case 'tutor-pause':
+      if (tutor) {
+        tutor.paused = !tutor.paused;
+        if (tutor.paused) {
+          tutorToken++;
+          stopSequence();
+          render();
+        } else void tutorRun();
+      }
+      break;
+    case 'tutor-exit':
+      tutorToken++;
+      stopSequence();
+      tutor = null;
+      releaseWake();
+      view = 'home';
+      void goHome();
+      break;
     case 'frames':
       view = 'frames';
       render();
@@ -1834,8 +2006,39 @@ app.addEventListener('input', (ev) => {
   }
 });
 
+async function applyExtraSetting(key: string, value: string): Promise<void> {
+  if (key === 'voices') {
+    voicesOn = { multi: value === '1' };
+    saveMeta('voices', voicesOn);
+    setMultiVoice(voicesOn.multi);
+    return;
+  }
+  if (key === 'reminderTime') {
+    if (!/^\d{2}:\d{2}$/.test(value)) return;
+    reminder = { ...reminder, time: value };
+    saveMeta('reminder', reminder);
+    if (reminder.on) await enableReminder(Number(value.slice(0, 2)), Number(value.slice(3)));
+    return;
+  }
+  if (value === '1') {
+    const r = await enableReminder(Number(reminder.time.slice(0, 2)), Number(reminder.time.slice(3)));
+    reminder = { ...reminder, on: r === 'ok' };
+    notice = r === 'ok' ? `已设置每天 ${reminder.time} 提醒` : r === 'denied' ? '没有通知权限,请在系统设置里允许"拾语"发通知' : '';
+  } else {
+    reminder = { ...reminder, on: false };
+    await disableReminder();
+    notice = '';
+  }
+  saveMeta('reminder', reminder);
+  render();
+}
+
 app.addEventListener('change', (ev) => {
   const t = ev.target as HTMLInputElement | HTMLSelectElement;
+  if (t.dataset.setting === 'voices' || t.dataset.setting === 'reminder' || t.dataset.setting === 'reminderTime') {
+    void applyExtraSetting(t.dataset.setting, t.value);
+    return;
+  }
   if (t instanceof HTMLSelectElement && t.dataset.setting) {
     if (t.dataset.setting === 'practice') {
       settings = { ...settings, practice: t.value === '1' };

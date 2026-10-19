@@ -34,55 +34,75 @@ export function playSentence(word: string, text: string, slow = false): void {
   a.play().catch(fallback);
 }
 
-/** 日常会话句子:优先播放 audio/phrases/<id>.mp3,没有文件时用系统语音 */
-export function playPhrase(id: string, text: string, slow = false): void {
+export type Voice = 'jenny' | 'guy' | 'aria';
+const VOICE_DIR: Record<Voice, string> = { jenny: 'phrases', guy: 'phrases-guy', aria: 'phrases-aria' };
+let multiVoice = true;
+
+export function setMultiVoice(on: boolean): void {
+  multiVoice = on;
+}
+/** 单句点读:多声音打开时随机一个声音(没有这个声音的文件就退回 Jenny) */
+export function pickVoice(rnd: () => number = Math.random): Voice {
+  if (!multiVoice) return 'jenny';
+  const all: Voice[] = ['jenny', 'guy', 'aria'];
+  return all[Math.floor(rnd() * all.length)];
+}
+/** 对话里 A 用 Jenny、B 用男声,听起来像两个人 */
+export function voiceForRole(who: string): Voice {
+  return multiVoice && who === 'B' ? 'guy' : 'jenny';
+}
+export function phraseUrls(id: string, voice: Voice = 'jenny'): string[] {
+  const first = `audio/${VOICE_DIR[voice]}/${id}.mp3`;
+  const base = `audio/${VOICE_DIR.jenny}/${id}.mp3`;
+  return first === base ? [base] : [first, base];
+}
+
+/** 依次尝试几个音频地址,都没有就用系统语音;播完(或失败)后调用 onEnd */
+function playChain(urls: string[], text: string, slow: boolean, onEnd?: () => void): void {
   if (current) current.pause();
-  const a = new Audio(`audio/phrases/${id}.mp3`);
-  a.playbackRate = slow ? 0.7 : 1;
-  current = a;
-  const fallback = () => speakFallback(text, slow ? 0.55 : 0.85);
-  a.addEventListener('error', fallback, { once: true });
-  a.play().catch(fallback);
+  let i = 0;
+  const speak = () => {
+    if (!onEnd) return speakFallback(text, slow ? 0.55 : 0.85);
+    if (!('speechSynthesis' in window)) return void setTimeout(onEnd, 1500);
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    u.rate = 0.85;
+    u.onend = onEnd;
+    u.onerror = onEnd;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  };
+  const next = () => {
+    if (i >= urls.length) return speak();
+    const a = new Audio(urls[i++]);
+    a.playbackRate = slow ? 0.7 : 1;
+    current = a;
+    if (onEnd) a.addEventListener('ended', onEnd, { once: true });
+    a.addEventListener('error', next, { once: true });
+    a.play().catch(next);
+  };
+  next();
+}
+
+/** 日常会话句子:优先播放 audio/phrases 系列目录里的 <id>.mp3,没有文件时用系统语音 */
+export function playPhrase(id: string, text: string, slow = false, voice: Voice = pickVoice()): void {
+  playChain(phraseUrls(id, voice), text, slow);
+}
+
+/** 播完一句再返回(用于小对话连播) */
+export function playPhraseAsync(id: string, text: string, voice: Voice = 'jenny'): Promise<void> {
+  return new Promise((resolve) => playChain(phraseUrls(id, voice), text, false, resolve));
 }
 
 let sequenceToken = 0;
 
-/** 播完一句再返回(用于小对话连播);没有音频文件时用系统语音,系统语音也不可用就等一小会儿 */
-export function playPhraseAsync(id: string, text: string): Promise<void> {
-  return new Promise((resolve) => {
-    if (current) current.pause();
-    const a = new Audio(`audio/phrases/${id}.mp3`);
-    current = a;
-    let settled = false;
-    const done = () => {
-      if (!settled) {
-        settled = true;
-        resolve();
-      }
-    };
-    const speak = () => {
-      if (!('speechSynthesis' in window)) return void setTimeout(done, 1500);
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'en-US';
-      u.rate = 0.85;
-      u.onend = done;
-      u.onerror = done;
-      window.speechSynthesis.cancel();
-      window.speechSynthesis.speak(u);
-    };
-    a.addEventListener('ended', done, { once: true });
-    a.addEventListener('error', speak, { once: true });
-    a.play().catch(speak);
-  });
-}
-
 /** 依次播放一段对话。再次调用或 stopSequence 会让上一段停下 */
-export async function playSequence(lines: { id: string; en: string }[], onLine?: (i: number) => void): Promise<void> {
+export async function playSequence(lines: { id: string; en: string; who?: string }[], onLine?: (i: number) => void): Promise<void> {
   const my = ++sequenceToken;
   for (let i = 0; i < lines.length; i++) {
     if (my !== sequenceToken) return;
     onLine?.(i);
-    await playPhraseAsync(lines[i].id, lines[i].en);
+    await playPhraseAsync(lines[i].id, lines[i].en, voiceForRole(lines[i].who ?? 'A'));
     if (my !== sequenceToken) return;
     await new Promise((r) => setTimeout(r, 400));
   }
@@ -122,33 +142,4 @@ export function playFile(url: string, text: string, slow = false): void {
   const fallback = () => speakFallback(text, slow ? 0.55 : 0.85);
   a.addEventListener('error', fallback, { once: true });
   a.play().catch(fallback);
-}
-
-/** 同上,但等播完再返回(角色扮演里对方说完才轮到你) */
-export function playFileAsync(url: string, text: string): Promise<void> {
-  return new Promise((resolve) => {
-    if (current) current.pause();
-    const a = new Audio(url);
-    current = a;
-    let settled = false;
-    const done = () => {
-      if (!settled) {
-        settled = true;
-        resolve();
-      }
-    };
-    const speak = () => {
-      if (!('speechSynthesis' in window)) return void setTimeout(done, 1500);
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'en-US';
-      u.rate = 0.85;
-      u.onend = done;
-      u.onerror = done;
-      window.speechSynthesis.cancel();
-      window.speechSynthesis.speak(u);
-    };
-    a.addEventListener('ended', done, { once: true });
-    a.addEventListener('error', speak, { once: true });
-    a.play().catch(speak);
-  });
 }

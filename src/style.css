@@ -369,3 +369,15 @@ button.recording { background: var(--again); color: #fff; border-color: transpar
 .phrase[data-id^="fr"] { display: flex; align-items: center; gap: 12px; }
 .quiz-option.right { background: rgba(47, 158, 99, 0.28); border-color: #2fa35f; }
 .quiz-option.wrong { background: rgba(229, 72, 77, 0.28); border-color: #e5484d; }
+
+/* 批次 3 */
+.cov { text-align: center; margin: 16px 0 8px; }
+.cov b { font-size: 44px; display: block; }
+.cov span { color: var(--quiet); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 8px 0; }
+.stats div { background: var(--card); border: 1px solid var(--line2); border-radius: 12px; padding: 10px 4px; text-align: center; display: grid; gap: 2px; }
+.stats b { font-size: 20px; }
+.stats span { color: var(--quiet); font-size: 12px; }
+.tutor { text-align: center; }
+.tutor-zh { font-size: 26px; font-weight: 600; margin: 40px 0 16px; }
+.tutor-en { font-size: 24px; min-height: 40px; margin-bottom: 24px; color: #6ea8ff; }

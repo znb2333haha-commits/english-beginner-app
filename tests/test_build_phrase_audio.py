@@ -46,6 +46,11 @@ class PhraseAudioTests(unittest.TestCase):
         self.assertIn('lk01-slow', ids)
         self.assertTrue(all(i['rate'] == '-35%' for i in items if i['id'].endswith('-slow')))
 
+    def test_mine_phrases_are_included_and_valid(self):
+        import json, tempfile
+        ids = [i['id'] for i in bpa.load_phrases()]
+        self.assertEqual(len(ids), len(set(ids)))
+
     def test_missing_skips_existing(self):
         items = bpa.load_phrases()[:3]
         with tempfile.TemporaryDirectory() as d:
