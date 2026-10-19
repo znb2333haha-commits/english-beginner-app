@@ -9,6 +9,12 @@ import type { Grade } from 'ts-fsrs';
 import { playKid, playPhrase, playPhraseAsync, playSentence, playSequence, playWord, stopSequence } from './audio';
 import { buildQuiz, makeCloze, pickKind, spellOk } from './practice';
 import type { PracticeKind, PracticeQuiz } from './practice';
+import { chunksHtml, countBeats, hintLevel, skeleton } from './spelling';
+import { loadMeta, saveMeta } from './meta';
+import { remaining, planSteps, STEP_LABEL } from './path';
+import type { PathStep } from './path';
+import { decide, pickSample } from './placement';
+import { search } from './search';
 import { canRecord, comparePlay, playMine, resetShadow, shadowError, shadowState, startRecording, stopRecording } from './shadow';
 import { buildFormIndex, buildPhraseIndex } from './lookup';
 import { duePhrases, learnPhrase, ratePhrase } from './phrase-cards';
@@ -71,7 +77,7 @@ function tokHtml(text: string): string {
 }
 const app = document.getElementById('app') as HTMLElement;
 
-type View = 'home' | 'study' | 'done' | 'settings' | 'phonetics' | 'phoneme' | 'scenes' | 'scene' | 'preview' | 'kids' | 'kidgroup';
+type View = 'home' | 'pathdone' | 'placement' | 'placementresult' | 'study' | 'done' | 'settings' | 'phonetics' | 'phoneme' | 'scenes' | 'scene' | 'preview' | 'kids' | 'kidgroup';
 
 interface Session {
   queue: number[];
@@ -88,6 +94,7 @@ interface Session {
   quiz: PracticeQuiz | null;
   result: 'right' | 'wrong' | null;
   typed: string;
+  spellHint: 'copy' | 'first' | 'none';
 }
 
 let view: View = 'home';
@@ -111,6 +118,11 @@ interface PReview {
   finished: boolean;
 }
 let preview: PReview | null = null;
+let searchQuery = '';
+let pathRun: { steps: PathStep[]; idx: number; scene: Scene } | null = null;
+let pathMeta = loadMeta<{ date: string; done: PathStep[] }>('path', { date: '', done: [] });
+let placement: { sample: Word[]; idx: number; results: Map<number, boolean> } | null = null;
+let placementPlan: { markIds: number[]; knownTested: number[]; skipBands: number[]; toMark: number[] } | null = null;
 
 interface KidItem { word: string; emoji: string; zh: string; file: string }
 interface KidGroup { id: string; title: string; items: KidItem[] }
@@ -189,6 +201,7 @@ function startSession(bonus: boolean): void {
     quiz: null,
     result: null,
     typed: '',
+    spellHint: 'none',
   };
   prepareCard();
   view = 'study';
@@ -216,8 +229,9 @@ function prepareCard(): void {
   const forced = (window as unknown as { __forceKind?: PracticeKind }).__forceKind;
   const kind =
     forced ??
-    pickKind({ isNew, hasCloze: !!ex && makeCloze(ex.en, w.word) !== null, enabled: settings.practice, rnd: Math.random() });
+    pickKind({ isNew, hasCloze: !!ex && makeCloze(ex.en, w.word) !== null, enabled: settings.practice, spelling: settings.spelling, rnd: Math.random() });
   if (kind === 'card') return;
+  session.spellHint = hintLevel(stored?.reps ?? 0);
   const pool = words.filter((x) => x.level === w.level);
   const quiz = buildQuiz(kind, w, pool, ex);
   if (quiz) {
@@ -268,6 +282,7 @@ async function answer(grade: Grade): Promise<void> {
   if (session.queue.length === 0) {
     resetShadow();
     await refreshStats();
+    if (pathStep() === 'words') markStepDone('words');
     view = 'done';
     render();
   } else {
@@ -286,13 +301,135 @@ function renderProgress(): string {
     </div>`;
 }
 
+function pathDoneToday(): PathStep[] {
+  return pathMeta.date === today ? pathMeta.done : [];
+}
+
+function markStepDone(step: PathStep): void {
+  const done = pathDoneToday();
+  if (!done.includes(step)) done.push(step);
+  pathMeta = { date: today, done };
+  saveMeta('path', pathMeta);
+}
+
+function wordsAvailable(): boolean {
+  return dueCards(cards, new Date()).length > 0 || newAllowed() > 0;
+}
+
+function chooseScene(): Scene {
+  return scenes.find((sc) => !sceneDone(sc)) ?? scenes[Math.floor(Math.random() * scenes.length)];
+}
+
+function startPath(): void {
+  const steps = remaining(planSteps({ wordsAvailable: wordsAvailable() }), pathDoneToday());
+  if (steps.length === 0) {
+    view = 'pathdone';
+    render();
+    return;
+  }
+  pathRun = { steps, idx: 0, scene: chooseScene() };
+  runStep();
+}
+
+function runStep(): void {
+  if (!pathRun) return;
+  const step = pathRun.steps[pathRun.idx];
+  if (step === 'words') {
+    if (buildSession(sessionInput(false)).length === 0) return void pathNext();
+    startSession(false);
+  } else if (step === 'phrases') {
+    if (dueCount() > 0) {
+      startPhraseReview();
+    } else {
+      currentScene = pathRun.scene;
+      phraseQuiz = null;
+      view = 'scene';
+      render();
+    }
+  } else {
+    currentScene = pathRun.scene;
+    view = 'scene';
+    startPhraseQuiz(pathRun.scene);
+  }
+}
+
+function pathNext(): void {
+  if (!pathRun) return;
+  markStepDone(pathRun.steps[pathRun.idx]);
+  pathRun.idx += 1;
+  if (pathRun.idx >= pathRun.steps.length) {
+    pathRun = null;
+    void refreshStats().then(() => {
+      view = 'pathdone';
+      render();
+    });
+  } else {
+    runStep();
+  }
+}
+
+function pathStep(): PathStep | null {
+  return pathRun ? pathRun.steps[pathRun.idx] : null;
+}
+
+function nextLabel(): string {
+  if (!pathRun) return '';
+  const nxt = pathRun.steps[pathRun.idx + 1];
+  return nxt ? `下一步:${STEP_LABEL[nxt]} →` : '完成今天的 10 分钟 ✓';
+}
+
+function renderSearchResults(): string {
+  const q = searchQuery.trim();
+  if (q === '') return '';
+  const r = search(q, words, allLines);
+  if (r.phrases.length === 0 && r.words.length === 0) {
+    return `<p class="hint">没找到"${esc(q)}"。换个说法试试,比如更短的词。</p>`;
+  }
+  const ph = r.phrases
+    .map(
+      (l) => `<div class="hit"><button class="play-btn sm" data-action="phrase-play" data-id="${esc(l.id)}" aria-label="播放这句">▶</button>
+        <div class="hit-text"><b>${tokHtml(l.en)}</b><span>${esc(l.zh)}</span></div></div>`,
+    )
+    .join('');
+  const wd = r.words
+    .map(
+      (h) => `<div class="hit"><button class="play-btn sm" data-action="word-play" data-word="${esc(h.word.word)}" aria-label="播放单词">▶</button>
+        <div class="hit-text"><b>${esc(h.word.word)} <small>/${esc(h.word.phonetic)}/</small></b><span>${esc(h.gloss)}</span></div></div>`,
+    )
+    .join('');
+  return `${ph ? `<h2 class="hit-title">能这样说</h2>${ph}` : ''}${wd ? `<h2 class="hit-title">相关单词</h2>${wd}` : ''}`;
+}
+
+function renderPathBox(): string {
+  const done = pathDoneToday();
+  const all = planSteps({ wordsAvailable: wordsAvailable() });
+  const left = remaining(all, done);
+  const chips = (['words', 'phrases', 'listen'] as PathStep[])
+    .map((st) => `<span class="chip-step ${done.includes(st) ? 'on' : ''}">${done.includes(st) ? '✓ ' : ''}${STEP_LABEL[st]}</span>`)
+    .join('');
+  const started = done.length > 0;
+  return `<div class="path">
+      ${
+        left.length === 0
+          ? `<p class="notice path-done">✓ 今天的 10 分钟完成了,明天见</p>`
+          : `<button class="primary big" data-action="path-start">${started ? '继续今天的 10 分钟' : '开始今天的 10 分钟'}</button>
+             <p class="hint">单词 → 句子 → 听力,按顺序走,不用选</p>`
+      }
+      <div class="path-steps">${chips}</div>
+    </div>`;
+}
+
 function renderHome(): string {
   const due = dueCards(cards, new Date()).length;
   const canStudy = due > 0 || newAllowed() > 0;
+  const showPlacementHint = cards.size === 0 && !loadMeta<{ done: boolean }>('placement', { done: false }).done;
   return `
     <section class="home">
       <h1>拾语</h1>
       <p class="tagline">一点一点,拾起英语</p>
+      <div class="searchbox"><input id="search-input" type="search" inputmode="search" autocomplete="off" placeholder="想说什么?输入中文或英文" value="${esc(searchQuery)}" /></div>
+      <div id="search-results">${renderSearchResults()}</div>
+      <div id="home-main" ${searchQuery.trim() ? 'hidden' : ''}>
       <p class="streak">连续学习 <b>${streak}</b> 天</p>
       <div class="stats">
         <div><b>${todayStats.newCount}/${settings.newPerDay}</b><span>今日新词</span></div>
@@ -300,13 +437,13 @@ function renderHome(): string {
         <div><b>${due}</b><span>待复习</span></div>
       </div>
       ${notice ? `<p class="notice">${esc(notice)}</p>` : ''}
+      ${showPlacementHint ? `<button class="secondary" data-action="placement-start">学过一点英语?2 分钟摸底,跳过已经会的词</button>` : ''}
+      ${renderPathBox()}
       ${dueCount() > 0 ? `<button class="secondary" data-action="scenes">有 ${dueCount()} 句会话该复习了</button>` : ''}
       ${
         canStudy
-          ? `<button class="primary big" data-action="start">来一组</button>
-             <p class="hint">每组 ${settings.sessionSize} 张,约 2 到 3 分钟,随时可以退出</p>`
-          : `<p class="notice">今天的任务完成了,明天再来。</p>
-             <button class="secondary big" data-action="bonus">再多学一组</button>`
+          ? `<button class="secondary" data-action="start">只学单词(来一组)</button>`
+          : `<button class="secondary" data-action="bonus">再多学一组单词</button>`
       }
       ${renderProgress()}
       <footer>
@@ -314,8 +451,11 @@ function renderHome(): string {
         <button class="link" data-action="kids">儿童乐园 ⭐${kidStars()}</button>
         <button class="link" data-action="scenes">日常会话 ${scenesDone()}/${scenes.length}</button>
         <button class="link" data-action="phonetics">音标入门 ${doneCount()}/${phonemes.length}</button>
+        <button class="link" data-action="placement-start">摸底测试</button>
         <button class="link" data-action="settings">设置与备份</button>
       </footer>
+      </div>
+      ${renderLookup()}
     </section>`;
 }
 
@@ -378,8 +518,14 @@ function renderQuiz(q: PracticeQuiz): string {
       <div class="cloze">${esc(q.prompt)}</div><div class="example-zh cloze-zh">${esc(q.zh)}</div>
       <div class="quiz-options">${opts}</div>`;
   } else {
+    const hint =
+      s.spellHint === 'copy'
+        ? `<div class="spelling big"><span class="spell-chunks">${chunksHtml(q.answer)}</span><small>照着拼一遍</small></div>`
+        : s.spellHint === 'first'
+          ? `<div class="spelling big"><span class="spell-skel">${esc(skeleton(q.answer))}</span><small>${q.answer.length} 个字母,先给你第一个</small></div>`
+          : '';
     body = `<p class="hint">这个词用英文怎么写?</p>
-      <div class="cloze">${esc(q.zh)}</div>
+      <div class="cloze">${esc(q.zh)}</div>${hint}
       <div class="spell"><input id="spell-input" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="输入英文单词" />
       <button class="primary" data-action="spell-submit">检查</button></div>`;
   }
@@ -421,6 +567,7 @@ function renderStudy(): string {
         ${banner}
         <div class="word">${esc(w.word)}</div>
         <div class="phonetic">/${esc(w.phonetic)}/</div>
+        <div class="spelling" title="拼写样本"><span class="spell-chunks">${chunksHtml(w.word)}</span><small>${w.word.length} 个字母 · ${countBeats(w.phonetic)} 拍</small></div>
         <div class="speak-row">
           <button class="secondary" data-action="speak">播放发音</button>
           <button class="secondary" data-action="speak-slow">慢速</button>
@@ -536,8 +683,13 @@ function renderScene(): string {
         <h1>${ok ? '这个场景通关了!' : '再听听看'}</h1>
         <p class="streak">答对 <b>${phraseQuiz.correct}</b> / ${phraseQuiz.questions.length} 题</p>
         <p class="hint">${ok ? '这些话已经能用上了。' : '多听几遍句子,再做一次。'}</p>
-        <button class="primary big" data-action="scene-back">回到场景</button>
-        <button class="secondary big" data-action="pquiz-start">再做一次</button>
+        ${
+          pathStep() === 'listen'
+            ? `<button class="primary big" data-action="path-next">${nextLabel()}</button>
+               <button class="secondary big" data-action="pquiz-start">再做一次</button>`
+            : `<button class="primary big" data-action="scene-back">回到场景</button>
+               <button class="secondary big" data-action="pquiz-start">再做一次</button>`
+        }
       </section>`;
   }
   return `
@@ -560,7 +712,11 @@ function renderScene(): string {
         })
         .join('')}</div>
       ${renderDialog(sc)}
-      <button class="primary big" data-action="pquiz-start">听句选意思</button>
+      ${
+        pathStep() === 'phrases'
+          ? `<button class="primary big" data-action="path-next">学完了,${nextLabel()}</button>`
+          : `<button class="primary big" data-action="pquiz-start">听句选意思</button>`
+      }
       ${renderLookup()}
     </section>`;
 }
@@ -753,7 +909,11 @@ function renderPreview(): string {
       <section class="home">
         <h1>句子复习完成</h1>
         <p class="streak">这次复习了 <b>${pv.done}</b> 次</p>
-        <button class="primary big" data-action="scenes">回到日常会话</button>
+        ${
+          pathStep() === 'phrases'
+            ? `<button class="primary big" data-action="path-next">${nextLabel()}</button>`
+            : `<button class="primary big" data-action="scenes">回到日常会话</button>`
+        }
       </section>`;
   }
   const line = lineById.get(pv.queue[0]);
@@ -802,7 +962,10 @@ async function gradePreview(grade: Grade): Promise<void> {
   pv.queue.shift();
   if (shouldRequeue(after, now)) pv.queue.push(pid);
   pv.revealed = false;
-  if (pv.queue.length === 0) pv.finished = true;
+  if (pv.queue.length === 0) {
+    pv.finished = true;
+    if (pathStep() === 'phrases') markStepDone('phrases');
+  }
   render();
 }
 
@@ -901,8 +1064,66 @@ function renderDone(): string {
       <h1>这一组完成了</h1>
       <p class="streak">学了 <b>${s?.newLearned ?? 0}</b> 个新词,共答了 <b>${s?.reviewed ?? 0}</b> 次</p>
       <p class="streak">连续学习 <b>${streak}</b> 天</p>
-      <button class="primary big" data-action="again">再来一组</button>
-      <button class="secondary big" data-action="home">回首页</button>
+      ${
+        pathStep() === 'words'
+          ? `<button class="primary big" data-action="path-next">${nextLabel()}</button>
+             <button class="secondary big" data-action="home">先到这里</button>`
+          : `<button class="primary big" data-action="again">再来一组</button>
+             <button class="secondary big" data-action="home">回首页</button>`
+      }
+    </section>`;
+}
+
+function renderPathDone(): string {
+  return `
+    <section class="home">
+      <h1>今天的 10 分钟完成了</h1>
+      <p class="streak">今天学了 <b>${todayStats.newCount}</b> 个新词,复习 <b>${todayStats.reviewCount}</b> 次</p>
+      <p class="streak">连续学习 <b>${streak}</b> 天</p>
+      <p class="hint">够了。想到再来,不用贪多。</p>
+      <button class="primary big" data-action="home">回首页</button>
+      <button class="secondary big" data-action="bonus">再多学一组单词</button>
+    </section>`;
+}
+
+function renderPlacement(): string {
+  const pl = placement;
+  if (!pl) return '';
+  const w = pl.sample[pl.idx];
+  return `
+    <section class="study">
+      <header><button class="link" data-action="home">退出</button><span>摸底 ${pl.idx + 1}/${pl.sample.length}</span></header>
+      <div class="card quiz">
+        <div class="word">${esc(w.word)}</div>
+        <div class="phonetic">/${esc(w.phonetic)}/</div>
+        <div class="speak-row"><button class="secondary" data-action="placement-play">▶ 听一下</button></div>
+        <p class="hint">看到或听到就知道意思吗?拿不准就选"不认识"。</p>
+      </div>
+      <div class="grades two">
+        <button class="grade g1" data-action="placement-answer" data-known="0">不认识</button>
+        <button class="grade g3" data-action="placement-answer" data-known="1">认识</button>
+      </div>
+    </section>`;
+}
+
+function renderPlacementResult(): string {
+  const pl = placement;
+  const plan = placementPlan;
+  if (!pl || !plan) return '';
+  const known = [...pl.results.values()].filter(Boolean).length;
+  const bands = plan.skipBands.map((b) => `第 ${b * 100 + 1}–${b * 100 + 100} 个高频词`);
+  return `
+    <section class="home">
+      <h1>摸底结果</h1>
+      <p class="streak">20 个词里你认识 <b>${known}</b> 个</p>
+      ${
+        plan.toMark.length > 0
+          ? `<p class="hint">${bands.length ? `这几段大多认识:${esc(bands.join('、'))}。` : ''}可以先把 <b>${plan.toMark.length}</b> 个词标为"已会",不用再从头学。它们几天后会以练习题的形式复习一次,答错了会自动回到学习里。</p>
+             <button class="primary big" data-action="placement-apply">标记这 ${plan.toMark.length} 个词为已会</button>
+             <button class="secondary big" data-action="placement-skip">不用了,从头学</button>`
+          : `<p class="hint">看来这些词对你都还是新的,从头学最合适。</p>
+             <button class="primary big" data-action="placement-skip">好的,开始学</button>`
+      }
     </section>`;
 }
 
@@ -917,6 +1138,12 @@ function renderSettings(): string {
       </label>
       <label>每组卡片数
         <select data-setting="sessionSize">${opt([5, 10], settings.sessionSize)}</select>
+      </label>
+      <label>拼写练习
+        <select data-setting="spelling">
+          <option value="0" ${settings.spelling ? '' : 'selected'}>不考(先学会听和认)</option>
+          <option value="1" ${settings.spelling ? 'selected' : ''}>加入拼写题</option>
+        </select>
       </label>
       <label>复习方式
         <select data-setting="practice">
@@ -935,28 +1162,42 @@ function renderSettings(): string {
 }
 
 function render(): void {
-  app.innerHTML =
-    view === 'home'
-      ? renderHome()
-      : view === 'study'
-        ? renderStudy()
-        : view === 'done'
-          ? renderDone()
-          : view === 'phonetics'
-            ? renderPhonetics()
-            : view === 'phoneme'
-              ? renderPhoneme()
-              : view === 'scenes'
-                ? renderScenes()
-                : view === 'scene'
-                  ? renderScene()
-                  : view === 'preview'
-                    ? renderPreview()
-                    : view === 'kids'
-                      ? renderKids()
-                      : view === 'kidgroup'
-                        ? renderKidGroup()
-                        : renderSettings();
+  if (['home', 'scenes', 'settings', 'phonetics', 'phoneme', 'kids', 'kidgroup'].includes(view)) pathRun = null;
+  const views: Record<View, () => string> = {
+    home: renderHome,
+    pathdone: renderPathDone,
+    placement: renderPlacement,
+    placementresult: renderPlacementResult,
+    study: renderStudy,
+    done: renderDone,
+    phonetics: renderPhonetics,
+    phoneme: renderPhoneme,
+    scenes: renderScenes,
+    scene: renderScene,
+    preview: renderPreview,
+    kids: renderKids,
+    kidgroup: renderKidGroup,
+    settings: renderSettings,
+  };
+  app.innerHTML = views[view]();
+}
+
+async function applyPlacement(): Promise<void> {
+  const plan = placementPlan;
+  if (!plan) return;
+  const now = new Date();
+  for (const id of plan.toMark) {
+    const card = rate(newStoredCard(id, now), 4 as Grade, now);
+    cards.set(id, card);
+    await saveCard(card);
+  }
+  saveMeta('placement', { done: true });
+  const n = plan.toMark.length;
+  placement = null;
+  placementPlan = null;
+  await goHome();
+  notice = `已标记 ${n} 个词为已会。几天后会复习一次确认。`;
+  render();
 }
 
 async function goHome(): Promise<void> {
@@ -1011,6 +1252,52 @@ app.addEventListener('click', (ev) => {
     playingLine = -1;
   }
   switch (el.dataset.action) {
+    case 'path-start':
+      startPath();
+      break;
+    case 'path-next':
+      pathNext();
+      break;
+    case 'word-play':
+      if (el.dataset.word) playWord(el.dataset.word);
+      break;
+    case 'placement-start':
+      placement = { sample: pickSample(words), idx: 0, results: new Map() };
+      placementPlan = null;
+      view = 'placement';
+      render();
+      playWord(placement.sample[0].word);
+      break;
+    case 'placement-play': {
+      const w = placement?.sample[placement.idx];
+      if (w) playWord(w.word);
+      break;
+    }
+    case 'placement-answer': {
+      if (!placement) break;
+      const w = placement.sample[placement.idx];
+      placement.results.set(w.id, el.dataset.known === '1');
+      placement.idx += 1;
+      if (placement.idx >= placement.sample.length) {
+        const plan = decide(placement.results, words);
+        placementPlan = { ...plan, toMark: plan.markIds.filter((id) => !cards.has(id)) };
+        view = 'placementresult';
+        render();
+      } else {
+        render();
+        playWord(placement.sample[placement.idx].word);
+      }
+      break;
+    }
+    case 'placement-apply':
+      void applyPlacement();
+      break;
+    case 'placement-skip':
+      saveMeta('placement', { done: true });
+      placement = null;
+      placementPlan = null;
+      void goHome();
+      break;
     case 'lookup-close':
       lookupWord = null;
       render();
@@ -1210,7 +1497,7 @@ app.addEventListener('click', (ev) => {
       const ph = el.dataset.id ? lineById.get(el.dataset.id) : undefined;
       if (!ph) break;
       const slow = el.dataset.action === 'phrase-slow';
-      const row = el.closest('.phrase, .bubble, .related-line');
+      const row = el.closest('.phrase, .bubble, .related-line, .hit');
       document.querySelectorAll('.playing-now').forEach((n) => n.classList.remove('playing-now'));
       row?.classList.add('playing-now');
       if (slow) {
@@ -1281,11 +1568,24 @@ app.addEventListener('click', (ev) => {
   }
 });
 
+app.addEventListener('input', (ev) => {
+  const t = ev.target;
+  if (t instanceof HTMLInputElement && t.id === 'search-input') {
+    searchQuery = t.value;
+    const box = document.getElementById('search-results');
+    const main = document.getElementById('home-main');
+    if (box) box.innerHTML = renderSearchResults();
+    if (main) main.hidden = searchQuery.trim() !== '';
+  }
+});
+
 app.addEventListener('change', (ev) => {
   const t = ev.target as HTMLInputElement | HTMLSelectElement;
   if (t instanceof HTMLSelectElement && t.dataset.setting) {
     if (t.dataset.setting === 'practice') {
       settings = { ...settings, practice: t.value === '1' };
+    } else if (t.dataset.setting === 'spelling') {
+      settings = { ...settings, spelling: t.value === '1' };
     } else {
       const key = t.dataset.setting as 'newPerDay' | 'sessionSize';
       settings = { ...settings, [key]: Number(t.value) };

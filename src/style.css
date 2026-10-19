@@ -315,3 +315,42 @@ button.recording { background: var(--again); color: #fff; border-color: transpar
 .rl-play { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--brand); color: #fff; font-size: 9px; font-style: normal; display: grid; place-items: center; }
 .playing-now { outline: 2px solid var(--brand); outline-offset: 1px; }
 .playing-now .play-btn, .playing-now .rl-play { background: var(--good); }
+
+
+/* 拼写样本 */
+.spelling { display: flex; flex-direction: column; align-items: center; gap: 2px; margin: 0 0 10px; }
+.spell-chunks, .spell-skel { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 20px; letter-spacing: 2px; }
+.spell-skel { letter-spacing: 4px; font-size: 24px; }
+.spelling small { color: var(--quiet); font-size: 12px; }
+.g { display: inline-block; }
+.g-multi { color: var(--brand); font-weight: 700; margin: 0 2px; padding: 0 3px; border-bottom: 2px solid var(--brand); }
+.g-final-e { opacity: 0.35; }
+.spelling.big .spell-chunks { font-size: 30px; }
+.spelling.big { margin: 6px 0 10px; }
+.spell { grid-template-columns: minmax(0, 1fr); }
+.spell input { width: 100%; min-width: 0; }
+
+/* 搜索、今天的 10 分钟、摸底 */
+.searchbox { margin: 12px 0 8px; }
+.searchbox input {
+  width: 100%;
+  font: inherit;
+  font-size: 17px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line2);
+  background: var(--card);
+  color: var(--ink);
+}
+.hit-title { font-size: 14px; color: var(--quiet); margin: 14px 0 6px; text-align: left; }
+.hit { display: flex; align-items: center; gap: 10px; padding: 10px 12px; margin-bottom: 8px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); text-align: left; }
+.hit-text { display: grid; gap: 2px; font-size: 17px; }
+.hit-text small { color: var(--quiet); font-weight: 400; }
+.hit-text > span { color: var(--quiet); font-size: 14px; }
+.path { margin: 8px 0 12px; }
+.path .big { margin-top: 8px; }
+.path-steps { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
+.chip-step { padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line2); font-size: 13px; color: var(--quiet); }
+.chip-step.on { background: var(--ok-bg); border-color: var(--good); color: var(--ink); }
+.path-done { color: var(--good); font-weight: 600; margin: 8px 0; }
+.grades.two { grid-template-columns: repeat(2, 1fr); }

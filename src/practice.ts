@@ -33,11 +33,16 @@ export function gloss(w: Pick<Word, 'meaning'>): string {
   return s.length > 14 ? s.slice(0, 14) : s;
 }
 
-export function pickKind(opts: { isNew: boolean; hasCloze: boolean; enabled: boolean; rnd: number }): PracticeKind {
+export function pickKind(opts: { isNew: boolean; hasCloze: boolean; enabled: boolean; spelling?: boolean; rnd: number }): PracticeKind {
   if (!opts.enabled || opts.isNew) return 'card';
   const r = opts.rnd;
-  if (r < 0.4) return 'listen';
-  if (r < 0.7) return 'spell';
+  if (opts.spelling) {
+    if (r < 0.4) return 'listen';
+    if (r < 0.7) return 'spell';
+    return opts.hasCloze ? 'cloze' : 'listen';
+  }
+  // 默认不考拼写:以听懂、看懂为主
+  if (r < 0.55) return 'listen';
   return opts.hasCloze ? 'cloze' : 'listen';
 }
 
