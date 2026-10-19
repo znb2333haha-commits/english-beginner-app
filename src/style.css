@@ -354,3 +354,18 @@ button.recording { background: var(--again); color: #fff; border-color: transpar
 .chip-step.on { background: var(--ok-bg); border-color: var(--good); color: var(--ink); }
 .path-done { color: var(--good); font-weight: 600; margin: 8px 0; }
 .grades.two { grid-template-columns: repeat(2, 1fr); }
+
+/* 批次 2:句型、连读、角色扮演、小测 */
+.link-item { background: var(--card, #1a2230); border: 1px solid rgba(128,128,128,.25); border-radius: 14px; padding: 12px; margin-bottom: 10px; display: grid; gap: 6px; }
+.link-en { display: grid; gap: 2px; }
+.link-en b { font-size: 1.05rem; }
+.link-en span, .link-note { color: var(--quiet); font-size: .9rem; }
+.link-sounds b { color: #6ea8ff; }
+.link-btns { display: flex; gap: 8px; }
+.link-btns .secondary { flex: 1; }
+.quiz-prompt { display: flex; align-items: center; gap: 12px; margin: 14px 0; font-size: 1.1rem; }
+.quiz-result { text-align: center; margin: 24px 0; }
+.quiz-options { display: grid; gap: 8px; margin-bottom: 12px; }
+.phrase[data-id^="fr"] { display: flex; align-items: center; gap: 12px; }
+.quiz-option.right { background: rgba(47, 158, 99, 0.28); border-color: #2fa35f; }
+.quiz-option.wrong { background: rgba(229, 72, 77, 0.28); border-color: #e5484d; }

@@ -112,3 +112,43 @@ export function playKid(file: string, word: string): void {
   a.addEventListener('error', second, { once: true });
   a.play().catch(second);
 }
+
+/** 播放任意内置音频文件,没有文件时用系统语音读 text */
+export function playFile(url: string, text: string, slow = false): void {
+  if (current) current.pause();
+  const a = new Audio(url);
+  a.playbackRate = slow ? 0.7 : 1;
+  current = a;
+  const fallback = () => speakFallback(text, slow ? 0.55 : 0.85);
+  a.addEventListener('error', fallback, { once: true });
+  a.play().catch(fallback);
+}
+
+/** 同上,但等播完再返回(角色扮演里对方说完才轮到你) */
+export function playFileAsync(url: string, text: string): Promise<void> {
+  return new Promise((resolve) => {
+    if (current) current.pause();
+    const a = new Audio(url);
+    current = a;
+    let settled = false;
+    const done = () => {
+      if (!settled) {
+        settled = true;
+        resolve();
+      }
+    };
+    const speak = () => {
+      if (!('speechSynthesis' in window)) return void setTimeout(done, 1500);
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = 0.85;
+      u.onend = done;
+      u.onerror = done;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+    };
+    a.addEventListener('ended', done, { once: true });
+    a.addEventListener('error', speak, { once: true });
+    a.play().catch(speak);
+  });
+}
