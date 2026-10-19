@@ -9,6 +9,14 @@
   --hard: #f08c00;
   --good: #2f9e63;
   --easy: #2f6fed;
+  --line2: #ccd;
+  --ok-bg: #d9f2e1;
+  --bad-bg: #fde2e2;
+  --blue-bg: #eaf1ff;
+  --blue-bg2: #e3efff;
+  --blue-line: #cfe3ff;
+  --warm-bg: #fff8e6;
+  --warm-line: #ffd27a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,6 +26,14 @@
     --ink: #e8ecf4;
     --quiet: #98a2b3;
     --line: #2a3242;
+    --line2: #3a4458;
+    --ok-bg: #1d3a2b;
+    --bad-bg: #432224;
+    --blue-bg: #1e2b4a;
+    --blue-bg2: #263a66;
+    --blue-line: #2d4170;
+    --warm-bg: #3a2f14;
+    --warm-line: #7a5d1c;
   }
 }
 
@@ -145,22 +161,22 @@ button.big { display: block; width: 100%; font-size: 20px; padding: 18px; margin
 .settings h2 { font-size: 16px; margin: 28px 0 4px; }
 .settings .secondary { margin: 8px 8px 0 0; }
 
-.example { margin-top: 14px; padding-top: 12px; border-top: 1px dashed #ccd; text-align: left; }
+.example { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line2); text-align: left; }
 .example-en { font-size: 18px; line-height: 1.4; }
-.example-zh { color: #667; font-size: 15px; margin-top: 4px; }
+.example-zh { color: var(--quiet); font-size: 15px; margin-top: 4px; }
 
 .phoneme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 10px; margin: 8px 0 16px; }
-.phoneme { min-height: 56px; font-size: 22px; border-radius: 14px; border: 1px solid #ccd; background: #fff; }
-.phoneme.done { background: #d9f2e1; border-color: #2fa35f; }
+.phoneme { min-height: 56px; font-size: 22px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); }
+.phoneme.done { background: var(--ok-bg); border-color: #2fa35f; }
 .example-words { display: grid; gap: 10px; margin-bottom: 16px; }
-.example-word { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 16px; border-radius: 14px; border: 1px solid #ccd; background: #fff; font-size: 18px; text-align: left; }
-.example-word span { color: #667; flex: 1; }
+.example-word { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 16px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); font-size: 18px; text-align: left; }
+.example-word span { color: var(--quiet); flex: 1; }
 .example-word i { font-style: normal; color: #2f6fed; font-size: 14px; }
 .quiz-options { display: grid; gap: 12px; margin: 16px 0; }
-.option { min-height: 64px; font-size: 22px; border-radius: 14px; border: 1px solid #ccd; background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-.option small { color: #667; font-size: 14px; }
-.option.right { background: #d9f2e1; border-color: #2fa35f; }
-.option.wrong { background: #fde2e2; border-color: #d33; }
+.option { min-height: 64px; font-size: 22px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.option small { color: var(--quiet); font-size: 14px; }
+.option.right { background: var(--ok-bg); border-color: #2fa35f; }
+.option.wrong { background: var(--bad-bg); border-color: #d33; }
 
 .speak-row { display: flex; gap: 10px; justify-content: center; }
 .progress { margin-top: 28px; }
@@ -169,14 +185,14 @@ button.big { display: block; width: 100%; font-size: 20px; padding: 18px; margin
 .progress-bar div { height: 100%; background: #2fa35f; }
 
 .scene-list, .phrase-list { display: grid; gap: 10px; margin: 8px 0 16px; }
-.scene { display: grid; gap: 2px; text-align: left; padding: 14px 16px; border-radius: 14px; border: 1px solid #ccd; background: #fff; font-size: 16px; }
-.scene span { color: #667; font-size: 13px; }
+.scene { display: grid; gap: 2px; text-align: left; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); font-size: 16px; }
+.scene span { color: var(--quiet); font-size: 13px; }
 .scene i { font-style: normal; color: #2f6fed; font-size: 13px; }
-.scene.done { background: #d9f2e1; border-color: #2fa35f; }
-.phrase { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 14px; border: 1px solid #ccd; background: #fff; }
+.scene.done { background: var(--ok-bg); border-color: #2fa35f; }
+.phrase { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); }
 .phrase.learned { background: #eaf7ee; border-color: #2fa35f; }
 .phrase-text { flex: 1; text-align: left; background: none; border: 0; display: grid; gap: 2px; font-size: 17px; padding: 4px; }
-.phrase-text > span { color: #667; font-size: 14px; }
+.phrase-text > span { color: var(--quiet); font-size: 14px; }
 .phrase-btns { display: grid; gap: 2px; }
 .tagline { color: var(--quiet); margin: -4px 0 12px; font-size: 14px; letter-spacing: 0.1em; }
 
@@ -186,31 +202,31 @@ button.big { display: block; width: 100%; font-size: 20px; padding: 18px; margin
 .lookup-meaning { font-size: 15px; line-height: 1.4; }
 .lookup .link { color: #9ec0ff; }
 .dialog { display: grid; gap: 8px; margin: 8px 0 14px; }
-.bubble { display: grid; gap: 2px; max-width: 86%; padding: 10px 12px; border-radius: 16px; background: #fff; border: 1px solid #ccd; }
+.bubble { display: grid; gap: 2px; max-width: 86%; padding: 10px 12px; border-radius: 16px; background: var(--card); border: 1px solid var(--line2); }
 .bubble.a { justify-self: start; }
-.bubble.b { justify-self: end; background: #eaf1ff; }
-.bubble > span { color: #667; font-size: 14px; }
+.bubble.b { justify-self: end; background: var(--blue-bg); }
+.bubble > span { color: var(--quiet); font-size: 14px; }
 .bubble.playing { outline: 2px solid #2f6fed; }
-.related { margin-top: 12px; padding-top: 10px; border-top: 1px dashed #ccd; text-align: left; }
-.related-title { color: #667; font-size: 13px; margin-bottom: 4px; }
+.related { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line2); text-align: left; }
+.related-title { color: var(--quiet); font-size: 13px; margin-bottom: 4px; }
 .related-line { display: grid; gap: 1px; padding: 6px 0; }
-.related-line > span { color: #667; font-size: 14px; }
+.related-line > span { color: var(--quiet); font-size: 14px; }
 .kid-groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 12px; }
-.kid-group { display: grid; place-items: center; gap: 4px; padding: 18px 8px; border-radius: 20px; border: 2px solid #ffd27a; background: #fff8e6; font-size: 16px; }
+.kid-group { display: grid; place-items: center; gap: 4px; padding: 18px 8px; border-radius: 20px; border: 2px solid var(--warm-line); background: var(--card)8e6; font-size: 16px; }
 .kid-emoji { font-size: 56px; line-height: 1; }
 .kid-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0; }
-.kid-card { display: grid; place-items: center; gap: 2px; padding: 12px 4px; border-radius: 18px; border: 2px solid #cfe3ff; background: #f3f8ff; }
-.kid-card.shown { border-color: #2f6fed; background: #e3efff; }
+.kid-card { display: grid; place-items: center; gap: 2px; padding: 12px 4px; border-radius: 18px; border: 2px solid var(--blue-line); background: var(--blue-bg); }
+.kid-card.shown { border-color: #2f6fed; background: var(--blue-bg2); }
 .kid-card .kid-emoji { font-size: 44px; }
 .kid-card b { font-size: 16px; }
-.kid-card small { color: #667; font-size: 12px; }
-.kid-replay { display: block; margin: 12px auto; width: 96px; height: 96px; border-radius: 50%; font-size: 44px; border: 3px solid #2f6fed; background: #fff; }
+.kid-card small { color: var(--quiet); font-size: 12px; }
+.kid-replay { display: block; margin: 12px auto; width: 96px; height: 96px; border-radius: 50%; font-size: 44px; border: 3px solid #2f6fed; background: var(--card); }
 .kid-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
-.kid-option { aspect-ratio: 1; font-size: 56px; border-radius: 20px; border: 3px solid #ccd; background: #fff; }
-.kid-option.right { background: #d9f2e1; border-color: #2fa35f; }
-.kid-option.wrong { background: #fde2e2; border-color: #d33; }
+.kid-option { aspect-ratio: 1; font-size: 56px; border-radius: 20px; border: 3px solid var(--line2); background: var(--card); }
+.kid-option.right { background: var(--ok-bg); border-color: #2fa35f; }
+.kid-option.wrong { background: var(--bad-bg); border-color: #d33; }
 .kid-word { text-align: center; font-size: 28px; font-weight: 700; }
-.lookup .secondary { color: #1f2a44; }
+.lookup .secondary { background: #fff; color: #1f2a44; }
 
 /* 学习页:一屏放下,不用上下滑。答案按钮固定在底部,卡片里放不下时才在卡片内部滚动 */
 .study {
