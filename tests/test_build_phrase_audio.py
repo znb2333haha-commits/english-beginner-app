@@ -34,6 +34,18 @@ class PhraseAudioTests(unittest.TestCase):
         self.assertIn('go', ids)  # went/going 等词形对应原词
         self.assertTrue(all(i.isalpha() for i in ids))
 
+    def test_frames_size_and_unique(self):
+        items = bpa.load_frames()
+        self.assertGreaterEqual(len(items), 160)
+        self.assertEqual(len({i['id'] for i in items}), len(items))
+
+    def test_linking_has_fast_and_slow(self):
+        items = bpa.load_linking()
+        ids = {i['id'] for i in items}
+        self.assertIn('lk01', ids)
+        self.assertIn('lk01-slow', ids)
+        self.assertTrue(all(i['rate'] == '-35%' for i in items if i['id'].endswith('-slow')))
+
     def test_missing_skips_existing(self):
         items = bpa.load_phrases()[:3]
         with tempfile.TemporaryDirectory() as d:

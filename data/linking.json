@@ -1,0 +1,24 @@
+{
+ "items": [
+  {"id":"lk01","en":"What do you want to do?","fast":"Whaddaya wanna do?","sounds":"Whaddaya wanna do?","zh":"你想做什么?","note":"do you 连成 “达呀”,want to 弱读成 wanna。"},
+  {"id":"lk02","en":"I want to go home.","fast":"I wanna go home.","sounds":"I wanna go home.","zh":"我想回家。","note":"want to → wanna,to 几乎听不到。"},
+  {"id":"lk03","en":"I am going to buy it.","fast":"I'm gonna buy it.","sounds":"I'm gonna buy it.","zh":"我打算买它。","note":"going to → gonna,表示打算。"},
+  {"id":"lk04","en":"Give me a minute.","fast":"Gimme a minute.","sounds":"Gimme a minute.","zh":"等我一下。","note":"give me 连成 gimme。"},
+  {"id":"lk05","en":"Let me see.","fast":"Lemme see.","sounds":"Lemme see.","zh":"让我想想/看看。","note":"let me 连成 lemme。"},
+  {"id":"lk06","en":"Did you eat?","fast":"Didja eat?","sounds":"Didja eat?","zh":"你吃了吗?","note":"did you 连成 “迪嘉”。"},
+  {"id":"lk07","en":"Could you help me?","fast":"Couldja help me?","sounds":"Couldja help me?","zh":"你能帮我吗?","note":"could you 连成 “酷嘉”。"},
+  {"id":"lk08","en":"Would you like some tea?","fast":"Wouldja like some tea?","sounds":"Wouldja like some tea?","zh":"要喝点茶吗?","note":"would you 连成 “伍嘉”。"},
+  {"id":"lk09","en":"What are you doing?","fast":"Whatcha doing?","sounds":"Whatcha doing?","zh":"你在做什么?","note":"What are you → Whatcha,很口语。"},
+  {"id":"lk10","en":"Come on in.","fast":"Come on in.","sounds":"Co-mon-in","zh":"请进。","note":"on 和 in 连在一起读,中间没有停顿。"},
+  {"id":"lk11","en":"Pick it up.","fast":"Pick it up.","sounds":"Pi-ki-tup","zh":"把它捡起来。","note":"辅音和后面的元音连读:k+it → “基特”。"},
+  {"id":"lk12","en":"Turn it off.","fast":"Turn it off.","sounds":"Tur-ni-toff","zh":"把它关掉。","note":"n+it、t+off 都连起来读。"},
+  {"id":"lk13","en":"Check it out.","fast":"Check it out.","sounds":"Che-ki-tout","zh":"看看这个。","note":"三个词连成一串,像一个长单词。"},
+  {"id":"lk14","en":"Not at all.","fast":"Not at all.","sounds":"No-ta-tall","zh":"一点也不(别客气)。","note":"t 连到后面的元音上。"},
+  {"id":"lk15","en":"An apple a day.","fast":"An apple a day.","sounds":"A-na-pple-a-day","zh":"一天一个苹果。","note":"an 的 n 连到 apple 的 a 上。"},
+  {"id":"lk16","en":"I have to go.","fast":"I hafta go.","sounds":"I hafta go.","zh":"我得走了。","note":"have to → hafta,v 变成 f 的音。"},
+  {"id":"lk17","en":"You have got to try it.","fast":"You've gotta try it.","sounds":"You've gotta try it.","zh":"你一定要试试。","note":"got to → gotta,表示必须。"},
+  {"id":"lk18","en":"A cup of tea.","fast":"A cuppa tea.","sounds":"A cuppa tea.","zh":"一杯茶。","note":"of 弱读成很轻的 “呃”,听起来 cup-a。"},
+  {"id":"lk19","en":"I can come.","fast":"I can come.","sounds":"I k'n come","zh":"我可以来。","note":"肯定句里 can 弱读很轻;can't 则清楚、重读。"},
+  {"id":"lk20","en":"Where did you go?","fast":"Where'dja go?","sounds":"Where'dja go?","zh":"你去哪了?","note":"did you 连成 “迪嘉”,整句很快。"}
+ ]
+}

@@ -18,6 +18,8 @@ OUT = ROOT / 'public/audio/phrases'
 KIDS_OUT = ROOT / 'public/audio/kids'
 EX_OUT = ROOT / 'public/audio/examples'
 WORD_OUT = ROOT / 'public/audio'
+FRAME_OUT = ROOT / 'public/audio/frames'
+LINK_OUT = ROOT / 'public/audio/linking'
 
 
 def load_phrases(path=None):
@@ -85,6 +87,28 @@ def load_lookup_words(words_path=None, phrases_path=None):
     return out
 
 
+def load_frames(path=None):
+    """句型替换练习:每个填空组成的完整句子 → frames/<id>.mp3"""
+    data = json.loads((path or ROOT / 'data/frames.json').read_text(encoding='utf-8'))
+    items = [{'id': f['id'], 'en': f['en']} for fr in data['frames'] for f in fr['fills']]
+    ids = [i['id'] for i in items]
+    if len(ids) != len(set(ids)) or any(not re.fullmatch(r'fr\d+-\d+', i) for i in ids):
+        raise ValueError('句型 id 重复或文件名不安全')
+    return items
+
+
+def load_linking(path=None):
+    """连读/弱读:自然语速(口语写法)→ linking/<id>.mp3;逐词慢速(完整写法)→ linking/<id>-slow.mp3"""
+    data = json.loads((path or ROOT / 'data/linking.json').read_text(encoding='utf-8'))
+    items = []
+    for it in data['items']:
+        if not re.fullmatch(r'lk\d+', it['id']):
+            raise ValueError('连读 id 不安全: ' + it['id'])
+        items.append({'id': it['id'], 'en': it['fast']})
+        items.append({'id': it['id'] + '-slow', 'en': it['en'], 'rate': '-35%'})
+    return items
+
+
 def missing(items, out=OUT):
     return [p for p in items if not (out / f"{p['id']}.mp3").exists() or (out / f"{p['id']}.mp3").stat().st_size < 1000]
 
@@ -100,7 +124,7 @@ async def synth(items, out=OUT, retries=3):
             for attempt in range(retries):
                 tmp = out / f"{p['id']}.part"
                 try:
-                    await edge_tts.Communicate(p['en'], VOICE).save(str(tmp))
+                    await edge_tts.Communicate(p['en'], VOICE, rate=p.get('rate', '+0%')).save(str(tmp))
                     if tmp.stat().st_size < 1000:
                         raise RuntimeError('音频太小')
                     tmp.replace(out / f"{p['id']}.mp3")
@@ -122,7 +146,9 @@ def main():
     args = ap.parse_args()
     jobs = [('句子', missing(load_phrases()), OUT), ('儿童词', missing(load_kids(), KIDS_OUT), KIDS_OUT),
             ('例句', missing(load_examples(), EX_OUT), EX_OUT),
-            ('查词单词', missing(load_lookup_words(), WORD_OUT), WORD_OUT)]
+            ('查词单词', missing(load_lookup_words(), WORD_OUT), WORD_OUT),
+            ('句型', missing(load_frames(), FRAME_OUT), FRAME_OUT),
+            ('连读', missing(load_linking(), LINK_OUT), LINK_OUT)]
     total_failed = 0
     for name, todo, out in jobs:
         print(f'需要生成 {len(todo)} 个{name}音频')
