@@ -211,3 +211,34 @@ button.big { display: block; width: 100%; font-size: 20px; padding: 18px; margin
 .kid-option.wrong { background: #fde2e2; border-color: #d33; }
 .kid-word { text-align: center; font-size: 28px; font-weight: 700; }
 .lookup .secondary { color: #1f2a44; }
+
+/* 学习页:一屏放下,不用上下滑。答案按钮固定在底部,卡片里放不下时才在卡片内部滚动 */
+.study {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - 40px - env(safe-area-inset-bottom));
+}
+.study header { flex: none; }
+.study .card {
+  flex: 1;
+  min-height: 0;
+  margin: 8px 0;
+  padding: 16px 18px;
+  overflow-y: auto;
+}
+.study .word { font-size: 40px; line-height: 1.15; }
+.study .phonetic { font-size: 18px; margin: 4px 0 10px; }
+.study .speak-row button { padding: 8px 18px; }
+.study .meaning { margin-top: 12px; padding-top: 10px; font-size: 17px; line-height: 1.5; }
+.study .example { margin-top: 8px; padding-top: 8px; }
+.study .example-en { font-size: 17px; line-height: 1.3; }
+.study .example-zh { font-size: 14px; margin-top: 2px; }
+.study .example .link { padding: 4px 0; }
+.study .related { margin-top: 6px; padding-top: 6px; }
+.study .related-title { font-size: 12px; margin-bottom: 0; }
+.study .related-line { padding: 3px 0; }
+.study .related-line > b { font-size: 16px; }
+.study .related-line > span { font-size: 13px; }
+.study .grades { flex: none; }
+.study .grade { padding: 10px 2px; }
+.study > button.big { flex: none; margin-top: 8px; }
