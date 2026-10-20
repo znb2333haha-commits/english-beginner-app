@@ -18,11 +18,21 @@ OUT = ROOT / 'public/audio/phrases'
 KIDS_OUT = ROOT / 'public/audio/kids'
 EX_OUT = ROOT / 'public/audio/examples'
 WORD_OUT = ROOT / 'public/audio'
+FRAME_OUT = ROOT / 'public/audio/frames'
+LINK_OUT = ROOT / 'public/audio/linking'
+GUY_OUT = ROOT / 'public/audio/phrases-guy'
+ARIA_OUT = ROOT / 'public/audio/phrases-aria'
+GUY = 'en-US-GuyNeural'
+ARIA = 'en-US-AriaNeural'
 
 
 def load_phrases(path=None):
     data = json.loads((path or ROOT / 'data/phrases.json').read_text(encoding='utf-8'))
-    items = [p for sc in data['scenes'] for p in sc['phrases'] + sc.get('dialog', [])]
+    scenes = list(data['scenes'])
+    mine = ROOT / 'data/mine.json'
+    if path is None and mine.exists():
+        scenes += json.loads(mine.read_text(encoding='utf-8')).get('scenes', [])
+    items = [p for sc in scenes for p in sc['phrases'] + sc.get('dialog', [])]
     ids = [p['id'] for p in items]
     if len(ids) != len(set(ids)) or any(not re.fullmatch(r'[a-z]+-d?\d+', i) for i in ids):
         raise ValueError('句子 id 重复或文件名不安全')
@@ -85,11 +95,33 @@ def load_lookup_words(words_path=None, phrases_path=None):
     return out
 
 
+def load_frames(path=None):
+    """句型替换练习:每个填空组成的完整句子 → frames/<id>.mp3"""
+    data = json.loads((path or ROOT / 'data/frames.json').read_text(encoding='utf-8'))
+    items = [{'id': f['id'], 'en': f['en']} for fr in data['frames'] for f in fr['fills']]
+    ids = [i['id'] for i in items]
+    if len(ids) != len(set(ids)) or any(not re.fullmatch(r'fr\d+-\d+', i) for i in ids):
+        raise ValueError('句型 id 重复或文件名不安全')
+    return items
+
+
+def load_linking(path=None):
+    """连读/弱读:自然语速(口语写法)→ linking/<id>.mp3;逐词慢速(完整写法)→ linking/<id>-slow.mp3"""
+    data = json.loads((path or ROOT / 'data/linking.json').read_text(encoding='utf-8'))
+    items = []
+    for it in data['items']:
+        if not re.fullmatch(r'lk\d+', it['id']):
+            raise ValueError('连读 id 不安全: ' + it['id'])
+        items.append({'id': it['id'], 'en': it['fast']})
+        items.append({'id': it['id'] + '-slow', 'en': it['en'], 'rate': '-35%'})
+    return items
+
+
 def missing(items, out=OUT):
     return [p for p in items if not (out / f"{p['id']}.mp3").exists() or (out / f"{p['id']}.mp3").stat().st_size < 1000]
 
 
-async def synth(items, out=OUT, retries=3):
+async def synth(items, out=OUT, retries=3, voice=VOICE):
     import edge_tts
     out.mkdir(parents=True, exist_ok=True)
     sem = asyncio.Semaphore(4)
@@ -100,7 +132,7 @@ async def synth(items, out=OUT, retries=3):
             for attempt in range(retries):
                 tmp = out / f"{p['id']}.part"
                 try:
-                    await edge_tts.Communicate(p['en'], VOICE).save(str(tmp))
+                    await edge_tts.Communicate(p['en'], voice, rate=p.get('rate', '+0%')).save(str(tmp))
                     if tmp.stat().st_size < 1000:
                         raise RuntimeError('音频太小')
                     tmp.replace(out / f"{p['id']}.mp3")
@@ -122,13 +154,17 @@ def main():
     args = ap.parse_args()
     jobs = [('句子', missing(load_phrases()), OUT), ('儿童词', missing(load_kids(), KIDS_OUT), KIDS_OUT),
             ('例句', missing(load_examples(), EX_OUT), EX_OUT),
-            ('查词单词', missing(load_lookup_words(), WORD_OUT), WORD_OUT)]
+            ('查词单词', missing(load_lookup_words(), WORD_OUT), WORD_OUT),
+            ('句型', missing(load_frames(), FRAME_OUT), FRAME_OUT),
+            ('连读', missing(load_linking(), LINK_OUT), LINK_OUT),
+            ('句子(男声 Guy)', missing(load_phrases(), GUY_OUT), GUY_OUT, GUY),
+            ('句子(女声 Aria)', missing(load_phrases(), ARIA_OUT), ARIA_OUT, ARIA)]
     total_failed = 0
-    for name, todo, out in jobs:
+    for name, todo, out, *v in jobs:
         print(f'需要生成 {len(todo)} 个{name}音频')
         if args.dry_run or not todo:
             continue
-        failed = asyncio.run(synth(todo, out))
+        failed = asyncio.run(synth(todo, out, voice=v[0] if v else VOICE))
         for pid, err in failed:
             print('失败:', pid, err)
         print(f'{name}完成 {len(todo) - len(failed)},失败 {len(failed)}')

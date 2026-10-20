@@ -1,0 +1,1348 @@
+{
+ "frames": [
+  {
+   "id": "fr01",
+   "title": "我想要……",
+   "en": "I want {}.",
+   "zh": "我想要{}。",
+   "fills": [
+    {
+     "id": "fr01-1",
+     "fill": "a coffee",
+     "zh": "一杯咖啡",
+     "en": "I want a coffee.",
+     "zhFull": "我想要一杯咖啡。"
+    },
+    {
+     "id": "fr01-2",
+     "fill": "some water",
+     "zh": "一些水",
+     "en": "I want some water.",
+     "zhFull": "我想要一些水。"
+    },
+    {
+     "id": "fr01-3",
+     "fill": "a taxi",
+     "zh": "一辆出租车",
+     "en": "I want a taxi.",
+     "zhFull": "我想要一辆出租车。"
+    },
+    {
+     "id": "fr01-4",
+     "fill": "a small one",
+     "zh": "一个小号的",
+     "en": "I want a small one.",
+     "zhFull": "我想要一个小号的。"
+    },
+    {
+     "id": "fr01-5",
+     "fill": "this one",
+     "zh": "这个",
+     "en": "I want this one.",
+     "zhFull": "我想要这个。"
+    },
+    {
+     "id": "fr01-6",
+     "fill": "a window seat",
+     "zh": "靠窗的座位",
+     "en": "I want a window seat.",
+     "zhFull": "我想要靠窗的座位。"
+    },
+    {
+     "id": "fr01-7",
+     "fill": "a bag",
+     "zh": "一个袋子",
+     "en": "I want a bag.",
+     "zhFull": "我想要一个袋子。"
+    },
+    {
+     "id": "fr01-8",
+     "fill": "the check",
+     "zh": "账单",
+     "en": "I want the check.",
+     "zhFull": "我想要账单。"
+    }
+   ]
+  },
+  {
+   "id": "fr02",
+   "title": "请给我……",
+   "en": "I would like {}, please.",
+   "zh": "请给我{}。",
+   "fills": [
+    {
+     "id": "fr02-1",
+     "fill": "a cup of tea",
+     "zh": "一杯茶",
+     "en": "I would like a cup of tea, please.",
+     "zhFull": "请给我一杯茶。"
+    },
+    {
+     "id": "fr02-2",
+     "fill": "the menu",
+     "zh": "菜单",
+     "en": "I would like the menu, please.",
+     "zhFull": "请给我菜单。"
+    },
+    {
+     "id": "fr02-3",
+     "fill": "a glass of water",
+     "zh": "一杯水",
+     "en": "I would like a glass of water, please.",
+     "zhFull": "请给我一杯水。"
+    },
+    {
+     "id": "fr02-4",
+     "fill": "a receipt",
+     "zh": "一张收据",
+     "en": "I would like a receipt, please.",
+     "zhFull": "请给我一张收据。"
+    },
+    {
+     "id": "fr02-5",
+     "fill": "two tickets",
+     "zh": "两张票",
+     "en": "I would like two tickets, please.",
+     "zhFull": "请给我两张票。"
+    },
+    {
+     "id": "fr02-6",
+     "fill": "a table for two",
+     "zh": "一张两人桌",
+     "en": "I would like a table for two, please.",
+     "zhFull": "请给我一张两人桌。"
+    },
+    {
+     "id": "fr02-7",
+     "fill": "the bill",
+     "zh": "账单",
+     "en": "I would like the bill, please.",
+     "zhFull": "请给我账单。"
+    },
+    {
+     "id": "fr02-8",
+     "fill": "some help",
+     "zh": "一点帮助",
+     "en": "I would like some help, please.",
+     "zhFull": "请给我一点帮助。"
+    }
+   ]
+  },
+  {
+   "id": "fr03",
+   "title": "……在哪里?",
+   "en": "Where is {}?",
+   "zh": "{}在哪里?",
+   "fills": [
+    {
+     "id": "fr03-1",
+     "fill": "the bathroom",
+     "zh": "洗手间",
+     "en": "Where is the bathroom?",
+     "zhFull": "洗手间在哪里?"
+    },
+    {
+     "id": "fr03-2",
+     "fill": "the station",
+     "zh": "车站",
+     "en": "Where is the station?",
+     "zhFull": "车站在哪里?"
+    },
+    {
+     "id": "fr03-3",
+     "fill": "the exit",
+     "zh": "出口",
+     "en": "Where is the exit?",
+     "zhFull": "出口在哪里?"
+    },
+    {
+     "id": "fr03-4",
+     "fill": "my seat",
+     "zh": "我的座位",
+     "en": "Where is my seat?",
+     "zhFull": "我的座位在哪里?"
+    },
+    {
+     "id": "fr03-5",
+     "fill": "the nearest bank",
+     "zh": "最近的银行",
+     "en": "Where is the nearest bank?",
+     "zhFull": "最近的银行在哪里?"
+    },
+    {
+     "id": "fr03-6",
+     "fill": "the bus stop",
+     "zh": "公交站",
+     "en": "Where is the bus stop?",
+     "zhFull": "公交站在哪里?"
+    },
+    {
+     "id": "fr03-7",
+     "fill": "the pharmacy",
+     "zh": "药店",
+     "en": "Where is the pharmacy?",
+     "zhFull": "药店在哪里?"
+    },
+    {
+     "id": "fr03-8",
+     "fill": "the elevator",
+     "zh": "电梯",
+     "en": "Where is the elevator?",
+     "zhFull": "电梯在哪里?"
+    }
+   ]
+  },
+  {
+   "id": "fr04",
+   "title": "我可以……吗?",
+   "en": "Can I {}?",
+   "zh": "我可以{}吗?",
+   "fills": [
+    {
+     "id": "fr04-1",
+     "fill": "sit here",
+     "zh": "坐这里",
+     "en": "Can I sit here?",
+     "zhFull": "我可以坐这里吗?"
+    },
+    {
+     "id": "fr04-2",
+     "fill": "try this on",
+     "zh": "试穿这个",
+     "en": "Can I try this on?",
+     "zhFull": "我可以试穿这个吗?"
+    },
+    {
+     "id": "fr04-3",
+     "fill": "pay by card",
+     "zh": "刷卡付款",
+     "en": "Can I pay by card?",
+     "zhFull": "我可以刷卡付款吗?"
+    },
+    {
+     "id": "fr04-4",
+     "fill": "have a bag",
+     "zh": "要一个袋子",
+     "en": "Can I have a bag?",
+     "zhFull": "我可以要一个袋子吗?"
+    },
+    {
+     "id": "fr04-5",
+     "fill": "use your phone",
+     "zh": "用一下你的手机",
+     "en": "Can I use your phone?",
+     "zhFull": "我可以用一下你的手机吗?"
+    },
+    {
+     "id": "fr04-6",
+     "fill": "take a photo",
+     "zh": "拍张照",
+     "en": "Can I take a photo?",
+     "zhFull": "我可以拍张照吗?"
+    },
+    {
+     "id": "fr04-7",
+     "fill": "come in",
+     "zh": "进来",
+     "en": "Can I come in?",
+     "zhFull": "我可以进来吗?"
+    },
+    {
+     "id": "fr04-8",
+     "fill": "ask a question",
+     "zh": "问个问题",
+     "en": "Can I ask a question?",
+     "zhFull": "我可以问个问题吗?"
+    }
+   ]
+  },
+  {
+   "id": "fr05",
+   "title": "……多少钱?",
+   "en": "How much is {}?",
+   "zh": "{}多少钱?",
+   "fills": [
+    {
+     "id": "fr05-1",
+     "fill": "this",
+     "zh": "这个",
+     "en": "How much is this?",
+     "zhFull": "这个多少钱?"
+    },
+    {
+     "id": "fr05-2",
+     "fill": "that shirt",
+     "zh": "那件衬衫",
+     "en": "How much is that shirt?",
+     "zhFull": "那件衬衫多少钱?"
+    },
+    {
+     "id": "fr05-3",
+     "fill": "the coffee",
+     "zh": "咖啡",
+     "en": "How much is the coffee?",
+     "zhFull": "咖啡多少钱?"
+    },
+    {
+     "id": "fr05-4",
+     "fill": "a ticket",
+     "zh": "一张票",
+     "en": "How much is a ticket?",
+     "zhFull": "一张票多少钱?"
+    },
+    {
+     "id": "fr05-5",
+     "fill": "the room",
+     "zh": "房间",
+     "en": "How much is the room?",
+     "zhFull": "房间多少钱?"
+    },
+    {
+     "id": "fr05-6",
+     "fill": "a bottle of water",
+     "zh": "一瓶水",
+     "en": "How much is a bottle of water?",
+     "zhFull": "一瓶水多少钱?"
+    },
+    {
+     "id": "fr05-7",
+     "fill": "the small one",
+     "zh": "小号的",
+     "en": "How much is the small one?",
+     "zhFull": "小号的多少钱?"
+    },
+    {
+     "id": "fr05-8",
+     "fill": "everything",
+     "zh": "全部",
+     "en": "How much is everything?",
+     "zhFull": "全部多少钱?"
+    }
+   ]
+  },
+  {
+   "id": "fr06",
+   "title": "你们有……吗?",
+   "en": "Do you have {}?",
+   "zh": "你们有{}吗?",
+   "fills": [
+    {
+     "id": "fr06-1",
+     "fill": "a menu in English",
+     "zh": "英文菜单",
+     "en": "Do you have a menu in English?",
+     "zhFull": "你们有英文菜单吗?"
+    },
+    {
+     "id": "fr06-2",
+     "fill": "a bigger size",
+     "zh": "大一点的尺码",
+     "en": "Do you have a bigger size?",
+     "zhFull": "你们有大一点的尺码吗?"
+    },
+    {
+     "id": "fr06-3",
+     "fill": "any other colors",
+     "zh": "别的颜色",
+     "en": "Do you have any other colors?",
+     "zhFull": "你们有别的颜色吗?"
+    },
+    {
+     "id": "fr06-4",
+     "fill": "Wi-Fi",
+     "zh": "无线网",
+     "en": "Do you have Wi-Fi?",
+     "zhFull": "你们有无线网吗?"
+    },
+    {
+     "id": "fr06-5",
+     "fill": "a table by the window",
+     "zh": "靠窗的桌子",
+     "en": "Do you have a table by the window?",
+     "zhFull": "你们有靠窗的桌子吗?"
+    },
+    {
+     "id": "fr06-6",
+     "fill": "change for twenty",
+     "zh": "二十的零钱",
+     "en": "Do you have change for twenty?",
+     "zhFull": "你们有二十的零钱吗?"
+    },
+    {
+     "id": "fr06-7",
+     "fill": "something cheaper",
+     "zh": "便宜点的",
+     "en": "Do you have something cheaper?",
+     "zhFull": "你们有便宜点的吗?"
+    },
+    {
+     "id": "fr06-8",
+     "fill": "a phone charger",
+     "zh": "充电器",
+     "en": "Do you have a phone charger?",
+     "zhFull": "你们有充电器吗?"
+    }
+   ]
+  },
+  {
+   "id": "fr07",
+   "title": "我在找……",
+   "en": "I am looking for {}.",
+   "zh": "我在找{}。",
+   "fills": [
+    {
+     "id": "fr07-1",
+     "fill": "a gift",
+     "zh": "礼物",
+     "en": "I am looking for a gift.",
+     "zhFull": "我在找礼物。"
+    },
+    {
+     "id": "fr07-2",
+     "fill": "a hotel",
+     "zh": "酒店",
+     "en": "I am looking for a hotel.",
+     "zhFull": "我在找酒店。"
+    },
+    {
+     "id": "fr07-3",
+     "fill": "the post office",
+     "zh": "邮局",
+     "en": "I am looking for the post office.",
+     "zhFull": "我在找邮局。"
+    },
+    {
+     "id": "fr07-4",
+     "fill": "my friend",
+     "zh": "我的朋友",
+     "en": "I am looking for my friend.",
+     "zhFull": "我在找我的朋友。"
+    },
+    {
+     "id": "fr07-5",
+     "fill": "a good restaurant",
+     "zh": "一家好餐馆",
+     "en": "I am looking for a good restaurant.",
+     "zhFull": "我在找一家好餐馆。"
+    },
+    {
+     "id": "fr07-6",
+     "fill": "a pair of shoes",
+     "zh": "一双鞋",
+     "en": "I am looking for a pair of shoes.",
+     "zhFull": "我在找一双鞋。"
+    },
+    {
+     "id": "fr07-7",
+     "fill": "the manager",
+     "zh": "经理",
+     "en": "I am looking for the manager.",
+     "zhFull": "我在找经理。"
+    },
+    {
+     "id": "fr07-8",
+     "fill": "the ticket line",
+     "zh": "买票的队伍",
+     "en": "I am looking for the ticket line.",
+     "zhFull": "我在找买票的队伍。"
+    }
+   ]
+  },
+  {
+   "id": "fr08",
+   "title": "我需要……",
+   "en": "I need {}.",
+   "zh": "我需要{}。",
+   "fills": [
+    {
+     "id": "fr08-1",
+     "fill": "help",
+     "zh": "帮助",
+     "en": "I need help.",
+     "zhFull": "我需要帮助。"
+    },
+    {
+     "id": "fr08-2",
+     "fill": "a doctor",
+     "zh": "医生",
+     "en": "I need a doctor.",
+     "zhFull": "我需要医生。"
+    },
+    {
+     "id": "fr08-3",
+     "fill": "more time",
+     "zh": "更多时间",
+     "en": "I need more time.",
+     "zhFull": "我需要更多时间。"
+    },
+    {
+     "id": "fr08-4",
+     "fill": "a pen",
+     "zh": "一支笔",
+     "en": "I need a pen.",
+     "zhFull": "我需要一支笔。"
+    },
+    {
+     "id": "fr08-5",
+     "fill": "to sit down",
+     "zh": "坐一下",
+     "en": "I need to sit down.",
+     "zhFull": "我需要坐一下。"
+    },
+    {
+     "id": "fr08-6",
+     "fill": "to go now",
+     "zh": "现在走",
+     "en": "I need to go now.",
+     "zhFull": "我需要现在走。"
+    },
+    {
+     "id": "fr08-7",
+     "fill": "some rest",
+     "zh": "休息一下",
+     "en": "I need some rest.",
+     "zhFull": "我需要休息一下。"
+    },
+    {
+     "id": "fr08-8",
+     "fill": "your advice",
+     "zh": "你的建议",
+     "en": "I need your advice.",
+     "zhFull": "我需要你的建议。"
+    }
+   ]
+  },
+  {
+   "id": "fr09",
+   "title": "你能……吗?",
+   "en": "Can you {}?",
+   "zh": "你能{}吗?",
+   "fills": [
+    {
+     "id": "fr09-1",
+     "fill": "help me",
+     "zh": "帮我",
+     "en": "Can you help me?",
+     "zhFull": "你能帮我吗?"
+    },
+    {
+     "id": "fr09-2",
+     "fill": "say it again",
+     "zh": "再说一遍",
+     "en": "Can you say it again?",
+     "zhFull": "你能再说一遍吗?"
+    },
+    {
+     "id": "fr09-3",
+     "fill": "speak slowly",
+     "zh": "说慢一点",
+     "en": "Can you speak slowly?",
+     "zhFull": "你能说慢一点吗?"
+    },
+    {
+     "id": "fr09-4",
+     "fill": "show me",
+     "zh": "给我看看",
+     "en": "Can you show me?",
+     "zhFull": "你能给我看看吗?"
+    },
+    {
+     "id": "fr09-5",
+     "fill": "write it down",
+     "zh": "写下来",
+     "en": "Can you write it down?",
+     "zhFull": "你能写下来吗?"
+    },
+    {
+     "id": "fr09-6",
+     "fill": "wait a moment",
+     "zh": "等一下",
+     "en": "Can you wait a moment?",
+     "zhFull": "你能等一下吗?"
+    },
+    {
+     "id": "fr09-7",
+     "fill": "call a taxi",
+     "zh": "叫辆出租车",
+     "en": "Can you call a taxi?",
+     "zhFull": "你能叫辆出租车吗?"
+    },
+    {
+     "id": "fr09-8",
+     "fill": "take a picture of us",
+     "zh": "给我们拍张照",
+     "en": "Can you take a picture of us?",
+     "zhFull": "你能给我们拍张照吗?"
+    }
+   ]
+  },
+  {
+   "id": "fr10",
+   "title": "我(状态)……",
+   "en": "I am {}.",
+   "zh": "我{}。",
+   "fills": [
+    {
+     "id": "fr10-1",
+     "fill": "hungry",
+     "zh": "饿了",
+     "en": "I am hungry.",
+     "zhFull": "我饿了。"
+    },
+    {
+     "id": "fr10-2",
+     "fill": "tired",
+     "zh": "累了",
+     "en": "I am tired.",
+     "zhFull": "我累了。"
+    },
+    {
+     "id": "fr10-3",
+     "fill": "late",
+     "zh": "迟到了",
+     "en": "I am late.",
+     "zhFull": "我迟到了。"
+    },
+    {
+     "id": "fr10-4",
+     "fill": "ready",
+     "zh": "准备好了",
+     "en": "I am ready.",
+     "zhFull": "我准备好了。"
+    },
+    {
+     "id": "fr10-5",
+     "fill": "lost",
+     "zh": "迷路了",
+     "en": "I am lost.",
+     "zhFull": "我迷路了。"
+    },
+    {
+     "id": "fr10-6",
+     "fill": "busy today",
+     "zh": "今天很忙",
+     "en": "I am busy today.",
+     "zhFull": "我今天很忙。"
+    },
+    {
+     "id": "fr10-7",
+     "fill": "from China",
+     "zh": "来自中国",
+     "en": "I am from China.",
+     "zhFull": "我来自中国。"
+    },
+    {
+     "id": "fr10-8",
+     "fill": "a student",
+     "zh": "是学生",
+     "en": "I am a student.",
+     "zhFull": "我是学生。"
+    }
+   ]
+  },
+  {
+   "id": "fr11",
+   "title": "我有……",
+   "en": "I have {}.",
+   "zh": "我{}。",
+   "fills": [
+    {
+     "id": "fr11-1",
+     "fill": "a headache",
+     "zh": "头疼",
+     "en": "I have a headache.",
+     "zhFull": "我头疼。"
+    },
+    {
+     "id": "fr11-2",
+     "fill": "a cold",
+     "zh": "感冒了",
+     "en": "I have a cold.",
+     "zhFull": "我感冒了。"
+    },
+    {
+     "id": "fr11-3",
+     "fill": "a fever",
+     "zh": "发烧了",
+     "en": "I have a fever.",
+     "zhFull": "我发烧了。"
+    },
+    {
+     "id": "fr11-4",
+     "fill": "a question",
+     "zh": "有个问题",
+     "en": "I have a question.",
+     "zhFull": "我有个问题。"
+    },
+    {
+     "id": "fr11-5",
+     "fill": "a reservation",
+     "zh": "订了位",
+     "en": "I have a reservation.",
+     "zhFull": "我订了位。"
+    },
+    {
+     "id": "fr11-6",
+     "fill": "an appointment",
+     "zh": "约好了",
+     "en": "I have an appointment.",
+     "zhFull": "我约好了。"
+    },
+    {
+     "id": "fr11-7",
+     "fill": "a lot of work",
+     "zh": "有很多工作",
+     "en": "I have a lot of work.",
+     "zhFull": "我有很多工作。"
+    },
+    {
+     "id": "fr11-8",
+     "fill": "a small bag",
+     "zh": "有一个小包",
+     "en": "I have a small bag.",
+     "zhFull": "我有一个小包。"
+    }
+   ]
+  },
+  {
+   "id": "fr12",
+   "title": "我们……吧",
+   "en": "Let's {}.",
+   "zh": "我们{}吧。",
+   "fills": [
+    {
+     "id": "fr12-1",
+     "fill": "go",
+     "zh": "走",
+     "en": "Let's go.",
+     "zhFull": "我们走吧。"
+    },
+    {
+     "id": "fr12-2",
+     "fill": "eat",
+     "zh": "吃饭",
+     "en": "Let's eat.",
+     "zhFull": "我们吃饭吧。"
+    },
+    {
+     "id": "fr12-3",
+     "fill": "start",
+     "zh": "开始",
+     "en": "Let's start.",
+     "zhFull": "我们开始吧。"
+    },
+    {
+     "id": "fr12-4",
+     "fill": "take a break",
+     "zh": "休息一下",
+     "en": "Let's take a break.",
+     "zhFull": "我们休息一下吧。"
+    },
+    {
+     "id": "fr12-5",
+     "fill": "try it",
+     "zh": "试试",
+     "en": "Let's try it.",
+     "zhFull": "我们试试吧。"
+    },
+    {
+     "id": "fr12-6",
+     "fill": "ask him",
+     "zh": "问问他",
+     "en": "Let's ask him.",
+     "zhFull": "我们问问他吧。"
+    },
+    {
+     "id": "fr12-7",
+     "fill": "meet at six",
+     "zh": "六点见",
+     "en": "Let's meet at six.",
+     "zhFull": "我们六点见吧。"
+    },
+    {
+     "id": "fr12-8",
+     "fill": "order now",
+     "zh": "现在点餐",
+     "en": "Let's order now.",
+     "zhFull": "我们现在点餐吧。"
+    }
+   ]
+  },
+  {
+   "id": "fr13",
+   "title": "我打算……",
+   "en": "I am going to {}.",
+   "zh": "我打算{}。",
+   "fills": [
+    {
+     "id": "fr13-1",
+     "fill": "buy a gift",
+     "zh": "买礼物",
+     "en": "I am going to buy a gift.",
+     "zhFull": "我打算买礼物。"
+    },
+    {
+     "id": "fr13-2",
+     "fill": "take a bus",
+     "zh": "坐公交",
+     "en": "I am going to take a bus.",
+     "zhFull": "我打算坐公交。"
+    },
+    {
+     "id": "fr13-3",
+     "fill": "call my mom",
+     "zh": "给妈妈打电话",
+     "en": "I am going to call my mom.",
+     "zhFull": "我打算给妈妈打电话。"
+    },
+    {
+     "id": "fr13-4",
+     "fill": "cook dinner",
+     "zh": "做晚饭",
+     "en": "I am going to cook dinner.",
+     "zhFull": "我打算做晚饭。"
+    },
+    {
+     "id": "fr13-5",
+     "fill": "study English",
+     "zh": "学英语",
+     "en": "I am going to study English.",
+     "zhFull": "我打算学英语。"
+    },
+    {
+     "id": "fr13-6",
+     "fill": "walk home",
+     "zh": "走路回家",
+     "en": "I am going to walk home.",
+     "zhFull": "我打算走路回家。"
+    },
+    {
+     "id": "fr13-7",
+     "fill": "get some sleep",
+     "zh": "睡一觉",
+     "en": "I am going to get some sleep.",
+     "zhFull": "我打算睡一觉。"
+    },
+    {
+     "id": "fr13-8",
+     "fill": "wash my hands",
+     "zh": "洗手",
+     "en": "I am going to wash my hands.",
+     "zhFull": "我打算洗手。"
+    }
+   ]
+  },
+  {
+   "id": "fr14",
+   "title": "你知道……吗?",
+   "en": "Do you know {}?",
+   "zh": "你知道{}吗?",
+   "fills": [
+    {
+     "id": "fr14-1",
+     "fill": "him",
+     "zh": "他",
+     "en": "Do you know him?",
+     "zhFull": "你知道他吗?"
+    },
+    {
+     "id": "fr14-2",
+     "fill": "this place",
+     "zh": "这个地方",
+     "en": "Do you know this place?",
+     "zhFull": "你知道这个地方吗?"
+    },
+    {
+     "id": "fr14-3",
+     "fill": "the way",
+     "zh": "路怎么走",
+     "en": "Do you know the way?",
+     "zhFull": "你知道路怎么走吗?"
+    },
+    {
+     "id": "fr14-4",
+     "fill": "what time it is",
+     "zh": "现在几点",
+     "en": "Do you know what time it is?",
+     "zhFull": "你知道现在几点吗?"
+    },
+    {
+     "id": "fr14-5",
+     "fill": "where it is",
+     "zh": "它在哪",
+     "en": "Do you know where it is?",
+     "zhFull": "你知道它在哪吗?"
+    },
+    {
+     "id": "fr14-6",
+     "fill": "her name",
+     "zh": "她的名字",
+     "en": "Do you know her name?",
+     "zhFull": "你知道她的名字吗?"
+    },
+    {
+     "id": "fr14-7",
+     "fill": "how to get there",
+     "zh": "怎么去那里",
+     "en": "Do you know how to get there?",
+     "zhFull": "你知道怎么去那里吗?"
+    },
+    {
+     "id": "fr14-8",
+     "fill": "a good place to eat",
+     "zh": "吃饭的好地方",
+     "en": "Do you know a good place to eat?",
+     "zhFull": "你知道吃饭的好地方吗?"
+    }
+   ]
+  },
+  {
+   "id": "fr15",
+   "title": "……几点?",
+   "en": "What time {}?",
+   "zh": "{}?",
+   "fills": [
+    {
+     "id": "fr15-1",
+     "fill": "is it",
+     "zh": "现在几点",
+     "en": "What time is it?",
+     "zhFull": "现在几点?"
+    },
+    {
+     "id": "fr15-2",
+     "fill": "does it open",
+     "zh": "几点开门",
+     "en": "What time does it open?",
+     "zhFull": "几点开门?"
+    },
+    {
+     "id": "fr15-3",
+     "fill": "does it close",
+     "zh": "几点关门",
+     "en": "What time does it close?",
+     "zhFull": "几点关门?"
+    },
+    {
+     "id": "fr15-4",
+     "fill": "is the bus",
+     "zh": "公交车几点来",
+     "en": "What time is the bus?",
+     "zhFull": "公交车几点来?"
+    },
+    {
+     "id": "fr15-5",
+     "fill": "do we leave",
+     "zh": "我们几点出发",
+     "en": "What time do we leave?",
+     "zhFull": "我们几点出发?"
+    },
+    {
+     "id": "fr15-6",
+     "fill": "is lunch",
+     "zh": "午饭几点",
+     "en": "What time is lunch?",
+     "zhFull": "午饭几点?"
+    },
+    {
+     "id": "fr15-7",
+     "fill": "does the movie start",
+     "zh": "电影几点开始",
+     "en": "What time does the movie start?",
+     "zhFull": "电影几点开始?"
+    },
+    {
+     "id": "fr15-8",
+     "fill": "is check-out",
+     "zh": "几点退房",
+     "en": "What time is check-out?",
+     "zhFull": "几点退房?"
+    }
+   ]
+  },
+  {
+   "id": "fr16",
+   "title": "太……了",
+   "en": "It is too {}.",
+   "zh": "太{}了。",
+   "fills": [
+    {
+     "id": "fr16-1",
+     "fill": "hot",
+     "zh": "热",
+     "en": "It is too hot.",
+     "zhFull": "太热了。"
+    },
+    {
+     "id": "fr16-2",
+     "fill": "cold",
+     "zh": "冷",
+     "en": "It is too cold.",
+     "zhFull": "太冷了。"
+    },
+    {
+     "id": "fr16-3",
+     "fill": "expensive",
+     "zh": "贵",
+     "en": "It is too expensive.",
+     "zhFull": "太贵了。"
+    },
+    {
+     "id": "fr16-4",
+     "fill": "big",
+     "zh": "大",
+     "en": "It is too big.",
+     "zhFull": "太大了。"
+    },
+    {
+     "id": "fr16-5",
+     "fill": "small",
+     "zh": "小",
+     "en": "It is too small.",
+     "zhFull": "太小了。"
+    },
+    {
+     "id": "fr16-6",
+     "fill": "loud",
+     "zh": "吵",
+     "en": "It is too loud.",
+     "zhFull": "太吵了。"
+    },
+    {
+     "id": "fr16-7",
+     "fill": "far",
+     "zh": "远",
+     "en": "It is too far.",
+     "zhFull": "太远了。"
+    },
+    {
+     "id": "fr16-8",
+     "fill": "late",
+     "zh": "晚",
+     "en": "It is too late.",
+     "zhFull": "太晚了。"
+    }
+   ]
+  },
+  {
+   "id": "fr17",
+   "title": "我不……",
+   "en": "I do not {}.",
+   "zh": "我不{}。",
+   "fills": [
+    {
+     "id": "fr17-1",
+     "fill": "understand",
+     "zh": "明白",
+     "en": "I do not understand.",
+     "zhFull": "我不明白。"
+    },
+    {
+     "id": "fr17-2",
+     "fill": "know",
+     "zh": "知道",
+     "en": "I do not know.",
+     "zhFull": "我不知道。"
+    },
+    {
+     "id": "fr17-3",
+     "fill": "like it",
+     "zh": "喜欢它",
+     "en": "I do not like it.",
+     "zhFull": "我不喜欢它。"
+    },
+    {
+     "id": "fr17-4",
+     "fill": "have time",
+     "zh": "有时间",
+     "en": "I do not have time.",
+     "zhFull": "我不有时间。"
+    },
+    {
+     "id": "fr17-5",
+     "fill": "eat meat",
+     "zh": "吃肉",
+     "en": "I do not eat meat.",
+     "zhFull": "我不吃肉。"
+    },
+    {
+     "id": "fr17-6",
+     "fill": "speak much English",
+     "zh": "怎么会说英语",
+     "en": "I do not speak much English.",
+     "zhFull": "我不怎么会说英语。"
+    },
+    {
+     "id": "fr17-7",
+     "fill": "remember",
+     "zh": "记得",
+     "en": "I do not remember.",
+     "zhFull": "我不记得。"
+    },
+    {
+     "id": "fr17-8",
+     "fill": "have a car",
+     "zh": "有车",
+     "en": "I do not have a car.",
+     "zhFull": "我不有车。"
+    }
+   ]
+  },
+  {
+   "id": "fr18",
+   "title": "谢谢你……",
+   "en": "Thank you for {}.",
+   "zh": "谢谢你{}。",
+   "fills": [
+    {
+     "id": "fr18-1",
+     "fill": "helping me",
+     "zh": "帮我",
+     "en": "Thank you for helping me.",
+     "zhFull": "谢谢你帮我。"
+    },
+    {
+     "id": "fr18-2",
+     "fill": "your time",
+     "zh": "花时间",
+     "en": "Thank you for your time.",
+     "zhFull": "谢谢你花时间。"
+    },
+    {
+     "id": "fr18-3",
+     "fill": "coming",
+     "zh": "来",
+     "en": "Thank you for coming.",
+     "zhFull": "谢谢你来。"
+    },
+    {
+     "id": "fr18-4",
+     "fill": "waiting",
+     "zh": "等我",
+     "en": "Thank you for waiting.",
+     "zhFull": "谢谢你等我。"
+    },
+    {
+     "id": "fr18-5",
+     "fill": "the gift",
+     "zh": "这份礼物",
+     "en": "Thank you for the gift.",
+     "zhFull": "谢谢你这份礼物。"
+    },
+    {
+     "id": "fr18-6",
+     "fill": "everything",
+     "zh": "做的一切",
+     "en": "Thank you for everything.",
+     "zhFull": "谢谢你做的一切。"
+    },
+    {
+     "id": "fr18-7",
+     "fill": "your help",
+     "zh": "你的帮助",
+     "en": "Thank you for your help.",
+     "zhFull": "谢谢你你的帮助。"
+    },
+    {
+     "id": "fr18-8",
+     "fill": "the call",
+     "zh": "打来电话",
+     "en": "Thank you for the call.",
+     "zhFull": "谢谢你打来电话。"
+    }
+   ]
+  },
+  {
+   "id": "fr19",
+   "title": "对不起,我……",
+   "en": "Sorry, I {}.",
+   "zh": "对不起,我{}。",
+   "fills": [
+    {
+     "id": "fr19-1",
+     "fill": "am late",
+     "zh": "迟到了",
+     "en": "Sorry, I am late.",
+     "zhFull": "对不起,我迟到了。"
+    },
+    {
+     "id": "fr19-2",
+     "fill": "forgot",
+     "zh": "忘了",
+     "en": "Sorry, I forgot.",
+     "zhFull": "对不起,我忘了。"
+    },
+    {
+     "id": "fr19-3",
+     "fill": "cannot come",
+     "zh": "来不了",
+     "en": "Sorry, I cannot come.",
+     "zhFull": "对不起,我来不了。"
+    },
+    {
+     "id": "fr19-4",
+     "fill": "did not hear you",
+     "zh": "没听清",
+     "en": "Sorry, I did not hear you.",
+     "zhFull": "对不起,我没听清。"
+    },
+    {
+     "id": "fr19-5",
+     "fill": "made a mistake",
+     "zh": "弄错了",
+     "en": "Sorry, I made a mistake.",
+     "zhFull": "对不起,我弄错了。"
+    },
+    {
+     "id": "fr19-6",
+     "fill": "took your seat",
+     "zh": "占了你的座位",
+     "en": "Sorry, I took your seat.",
+     "zhFull": "对不起,我占了你的座位。"
+    },
+    {
+     "id": "fr19-7",
+     "fill": "missed the bus",
+     "zh": "错过了公交",
+     "en": "Sorry, I missed the bus.",
+     "zhFull": "对不起,我错过了公交。"
+    },
+    {
+     "id": "fr19-8",
+     "fill": "broke it",
+     "zh": "把它弄坏了",
+     "en": "Sorry, I broke it.",
+     "zhFull": "对不起,我把它弄坏了。"
+    }
+   ]
+  },
+  {
+   "id": "fr20",
+   "title": "……怎么样?",
+   "en": "How about {}?",
+   "zh": "{}怎么样?",
+   "fills": [
+    {
+     "id": "fr20-1",
+     "fill": "this one",
+     "zh": "这个",
+     "en": "How about this one?",
+     "zhFull": "这个怎么样?"
+    },
+    {
+     "id": "fr20-2",
+     "fill": "tomorrow",
+     "zh": "明天",
+     "en": "How about tomorrow?",
+     "zhFull": "明天怎么样?"
+    },
+    {
+     "id": "fr20-3",
+     "fill": "Friday",
+     "zh": "周五",
+     "en": "How about Friday?",
+     "zhFull": "周五怎么样?"
+    },
+    {
+     "id": "fr20-4",
+     "fill": "some tea",
+     "zh": "喝点茶",
+     "en": "How about some tea?",
+     "zhFull": "喝点茶怎么样?"
+    },
+    {
+     "id": "fr20-5",
+     "fill": "a walk",
+     "zh": "散散步",
+     "en": "How about a walk?",
+     "zhFull": "散散步怎么样?"
+    },
+    {
+     "id": "fr20-6",
+     "fill": "seven o'clock",
+     "zh": "七点",
+     "en": "How about seven o'clock?",
+     "zhFull": "七点怎么样?"
+    },
+    {
+     "id": "fr20-7",
+     "fill": "the red one",
+     "zh": "红色的",
+     "en": "How about the red one?",
+     "zhFull": "红色的怎么样?"
+    },
+    {
+     "id": "fr20-8",
+     "fill": "Chinese food",
+     "zh": "中餐",
+     "en": "How about Chinese food?",
+     "zhFull": "中餐怎么样?"
+    }
+   ]
+  },
+  {
+   "id": "fr21",
+   "title": "我觉得……",
+   "en": "I think {}.",
+   "zh": "我觉得{}。",
+   "fills": [
+    {
+     "id": "fr21-1",
+     "fill": "it is good",
+     "zh": "这个不错",
+     "en": "I think it is good.",
+     "zhFull": "我觉得这个不错。"
+    },
+    {
+     "id": "fr21-2",
+     "fill": "it is too late",
+     "zh": "太晚了",
+     "en": "I think it is too late.",
+     "zhFull": "我觉得太晚了。"
+    },
+    {
+     "id": "fr21-3",
+     "fill": "you are right",
+     "zh": "你说得对",
+     "en": "I think you are right.",
+     "zhFull": "我觉得你说得对。"
+    },
+    {
+     "id": "fr21-4",
+     "fill": "so",
+     "zh": "是这样",
+     "en": "I think so.",
+     "zhFull": "我觉得是这样。"
+    },
+    {
+     "id": "fr21-5",
+     "fill": "it will rain",
+     "zh": "会下雨",
+     "en": "I think it will rain.",
+     "zhFull": "我觉得会下雨。"
+    },
+    {
+     "id": "fr21-6",
+     "fill": "he is busy",
+     "zh": "他很忙",
+     "en": "I think he is busy.",
+     "zhFull": "我觉得他很忙。"
+    },
+    {
+     "id": "fr21-7",
+     "fill": "we should go",
+     "zh": "我们该走了",
+     "en": "I think we should go.",
+     "zhFull": "我觉得我们该走了。"
+    },
+    {
+     "id": "fr21-8",
+     "fill": "this is fine",
+     "zh": "这样可以",
+     "en": "I think this is fine.",
+     "zhFull": "我觉得这样可以。"
+    }
+   ]
+  }
+ ]
+}

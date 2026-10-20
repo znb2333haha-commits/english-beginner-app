@@ -4,9 +4,11 @@ import examplesData from '../data/examples.json';
 import phonemesData from '../data/phonetics.json';
 import phrasesData from '../data/phrases.json';
 import kidsData from '../data/kids.json';
+import framesData from '../data/frames.json';
+import linkingData from '../data/linking.json';
 import { State } from 'ts-fsrs';
 import type { Grade } from 'ts-fsrs';
-import { playKid, playPhrase, playPhraseAsync, playSentence, playSequence, playWord, stopSequence } from './audio';
+import { playFile, playKid, pickVoice, setMultiVoice, voiceForRole, playPhrase, playPhraseAsync, playSentence, playSequence, playWord, stopSequence } from './audio';
 import { buildQuiz, makeCloze, pickKind, spellOk } from './practice';
 import type { PracticeKind, PracticeQuiz } from './practice';
 import { chunksHtml, countBeats, hintLevel, skeleton } from './spelling';
@@ -15,6 +17,12 @@ import { remaining, planSteps, STEP_LABEL } from './path';
 import type { PathStep } from './path';
 import { decide, pickSample } from './placement';
 import { search } from './search';
+import { coverage, weekSummary } from './stats';
+import type { WeekSummary } from './stats';
+import { disableReminder, enableReminder, reminderSupported } from './reminder';
+import minesData from '../data/mine.json';
+import { frameQuiz, linkQuiz, myLineCount, roleAdvance, roleTurn, startRole } from './drills';
+import type { ChoiceQ, Frame, LinkItem, RoleState } from './drills';
 import { canRecord, comparePlay, playMine, resetShadow, shadowError, shadowState, startRecording, stopRecording } from './shadow';
 import { buildFormIndex, buildPhraseIndex } from './lookup';
 import { duePhrases, learnPhrase, ratePhrase } from './phrase-cards';
@@ -29,6 +37,7 @@ import {
 } from './scheduler';
 import {
   addLog,
+  allLogs,
   allStats,
   bumpStats,
   exportBackup,
@@ -57,7 +66,8 @@ const words = wordsData as unknown as Word[];
 const examples = examplesData as unknown as Record<string, { en: string; zh: string }[]>;
 const byId = new Map(words.map((w) => [w.id, w]));
 const phonemes = phonemesData as unknown as Phoneme[];
-const scenes = (phrasesData as unknown as { scenes: Scene[] }).scenes;
+const mineScenes = (minesData as unknown as { scenes: Scene[] }).scenes.filter((x) => x.phrases.length > 0);
+const scenes = [...(phrasesData as unknown as { scenes: Scene[] }).scenes, ...mineScenes];
 const wordByText = new Map(words.map((w) => [w.word, w]));
 const formIndex = buildFormIndex(words);
 const allLines = scenes.flatMap((sc) => [...sc.phrases, ...(sc.dialog ?? [])]);
@@ -77,7 +87,7 @@ function tokHtml(text: string): string {
 }
 const app = document.getElementById('app') as HTMLElement;
 
-type View = 'home' | 'pathdone' | 'placement' | 'placementresult' | 'study' | 'done' | 'settings' | 'phonetics' | 'phoneme' | 'scenes' | 'scene' | 'preview' | 'kids' | 'kidgroup';
+type View = 'home' | 'pathdone' | 'placement' | 'placementresult' | 'study' | 'done' | 'settings' | 'phonetics' | 'phoneme' | 'scenes' | 'scene' | 'preview' | 'kids' | 'kidgroup' | 'frames' | 'frame' | 'linking' | 'drillquiz' | 'role' | 'stats' | 'tutor';
 
 interface Session {
   queue: number[];
@@ -118,6 +128,20 @@ interface PReview {
   finished: boolean;
 }
 let preview: PReview | null = null;
+const frames = (framesData as unknown as { frames: Frame[] }).frames;
+const linkItems = (linkingData as unknown as { items: LinkItem[] }).items;
+let statsView: { cov: number; known: number; week: WeekSummary } | null = null;
+interface TutorState { queue: { id: string; en: string; zh: string }[]; idx: number; phase: 'zh' | 'en'; paused: boolean; done: boolean }
+let tutor: TutorState | null = null;
+let tutorToken = 0;
+let wakeLock: { release: () => Promise<void> } | null = null;
+let reminder = loadMeta<{ on: boolean; time: string }>('reminder', { on: false, time: '20:00' });
+let voicesOn = loadMeta<{ multi: boolean }>('voices', { multi: true });
+setMultiVoice(voicesOn.multi);
+let currentFrame: Frame | null = null;
+let drill: { title: string; back: View; qs: ChoiceQ[]; idx: number; picked: string | null; correct: number } | null = null;
+let role: RoleState | null = null;
+let roleToken = 0;
 let searchQuery = '';
 let pathRun: { steps: PathStep[]; idx: number; scene: Scene } | null = null;
 let pathMeta = loadMeta<{ date: string; done: PathStep[] }>('path', { date: '', done: [] });
@@ -450,6 +474,10 @@ function renderHome(): string {
         <span>已学 ${cards.size} 词 / 词库 ${words.length} 词</span>
         <button class="link" data-action="kids">儿童乐园 ⭐${kidStars()}</button>
         <button class="link" data-action="scenes">日常会话 ${scenesDone()}/${scenes.length}</button>
+        <button class="link" data-action="stats">学习概况</button>
+        <button class="link" data-action="tutor-start">免手操</button>
+        <button class="link" data-action="frames">句型练习</button>
+        <button class="link" data-action="linking">连读弱读</button>
         <button class="link" data-action="phonetics">音标入门 ${doneCount()}/${phonemes.length}</button>
         <button class="link" data-action="placement-start">摸底测试</button>
         <button class="link" data-action="settings">设置与备份</button>
@@ -637,7 +665,244 @@ function renderDialog(sc: Scene): string {
           <div class="bubble-text"><b>${tokHtml(l.en)}</b><span>${esc(l.zh)}</span></div></div>`,
       )
       .join('')}</div>
-    <button class="secondary big" data-action="dialog-play">整段播放</button>`;
+    <button class="secondary big" data-action="dialog-play">整段播放</button>
+    <button class="primary big" data-action="role-open">角色扮演:我来演一个人</button>
+    <button class="secondary big" data-action="tutor-scene">免手操:整个场景自动播放</button>`;
+}
+
+const frameSrc = (id: string) => `audio/frames/${id}.mp3`;
+const linkSrc = (id: string, slow = false) => `audio/linking/${id}${slow ? '-slow' : ''}.mp3`;
+
+function renderFrames(): string {
+  return `<section class="settings">
+    <header><button class="link" data-action="home">返回</button><span>句型练习</span></header>
+    <p class="hint">记住一个句型,换几个词就能说很多话。点一个句型,听、读、再考考自己。</p>
+    <div class="scene-list">${frames
+      .map(
+        (f) => `<button class="scene" data-action="frame" data-id="${esc(f.id)}"><b>${esc(f.en.replace('{}', '…'))}</b><span>${esc(f.zh.replace('{}', '…'))}</span></button>`,
+      )
+      .join('')}</div></section>`;
+}
+
+function renderFrame(): string {
+  const f = currentFrame;
+  if (!f) return '';
+  return `<section class="settings">
+    <header><button class="link" data-action="frames">返回</button><span>${esc(f.en.replace('{}', '…'))}</span></header>
+    <p class="hint">${esc(f.zh.replace('{}', '…'))}　点 ▶ 听整句,🎤 跟着读。</p>
+    <div class="phrase-list">${f.fills
+      .map(
+        (x) => `<div class="phrase" data-id="${esc(x.id)}"><button class="play-btn" data-action="frame-play" data-id="${esc(x.id)}" aria-label="播放">▶</button>
+          <div class="phrase-text"><b>${esc(x.en)}</b><span>${esc(x.zhFull)}</span></div></div>`,
+      )
+      .join('')}</div>
+    ${renderShadow(frameSrc(f.fills[lastFrameFill(f)].id))}
+    <button class="primary big" data-action="frame-quiz">考考我(5 题)</button>
+  </section>`;
+}
+
+let frameFillIdx = 0;
+function lastFrameFill(f: Frame): number {
+  return Math.min(frameFillIdx, f.fills.length - 1);
+}
+
+function renderLinking(): string {
+  return `<section class="settings">
+    <header><button class="link" data-action="home">返回</button><span>连读与弱读</span></header>
+    <p class="hint">真实对话里,英语说得很快,词会连在一起、变轻。每条先听"慢速"再听"自然",看"听起来像"。</p>
+    <div class="phrase-list">${linkItems
+      .map(
+        (it) => `<div class="link-item"><div class="link-en"><b>${esc(it.en)}</b><span>${esc(it.zh)}</span></div>
+          <div class="link-sounds">听起来像:<b>${esc(it.sounds)}</b></div>
+          <div class="link-note">${esc(it.note)}</div>
+          <div class="link-btns"><button class="secondary" data-action="link-play" data-id="${esc(it.id)}" data-slow="1">▶ 慢速</button><button class="secondary" data-action="link-play" data-id="${esc(it.id)}">▶ 自然</button></div></div>`,
+      )
+      .join('')}</div>
+    <button class="primary big" data-action="link-quiz">听写小测(5 题)</button>
+  </section>`;
+}
+
+function renderDrillQuiz(): string {
+  const d = drill;
+  if (!d) return '';
+  if (d.idx >= d.qs.length) {
+    return `<section class="settings"><header><button class="link" data-action="drill-back">返回</button><span>${esc(d.title)}</span></header>
+      <div class="quiz-result"><h2>答对 ${d.correct} / ${d.qs.length}</h2><p class="hint">${d.correct === d.qs.length ? '全对!' : '再听几遍就更稳了。'}</p></div>
+      <button class="primary big" data-action="drill-back">完成</button></section>`;
+  }
+  const q = d.qs[d.idx];
+  const opts = q.options
+    .map((o) => {
+      const cls = d.picked === null ? '' : o === q.answer ? 'right' : o === d.picked ? 'wrong' : '';
+      return `<button class="quiz-option ${cls}" data-action="drill-pick" data-o="${esc(o)}" ${d.picked !== null ? 'disabled' : ''}>${esc(o)}</button>`;
+    })
+    .join('');
+  return `<section class="settings"><header><button class="link" data-action="drill-back">退出</button><span>${esc(d.title)} ${d.idx + 1}/${d.qs.length}</span></header>
+    <div class="quiz-prompt">${q.audioId ? `<button class="play-btn" data-action="drill-hear" aria-label="播放">▶</button>` : ''}<b>${esc(q.prompt)}</b></div>
+    <div class="quiz-options">${opts}</div>
+    ${d.picked !== null ? `<button class="primary big" data-action="drill-next">下一题</button>` : ''}
+  </section>`;
+}
+
+function roleLinesHtml(r: RoleState): string {
+  return r.lines
+    .slice(0, r.idx + 1)
+    .map((l, i) => {
+      const mine = l.who === r.me;
+      const hidden = mine && i === r.idx && !r.revealed;
+      return `<div class="bubble ${l.who === 'A' ? 'a' : 'b'} ${i === r.idx ? 'playing' : ''}">
+        <div class="bubble-text"><b>${hidden ? '……' : tokHtml(l.en)}</b><span>${esc(l.zh)}</span></div></div>`;
+    })
+    .join('');
+}
+
+function renderRole(): string {
+  const sc = currentScene;
+  if (!sc) return '';
+  if (!role) {
+    return `<section class="settings"><header><button class="link" data-action="scene-back">返回</button><span>角色扮演 · ${esc(sc.title)}</span></header>
+      <p class="hint">你来演其中一个人。对方说话会自动播放;轮到你时先看中文提示,试着用英语说出来(可以录音),再点"看答案"对照。</p>
+      <button class="primary big" data-action="role-start" data-me="A">我演第一个人(先开口)</button>
+      <button class="secondary big" data-action="role-start" data-me="B">我演第二个人(先听)</button></section>`;
+  }
+  const t = roleTurn(role);
+  const total = myLineCount(role);
+  const mineDone = role.lines.slice(0, role.idx).filter((l) => l.who === role!.me).length;
+  if (t === 'end') {
+    return `<section class="settings"><header><button class="link" data-action="role-exit">返回</button><span>角色扮演 · ${esc(sc.title)}</span></header>
+      <div class="dialog">${role.lines.map((l) => `<div class="bubble ${l.who === 'A' ? 'a' : 'b'}"><div class="bubble-text"><b>${tokHtml(l.en)}</b><span>${esc(l.zh)}</span></div></div>`).join('')}</div>
+      <p class="notice">演完了!你说了 ${total} 句。</p>
+      <button class="primary big" data-action="role-again">再演一次</button><button class="secondary big" data-action="role-exit">回到场景</button></section>`;
+  }
+  const cur = role.lines[role.idx];
+  const controls =
+    t === 'me'
+      ? role.revealed
+        ? `${renderShadow(`audio/phrases/${cur.id}.mp3`)}<button class="primary big" data-action="role-next">下一句</button>`
+        : `<p class="hint">轮到你了:用英语说出“${esc(cur.zh)}”这个意思。</p>${renderShadow(`audio/phrases/${cur.id}.mp3`)}<button class="primary big" data-action="role-reveal">看答案并播放</button>`
+      : `<p class="hint">对方在说话…</p>`;
+  return `<section class="settings"><header><button class="link" data-action="role-exit">退出</button><span>我演 ${role.me === 'A' ? '第一个人' : '第二个人'} · ${mineDone + (t === 'me' ? 1 : 0)}/${total}</span></header>
+    <div class="dialog">${roleLinesHtml(role)}</div>${controls}</section>`;
+}
+
+/** 对方的话自动播放,播完自动进到下一句 */
+async function roleRun(): Promise<void> {
+  const my = ++roleToken;
+  while (role && my === roleToken && roleTurn(role) === 'other') {
+    render();
+    const l = role.lines[role.idx];
+    await playPhraseAsync(l.id, l.en, voiceForRole(l.who));
+    if (my !== roleToken || !role) return;
+    role = roleAdvance(role);
+  }
+  if (my === roleToken) render();
+}
+
+function renderStats(): string {
+  const st = statsView;
+  if (!st) return '';
+  const w = st.week;
+  return `<section class="settings">
+    <header><button class="link" data-action="home">返回</button><span>学习概况</span></header>
+    <div class="cov"><b>${st.cov.toFixed(1)}%</b><span>日常英语覆盖率(粗略估计)</span></div>
+    <div class="progress-bar"><div style="width:${Math.min(100, st.cov).toFixed(1)}%"></div></div>
+    <p class="hint">已学 ${st.known} 个词。覆盖率只按常用程度给词加权估算:越常用的词占比越大,是个参考,不是考试成绩。</p>
+    <h2>最近 7 天</h2>
+    <div class="stats">
+      <div><b>${w.days}</b><span>学习天数</span></div>
+      <div><b>${w.newWords}</b><span>新词</span></div>
+      <div><b>${w.reviews}</b><span>做题次数</span></div>
+      <div><b>${w.accuracy === null ? '-' : w.accuracy + '%'}</b><span>答对比例</span></div>
+    </div>
+    <p class="hint">大约学了 ${w.minutes} 分钟。${w.days >= 5 ? '这周很稳,继续!' : w.days >= 1 ? '哪怕每天 10 分钟,比一次学很久有效。' : '这一周还没开始,今天来 10 分钟吧。'}</p>
+  </section>`;
+}
+
+async function openStats(): Promise<void> {
+  const [logs, days] = await Promise.all([allLogs(), allStats()]);
+  const known = [...cards.values()].filter((c) => c.state !== 0);
+  const rank = (id: number) => byId.get(id)?.freq_rank ?? 9999;
+  statsView = {
+    cov: coverage(known.map((c) => rank(c.wordId)), words.map((x) => x.freq_rank)),
+    known: known.length,
+    week: weekSummary(logs, days, new Date(), localDate),
+  };
+  view = 'stats';
+  render();
+}
+
+async function acquireWake(): Promise<void> {
+  try {
+    const nav = navigator as unknown as { wakeLock?: { request: (t: 'screen') => Promise<{ release: () => Promise<void> }> } };
+    wakeLock = (await nav.wakeLock?.request('screen')) ?? null;
+  } catch {
+    wakeLock = null;
+  }
+}
+function releaseWake(): void {
+  void wakeLock?.release().catch(() => undefined);
+  wakeLock = null;
+}
+
+function renderTutor(): string {
+  const t = tutor;
+  if (!t) return '';
+  if (t.done) {
+    return `<section class="settings"><header><button class="link" data-action="tutor-exit">返回</button><span>免手操</span></header>
+      <div class="quiz-result"><h2>这一轮播完了</h2><p class="hint">共 ${t.queue.length} 句。</p></div>
+      <button class="primary big" data-action="tutor-again">再来一轮</button></section>`;
+  }
+  const l = t.queue[t.idx];
+  return `<section class="settings tutor">
+    <header><button class="link" data-action="tutor-exit">退出</button><span>${t.idx + 1}/${t.queue.length}</span></header>
+    <div class="tutor-zh">${esc(l.zh)}</div>
+    <div class="tutor-en">${t.phase === 'en' ? esc(l.en) : '…'}</div>
+    <p class="hint">屏幕会保持常亮。先想想怎么说,再听标准读法,听两遍。</p>
+    <button class="secondary big" data-action="tutor-pause">${t.paused ? '继续' : '暂停'}</button>
+  </section>`;
+}
+
+const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+
+async function tutorRun(): Promise<void> {
+  const my = ++tutorToken;
+  while (tutor && my === tutorToken && !tutor.paused) {
+    const l = tutor.queue[tutor.idx];
+    if (!l) {
+      tutor.done = true;
+      releaseWake();
+      render();
+      return;
+    }
+    tutor.phase = 'zh';
+    render();
+    await sleep(2500);
+    if (my !== tutorToken || !tutor) return;
+    tutor.phase = 'en';
+    render();
+    await playPhraseAsync(l.id, l.en, pickVoice());
+    if (my !== tutorToken || !tutor) return;
+    await sleep(1200);
+    if (my !== tutorToken || !tutor) return;
+    await playPhraseAsync(l.id, l.en, 'jenny');
+    if (my !== tutorToken || !tutor) return;
+    await sleep(1500);
+    if (my !== tutorToken || !tutor) return;
+    tutor.idx++;
+  }
+}
+
+function startTutor(lines: { id: string; en: string; zh: string }[]): void {
+  tutor = { queue: lines, idx: 0, phase: 'zh', paused: false, done: false };
+  view = 'tutor';
+  void acquireWake();
+  void tutorRun();
+}
+
+function learnedQueue(): { id: string; en: string; zh: string }[] {
+  const ids = [...phraseCards.keys()].filter((id) => lineById.has(id));
+  const pool = ids.length >= 3 ? ids.map((id) => lineById.get(id)!) : scenes[0].phrases;
+  return [...pool].sort(() => Math.random() - 0.5).slice(0, 20);
 }
 
 function renderScenes(): string {
@@ -1151,6 +1416,22 @@ function renderSettings(): string {
           <option value="0" ${settings.practice ? '' : 'selected'}>只看卡片</option>
         </select>
       </label>
+      <label>多种声音
+        <select data-setting="voices">
+          <option value="1" ${voicesOn.multi ? 'selected' : ''}>开(女声、男声随机,更像真实环境)</option>
+          <option value="0" ${voicesOn.multi ? '' : 'selected'}>关(只用 Jenny)</option>
+        </select>
+      </label>
+      ${
+        reminderSupported()
+          ? `<label>每日提醒
+        <select data-setting="reminder"><option value="0" ${reminder.on ? '' : 'selected'}>关</option><option value="1" ${reminder.on ? 'selected' : ''}>开</option></select>
+      </label>
+      <label>提醒时间
+        <input type="time" data-setting="reminderTime" value="${esc(reminder.time)}" />
+      </label>`
+          : `<p class="hint">每日提醒只在安装的手机 App 里可用。</p>`
+      }
       <p class="hint">混合练习:学过的词会用"听音选意思""看中文拼单词""句子填空"来复习,比只看答案记得牢。新词仍用普通卡片。</p>
       <h2>备份</h2>
       <p class="hint">进度只保存在这台设备上。换手机或在电脑上继续学,先导出备份,再到另一边导入。导入会替换那边现有的全部进度。</p>
@@ -1162,7 +1443,7 @@ function renderSettings(): string {
 }
 
 function render(): void {
-  if (['home', 'scenes', 'settings', 'phonetics', 'phoneme', 'kids', 'kidgroup'].includes(view)) pathRun = null;
+  if (['home', 'scenes', 'settings', 'phonetics', 'phoneme', 'kids', 'kidgroup', 'frames', 'frame', 'linking'].includes(view)) pathRun = null;
   const views: Record<View, () => string> = {
     home: renderHome,
     pathdone: renderPathDone,
@@ -1177,6 +1458,13 @@ function render(): void {
     preview: renderPreview,
     kids: renderKids,
     kidgroup: renderKidGroup,
+    frames: renderFrames,
+    frame: renderFrame,
+    linking: renderLinking,
+    drillquiz: renderDrillQuiz,
+    role: renderRole,
+    stats: renderStats,
+    tutor: renderTutor,
     settings: renderSettings,
   };
   app.innerHTML = views[view]();
@@ -1252,6 +1540,143 @@ app.addEventListener('click', (ev) => {
     playingLine = -1;
   }
   switch (el.dataset.action) {
+    case 'stats':
+      void openStats();
+      break;
+    case 'tutor-start':
+      startTutor(learnedQueue());
+      break;
+    case 'tutor-scene':
+      if (currentScene) startTutor(currentScene.phrases);
+      break;
+    case 'tutor-again':
+      startTutor(learnedQueue());
+      break;
+    case 'tutor-pause':
+      if (tutor) {
+        tutor.paused = !tutor.paused;
+        if (tutor.paused) {
+          tutorToken++;
+          stopSequence();
+          render();
+        } else void tutorRun();
+      }
+      break;
+    case 'tutor-exit':
+      tutorToken++;
+      stopSequence();
+      tutor = null;
+      releaseWake();
+      view = 'home';
+      void goHome();
+      break;
+    case 'frames':
+      view = 'frames';
+      render();
+      break;
+    case 'frame':
+      currentFrame = frames.find((x) => x.id === el.dataset.id) ?? null;
+      frameFillIdx = 0;
+      resetShadow();
+      view = 'frame';
+      render();
+      break;
+    case 'frame-play': {
+      const f = currentFrame?.fills.find((x) => x.id === el.dataset.id);
+      if (f && currentFrame) {
+        frameFillIdx = currentFrame.fills.indexOf(f);
+        resetShadow();
+        playFile(frameSrc(f.id), f.en);
+        render();
+      }
+      break;
+    }
+    case 'frame-quiz':
+      if (currentFrame) {
+        drill = { title: '句型小测', back: 'frame', qs: frameQuiz(currentFrame, 5), idx: 0, picked: null, correct: 0 };
+        view = 'drillquiz';
+        render();
+      }
+      break;
+    case 'linking':
+      view = 'linking';
+      render();
+      break;
+    case 'link-play': {
+      const it = linkItems.find((x) => x.id === el.dataset.id);
+      if (it) playFile(linkSrc(it.id, el.dataset.slow === '1'), el.dataset.slow === '1' ? it.en : it.fast, el.dataset.slow === '1');
+      break;
+    }
+    case 'link-quiz':
+      drill = { title: '听写小测', back: 'linking', qs: linkQuiz(linkItems, 5), idx: 0, picked: null, correct: 0 };
+      view = 'drillquiz';
+      render();
+      break;
+    case 'drill-hear': {
+      const q = drill?.qs[drill.idx];
+      const it = linkItems.find((x) => x.id === q?.audioId);
+      if (it) playFile(linkSrc(it.id), it.fast);
+      break;
+    }
+    case 'drill-pick':
+      if (drill && drill.picked === null) {
+        drill.picked = el.dataset.o ?? '';
+        if (drill.picked === drill.qs[drill.idx].answer) drill.correct++;
+        render();
+      }
+      break;
+    case 'drill-next':
+      if (drill) {
+        drill.idx++;
+        drill.picked = null;
+        render();
+        const q = drill.qs[drill.idx];
+        const it = q?.audioId ? linkItems.find((x) => x.id === q.audioId) : undefined;
+        if (it) playFile(linkSrc(it.id), it.fast);
+      }
+      break;
+    case 'drill-back':
+      view = drill?.back ?? 'home';
+      drill = null;
+      render();
+      break;
+    case 'role-open':
+      role = null;
+      roleToken++;
+      view = 'role';
+      render();
+      break;
+    case 'role-start':
+    case 'role-again':
+      if (currentScene?.dialog) {
+        resetShadow();
+        role = startRole(currentScene.dialog, el.dataset.action === 'role-again' ? (role?.me ?? 'A') : (el.dataset.me ?? 'A'));
+        void roleRun();
+      }
+      break;
+    case 'role-reveal':
+      if (role) {
+        role.revealed = true;
+        render();
+        const l = role.lines[role.idx];
+        playFile(`audio/phrases/${l.id}.mp3`, l.en);
+      }
+      break;
+    case 'role-next':
+      if (role) {
+        resetShadow();
+        role = roleAdvance(role);
+        void roleRun();
+      }
+      break;
+    case 'role-exit':
+      roleToken++;
+      stopSequence();
+      role = null;
+      resetShadow();
+      view = 'scene';
+      render();
+      break;
     case 'path-start':
       startPath();
       break;
@@ -1488,6 +1913,8 @@ app.addEventListener('click', (ev) => {
       render();
       break;
     case 'scene-back':
+      roleToken++;
+      role = null;
       phraseQuiz = null;
       view = 'scene';
       render();
@@ -1579,8 +2006,39 @@ app.addEventListener('input', (ev) => {
   }
 });
 
+async function applyExtraSetting(key: string, value: string): Promise<void> {
+  if (key === 'voices') {
+    voicesOn = { multi: value === '1' };
+    saveMeta('voices', voicesOn);
+    setMultiVoice(voicesOn.multi);
+    return;
+  }
+  if (key === 'reminderTime') {
+    if (!/^\d{2}:\d{2}$/.test(value)) return;
+    reminder = { ...reminder, time: value };
+    saveMeta('reminder', reminder);
+    if (reminder.on) await enableReminder(Number(value.slice(0, 2)), Number(value.slice(3)));
+    return;
+  }
+  if (value === '1') {
+    const r = await enableReminder(Number(reminder.time.slice(0, 2)), Number(reminder.time.slice(3)));
+    reminder = { ...reminder, on: r === 'ok' };
+    notice = r === 'ok' ? `已设置每天 ${reminder.time} 提醒` : r === 'denied' ? '没有通知权限,请在系统设置里允许"拾语"发通知' : '';
+  } else {
+    reminder = { ...reminder, on: false };
+    await disableReminder();
+    notice = '';
+  }
+  saveMeta('reminder', reminder);
+  render();
+}
+
 app.addEventListener('change', (ev) => {
   const t = ev.target as HTMLInputElement | HTMLSelectElement;
+  if (t.dataset.setting === 'voices' || t.dataset.setting === 'reminder' || t.dataset.setting === 'reminderTime') {
+    void applyExtraSetting(t.dataset.setting, t.value);
+    return;
+  }
   if (t instanceof HTMLSelectElement && t.dataset.setting) {
     if (t.dataset.setting === 'practice') {
       settings = { ...settings, practice: t.value === '1' };
@@ -1598,7 +2056,7 @@ app.addEventListener('change', (ev) => {
 
 // 电脑键盘:空格显示答案,1 到 4 评分
 window.addEventListener('shadow-change', () => {
-  if (view === 'study' || view === 'preview') render();
+  if (view === 'study' || view === 'preview' || view === 'frame' || view === 'role') render();
 });
 
 document.addEventListener('keydown', (ev) => {

@@ -1,0 +1,11 @@
+{
+ "note": "我的短语本:把你自己常用、想学的句子加在 phrases 里。id 用 mine-1、mine-2…,en 是英文,zh 是中文。加完运行 Phrase audio 工作流生成音频。",
+ "scenes": [
+  {
+   "id": "mine",
+   "title": "我的短语本",
+   "intro": "你自己加的常用句子。",
+   "phrases": []
+  }
+ ]
+}
