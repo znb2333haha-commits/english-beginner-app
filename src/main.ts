@@ -421,7 +421,7 @@ function renderSearchResults(): string {
         <div class="hit-text"><b>${esc(h.word.word)} <small>/${esc(h.word.phonetic)}/</small></b><span>${esc(h.gloss)}</span></div></div>`,
     )
     .join('');
-  return `${ph ? `<h2 class="hit-title">能这样说</h2>${ph}` : ''}${wd ? `<h2 class="hit-title">相关单词</h2>${wd}` : ''}`;
+  return `${ph ? `<h2 class="hit-title">${r.fuzzy ? '没有一模一样的,这些意思接近' : '能这样说'}</h2>${ph}` : ''}${wd ? `<h2 class="hit-title">相关单词</h2>${wd}` : ''}`;
 }
 
 function renderPathBox(): string {
